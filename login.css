@@ -1,0 +1,66 @@
+/*
+        Last updated: April 27, 2017
+
+        Coded by: Joel N. Johnson
+*/
+
+body {
+    background-color: rgb(254, 254, 254);
+    position: relative;
+}
+
+.TopBar {
+    margin: 0;
+    width: 100%;
+    float: left;
+}
+
+.CorvinCastle {
+    float: left;
+    width: 55%;
+}
+
+img.CorvinCastle {
+    width: 500px;
+    padding-left: 70%;
+}
+
+h1.CorvinCastle {
+    padding-left: 25px;
+    line-height: .5em;
+    font-size: 40px;
+}
+
+.User {
+    float: right;
+    width: 40%;
+}
+
+p.User {
+    text-align: right;
+    line-height: .5em;
+    padding-right: 25px;
+    font-size: 30px;
+}
+
+#Login {
+    text-align: center;
+}
+
+h1 {
+    color: black;
+    font-family: "Garamond", Serif;
+    font-size: 25px;
+    line-height: 0em;
+}
+
+p {
+    font-family: "Times New Roman", Serif;
+    font-size: 20px;
+}
+
+#Footer {
+    font-size: 15px;
+    text-align: center;
+    font-style: italic;
+}

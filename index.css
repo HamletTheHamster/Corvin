@@ -1,0 +1,138 @@
+/*
+        April 9, 2017
+
+        Coded by: Joel N. Johnson
+*/
+
+body {
+    background-color: rgb(254, 254, 254);
+    position: relative;
+}
+
+.TopBar {
+    margin: 0;
+    width: 100%;
+    float: left;
+}
+
+.CorvinCastle {
+    float: left;
+    width: 55%;
+}
+
+h1.CorvinCastle {
+    padding-left: 25px;
+    line-height: .5em;
+    font-size: 40px;
+}
+
+.User {
+    float: right;
+    width: 40%;
+}
+
+p.User {
+    text-align: right;
+    line-height: .5em;
+    padding-right: 25px;
+    font-size: 30px;
+}
+
+.DiskSpace {
+    text-align: right;
+    padding-right: 8px;
+}
+
+p.DiskSpace {
+    font-size: 15px;
+}
+
+#Logout {
+    text-align: right;
+    padding-right: 25px;
+}
+
+#MainContent {
+    padding-left: 12.5%;
+    padding-right: 12.5%;
+    /*background-color: rgba(255, 225, 237, .3);*/ /*pink*/
+}
+
+#DirectoryPath {
+    font-size: 35px;
+    float: left;
+}
+
+#DirectoryPath p  a {
+    font-size: 25px;
+    float: left;
+    text-decoration: none;
+    color: #000000;
+}
+
+#Directory {
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 10px;
+    /*background-color: rgba(155, 255, 200, .3);*/ /*green*/
+}
+
+#FileNames {
+    max-width: 50%;
+    float: left;
+    /*background-color: rgba(50,200,255,.3);*/ /*blue*/
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#FileNames a {
+    text-decoration: none;
+    color: #000000;
+}
+
+#FileSizes {
+    float: right;
+    /*background-color: rgba(255, 255, 150, .5);*/ /*yellow*/
+    font-size: 20px;
+}
+
+#Heath {
+    background-color: rgba(240, 240, 240, .5);
+    border-radius: 2px;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+h1 {
+    color: black;
+    font-family: "Garamond", Serif;
+    font-size: 25px;
+    line-height: 0em;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
+p {
+    font-family: "Times New Roman", Serif;
+    font-size: 20px;
+}
+
+li, ul {
+    list-style-type: none;
+}
+
+.footer {
+    font-size: 15px;
+    text-align: center;
+    font-style: italic;
+}
+
+#DiskSpace {
+    text-align: right;
+    border-width: 1px;
+}
