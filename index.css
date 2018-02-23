@@ -1,5 +1,5 @@
 /*
-        April 9, 2017
+        Last updated: August 16, 2017
 
         Coded by: Joel N. Johnson
 */
@@ -15,15 +15,33 @@ body {
     float: left;
 }
 
-.CorvinCastle {
+.Corvin {
     float: left;
     width: 55%;
 }
 
-h1.CorvinCastle {
+.CorvinHeader {
+    color: rgba(0,0,0,0.85);
+    padding-top: 25px;
     padding-left: 25px;
     line-height: .5em;
-    font-size: 40px;
+    font-size: 60px;
+    display: inline-block;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.CorvinHeader:hover {
+    color: rgba(0,0,0,1);
+    cursor: pointer;
+}
+
+.CorvinHeader:active {
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+}
+
+.CorvinHeader:focus {
+    outline: none;
+    text-shadow: none;
 }
 
 .User {
@@ -52,22 +70,76 @@ p.DiskSpace {
     padding-right: 25px;
 }
 
+.LogoutButton {
+    background-color: rgba(51, 204, 255, .85); /* cyan */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    padding: 5px 5px;
+    border-radius: 4px;
+    margin-left: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.LogoutButton:hover {
+    box-shadow: 3px 3px 2px rgba(0,0,0,0.4);
+    cursor: pointer;
+}
+
+.LogoutButton:active {
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    outline: none;
+}
+
+.LogoutButton:focus {
+    box-shadow: none;
+    outline: none;
+}
+
 #MainContent {
     padding-left: 12.5%;
     padding-right: 12.5%;
     /*background-color: rgba(255, 225, 237, .3);*/ /*pink*/
 }
 
+.DirectoryPath {
+	font-size: 35px;
+}
+/*
 #DirectoryPath {
     font-size: 35px;
     float: left;
 }
+*/
+p.DirectoryPath {
+	float: left;
+	font-size: 30px;
+	text-decoration: none;
+	color: #000000;
+}
 
+a.DirectoryPath {
+	float: left;
+	font-size: 25px;
+	text-decoration: none;
+	color: #000000;
+}
+/*
 #DirectoryPath p  a {
     font-size: 25px;
     float: left;
     text-decoration: none;
     color: #000000;
+}
+*/
+p.JohnNote {
+	font-size: 10px;
+	color: rgba(175, 38, 38, .75);
 }
 
 #Directory {
@@ -77,8 +149,12 @@ p.DiskSpace {
     /*background-color: rgba(155, 255, 200, .3);*/ /*green*/
 }
 
+#LedgerLines {
+    background-color: rgba(255, 255, 0, 0.75);
+}
+
 #FileNames {
-    max-width: 50%;
+    max-width: 85%;
     float: left;
     /*background-color: rgba(50,200,255,.3);*/ /*blue*/
     font-size: 20px;
@@ -92,10 +168,229 @@ p.DiskSpace {
     color: #000000;
 }
 
+.Folders {
+    float: left;
+}
+
+.Files {
+    float: left;
+}
+
 #FileSizes {
     float: right;
     /*background-color: rgba(255, 255, 150, .5);*/ /*yellow*/
     font-size: 20px;
+}
+
+/*
+.CopyTextButton {
+    opacity: 0;
+    transition: opacity .25s ease;
+    background-color: rgba(51, 204, 255, .85);  cyan
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    padding: 1px 1px;
+    border-radius: 4px;
+    margin-left: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+}
+
+#FileNames:hover .CopyTextButton {
+    opacity: 1;
+}
+*/
+.Buttons {
+    float: left;
+}
+/*
+.CopyTextButton:hover {
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.25);
+    cursor: pointer;
+}
+
+.CopyTextButton:active {
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    outline: none;
+}
+
+.CopyTextButton:focus {
+    box-shadow: none;
+    outline: none;
+}
+*/
+.DownloadButton {
+    opacity: 0;
+    transition: opacity .25s ease;
+    width: 14px;
+    border: none;
+    display: inline-block;
+    padding: 1px 1px;
+    background: transparent;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.DownloadButtonForm {
+    float: left;
+    margin-left: 5px;
+    position: relative;
+    /*background-color: rgba(255, 0, 255, 0.5);*/
+}
+
+.RenameButtonForm {
+    position: relative;
+    margin-left: 3px;
+    float: left;
+    /*background-color: rgba(0, 255, 255, 0.5);*/
+}
+
+.RenameTextField {
+    position: relative;
+    margin-left: 3px;
+    float: left;
+}
+
+.RecycleButtonForm {
+    position: relative;
+    margin-left: 3px;
+    padding-top: 1px;
+    float: left;
+    /*background-color: rgba(255, 255, 0, 0.5);*/
+}
+
+#FileNames:hover .DownloadButton {
+    opacity: 1;
+}
+
+.DownloadButton:hover {
+    -webkit-filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.4));
+    cursor: pointer;
+}
+
+.DownloadButton:active {
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    outline: none;
+}
+
+.DownloadButton:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.RenameButton {
+    opacity: 0;
+    transition: opacity .25s ease;
+    border: none;
+    height: 17px;
+    background: transparent;
+    display: inline-block;
+    padding: 1px 1px;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.RenameSubmitButton {
+    background-color: rgba(128, 128, 128, .85); /* grey */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    padding: 1px 1px;
+    border-radius: 4px;
+    margin-left: 3px;
+    margin-right: 3px;
+    vertical-align: middle;
+    position: relative;
+    display: none;
+    margin-top: 3px;
+    float: left;
+}
+
+.RenameSubmitButton:hover {
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.25);
+    cursor: pointer;
+}
+
+.RenameSubmitButton:active {
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    outline: none;
+}
+
+.RenameSubmitButton:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+#FileNames:hover .RenameButton {
+    opacity: 1;
+}
+
+.RenameButton:hover {
+    -webkit-filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.4));
+    cursor: pointer;
+}
+
+.RenameButton:active {
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    outline: none;
+}
+
+.RenameButton:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.RenameTextField {
+    display: none;
+    padding-right: 3px;
+}
+
+.RecycleButton {
+    opacity: 0;
+    transition: opacity .25s ease;
+    width: 13px;
+    background-color: transparent;
+    background: transparent;
+    border: none;
+    margin-top: 3px;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+    float: left;
+}
+
+#FileNames:hover .RecycleButton {
+    opacity: 1;
+}
+
+.RecycleButton:hover {
+    -webkit-filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.4));
+    filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.4));
+    cursor: pointer;
+}
+
+.RecycleButton:active {
+    -webkit-filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.4));
+    outline: none;
+}
+
+.RecycleButton:focus {
+    box-shadow: none;
+    outline: none;
 }
 
 #Heath {

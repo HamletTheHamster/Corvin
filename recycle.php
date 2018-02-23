@@ -1,5 +1,5 @@
 <!--
-        This is a PHP file for Corvin site which is called by each user's userhub page to handle files or folders being deleted. It does not
+        This is a PHP file for NanoLab which is called by each user's userhub page to handle files or folders being deleted. It does not
         truly delete the files, but rather sends them to the user's hidden recycle folder [for later retrieval within some grace period of ~ 1
         month.]
 
@@ -18,44 +18,43 @@
             UserRecycleDirectoryFullPath	-	full path to the recycled file in user's recycle folder, including file name and file type extension
 
 
-        Last updated: 4-23-2017
+        Last updated: August 16, 2017
 
         Coded by: Joel N. Johnson
 -->
 
 <!-- 0 Expire Session -->
 <?php
+	ini_set("display_errors", 1);																			/* Display any errors									*/
+	error_reporting(E_ALL);																					/* And be verbose about it								*/
 
-ini_set("display_errors", 1);															/* Display any errors									*/
-error_reporting(E_ALL);																	/* And be verbose about it								*/
+	session_start();
 
-session_start();
+	$User = filter_input(INPUT_POST, "User", FILTER_SANITIZE_STRING);
+	$UserLastName = filter_input(INPUT_POST, "UserLastName", FILTER_SANITIZE_STRING);
+	$CurrentPathString = filter_input(INPUT_POST, "CurrentPathString", FILTER_SANITIZE_STRING);
 
-$User = filter_input(INPUT_POST, "User", FILTER_SANITIZE_STRING);
-$UserLastName = filter_input(INPUT_POST, "UserLastName", FILTER_SANITIZE_STRING);
-$CurrentPathString = filter_input(INPUT_POST, "CurrentPathString", FILTER_SANITIZE_STRING);
+	$UserPage = "Users/" . strtolower($User . $UserLastName) . ".php";
 
-$UserPage = strtolower($User . $UserLastName) . ".php";
+	// Session Timeout after 15 Minutes
+	if (isset($_SESSION['LastActivity']) && (time() - $_SESSION['LastActivity'] > 894))						/* If last request was more than 30 minutes ago 1800	*/
+	{
+		header("Location: login.php");																		/* and kick the user back to the login screan			*/
+	}
 
-// Session Timeout after 15 Minutes
-if (isset($_SESSION['LastActivity']) && (time() - $_SESSION['LastActivity'] > 894))		/* If last request was more than 30 minutes ago 1800	*/
-{
-	header("Location: login.php");														/* and kick the user back to the login screan			*/
-}
+	$_SESSION['LastActivity'] = time();																		/* Update last activity time stamp						*/
 
-$_SESSION['LastActivity'] = time();														/* Update last activity time stamp						*/
-
-// Regenerate Session ID every 20 Minutes
-if (!isset($_SESSION['Created']))														/* If session started timestamp is not set				*/
-{
-    $_SESSION['Created'] = time();														/* Then set the session start time to now				*/
-}
-else if (time() - $_SESSION['Created'] > 1200)											/* If session started more than 30 minutes ago			*/
-{
-    session_regenerate_id(true);														/* Then change session ID for the current session		*/
-																						/*  and invalidate old session ID						*/
-    $_SESSION['Created'] = time();														/* Update creation time									*/
-}
+	// Regenerate Session ID every 20 Minutes
+	if (!isset($_SESSION['Created']))																		/* If session started timestamp is not set				*/
+	{
+    	$_SESSION['Created'] = time();																		/* Then set the session start time to now				*/
+	}
+	else if (time() - $_SESSION['Created'] > 1200)															/* If session started more than 30 minutes ago			*/
+	{
+    	session_regenerate_id(true);																		/* Then change session ID for the current session		*/
+																											/*  and invalidate old session ID						*/
+    	$_SESSION['Created'] = time();																		/* Update creation time									*/
+	}
 ?>
 
 <!DOCTYPE html>
@@ -63,10 +62,11 @@ else if (time() - $_SESSION['Created'] > 1200)											/* If session started m
 
 <!-- 1 Header -->
 <head>
-    <title>Corvin Castle</title>
+    <title>Nano Lab</title>
 
     <link href="index.css" type="text/css" rel="stylesheet" />
-    <link rel="apple-touch-icon" sizes="57x57" href="/Images/Favicon/apple-icon-57x57.png" />
+
+	<link rel="apple-touch-icon" sizes="57x57" href="/Images/Favicon/apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="/Images/Favicon/apple-icon-60x60.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="/Images/Favicon/apple-icon-72x72.png" />
     <link rel="apple-touch-icon" sizes="76x76" href="/Images/Favicon/apple-icon-76x76.png" />
@@ -80,6 +80,7 @@ else if (time() - $_SESSION['Created'] > 1200)											/* If session started m
     <link rel="icon" type="image/png" sizes="96x96" href="/Images/Favicon/favicon-96x96.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/Images/Favicon/favicon-16x16.png" />
     <link rel="manifest" href="/manifest.json" />
+
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
     <meta name="theme-color" content="#ffffff" />
@@ -92,34 +93,63 @@ else if (time() - $_SESSION['Created'] > 1200)											/* If session started m
 <!-- 2 Recycle Function -->
 <?php
 
-$CurrentDirectory = "/../../home/joel/Castle/" . $User . "/" . $CurrentPathString;			/* Assign path of current directory				*/
-$FileToRecycle = filter_input(INPUT_POST, "fileToRecycle", FILTER_SANITIZE_STRING);			/* Assign file name to recycle to variable		*/
-$FileToRecycleFullPath = $CurrentDirectory . $FileToRecycle;								/* Assign full path plus name to variable		*/
-$UserRecycleDirectory = "/../../home/joel/Castle/Recycle/" . $User . "/";					/* Assign user's recycle folder path			*/
-$UserRecycleDirectoryFullPath = $UserRecycleDirectory . $FileToRecycle;						/* Assign recycled file name full path.			*/
-if (is_readable($FileToRecycleFullPath))													/* If the full path and file is readable		*/
-{
-	if (rename($FileToRecycleFullPath, $UserRecycleDirectoryFullPath))						/* Then move the file to user's hidden recycle	*/
-																							/*  folder. If this was successful				*/
-	{
-		echo "" . $FileToRecycle . " has been successfully deleted.";						/* Then print successfully deleted statement	*/
-	}
-	else																					/* Else, if the file was unsuccessfully moved	*/
-																							/*  to the user's recycle folder				*/
-	{
-		echo "There was a problem sending " . $FileToRecycle . " to your recycle folder.";	/* Print move to recycle fail statement			*/
-	}
-}
-else																						/* Else, if the file is unreadable				*/
-{
-	echo "There was a problem reading " . $FileToRecycle . "'s name or location.";			/* Print read failure statement					*/
-}
 
-echo "<br /><br />";
-echo "<form method = 'get' action = '" . $UserPage . "' />";								/* Button to return to index.php				*/
-echo "<input type = 'submit' value = 'Return' \>";
-echo "<input type = 'hidden' value = '" . $CurrentPathString . "' name = 'ReturnPathString' />";
-echo "</form>";
+	$CurrentDirectory = "../../../mnt/Raid1Array/Corvin/" . $User . $UserLastName . "/" . $CurrentPathString;
+
+	$FileToRecycle = filter_input(INPUT_POST, "fileToRecycle", FILTER_SANITIZE_STRING);						/* Assign file name to recycle to variable				*/
+	$UserRecycleDirectory = "/../../../mnt/Raid1Array/Recycle/" . $User . $UserLastName . "/";				/* Assign user's recycle folder path					*/
+	$FileToRecycleFullPath = $CurrentDirectory . $FileToRecycle;
+
+	$i = 1;
+	while (array_search($FileToRecycle, scandir($UserRecycleDirectory))  !== FALSE)							/* While the name of the file or folder to be recycled	*/
+	{																										/* matches the name of a file or folder already in the	*/
+																											/* recycle folder, append the new file/folder with (#)	*/
+																											/* representing the number of identically named files	*/
+																											/* or folders that reside in the recycle folder by that */
+																											/* name													*/
+		if ($i > 1)																							/* If there is already a single copy					*/
+		{
+			$FileToRecycle = substr($FileToRecycle, 0, -3) . "(" . $i . ")";								/* Take the (1) off of the end of the name and make it 	*/
+		}																									/* (2)													*/
+		else																								/* Else													*/
+		{
+			$FileToRecycle = $FileToRecycle . "(1)";														/* append the file/folder with (1)						*/
+		}
+		++$i;
+	}
+
+	rename($FileToRecycleFullPath, $CurrentDirectory . $FileToRecycle);										/* If there were duplicates, rename the file to match	*/
+	$FileToRecycleFullPath = $CurrentDirectory . $FileToRecycle;											/* Assign full path plus name to variable				*/
+	$UserRecycleDirectoryFullPath = $UserRecycleDirectory . $FileToRecycle;									/* Assign recycled file name full path					*/
+
+	if (is_readable($FileToRecycleFullPath))																/* If the full path and file is readable				*/
+	{
+		if (rename($FileToRecycleFullPath, $UserRecycleDirectoryFullPath))									/* Then move the file to user's hidden recycle			*/
+																											/*  folder. If this was successful						*/
+		{
+			echo "" . $FileToRecycle . " has been successfully deleted.";									/* Then print successfully deleted statement			*/
+		}
+		else																								/* Else, if the file was unsuccessfully moved			*/
+																											/*  to the user's recycle folder						*/
+		{
+			echo "There was a problem sending " . $FileToRecycle . " to your recycle folder.";				/* Print move to recycle fail statement					*/
+		}
+	}
+	else																									/* Else, if the file is unreadable						*/
+	{
+		echo "There was a problem reading " . $FileToRecycle . "'s name or location.";						/* Print read failure statement							*/
+	}
+
+	echo "<br /><br />";
+
+	$QueryArray = explode("/", substr($CurrentPathString, 0, -1));
+	echo "<form method = 'get' action = '" . $UserPage . "' />";											/* Button to return to index.php						*/
+	echo "<input type = 'submit' value = 'Return' \>";
+	foreach ($QueryArray as $Key => $QueryParameter)
+	{
+		echo "<input type = 'hidden' value = '" . $QueryParameter . "' name = '" . $Key . "' />";
+	}
+	echo "</form>";
 ?>
 
 </body>
