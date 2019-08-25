@@ -1,17 +1,87 @@
 <!--
-        This landing page simply instantly redirects to index.php
-    
-    
-        Last updated: April 21, 2017
+    This is the a php file for Corvin that acts as the login page for all users.
+    Upon submitting login credentials, it routes to validate.php to verify the
+    credentials and then routes to either the user's main page or back to
+    login.php if the credentials were incorrect.
 
-        Coded by: Joel N. Johnson
+    Last updated: January 8, 2019
+
+    Coded by: Joel N. Johnson
 -->
 
-<!Doctype html>
-<html>
+<!DOCTYPE html>
+<html lang = "en">
+
+<!-- 0 Header -->
 <head>
-    <meta http-equiv="Refresh" content="0; url = login.php">
+    <title>Log In | Corvin</title>
+    <link href = "login.css" type = "text/css" rel = "stylesheet" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/Art/Favicon/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/Art/Favicon/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/Art/Favicon/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/Art/Favicon/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/Art/Favicon/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/Art/Favicon/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/Art/Favicon/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/Art/Favicon/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/Art/Favicon/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/Art/Favicon/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/Art/Favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/Art/Favicon/favicon-96x96.png" />
+
+
+    <link rel="icon" type="image/png" sizes="16x16" href="/Art/Favicon/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <meta name="google" content="notranslate" />
 </head>
+
 <body>
+<div class = "Container">
+
+    <div class = "NewUser">
+        <form action = "newUser.php" method = "post" enctype = "multipart/form-data">
+            <input type = "submit" value = "New User" class = "NewUserButton" name = "submit" />
+        </form>
+    </div>
+
+    <div class = "Center">
+
+        <!-- 1 Top Bar -->
+        <div class = "TopBar">
+            <div class = "Corvin">
+                Corvin
+            </div>
+        </div>
+
+        <br /><br /><br /><br /><br /><br /><br /><br />
+
+        <!-- 2 Login -->
+        <div id = "Login">
+            <form action = "validate.php" method = "post" enctype = "multipart/form-data">
+                <label>
+                    <input type = "text" name = "username" class = "TextBox" placeholder = "User Name" autofocus />
+                </label>
+                <br /><br />
+                <label>
+                    <input type = "password" name = "password" class = "TextBox" placeholder = "Password" />
+                </label>
+                <br /><br /><br /><br />
+                <input type = "submit" value = "Log In" class = "LoginButton" name = "submit" />
+            </form>
+        </div>
+
+        <br /><br />
+
+        <div class = "Push"></div>
+    </div>
+</div> <!-- Container -->
+
+       <!-- 3 Footer -->
+<div class = "Footer"><div class = "FootCenter">&copy; Corvin, Inc.</div></div>
+
 </body>
 </html>

@@ -1,123 +1,196 @@
 <!--
-        This is a PHP file for NanoLab which is called by each user's userhub page to handle renaming files in the current directory.
+        This is a php file for Corvin which is called by each user's main page
+        to handle renaming files in the current directory.
 
         Hierarchy
 
-            0	Expire Session
-            1	Header
-            2	New Folder Function
+            0   Expire Session
+            1   Header
+            2   New Folder Function
 
         Variables
 
-            User				-	first name of user, inputted through hidden html form
-            UserLastName		-	last name of user, inputted through hidden html form
-            CurrentDirectory	-	location of user's root folder
-			FolderName			-	user submitted name for the new folder
-			FolderNameFullPath	-	full path of the new folder to be created
+            user                -   first name of user, inputted through hidden
+                                    html form
+            userLastName        -   last name of user, inputted through hidden
+                                    html form
+            currentDirectory    -   location of user's root folder
+			folderName          -   user submitted name for the new folder
+			folderNameFullPath  -   full path of the new folder to be created
 
-
-        Last updated: August 16, 2017
+        Last updated: January 8, 2019
 
         Coded by: Joel N. Johnson
 -->
 
 <!-- 0 Expire Session -->
 <?php
-	ini_set("display_errors", 1);																			/* Display any errors									*/
-	error_reporting(E_ALL);																					/* And be verbose about it								*/
+    // Display any errors
+    ini_set("display_errors", 1);
 
-	session_start();
+    // And be verbose about it
+    error_reporting(E_ALL);
 
-	$User = filter_input(INPUT_POST, "User", FILTER_SANITIZE_STRING);
-	$UserLastName = filter_input(INPUT_POST, "UserLastName", FILTER_SANITIZE_STRING);
-	$CurrentPathString = filter_input(INPUT_POST, "CurrentPathString", FILTER_SANITIZE_STRING);
+    session_start();
 
-	$UserPage = "Users/" . strtolower($User . $UserLastName) . ".php";
+    //MYSQLi server connection
+    $conn = mysqli_connect("127.0.0.1", "joel", "Daytona675");
 
-	// Session Timeout after 15 Minutes
-	if (isset($_SESSION['LastActivity']) && (time() - $_SESSION['LastActivity'] > 894))						/* If last request was more than 30 minutes ago 1800	*/
+    //Check if connected to MYSQLI server
+    if (!$conn) {
+        echo("Failed to connect to database: " .
+                mysqli_connect_error()) . "<br /><br />";
+    }
+
+    //Go into Corvin database
+    mysqli_query($conn, "USE Corvin;");
+
+    //Assign user's ID passed from validate.php
+    $userID = $_SESSION["userID"];
+
+    $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
+    $user = mysqli_fetch_array(mysqli_query($conn, $sql));
+
+	$currentPathString = filter_input(
+	        INPUT_POST,
+            "currentPathString",
+            FILTER_SANITIZE_STRING
+    );
+
+    $queryArray = explode("/", substr($currentPathString, 0, -1));
+    $returnURL = "home.php?" . http_build_query($queryArray, '');
+
+    // Session timeout after 14.9 minutes
+
+    // If last request was more than 894 seconds ago (14.9 minutes)
+	if (
+	        isset($_SESSION['LastActivity']) &&
+            (time() - $_SESSION['LastActivity'] > 894)
+    )
 	{
-		header("Location: login.php");																		/* and kick the user back to the login screan			*/
+	    // Then kick the user back to login.php, which php-redirects to cor.vin
+		header("Location: login.php");
 	}
 
-	$_SESSION['LastActivity'] = time();																		/* Update last activity time stamp						*/
+	// Update last activity time stamp
+	$_SESSION['LastActivity'] = time();
 
 	// Regenerate Session ID every 20 Minutes
-	if (!isset($_SESSION['Created']))																		/* If session started timestamp is not set				*/
+
+    // If session started timestamp is not set
+	if (!isset($_SESSION['Created']))
 	{
-    	$_SESSION['Created'] = time();																		/* Then set the session start time to now				*/
+	    // Then set the session start time to now
+    	$_SESSION['Created'] = time();
 	}
-	else if (time() - $_SESSION['Created'] > 1200)															/* If session started more than 30 minutes ago			*/
+
+	// If session started more than 20 minutes ago
+	elseif (time() - $_SESSION['Created'] > 1200)
 	{
-    	session_regenerate_id(true);																		/* Then change session ID for the current session		*/
-																											/*  and invalidate old session ID						*/
-    	$_SESSION['Created'] = time();																		/* Update creation time									*/
+	    /* Then change session ID for the current session and invalidate old
+        session ID */
+    	session_regenerate_id(true);
+
+    	// Update creation time
+    	$_SESSION['Created'] = time();
 	}
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 
 <!-- 1 Header -->
 <head>
-    <title>Nano Lab</title>
+    <title>Corvin</title>
 
-    <link href="index.css" type="text/css" rel="stylesheet" />
-    <link rel="apple-touch-icon" sizes="57x57" href="/Images/Favicon/apple-icon-57x57.png" />
-    <link rel="apple-touch-icon" sizes="60x60" href="/Images/Favicon/apple-icon-60x60.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="/Images/Favicon/apple-icon-72x72.png" />
-    <link rel="apple-touch-icon" sizes="76x76" href="/Images/Favicon/apple-icon-76x76.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="/Images/Favicon/apple-icon-114x114.png" />
-    <link rel="apple-touch-icon" sizes="120x120" href="/Images/Favicon/apple-icon-120x120.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="/Images/Favicon/apple-icon-144x144.png" />
-    <link rel="apple-touch-icon" sizes="152x152" href="/Images/Favicon/apple-icon-152x152.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/Images/Favicon/apple-icon-180x180.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/Images/Favicon/android-icon-192x192.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/Images/Favicon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/Images/Favicon/favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/Images/Favicon/favicon-16x16.png" />
-    <link rel="manifest" href="/manifest.json" />
+    <link href = "index.css" type = "text/css" rel = "stylesheet" />
 
-    <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
-    <meta name="theme-color" content="#ffffff" />
+    <link rel = "apple-touch-icon" sizes = "57x57"
+          href = "/Art/Favicon/apple-icon-57x57.png" />
+    <link rel = "apple-touch-icon" sizes = "60x60"
+          href = "/Art/Favicon/apple-icon-60x60.png" />
+    <link rel = "apple-touch-icon" sizes = "72x72"
+          href = "/Art/Favicon/apple-icon-72x72.png" />
+    <link rel = "apple-touch-icon" sizes = "76x76"
+          href = "/Art/Favicon/apple-icon-76x76.png" />
+    <link rel = "apple-touch-icon" sizes = "114x114"
+          href = "/Art/Favicon/apple-icon-114x114.png" />
+    <link rel = "apple-touch-icon" sizes = "120x120"
+          href = "/Art/Favicon/apple-icon-120x120.png" />
+    <link rel = "apple-touch-icon" sizes = "144x144"
+          href = "/Art/Favicon/apple-icon-144x144.png" />
+    <link rel = "apple-touch-icon" sizes = "152x152"
+          href = "/Art/Favicon/apple-icon-152x152.png" />
+    <link rel = "apple-touch-icon" sizes = "180x180"
+          href = "/Art/Favicon/apple-icon-180x180.png" />
+    <link rel = "icon" type = "image/png" sizes = "192x192"
+          href = "/Art/Favicon/android-icon-192x192.png" />
+    <link rel = "icon" type = "image/png" sizes = "32x32"
+          href = "/Art/Favicon/favicon-32x32.png" />
+    <link rel = "icon" type = "image/png" sizes = "96x96"
+          href = "/Art/Favicon/favicon-96x96.png" />
+    <link rel = "icon" type = "image/png" sizes = "16x16"
+          href = "/Art/Favicon/favicon-16x16.png" />
+    <link rel = "manifest" href = "/manifest.json" />
 
-    <meta http-equiv="refresh" content="284" />
+    <meta name = "msapplication-TileColor" content = "#ffffff" />
+    <meta name = "msapplication-TileImage" content = "/ms-icon-144x144.png" />
+    <meta name = "theme-color" content = "#ffffff" />
+
+    <meta http-equiv = "refresh" content = "284" />
 </head>
 
 <body>
 
 <!-- 2 New Folder Function -->
 <?php
-	ini_set("display_errors", 1);																			/* Display any errors									*/
-	error_reporting(E_ALL);																					/* And be verbose about it								*/
 
-	$CurrentDirectory = "../../../mnt/Raid1Array/Corvin/" . $User . $UserLastName . "/" . $CurrentPathString;	/* Assign path of current directory						*/
+    function returnButton($returnURLParam)
+    {
+        echo "<br /><br />";
+        echo "<form method = 'get' action = '" . $returnURLParam . "' />";
+        echo "<input type = 'submit' value = 'Return' /></form>";
+    }
 
-	$FolderName = filter_input(INPUT_POST, "FolderName", FILTER_SANITIZE_STRING);							/* Assign the folder name to a variable					*/
-	$FolderNameFullPath = $CurrentDirectory . $FolderName;													/* Assign full path and old name to a variable  		*/
+    // Display any errors
+    ini_set("display_errors", 1);
 
-	if (mkdir($FolderNameFullPath, 0777, true))																/* Then create the folder with the name and if			*/
-																											/*  that was successful									*/
-	{
-		chmod($FolderNameFullPath, 0777);
-		echo "" . $FolderName . " is now created.";															/* Then print success statement							*/
-	}
-	else																									/* Else, if the creation failed							*/
-	{
-		echo "There was a problem creating the folder.";													/* Then print creation failure statement				*/
-	}
+    // And be verbose about it
+    error_reporting(E_ALL);
 
-	echo "<br /><br />";
+    // Assign path of current directory
+    $currentDirectory = "../../../mnt/Raid1Array/Corvin/" .
+        $userID . " - " .
+        $user[0] .
+        $user[1] . "/" .
+        $currentPathString;
 
-	$QueryArray = explode("/", substr($CurrentPathString, 0, -1));
-	echo "<form method = 'get' action = '" . $UserPage . "' />";											/* Button to return to index.php						*/
-	echo "<input type = 'submit' value = 'Return' />";
-	foreach ($QueryArray as $Key => $QueryParameter)
-	{
-		echo "<input type = 'hidden' value = '" . $QueryParameter . "' name = '" . $Key . "' />";
-	}
-	echo "</form>";
+    // Assign the folder name to a variable
+    $folderName = filter_input(
+            INPUT_POST,
+            "folderName",
+            FILTER_SANITIZE_STRING
+        );
+
+    // Assign full path and old name to a variable
+    $folderNameFullPath = $currentDirectory . $folderName;
+
+    // Then create the folder with the name and if that was successful
+    if (mkdir($folderNameFullPath, 0777, true))
+    {
+        chmod($folderNameFullPath, 0777);
+
+        // Then refresh the page the user was on
+        echo "<meta http-equiv = 'refresh' content = '0; " . $returnURL . "'>";
+    }
+
+    // Else, if the creation failed
+    else
+    {
+        // Then print creation failure statement
+        echo "There was a problem creating the folder.";
+        returnButton($returnURL);
+    }
 ?>
 
 </body>

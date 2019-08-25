@@ -1,20 +1,23 @@
 <!--
-        This is a PHP file for Corvin site which each user's userhub page calls to logout, and thus end the user's current session. This
-		happens automatically if they close their browser.
+        This is a php file for Corvin which each user's main page calls when the
+        user clicks logout, thus ending the user's current session. This happens
+        automatically if they close their browser.
 
-
-        Last updated: 4-29-2017
+        Last updated: January 8, 2019
 
         Coded by: Joel N. Johnson
 -->
 
 <?php
 
-session_start();																			/* start session								*/
+// Start session
+session_start();
 
-if(session_destroy())																		/* Destroy all sessions							*/
+// Destroy all sessions
+if(session_destroy())
 {
-	header("Location: login.php");															/* Redirect to login.php						*/
+    // Redirect to index.html
+	header("Location: /");
 }
 
 ?>

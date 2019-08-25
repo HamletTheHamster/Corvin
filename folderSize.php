@@ -1,59 +1,73 @@
 <!--
-        This is an external PHP function for Corvin site that recursively finds the size of all the contents of a folder.
+        This is an external php function for Corvin site that recursively finds
+        the size of all the contents of a folder.
 
         Variables
 
-            Directory		-	folder of which we want to know the size
-			DirectoryArray	-	array containing all the immediate contents of a folder
-			Key				-	a foreach variable that assigns each element of an array to a specified variable for each
-								loop
-			Filename		-	the specified variable that Key is assigning each element of the DirectoryArray to; the
-								name of the file or folder currently being handled by the foreach loop
-			NewFolderSize	-	the size to add to the running total size of the top level directory we really care about
-			FolderSize		-	the running total size of the top level directory we really care about
+            directory       -   folder of which we want to know the size
+            directoryArray  -   array containing all the immediate contents of
+                                a folder
+            key             -   a foreach variable that assigns each element of
+                                an array to a specified variable for each loop
+            filename        -   the specified variable that Key is assigning
+                                each element of the DirectoryArray to; the name
+                                of the file or folder currently being handled by
+                                the foreach loop
+            newFolderSize   -   the size to add to the running total size of the
+                                top level directory we really care about
+            folderSize      -   the running total size of the top level
+                                directory we really care about
 
-
-        Last updated: April 29, 2017
+        Last updated: January 8, 2019
 
         Coded by: Joel N. Johnson
 -->
 
 <?php
 
-function FolderSize($Directory)																/* FolderSize accepts the path of a directory	*/
-																							/*  as input									*/
+// FolderSize accepts the path of a directory as input
+function folderSize($directory)
 {
-	$FolderSize = 0;																		/* Initiate FolderSize to be zero at the start	*/
-	$DirectoryArray = scandir($Directory);													/* Assign the contents of folder to				*/
-																							/*  DirectoryArray								*/
-	foreach ($DirectoryArray as $Key => $Filename)											/* For each item in the folder, assign the name	*/
-																							/*  of the item to Filename						*/
-	{
-		if ($Filename != ".." && $Filename != ".")											/* If the item is not unix language for two		*/
-																							/*  or one directories up						*/
-		{
-			if (is_dir($Directory . "/" . $Filename))										/* If the item is a folder itself				*/
-			{
-				$NewFolderSize = folderSize($Directory . "/" . $Filename);					/* Then recursively send that folder through	*/
-																							/*  this very function, starting at the top 	*/
-																							/*  and acting recursively through any folders	*/
-																							/*  it contains within it, and assign the size	*/
-																							/*  to NewFolderSize							*/
-				$FolderSize = $FolderSize + $NewFolderSize;									/* Increase the running total size of the top	*/
-																							/*  level folder we really care about by the	*/
-																							/*  amount just found							*/
-			}
+    $folderSize = 0;
 
-			else if (is_file($Directory . "/" . $Filename))									/* Else, if the item is not a folder itself		*/
-			{
-				$FolderSize = $FolderSize + filesize($Directory . "/" . $Filename);			/* Then find its size and increase the running	*/
-																							/*  total size of the top level folder we		*/
-																							/*  really care about by that amount			*/
-			}
-		}
-	}
+    // Assign the contents of folder to directoryArray
+    $directoryArray = scandir($directory);
 
-	return $FolderSize;																		/* Return the folder's size, in bytes			*/
+    // For each item in the folder, assign the name of the item to filename
+    foreach ($directoryArray as $key => $filename)
+
+    {
+        // If the item is not unix language for two or one directories up
+        if ($filename != ".." && $filename != ".")
+
+        {
+            // If the item is a folder itself
+            if (is_dir($directory . "/" . $filename))
+            {
+                /* Then recursively send that folder through this very function,
+                starting at the top and acting recursively through any folders
+                it contains within it, and assign the size to newFolderSize */
+                $newFolderSize = folderSize($directory . "/" .
+                    $filename);
+
+                /* Increase the running total size of the top level folder we
+                really care about by the amount just found */
+                $folderSize = $folderSize + $newFolderSize;
+            }
+
+            // Else, if the item is not a folder itself
+            else if (is_file($directory . "/" . $filename))
+            {
+                /* Then find its size and increase the running total size of the
+                top level folder we really care about by that amount */
+                $folderSize = $folderSize + filesize($directory . "/" .
+                    $filename);
+            }
+        }
+    }
+
+    // Return the folder's size, in bytes
+    return $folderSize;
 }
 
 ?>
