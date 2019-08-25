@@ -55,27 +55,27 @@ Coded by: Joel N. Johnson
 -->
 
 <?php
-//Display any errors
+// Display any errors
 ini_set("display_errors", 1);
 
-//And be verbose about it
+// And be verbose about it
 error_reporting(E_ALL);
 
 session_start();
 
-//MYSQLi server connection
+// MYSQLi server connection
 $conn = mysqli_connect("127.0.0.1", "joel", "Daytona675");
 
-//Check if connected to MYSQLI server
+// Check if connected to MYSQLI server
 if (!$conn) {
   echo("Failed to connect to database: " . mysqli_connect_error()) .
   "<br /><br />";
 }
 
-//Go into Corvin database
+// Go into Corvin database
 mysqli_query($conn, "USE Corvin;");
 
-//Assign user's ID, set in validate.php
+// Assign user's ID, set in validate.php
 $userID = $_SESSION["userID"];
 
 $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
@@ -87,21 +87,21 @@ $currentPathString = filter_input(
   FILTER_SANITIZE_STRING
 );
 
-//Used to handle requests from the user's recycle bin
+// Used to handle requests from the user's recycle bin
 $recycleBin = $_POST["recycleBin"];
 
-//Assign path of directory holding file
+// Assign path of directory holding file
 $downloadDirectory = "/../../../mnt/Raid1Array/Corvin/" . $recycleBin . "/" .
   $userID . " - " . $user[0] . $user[1] . "/" . $currentPathString;
 
-//Assign name of file from input
+// Assign name of file from input
 $fileToDownload = filter_input(
   INPUT_POST,
   "fileToDownload",
   FILTER_SANITIZE_STRING
 );
 
-//Concatonate path and file name
+// Concatonate path and file name
 $fullPath = $downloadDirectory . $fileToDownload;
 $realPath = realpath($fullPath);
 $zipfilename = $downloadDirectory . urlencode(basename($fileToDownload)) .
@@ -137,7 +137,7 @@ if (is_readable($fullPath)) {
   // Zip archive will be created only after closing object
   $zip->close();
 
-  //State headers
+  // State headers
   header("Content-Description: File Transfer");
   header("Content-Type: application/octet-stream");
   header("Content-Disposition: attachment; filename = '" .
@@ -150,14 +150,14 @@ if (is_readable($fullPath)) {
   ob_clean();
   flush();
 
-  //Force download of zip folder
+  // Force download of zip folder
   readfile($zipfilename);
 
   unlink($zipfilename);
   exit;
   }
   else {
-  //State headers
+  // State headers
   header("Content-Description: File Transfer");
   header("Content-Type: application/octet-stream");
   header('Content-Disposition: attachment; filename = "' .
@@ -170,7 +170,7 @@ if (is_readable($fullPath)) {
   ob_clean();
   flush();
 
-  //Force download of file
+  // Force download of file
   readfile($fullPath);
   exit;
   }
