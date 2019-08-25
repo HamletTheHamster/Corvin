@@ -1,103 +1,92 @@
 <!--
-        This is the user's main page for Corvin.
+This is the user's main page for Corvin.
 
-        Hierarchy
+Hierarchy
 
-            0	Check If Logged In
-            1	Header
-            2	Top Bar
-            3	Space on Drive
-            4	Logout
-            5	Main Content
-                5.1		Upload File [OR FOLDER]
-                5.2		Download File [OR FOLDER]
-                5.3		Rename File or Folder
-                5.4		Delete File or Folder
-                5.5		Current Directory
-                5.6		Files in Directory
-                    5.5.1	List Folders and Folder Sizes
-                    5.5.2	List Files and File Sizes
-            6	Footer
+  0	Check If Logged In
+  1	Header
+  2	Top Bar
+  3	Main Content
+    3.1		Upload File [OR FOLDER]
+    3.2		Download File [OR FOLDER]
+    3.3		Rename File or Folder
+    3.4		Delete File or Folder
+    3.5		Current Directory
+    3.6		Files in Directory
+      3.6.1	List Folders and Folder Sizes
+      3.6.2	List Files and File Sizes
+    4	Footer
 
-        Last updated: January 9, 2019
-
-        Coded by: Joel N. Johnson
+Coded by: Joel N. Johnson
  -->
 
 <!-- 0 Check If Logged In -->
 <?php
+session_start();
 
-    session_start();
+// Check if user is logged in
+if (!isset($_SESSION["loginUser"]) && $_SESSION["loginUser"] != TRUE) {
+  header("Location: login.php");
+}
 
-    //Check if user is logged in
-    if (!isset($_SESSION["loginUser"]) && $_SESSION["loginUser"] != TRUE) {
-        header("Location: login.php");
-    }
+// Display any errors
+ini_set("display_errors", 1);
 
-    // Display any errors
-    ini_set("display_errors", 1);
+// And be verbose about it
+error_reporting(E_ALL);
 
-    // And be verbose about it
-    error_reporting(E_ALL);
+// MySQL server connection
+$conn = mysqli_connect("127.0.0.1", "joel", "Daytona675");
 
-    //MYSQLi server connection
-    $conn = mysqli_connect("127.0.0.1", "joel", "Daytona675");
+// Check if connected to MySQL server
+if (!$conn) {
+  echo("Failed to connect to database: " . mysqli_connect_error()) .
+    "<br /><br />";
+}
 
-    //Check if connected to MYSQLI server
-    if (!$conn) {
-        echo("Failed to connect to database: " .
-                mysqli_connect_error()) . "<br /><br />";
-    }
+// Go into Corvin database
+mysqli_query($conn, "USE Corvin;");
 
-    //Go into Corvin database
-    mysqli_query($conn, "USE Corvin;");
+//Assign user's ID, set in validate.php
+$userID = $_SESSION["userID"];
 
-    //Assign user's ID, set in validate.php
-    $userID = $_SESSION["userID"];
+$sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
+$user = mysqli_fetch_array(mysqli_query($conn, $sql));
 
-    $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
-    $user = mysqli_fetch_array(mysqli_query($conn, $sql));
+// Session Timeout after 854 seconds (14.2 minutes)
+// If last request was more than 854 seconds ago (14.2 minutes)
+if (
+  isset($_SESSION['LastActivity']) &&
+  (time() - $_SESSION['LastActivity'] > 854)
+) {
+  // Then unset $_SESSION variable for the run-time
+  session_unset();
 
-    // Session Timeout after 854 seconds (14.2 minutes)
+  // Destroy session data in storage
+  session_destroy();
 
-    // If last request was more than 854 seconds ago (14.2 minutes)
-    if (
-            isset($_SESSION['LastActivity']) &&
-            (time() - $_SESSION['LastActivity'] > 854)
-    )
-    {
-        // Then unset $_SESSION variable for the run-time
-        session_unset();
+  // And kick the user back to the login screen
+  header("Location: login.php");
+}
 
-        // Destroy session data in storage
-        session_destroy();
+// Update last activity time stamp
+$_SESSION['LastActivity'] = time();
 
-        // And kick the user back to the login screen
-        header("Location: login.php");
-    }
+// Regenerate Session ID every 20 Minutes
+// If session started timestamp is not set
+if (!isset($_SESSION['Created'])) {
+  // Then set the session start time to now
+  $_SESSION['Created'] = time();
+}
+// If session started more than 30 minutes ago
+elseif (time() - $_SESSION['Created'] > 1200) {
+  // Then change session ID for the current session and invalidate old session
+  // ID
+  session_regenerate_id(true);
 
-    // Update last activity time stamp
-    $_SESSION['LastActivity'] = time();
-
-    // Regenerate Session ID every 20 Minutes
-
-    // If session started timestamp is not set
-    if (!isset($_SESSION['Created']))
-    {
-        // Then set the session start time to now
-        $_SESSION['Created'] = time();
-    }
-
-    // If session started more than 30 minutes ago
-    elseif (time() - $_SESSION['Created'] > 1200)
-    {
-        /* Then change session ID for the current session and invalidate old
-        session ID */
-        session_regenerate_id(true);
-
-        // Update creation time
-        $_SESSION['Created'] = time();
-    }
+  // Update creation time
+  $_SESSION['Created'] = time();
+}
 ?>
 
 <!DOCTYPE html>
@@ -105,112 +94,91 @@
 
 <!-- 1 Header -->
 <head>
+  <title>Home | Corvin</title>
 
-    <title>Home | Corvin</title>
+  <link href = "index.css" type = "text/css" rel = "stylesheet"/>
 
-    <link
-        href = "index.css"
-        type = "text/css"
-        rel = "stylesheet"
-    />
+  <link
+    rel = "apple-touch-icon"
+    sizes = "57x57"
+    href = "Art/Favicon/apple-icon-57x57.png"
+  />
+  <link
+    rel = "apple-touch-icon"
+    sizes = "60x60"
+    href = "Art/Favicon/apple-icon-60x60.png"
+  />
+  <link
+    rel = "apple-touch-icon"
+    sizes = "72x72"
+    href = "Art/Favicon/apple-icon-72x72.png"
+  />
+  <link
+    rel = "apple-touch-icon"
+    sizes = "76x76"
+    href = "Art/Favicon/apple-icon-76x76.png"
+  />
+  <link
+    rel = "apple-touch-icon"
+    sizes = "114x114"
+    href = "Art/Favicon/apple-icon-114x114.png"
+  />
+  <link
+    rel = "apple-touch-icon"
+    sizes = "120x120"
+    href = "Art/Favicon/apple-icon-120x120.png"
+  />
+  <link
+    rel = "apple-touch-icon"
+    sizes = "144x144"
+    href = "Art/Favicon/apple-icon-144x144.png"
+  />
+  <link
+    rel = "apple-touch-icon"
+    sizes = "152x152"
+    href = "Art/Favicon/apple-icon-152x152.png"
+  />
+  <link
+    rel = "apple-touch-icon"
+    sizes = "180x180"
+    href = "Art/Favicon/apple-icon-180x180.png"
+  />
+  <link
+    rel = "icon"
+    type = "image/png"
+    sizes = "192x192"
+    href = "Art/Favicon/android-icon-192x192.png"
+  />
+  <link
+    rel = "icon"
+    type = "image/png"
+    sizes = "32x32"
+    href = "Art/Favicon/favicon-32x32.png"
+  />
+  <link
+    rel = "icon"
+    type = "image/png"
+    sizes = "96x96"
+    href = "Art/Favicon/favicon-96x96.png"
+  />
+  <link
+    rel = "icon"
+    type = "image/png"
+    sizes = "16x16"
+    href = "Art/Favicon/favicon-16x16.png"
+  />
+  <link
+    rel = "manifest"
+    href = "/manifest.json"
+  />
 
-    <link
-        rel = "apple-touch-icon"
-        sizes = "57x57"
-        href = "Art/Favicon/apple-icon-57x57.png"
-    />
-    <link
-        rel = "apple-touch-icon"
-        sizes = "60x60"
-        href = "Art/Favicon/apple-icon-60x60.png"
-    />
-    <link
-        rel = "apple-touch-icon"
-        sizes = "72x72"
-        href = "Art/Favicon/apple-icon-72x72.png"
-    />
-    <link
-        rel = "apple-touch-icon"
-        sizes = "76x76"
-        href = "Art/Favicon/apple-icon-76x76.png"
-    />
-    <link
-        rel = "apple-touch-icon"
-        sizes = "114x114"
-        href = "Art/Favicon/apple-icon-114x114.png"
-    />
-    <link
-        rel = "apple-touch-icon"
-        sizes = "120x120"
-        href = "Art/Favicon/apple-icon-120x120.png"
-    />
-    <link
-        rel = "apple-touch-icon"
-        sizes = "144x144"
-        href = "Art/Favicon/apple-icon-144x144.png"
-    />
-    <link
-        rel = "apple-touch-icon"
-        sizes = "152x152"
-        href = "Art/Favicon/apple-icon-152x152.png"
-    />
-    <link
-        rel = "apple-touch-icon"
-        sizes = "180x180"
-        href = "Art/Favicon/apple-icon-180x180.png"
-    />
-    <link
-        rel = "icon"
-        type = "image/png"
-        sizes = "192x192"
-        href = "Art/Favicon/android-icon-192x192.png"
-    />
-    <link
-        rel = "icon"
-        type = "image/png"
-        sizes = "32x32"
-        href = "Art/Favicon/favicon-32x32.png"
-    />
-    <link
-        rel = "icon"
-        type = "image/png"
-        sizes = "96x96"
-        href = "Art/Favicon/favicon-96x96.png"
-    />
-    <link
-        rel = "icon"
-        type = "image/png"
-        sizes = "16x16"
-        href = "Art/Favicon/favicon-16x16.png"
-    />
-    <link
-        rel = "manifest"
-        href = "/manifest.json"
-    />
+  <meta name = "msapplication-TileColor" content = "#ffffff"/>
+  <meta name = "msapplication-TileImage" content = "/ms-icon-144x144.png"/>
+  <meta name = "theme-color" content = "#ffffff"/>
 
-    <meta
-        name = "msapplication-TileColor"
-        content = "#ffffff"
-    />
-    <meta
-        name = "msapplication-TileImage"
-        content = "/ms-icon-144x144.png"
-    />
-    <meta
-        name = "theme-color"
-        content = "#ffffff"
-    />
+  <meta http-equiv = "refresh" content = "855"/>
 
-    <meta
-        http-equiv = "refresh"
-        content = "855"
-    />
-
-    <meta
-        name = "google"
-        content = "notranslate"
-    />
-
+    <meta name = "google" content = "notranslate"/>
 </head>
 
 <body>
@@ -218,172 +186,136 @@
 
 <!-- 2 Top Bar -->
 <div class = "TopBar">
-    <div class = "Corvin">
+  <div class = "Corvin">
+    <?php
+    echo "<a href = 'home.php'>" . "<h class = 'CorvinHeader'>C</h>" . "</a>";
+    ?>
+  </div>
+  <div class = "AccountMenuDropDown">
+    <p onclick = "accountDropDownMenu()" class = "AccountButton">Account</p>
+    <div id = "AccountMenuContent" class = "AccountMenuContent">
+      <div class = "TopAccountMenuContent">
         <?php
-            echo "<a href = 'home.php'>" .
-                    "<h class = 'CorvinHeader'>C</h>" .
-                "</a>
-            ";
+        echo "<p id = 'AccountMenuName'>" . $user[0] . " " . $user[1] . "</p>";
+
+        include "humanSize.php";
+        include "folderSize.php";
+
+        $usedBytes = folderSize("../../../../mnt/Raid1Array/Corvin/" .
+          $userID . " - " . $user[0] . $user[1]);
+
+        $sql = "SELECT storageSpaceInMegabytes FROM UserInfo WHERE id = '" .
+          $userID . "'";
+        $storageSpaceInMegabytes = mysqli_fetch_row(mysqli_query($conn, $sql));
+
+        if ($storageSpaceInMegabytes[0] == "-1") {
+          $totalBytes = disk_total_space("../../../../mnt/Raid1Array/Corvin");
+          $freeBytes = disk_free_space("../../../../mnt/Raid1Array/Corvin");
+
+          echo "<p id = 'DiskSpace'>" . humanSize($usedBytes) .  " used of " .
+            humanSize($freeBytes) . " (Unlimited)</p>";
+        }
+        else {
+          $totalBytes = $storageSpaceInMegabytes[0] * 1000000;
+          $freeBytes = $totalBytes - $usedBytes;
+
+          echo "<p class = 'DiskSpace'>" . humanSize($usedBytes) .
+            " used of " . humanSize($totalBytes) . "</p>";
+        }
         ?>
+      </div><!--TopAccountMenuContent-->
+      <div class = "MenuLine">
+        <hr class = "MenuLine"/>
+      </div>
+      <div class = "BottomAccountMenuContent">
+        <a class = "GetMoreSpaceMenuItem" href = "getMoreSpace.php">
+          Get More Space</a>
+        <a class = "MenuItem" href = "settings.php">Settings</a>
+        <a class = "MenuItem" href = "help.php">Help</a>
+        <a class = "MenuItem" href = "logout.php">Log Out</a>
+      </div>
     </div>
-    <div class = "AccountMenuDropDown">
-        <p onclick = "accountDropDownMenu()" class = "AccountButton">Account</p>
-        <div id = "AccountMenuContent" class = "AccountMenuContent">
-            <div class = "TopAccountMenuContent">
-
-                <?php
-                    echo "<p id = 'AccountMenuName'>" . $user[0] . " " . $user[1] . "</p>";
-
-                    include "humanSize.php";
-                    include "folderSize.php";
-
-                    $usedBytes = folderSize("../../../../mnt/Raid1Array/Corvin/" .
-                        $userID . " - " .
-                        $user[0] .
-                        $user[1]);
-
-                    $sql = "SELECT storageSpaceInMegabytes FROM UserInfo WHERE id = '" . $userID . "'";
-                    $storageSpaceInMegabytes = mysqli_fetch_row(mysqli_query($conn, $sql));
-
-                    if ($storageSpaceInMegabytes[0] == "-1") {
-                        $totalBytes = disk_total_space(
-                            "../../../../mnt/Raid1Array/Corvin");
-                        $freeBytes = disk_free_space(
-                            "../../../../mnt/Raid1Array/Corvin");
-
-                        echo "<p id = 'DiskSpace'>" .
-                            humanSize($usedBytes) .  " used of " .
-                            humanSize($freeBytes) . " (Unlimited)</p>
-                        ";
-                    }
-                    else {
-                        $totalBytes = $storageSpaceInMegabytes[0] * 1000000;
-                        $freeBytes = $totalBytes - $usedBytes;
-
-                        echo "<p class = 'DiskSpace'>" .
-                            humanSize($usedBytes) .  " used of " .
-                            humanSize($totalBytes) . "</p>
-                        ";
-                    }
-                ?>
-
-            </div><!--TopAccountMenuContent-->
-            <div class = "MenuLine">
-                <hr class = "MenuLine"/>
-            </div>
-            <div class = "BottomAccountMenuContent">
-                <a class = "GetMoreSpaceMenuItem" href = "getMoreSpace.php">Get More Space</a>
-                <a class = "MenuItem" href = "settings.php">Settings</a>
-                <a class = "MenuItem" href = "help.php">Help</a>
-                <a class = "MenuItem" href = "logout.php">Log Out</a>
-            </div>
-        </div><!--AccountMenuContent-->
-    </div><!--AccountMenuDropDown-->
-</div><!--TopBar-->
+  </div>
+</div>
 
 <script>
-    function accountDropDownMenu() {
-        document.getElementById("AccountMenuContent").classList.toggle("Show");
-    }
+function accountDropDownMenu() {
+  document.getElementById("AccountMenuContent").classList.toggle("Show");
+}
 /*
-    window.onclick = function(event) {
-        if (!document.getElementById("AccountMenuContent").contains(event.target)) {
-            if (document.getElementById("AccountMenuContent").classList.contains("show") {
-                document.getElementById("AccountMenuContent").classList.remove("show");
-            }
-        }
+  window.onclick = function(event) {
+    if (!document.getElementById("AccountMenuContent").contains(event.target)) {
+      if (document.getElementById("AccountMenuContent").classList.contains("show") {
+        document.getElementById("AccountMenuContent").classList.remove("show");
+      }
     }
+  }
 */
 </script>
 
-<!-- 5 Main Content -->
+<!-- 3 Main Content -->
 <div class = "MainContent">
 
-    <!-- 5.1 Upload File -->
-
-    <form
-        action = "upload.php"
-        method = "post"
-        enctype = "multipart/form-data"
-    >
+  <!-- 3.1 Upload File -->
+  <form action = "upload.php" method = "post" enctype = "multipart/form-data">
     <span id = "hideWhenFilesSelected">
-            <button type = "button" class = "CustomFileUpload">
-                <label for = "filesToUpload">
-                    Upload Files
-                </label>
-            </button>
-        <input
-            type = "file"
-            name = "filesToUpload[]"
-            id = "filesToUpload"
-            multiple = "multiple"
-            onchange = "javascript:updateList()"
-        />
+      <button type = "button" class = "CustomFileUpload">
+        <label for = "filesToUpload">Upload Files</label>
+      </button>
+      <input
+        type = "file"
+        name = "filesToUpload[]"
+        id = "filesToUpload"
+        multiple = "multiple"
+        onchange = "javascript:updateList()"
+      />
     </span>
-        <input
-            type = "submit"
-            class = "UploadButton"
-            id = "uploadButton"
-            value = "Upload"
-            name = "submit"
-        />
-        <?php
-            parse_str($_SERVER['QUERY_STRING'], $CurrentPath);
-            $CurrentPathString = implode("/", $CurrentPath) . "/";
+    <input
+      type = "submit"
+      class = "UploadButton"
+      id = "uploadButton"
+      value = "Upload"
+      name = "submit"
+    />
+    <?php
+    parse_str($_SERVER['QUERY_STRING'], $CurrentPath);
+    $CurrentPathString = implode("/", $CurrentPath) . "/";
 
-            echo "
-                <input 
-                    type = 'hidden' 
-                    value = '" . $CurrentPathString . "' 
-                    name = 'currentPathString' 
-                />
-                <input
-                    type = 'hidden'
-                    value = '" . $freeBytes . "'
-                    name = 'freeBytes'
-                />
-            ";
-        ?>
+    echo "
+      <input
+        type = 'hidden'
+        value = '" . $CurrentPathString . "'
+        name = 'currentPathString'
+      />
+      <input type = 'hidden' value = '" . $freeBytes . "' name = 'freeBytes'/>
+    ";
+    ?>
+    <div id="fileList"></div>
+  </form>
 
-        <div id="fileList"></div>
-    </form>
+  <script>
+  function updateList() {
+    var input = document.getElementById('filesToUpload');
+    var output = document.getElementById('fileList');
 
-    <script>
-        function updateList()
-        {
-            var input = document.getElementById('filesToUpload');
-            var output = document.getElementById('fileList');
+    if (input.files.length > 0) {
+      document.getElementById('uploadButton').style.display = 'inline-block';
+      document.getElementById('uploadButton').focus();
+      document.getElementById('uploadButton').addEventListener(
+        "mouseout", mouseout);
+      document.getElementById('uploadButton').addEventListener(
+        "mousedown", mousedown);
 
-            if (input.files.length > 0)
-            {
-            document.getElementById('uploadButton').style.display =
-                'inline-block';
-            document.getElementById('uploadButton').focus();
-            document.getElementById('uploadButton').addEventListener(
-                "mouseout",
-                mouseout)
-            ;
-            document.getElementById('uploadButton').addEventListener(
-                "mousedown",
-                mousedown)
-            ;
+      function mouseout() {
+        document.getElementById('uploadButton').style.boxShadow = 'none';
+      }
 
-            function mouseout()
-            {
-                document.getElementById('uploadButton').style.boxShadow =
-                    'none'
-                ;
-            }
+      function mousedown() {
+        document.getElementById('uploadButton').style.boxShadow =
+          '1px 1px 3px rgba(0,0,0,0.4)';
+      }
 
-            function mousedown()
-            {
-                document.getElementById('uploadButton').style.boxShadow =
-                    '1px 1px 3px rgba(0,0,0,0.4)'
-                ;
-            }
-
-            document.getElementById('hideWhenFilesSelected').style.display =
-                'none';
+      document.getElementById('hideWhenFilesSelected').style.display = 'none';
 
             document.getElementById('CreateFolderButton').style.display =
                 'none';
@@ -539,14 +471,14 @@
                 array_push($DirectoryPath, $DirectoryPathFolder);
                 $i = ++$i;
                 echo "
-                    <p class = 'DirectoryPath'> 
-                        / 
+                    <p class = 'DirectoryPath'>
+                        /
                     </p>" .
-                    "<a 
-                        class = 'DirectoryPath' 
+                    "<a
+                        class = 'DirectoryPath'
                         href = '" . $DirectoryPathFolderURL . "'
                     >" .
-                        "<p 
+                        "<p
                             class = 'DirectoryPath'>" . $DirectoryPathFolder .
                         "</p>" .
                     "</a>
@@ -608,8 +540,8 @@
                         $CurrentPath,
                         $Directory[$i]
                 );
-                echo "<a 
-                    href = '" . $URL . "' 
+                echo "<a
+                    href = '" . $URL . "'
                     id = '" .
                         preg_replace(
                                 '/\s+/',
@@ -624,22 +556,22 @@
                 /* Download Folder */
                 echo "<div class = 'DownloadButtonForm'>";
                 echo "
-                    <form 
-                        action = 'Zip/download.php' 
-                        class = 'DownloadButtonForm' 
-                        method = 'post' 
+                    <form
+                        action = 'Zip/download.php'
+                        class = 'DownloadButtonForm'
+                        method = 'post'
                         enctype = 'multipart/form-data'
                     >
-                        <input 
-                            type = 'hidden' 
-                            value = '" . $Directory[$i] . "' 
-                            name = 'fileToDownload' 
+                        <input
+                            type = 'hidden'
+                            value = '" . $Directory[$i] . "'
+                            name = 'fileToDownload'
                         />
-                        <input 
-                            type = 'image' 
-                            src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow Icon @ 36 ppi.png' 
-                            class = 'DownloadButton' 
-                            value = 'Download' 
+                        <input
+                            type = 'image'
+                            src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow Icon @ 36 ppi.png'
+                            class = 'DownloadButton'
+                            value = 'Download'
                             name = 'submit'
                             id = '" . preg_replace(
                                       '/\s+/',
@@ -648,10 +580,10 @@
                                  ) .
                                  "DownloadButton'
                         />
-                        <input 
-                            type = 'hidden' 
-                            value = '" . $CurrentPathString . "' 
-                            name = 'currentPathString' 
+                        <input
+                            type = 'hidden'
+                            value = '" . $CurrentPathString . "'
+                            name = 'currentPathString'
                         />
                         <input
                             type = 'hidden'
@@ -665,30 +597,30 @@
                 /* Rename Folder */
                 echo "<div class = 'RenameButtonForm'>";
 
-                echo "	
-                    <input 
-                        type = 'image' 
-                        src = 'Art/4 - Rename Cursor Icon/NanoLab Rename Cursor Icon @ 36 ppi.png' 
+                echo "
+                    <input
+                        type = 'image'
+                        src = 'Art/4 - Rename Cursor Icon/NanoLab Rename Cursor Icon @ 36 ppi.png'
                         id = '" . preg_replace(
                                 '/\s+/',
                                 '',
                                 $Directory[$i]
                             ) .
-                            "CursorButton' 
-                        class = 'RenameButton' 
+                            "CursorButton'
+                        class = 'RenameButton'
                     />
                 ";
                 echo "
-                    <form 
-                        action = 'rename.php' 
-                        class = 'RenameButtonForm' 
-                        method = 'post' 
+                    <form
+                        action = 'rename.php'
+                        class = 'RenameButtonForm'
+                        method = 'post'
                         enctype = 'multipart/form-data'
                     >
-                        <input 
-                            type = 'hidden' 
-                            value = '" . $Directory[$i] . "' 
-                            name = 'oldName' 
+                        <input
+                            type = 'hidden'
+                            value = '" . $Directory[$i] . "'
+                            name = 'oldName'
                         />
                         <input
                             type = 'text'
@@ -700,14 +632,14 @@
                                     '',
                                     $Directory[$i]
                                 ) .
-                                "RenameTextField' 
-                            class = 'RenameTextField' 
-                            name = 'newName' 
+                                "RenameTextField'
+                            class = 'RenameTextField'
+                            name = 'newName'
                         />
-                        <input 
-                            type = 'hidden' 
-                            value = '" . $CurrentPathString . "' 
-                            name = 'currentPathString' 
+                        <input
+                            type = 'hidden'
+                            value = '" . $CurrentPathString . "'
+                            name = 'currentPathString'
                         />
                     </form>
                 ";
@@ -762,31 +694,31 @@
                 /* Recycle Folder */
                 echo "<div class = 'RecycleButtonForm'>";
                 echo "
-                    <form 
-                        action = 'recycle.php' 
-                        class = 'RecycleButtonForm' 
-                        method = 'post' 
+                    <form
+                        action = 'recycle.php'
+                        class = 'RecycleButtonForm'
+                        method = 'post'
                         enctype = 'multipart/form-data'
                     >
-                        <input 
-                            type = 'hidden' 
-                            value = '" . $Directory[$i] . "' 
-                            name = 'fileToRecycle' 
+                        <input
+                            type = 'hidden'
+                            value = '" . $Directory[$i] . "'
+                            name = 'fileToRecycle'
                         />
-                        <input 
-                            type = 'image' 
-                            src = 'Art/3 - Delete Trash Can Icon/NanoLab Delete Trash Can Select @ 36 ppi.png' 
-                            class = 'RecycleButton' 
+                        <input
+                            type = 'image'
+                            src = 'Art/3 - Delete Trash Can Icon/NanoLab Delete Trash Can Select @ 36 ppi.png'
+                            class = 'RecycleButton'
                             id = '" . preg_replace(
                                     '/\s+/',
                                     '',
                                     $Directory[$i]) .
                                 "RecycleButton'
                         />
-                        <input 
-                            type = 'hidden' 
-                            value = '" . $CurrentPathString . "' 
-                            name = 'currentPathString' 
+                        <input
+                            type = 'hidden'
+                            value = '" . $CurrentPathString . "'
+                            name = 'currentPathString'
                         />
                     </form>
                 ";
@@ -1017,22 +949,22 @@
                 /* Download File */
                 echo "<div class = 'DownloadButtonForm'>";
                 echo "
-                    <form 
-                        action = 'Zip/download.php' 
-                        class = 'DownloadButtonForm' 
-                        method = 'post' 
+                    <form
+                        action = 'Zip/download.php'
+                        class = 'DownloadButtonForm'
+                        method = 'post'
                         enctype = 'multipart/form-data'
                     >
-                        <input 
-                            type = 'hidden' 
-                            value = '" . $Directory[$i] . "' 
-                            name = 'fileToDownload' 
+                        <input
+                            type = 'hidden'
+                            value = '" . $Directory[$i] . "'
+                            name = 'fileToDownload'
                         />
-                        <input 
-                            type = 'image' 
-                            src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow Icon @ 36 ppi.png' 
-                            class = 'DownloadButton' 
-                            value = 'Download' 
+                        <input
+                            type = 'image'
+                            src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow Icon @ 36 ppi.png'
+                            class = 'DownloadButton'
+                            value = 'Download'
                             name = 'submit'
                             id = '" . preg_replace(
                                         '/\s+/',
@@ -1041,10 +973,10 @@
                                     ) .
                                     "DownloadButton'
                         />
-                        <input 
-                            type = 'hidden' 
-                            value = '" . $CurrentPathString . "' 
-                            name = 'currentPathString' 
+                        <input
+                            type = 'hidden'
+                            value = '" . $CurrentPathString . "'
+                            name = 'currentPathString'
                         />
                         <input
                             type = 'hidden'
@@ -1059,29 +991,29 @@
                 echo "<div class = 'RenameButtonForm'>";
 
                 echo "
-                    <input 
-                        type = 'image' 
-                        src = 'Art/4 - Rename Cursor Icon/NanoLab Rename Cursor Icon @ 36 ppi.png' 
+                    <input
+                        type = 'image'
+                        src = 'Art/4 - Rename Cursor Icon/NanoLab Rename Cursor Icon @ 36 ppi.png'
                         id = '" . preg_replace(
                                 '/\s+/',
                                 '',
                                 $Directory[$i]
                             ) .
                             "CursorButton'
-                            class = 'RenameButton' 
+                            class = 'RenameButton'
                     />
                 ";
                 echo "
-                    <form 
-                        action = 'rename.php' 
-                        class = 'RenameButtonForm' 
-                        method = 'post' 
+                    <form
+                        action = 'rename.php'
+                        class = 'RenameButtonForm'
+                        method = 'post'
                         enctype = 'multipart/form-data'
                     >
-                        <input 
-                            type = 'hidden' 
-                            value = '" . $Directory[$i] . "' 
-                            name = 'oldName' 
+                        <input
+                            type = 'hidden'
+                            value = '" . $Directory[$i] . "'
+                            name = 'oldName'
                         />
                         <input
                             type = 'text'
@@ -1092,14 +1024,14 @@
                                     '',
                                     $Directory[$i]
                                 ) .
-                                "RenameTextField' 
-                            class = 'RenameTextField' 
-                            name = 'newName' 
+                                "RenameTextField'
+                            class = 'RenameTextField'
+                            name = 'newName'
                         />
-                        <input 
-                            type = 'hidden' 
-                            value = '" . $CurrentPathString . "' 
-                            name = 'currentPathString' 
+                        <input
+                            type = 'hidden'
+                            value = '" . $CurrentPathString . "'
+                            name = 'currentPathString'
                         />
                     </form>
                 ";
@@ -1152,19 +1084,19 @@
                 echo "<div class = 'RecycleButtonForm'>";
                 echo "
                     <form
-                        action = 'recycle.php' 
-                        class = 'RecycleButtonForm' 
-                        method = 'post' 
+                        action = 'recycle.php'
+                        class = 'RecycleButtonForm'
+                        method = 'post'
                         enctype = 'multipart/form-data'
                     >
                         <input
-                            type = 'hidden' 
-                            value = '" . $Directory[$i] . "' 
-                            name = 'fileToRecycle' 
+                            type = 'hidden'
+                            value = '" . $Directory[$i] . "'
+                            name = 'fileToRecycle'
                         />
                         <input
-                            type = 'image' 
-                            src = 'Art/3 - Delete Trash Can Icon/NanoLab Delete Trash Can Select @ 36 ppi.png' 
+                            type = 'image'
+                            src = 'Art/3 - Delete Trash Can Icon/NanoLab Delete Trash Can Select @ 36 ppi.png'
                             class = 'RecycleButton'
                             id = '" . preg_replace(
                                         '/\s+/',
@@ -1173,10 +1105,10 @@
                                     ) .
                                     "RecycleButton'
                         />
-                        <input 
-                            type = 'hidden' 
-                            value = '" . $CurrentPathString . "' 
-                            name = 'currentPathString' 
+                        <input
+                            type = 'hidden'
+                            value = '" . $CurrentPathString . "'
+                            name = 'currentPathString'
                         />
                     </form>
                 ";
