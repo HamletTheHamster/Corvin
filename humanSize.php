@@ -1,48 +1,40 @@
 <!--
-        This is an external php function for Corvin site that takes a value in
-        bytes and converts that value to the appropriate prefix unit of MB, GB,
-        etc. It then returns that information in a statement in the following
-        format:
+This is an external php function for Corvin that takes a value in bytes and
+converts that value to the appropriate prefix unit of MB, GB, etc. It then
+returns that information in a statement in the following format:
 
-            765.65 MB
+  765.65 MB
 
-        Variables
+Variables
 
-            bytes   -   function input; value in bytes
-            type    -   array of prefixes
-            i       -   indexer
+  bytes   - function input; value in bytes
+  type    - array of prefixes
+  i       - indexer
 
-
-        Last updated: January 8, 2019
-
-        Coded by: Joel N. Johnson
+Coded by: Joel N. Johnson
 -->
 
 <?php
-
 // HumanSize accepts an integer number of bytes as input
-function humanSize($bytes)
-{
-    // Assign array containing prefix abbreviations
-    $type = array("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB");
+function humanSize($bytes) {
+  // Assign array containing prefix abbreviations
+  $type = array("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB");
 
-    // Initialize indexer
-    $i = 0;
+  // Initialize indexer
+  $i = 0;
 
-    /* While the value is still more than should be reported with the current
-    prefix */
-    while($bytes >= 1000)
-    {
-        // Then divide the value by 1024
-        $bytes /= 1000;
+  // While the value is still more than should be reported with the current
+  // prefix
+  while($bytes >= 1000) {
+    // Then divide the value by 1024
+    $bytes /= 1000;
 
-        /* And increase the indexer by to indicate the value has gone to the
-        next prefix */
-        $i++;
-    }
+    // And increase the indexer by to indicate the value has gone to the next
+    // prefix
+    $i++;
+  }
 
-    // Return the value properly reported
-    return(sprintf("%1.2f", $bytes) . " " . $type[$i]);
+  // Return the value properly reported
+  return(sprintf("%1.2f", $bytes) . " " . $type[$i]);
 }
-
 ?>
