@@ -1,4 +1,18 @@
+<!--This is the Corvin page where new users can register their information
+to creat an account. This page routes to registerNewUser.php upon submitting
+the form.
 
+Hierarchy
+
+  1 Header
+  2 Top Bar
+  3 Create New User Form
+  4 Footer
+
+Issues: content displays off screen for certain screen sizes
+
+Coded By: Joel N. Johnson
+-->
 
 <!-- 1 Header -->
 <head>

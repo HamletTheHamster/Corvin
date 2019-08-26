@@ -89,7 +89,7 @@ if (!isset($_SESSION['Created'])) {
   // Then set the session start time to now
   $_SESSION['Created'] = time();
 }
-// If session started more than 30 minutes ago
+// If session started more than 20 minutes ago
 elseif (time() - $_SESSION['Created'] > 1200) {
   // Then change session ID for the current session and invalidate old session
   // ID
@@ -109,79 +109,33 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 
   <link href = "index.css" type = "text/css" rel = "stylesheet"/>
 
-  <link
-    rel = "apple-touch-icon"
-    sizes = "57x57"
-    href = "Art/Favicon/apple-icon-57x57.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "60x60"
-    href = "Art/Favicon/apple-icon-60x60.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "72x72"
-    href = "Art/Favicon/apple-icon-72x72.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "76x76"
-    href = "Art/Favicon/apple-icon-76x76.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "114x114"
-    href = "Art/Favicon/apple-icon-114x114.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "120x120"
-    href = "Art/Favicon/apple-icon-120x120.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "144x144"
-    href = "Art/Favicon/apple-icon-144x144.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "152x152"
-    href = "Art/Favicon/apple-icon-152x152.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "180x180"
-    href = "Art/Favicon/apple-icon-180x180.png"
-  />
-  <link
-    rel = "icon"
-    type = "image/png"
-    sizes = "192x192"
-    href = "Art/Favicon/android-icon-192x192.png"
-  />
-  <link
-    rel = "icon"
-    type = "image/png"
-    sizes = "32x32"
-    href = "Art/Favicon/favicon-32x32.png"
-  />
-  <link
-    rel = "icon"
-    type = "image/png"
-    sizes = "96x96"
-    href = "Art/Favicon/favicon-96x96.png"
-  />
-  <link
-    rel = "icon"
-    type = "image/png"
-    sizes = "16x16"
-    href = "Art/Favicon/favicon-16x16.png"
-  />
-  <link
-    rel = "manifest"
-    href = "/manifest.json"
-  />
+  <link rel = "apple-touch-icon" sizes = "57x57"
+    href = "Art/Favicon/apple-icon-57x57.png" />
+  <link rel = "apple-touch-icon" sizes = "60x60"
+    href = "Art/Favicon/apple-icon-60x60.png" />
+  <link rel = "apple-touch-icon" sizes = "72x72"
+    href = "Art/Favicon/apple-icon-72x72.png" />
+  <link rel = "apple-touch-icon" sizes = "76x76"
+    href = "Art/Favicon/apple-icon-76x76.png" />
+  <link rel = "apple-touch-icon" sizes = "114x114"
+    href = "Art/Favicon/apple-icon-114x114.png" />
+  <link rel = "apple-touch-icon" sizes = "120x120"
+    href = "Art/Favicon/apple-icon-120x120.png" />
+  <link rel = "apple-touch-icon" sizes = "144x144"
+    href = "Art/Favicon/apple-icon-144x144.png" />
+  <link rel = "apple-touch-icon" sizes = "152x152"
+    href = "Art/Favicon/apple-icon-152x152.png" />
+  <link rel = "apple-touch-icon" sizes = "180x180"
+    href = "Art/Favicon/apple-icon-180x180.png" />
+  <link rel = "icon" type = "image/png" sizes = "192x192"
+    href = "Art/Favicon/android-icon-192x192.png" />
+  <link rel = "icon" type = "image/png" sizes = "32x32"
+    href = "Art/Favicon/favicon-32x32.png" />
+  <link rel = "icon" type = "image/png" sizes = "96x96"
+    href = "Art/Favicon/favicon-96x96.png" />
+  <link rel = "icon" type = "image/png" sizes = "16x16"
+    href = "Art/Favicon/favicon-16x16.png" />
+  <link rel = "manifest" href = "/manifest.json" />
 
   <meta name = "msapplication-TileColor" content = "#ffffff"/>
   <meta name = "msapplication-TileImage" content = "/ms-icon-144x144.png"/>
@@ -189,7 +143,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 
   <meta http-equiv = "refresh" content = "855"/>
 
-    <meta name = "google" content = "notranslate"/>
+  <meta name = "google" content = "notranslate"/>
 </head>
 
 <body>
@@ -447,7 +401,7 @@ function accountDropDownMenu() {
         $DirectoryPathFolderURL = generateURL(
           "home.php?", $DirectoryPath, $DirectoryPathFolder);
         array_push($DirectoryPath, $DirectoryPathFolder);
-        $i = ++$i;
+        $i++;
         echo "
         <p class = 'DirectoryPath'>/</p>
         <a class = 'DirectoryPath' href = '" . $DirectoryPathFolderURL . "'>
@@ -658,13 +612,14 @@ function accountDropDownMenu() {
   // 3.5.2 List Files and File Sizes
   // 3.5.2.1 File Name
   function supportedFileTypes($suffix, $directoryi, $directoryPath) {
-    $needstxt = ["csv", "php", "html", "cu", "c", "go",];
+    $needstxt = ["csv", "php", "html", "cu", "c", "go"];
 
     if ($_GET) {
       echo "
       <a
         href = '" . $_SERVER['REQUEST_URI'] . "&" . $suffix . "=" .
-          rawurlencode($directoryi) . "'target = '_blank'
+          rawurlencode($directoryi) . "'
+        target = '_blank'
         id = '" . preg_replace('/\s+/', '', $directoryi) . "FileName'
       >" .
         $directoryi .
@@ -674,7 +629,8 @@ function accountDropDownMenu() {
       echo "
       <a
         href = '" . $_SERVER['REQUEST_URI'] . "?" . $suffix . "=" .
-          rawurlencode($directoryi) . "'target = '_blank'
+          rawurlencode($directoryi) . "'
+        target = '_blank'
         id = '" . preg_replace('/\s+/', '', $directoryi) . "FileName'
       >" .
         $directoryi .
@@ -689,8 +645,8 @@ function accountDropDownMenu() {
       if (in_array($suffix, $needstxt)) {
         if (copy(
           $directoryPath . "/" . $fileToView,
-          "../../../../../../../../../var/www/html/" . "ViewInBrowser/" .
-          $suffix . ".txt")
+          "../../../../../../../../../var/www/html/ViewInBrowser/" . $suffix .
+          ".txt")
         ) {
           echo "copy successful";
           echo "
@@ -705,8 +661,8 @@ function accountDropDownMenu() {
       else {
         if (copy(
           $directoryPath . "/" . $fileToView,
-          "../../../../../../../../var/www/html/" . "ViewInBrowser/" .
-            $suffix . "." . $suffix)
+          "../../../../../../../../var/www/html/ViewInBrowser/" . $suffix .
+          "." . $suffix)
         ) {
           echo "copy successful";
           echo "

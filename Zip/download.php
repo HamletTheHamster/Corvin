@@ -10,6 +10,7 @@ Variables
                       the database
   _SESSION[userID]  - global variable used to maintain user's identity across
                       pages
+  sql               - used to hold query database strings
   user              - array;
                         user[0] = user's first name,
                         user[1] = user's last name

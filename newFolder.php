@@ -10,6 +10,13 @@ Hierarchy
 
 Variables
 
+  conn                - MySQL database connection
+  userID              - user ID of the user; unique integer used to identify
+                        the user and grab other info from their row in the
+                        database
+  _SESSION[userID]    - global variable used to maintain user's identity across
+                        pages
+  sql                 - used to hold query database strings
   user                - string containing user's first name
   userLastName        - string containing user's last name
   currentDirectory    - location of user's root folder
@@ -95,75 +102,32 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 
   <link href = "index.css" type = "text/css" rel = "stylesheet" />
 
-  <link
-    rel = "apple-touch-icon"
-    sizes = "57x57"
-    href = "/Art/Favicon/apple-icon-57x57.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "60x60"
-    href = "/Art/Favicon/apple-icon-60x60.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "72x72"
-    href = "/Art/Favicon/apple-icon-72x72.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "76x76"
-    href = "/Art/Favicon/apple-icon-76x76.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "114x114"
-    href = "/Art/Favicon/apple-icon-114x114.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "120x120"
-    href = "/Art/Favicon/apple-icon-120x120.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "144x144"
-    href = "/Art/Favicon/apple-icon-144x144.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "152x152"
-    href = "/Art/Favicon/apple-icon-152x152.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "180x180"
-    href = "/Art/Favicon/apple-icon-180x180.png"
-  />
-  <link
-    rel = "icon"
-    type = "image/png"
-    sizes = "192x192"
-    href = "/Art/Favicon/android-icon-192x192.png"
-  />
-  <link
-    rel = "icon"
-    type = "image/png"
-    sizes = "32x32"
-    href = "/Art/Favicon/favicon-32x32.png"
-  />
-  <link
-    rel = "icon"
-    type = "image/png"
-    sizes = "96x96"
-    href = "/Art/Favicon/favicon-96x96.png"
-  />
-  <link
-    rel = "icon"
-    type = "image/png"
-    sizes = "16x16"
-    href = "/Art/Favicon/favicon-16x16.png"
-  />
+  <link rel = "apple-touch-icon" sizes = "57x57"
+    href = "/Art/Favicon/apple-icon-57x57.png" />
+  <link rel = "apple-touch-icon" sizes = "60x60"
+    href = "/Art/Favicon/apple-icon-60x60.png" />
+  <link rel = "apple-touch-icon" sizes = "72x72"
+    href = "/Art/Favicon/apple-icon-72x72.png" />
+  <link rel = "apple-touch-icon" sizes = "76x76"
+    href = "/Art/Favicon/apple-icon-76x76.png" />
+  <link rel = "apple-touch-icon" sizes = "114x114"
+    href = "/Art/Favicon/apple-icon-114x114.png" />
+  <link rel = "apple-touch-icon" sizes = "120x120"
+    href = "/Art/Favicon/apple-icon-120x120.png" />
+  <link rel = "apple-touch-icon" sizes = "144x144"
+    href = "/Art/Favicon/apple-icon-144x144.png" />
+  <link rel = "apple-touch-icon" sizes = "152x152"
+    href = "/Art/Favicon/apple-icon-152x152.png" />
+  <link rel = "apple-touch-icon" sizes = "180x180"
+    href = "/Art/Favicon/apple-icon-180x180.png" />
+  <link rel = "icon" type = "image/png" sizes = "192x192"
+    href = "/Art/Favicon/android-icon-192x192.png" />
+  <link rel = "icon" type = "image/png" sizes = "32x32"
+    href = "/Art/Favicon/favicon-32x32.png" />
+  <link rel = "icon" type = "image/png" sizes = "96x96"
+    href = "/Art/Favicon/favicon-96x96.png" />
+  <link rel = "icon" type = "image/png" sizes = "16x16"
+    href = "/Art/Favicon/favicon-16x16.png" />
   <link rel = "manifest" href = "/manifest.json" />
 
   <meta name = "msapplication-TileColor" content = "#ffffff" />
