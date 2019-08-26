@@ -1,3 +1,9 @@
+<!--
+
+
+Coded by: Joel N. Johnson
+-->
+
 <!-- 0 Check If Logged In -->
 <?php
 session_start();
@@ -13,32 +19,31 @@ ini_set("display_errors", 1);
 // And be verbose about it
 error_reporting(E_ALL);
 
-//MYSQLi server connection
+// MySQL server connection
 $conn = mysqli_connect("127.0.0.1", "joel", "Daytona675");
 
-//Check if connected to MYSQLI server
+// Check if connected to MySQL server
 if (!$conn) {
   echo("Failed to connect to database: " . mysqli_connect_error()) .
   "<br /><br />";
 }
 
-//Go into Corvin database
+// Go into Corvin database
 mysqli_query($conn, "USE Corvin;");
 
-//Assign user's ID, set in validate.php
+// Assign user's ID, set in validate.php
 $userID = $_SESSION["userID"];
 
 $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
 $user = mysqli_fetch_array(mysqli_query($conn, $sql));
 
 // Session Timeout after 854 seconds (14.2 minutes)
-
 // If last request was more than 854 seconds ago (14.2 minutes)
 if (
   isset($_SESSION['LastActivity']) &&
   (time() - $_SESSION['LastActivity'] > 854)
-)
-{
+) {
+
   // Then unset $_SESSION variable for the run-time
   session_unset();
 
@@ -53,19 +58,16 @@ if (
 $_SESSION['LastActivity'] = time();
 
 // Regenerate Session ID every 20 Minutes
-
 // If session started timestamp is not set
-if (!isset($_SESSION['Created']))
-{
+if (!isset($_SESSION['Created'])) {
   // Then set the session start time to now
   $_SESSION['Created'] = time();
 }
-
-// If session started more than 30 minutes ago
+// If session started more than 20 minutes ago
 elseif (time() - $_SESSION['Created'] > 1200)
 {
-  // Then change session ID for the current session and invalidate old
-  //session ID
+  // Then change session ID for the current session and invalidate old session
+  // ID
   session_regenerate_id(true);
 
   // Update creation time
@@ -78,105 +80,45 @@ elseif (time() - $_SESSION['Created'] > 1200)
 
 <!-- 1 Header -->
 <head>
-  <title>Settings | Corvin</title>
-  <link
-    href = "index.css"
-    type = "text/css"
-    rel = "stylesheet"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "57x57"
-    href = "Art/Favicon/apple-icon-57x57.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "60x60"
-    href = "Art/Favicon/apple-icon-60x60.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "72x72"
-    href = "Art/Favicon/apple-icon-72x72.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "76x76"
-    href = "Art/Favicon/apple-icon-76x76.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "114x114"
-    href = "Art/Favicon/apple-icon-114x114.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "120x120"
-    href = "Art/Favicon/apple-icon-120x120.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "144x144"
-    href = "Art/Favicon/apple-icon-144x144.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "152x152"
-    href = "Art/Favicon/apple-icon-152x152.png"
-  />
-  <link
-    rel = "apple-touch-icon"
-    sizes = "180x180"
-    href = "Art/Favicon/apple-icon-180x180.png"
-  />
-  <link
-    rel = "icon"
-    type = "image/png"
-    sizes = "192x192"
-    href = "Art/Favicon/android-icon-192x192.png"
-  />
-  <link
-    rel = "icon"
-    type = "image/png"
-    sizes = "32x32"
-    href = "Art/Favicon/favicon-32x32.png"
-  />
-  <link
-    rel = "icon"
-    type = "image/png"
-    sizes = "96x96"
-    href = "Art/Favicon/favicon-96x96.png"
-  />
-  <link
-    rel = "icon"
-    type = "image/png"
-    sizes = "16x16"
-    href = "Art/Favicon/favicon-16x16.png"
-  />
-  <link
-    rel = "manifest"
-    href = "/manifest.json"
-  />
-  <meta
-    name = "msapplication-TileColor"
-    content = "#ffffff"
-  />
-  <meta
-    name = "msapplication-TileImage"
-    content = "/ms-icon-144x144.png"
-  />
-  <meta
-    name = "theme-color"
-    content = "#ffffff"
-  />
-  <meta
-    http-equiv = "refresh"
-    content = "855"
-  />
-  <meta
-    name = "google"
-    content = "notranslate"
-  />
+  <title>Home | Corvin</title>
+
+  <link href = "index.css" type = "text/css" rel = "stylesheet"/>
+
+  <link rel = "apple-touch-icon" sizes = "57x57"
+    href = "Art/Favicon/apple-icon-57x57.png" />
+  <link rel = "apple-touch-icon" sizes = "60x60"
+    href = "Art/Favicon/apple-icon-60x60.png" />
+  <link rel = "apple-touch-icon" sizes = "72x72"
+    href = "Art/Favicon/apple-icon-72x72.png" />
+  <link rel = "apple-touch-icon" sizes = "76x76"
+    href = "Art/Favicon/apple-icon-76x76.png" />
+  <link rel = "apple-touch-icon" sizes = "114x114"
+    href = "Art/Favicon/apple-icon-114x114.png" />
+  <link rel = "apple-touch-icon" sizes = "120x120"
+    href = "Art/Favicon/apple-icon-120x120.png" />
+  <link rel = "apple-touch-icon" sizes = "144x144"
+    href = "Art/Favicon/apple-icon-144x144.png" />
+  <link rel = "apple-touch-icon" sizes = "152x152"
+    href = "Art/Favicon/apple-icon-152x152.png" />
+  <link rel = "apple-touch-icon" sizes = "180x180"
+    href = "Art/Favicon/apple-icon-180x180.png" />
+  <link rel = "icon" type = "image/png" sizes = "192x192"
+    href = "Art/Favicon/android-icon-192x192.png" />
+  <link rel = "icon" type = "image/png" sizes = "32x32"
+    href = "Art/Favicon/favicon-32x32.png" />
+  <link rel = "icon" type = "image/png" sizes = "96x96"
+    href = "Art/Favicon/favicon-96x96.png" />
+  <link rel = "icon" type = "image/png" sizes = "16x16"
+    href = "Art/Favicon/favicon-16x16.png" />
+  <link rel = "manifest" href = "/manifest.json" />
+
+  <meta name = "msapplication-TileColor" content = "#ffffff"/>
+  <meta name = "msapplication-TileImage" content = "/ms-icon-144x144.png"/>
+  <meta name = "theme-color" content = "#ffffff"/>
+
+  <meta http-equiv = "refresh" content = "855"/>
+
+  <meta name = "google" content = "notranslate"/>
 </head>
 
 <body>
@@ -186,7 +128,8 @@ elseif (time() - $_SESSION['Created'] > 1200)
   <div class = "TopBar">
     <div class = "Corvin">
       <?php
-      echo "<a href = 'home.php'>" . "<h class = 'CorvinHeader'>C</h>" . "</a>";
+      echo "<a href = 'home.php'>" . "<h class = 'CorvinHeader'>C</h>" .
+        "</a>";
       ?>
     </div>
     <div class = "AccountMenuDropDown">
@@ -209,7 +152,8 @@ elseif (time() - $_SESSION['Created'] > 1200)
             $conn, $sql));
 
           if ($storageSpaceInMegabytes[0] == "-1") {
-            $totalBytes = disk_total_space("../../../../mnt/Raid1Array/Corvin");
+            $totalBytes = disk_total_space(
+              "../../../../mnt/Raid1Array/Corvin");
             $freeBytes = disk_free_space("../../../../mnt/Raid1Array/Corvin");
 
             echo "<p id = 'DiskSpace'>" . humanSize($usedBytes) . " used of " .
@@ -223,7 +167,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
               " used of " . humanSize($totalBytes) . "</p>";
           }
           ?>
-        </div><!--TopAccountMenuContent-->
+        </div>
         <div class = "MenuLine">
           <hr class = "MenuLine"/>
         </div>
@@ -234,9 +178,9 @@ elseif (time() - $_SESSION['Created'] > 1200)
           <a class = "MenuItem" href = "help.php">Help</a>
           <a class = "MenuItem" href = "logout.php">Log Out</a>
         </div>
-      </div><!--AccountMenuContent-->
-    </div><!--AccountMenuDropDown-->
-  </div><!--TopBar-->
+      </div>
+    </div>
+  </div>
 
   <script>
   function accountDropDownMenu() {

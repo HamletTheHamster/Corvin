@@ -1,21 +1,39 @@
 <!--
-        This is a php file for Corvin that is called by index.html to handle
-        user login validation and rerouting to the user's home page.
+This is a Corvin file that is called by index.html to handle user login
+validation and rerouting to the user's home page.
 
-        Variables
+Variables
 
-            UserInfo    -	MySQLi database with user info
-            _SESSION	-   global variable that allows for a user's id to
+  conn                    - MySQL database connection
+  _POST[username]         - username submitted via post data in login form
+  username                - user's username
+  allUsernames            - array containing every single username in the
+                            database
+  sql                     - used to hold query database strings
+  columnData              - used to hold MySQL query result from full username
+                            search
+  row                     - used to convert columData to row format and store
+                            in allUsernames array
+  hashedReferencePassword - the hashed password in the database corresponding
+                            to the entered username; used to compare entered
+                            password to reference password held in database
+  userID                  - user ID of the user; unique integer used to
+                            identify the user and grab other info from their
+                            row in the database
+  _SESSION[loginUser]     - global variable that allows for a user's id to
                             be set to the session that has been started;
-                            verifies that the user has logged in. Their
-                            main page will not be accessible and just
-                            reroute to cor.vin unless they have logged in
-                            with their correct username and password and
-                            thus their session id has been set.
+                            verifies that the user has logged in. Their main
+                            page will be inaccessible and just reroute to
+                            cor.vin until they have logged in with their
+                            correct username and password and thus their
+                            session id has been set.
+  _SESSION[userID]        - global variable setting the user's ID for use
+                            throughout their logged in session
 
-        Last updated: August 15, 2019
+Issues: Searching among all usernames might be able to be optimized
+        Column data vs row data might be able to be optimized
 
-        Coded by: Joel N. Johnson
+Coded by: Joel N. Johnson
 -->
 
 <?php
