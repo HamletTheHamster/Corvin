@@ -1,8 +1,4 @@
-/*
-        Last updated: January 8, 2019
-
-        Coded by: Joel N. Johnson
-*/
+/* Coded by: Joel N. Johnson */
 
 html, body {
     background-color: rgb(254, 254, 254);
@@ -119,7 +115,7 @@ p.User {
     border-radius: 4px;
     vertical-align: middle;
     position: relative;
-} 
+}
 
 .LoginButton:hover {
     background-color: rgba(0, 130, 140, 0.06);
