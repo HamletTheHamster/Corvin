@@ -334,7 +334,7 @@ mysqli_close($conn);
 
 <br /><br />
 
-</div>";
+</div>
 </div>
 
 <!-- 5 Footer -->
