@@ -1,3 +1,321 @@
 /* _settings Coded by: Joel N. Johnson */
 
 $o: settings;
+
+html.#{$o}, body.#{$o} {
+    background-color: rgb(254, 254, 254);
+    height: 100%;
+    margin: 0;
+    font-family: "Square Market", Helvetica, sans-serif;
+    color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$o}Wrapper {
+    min-height: calc(100% - 20px);
+    height: auto;
+}
+
+.#{$o}TopBar {
+    margin-bottom: 200px;
+    width: 100%;
+    height: 85px;
+}
+
+.#{$o}Corvin {
+    float: left;
+    width: 94%;
+}
+
+.#{$o}CorvinHeader {
+    color: rgba(23, 23, 23, 0.85);
+    font-family: "Square Market", Helvetica, sans-serif;
+    margin-top: 30px;
+    margin-left: 35px;
+    line-height: .5em;
+    font-weight: 600;
+    font-size: 50px;
+    display: inline-block;
+}
+
+.#{$o}CorvinHeader:hover {
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$o}CorvinHeader:active {
+    /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/
+}
+
+.#{$o}CorvinHeader:focus {
+    outline: none;
+    text-shadow: none;
+}
+
+.#{$o}AccountMenuDropDown {
+    position: absolute;
+    display: inline-block;
+    float: right;
+}
+
+p.#{$o}AccountButton {
+    color: rgba(23, 23, 23, 0.85);
+    text-align: right;
+    margin-right: 35px;
+    margin-top: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    float: right;
+    display: inline-block;
+}
+
+p.#{$o}AccountButton:hover {
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$o}AccountMenuContent {
+    display: none;
+    position: absolute;
+    right: 20px;
+    margin-top: 60px;
+    background-color: rgb(254, 254, 254);
+    min-width: 260px;
+    border-radius: 6px;
+    border-width: thin;
+    border-color: rgba(23, 23, 23, 0.25);
+    box-shadow: 0 2px 4px 0 rgba(23, 23, 23, 0.1);
+    z-index: 2;
+}
+
+a.#{$o}AccountMenuContent {
+    color: rgba(23, 23, 23, 0.85);
+    margin-right: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    display: block;
+}
+
+a.#{$o}AccountMenuContent:hover {
+    color: rgb(0, 130, 140);
+    background-color: rgba(0, 130, 140, 0.06);
+    cursor: pointer;
+}
+
+.#{$o}TopAccountMenuContent {
+    height: 150px;
+}
+
+.#{$o}AccountMenuName {
+    color: rgba(23, 23, 23, 0.85);
+    float: right;
+    padding-right: 20px;
+    text-align: right;
+    font-size: 18px;
+}
+
+.#{$o}DiskSpace {
+    text-align: right;
+    padding-right: 20px;
+    margin-top: 50px;
+}
+
+p.#{$o}DiskSpace {
+    font-size: 16px;
+    font-family: "Square Market", Helvetica, sans-serif;
+}
+
+.#{$o}MenuLine {
+    margin: 35px 10px;
+}
+
+hr.#{$o}MenuLine {
+    color: rgba(23, 23, 23, 0.25);
+}
+
+.#{$o}BottomAccountMenuContent {
+}
+
+a.#{$o}GetMoreSpaceMenuItem {
+    color: rgb(0, 154, 164);
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    display: block;
+}
+
+a.#{$o}GetMoreSpaceMenuItem:hover {
+    color: rgb(0, 154, 164);
+    background-color: rgba(0, 130, 140, 0.06);
+    cursor: pointer;
+}
+
+a.#{$o}MenuItem {
+    color: rgba(23, 23, 23, 0.85);
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    display: block;
+}
+
+a.#{$o}MenuItem:hover {
+    color: rgb(0, 154, 164);
+    background-color: rgba(0, 130, 140, 0.06);
+    cursor: pointer;
+}
+
+.#{$o}Show {
+    display: block;
+}
+
+.#{$o}MainContent {
+    padding-left: 12.5%;
+    padding-right: 12.5%;
+    z-index: 1;
+}
+
+.#{$o}GetMoreSpaceButton {
+    background-color: rgb(0, 130, 140);
+    border-width: thin;
+    color: rgb(254, 254, 254);
+    font-family: "Square Market", Helvetica, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 6px 12px;
+    margin: auto;
+    display: block;
+    border-radius: 4px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.#{$o}GetMoreSpaceButton:hover {
+    background-color: rgb(0, 154, 164);
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.#{$o}GetMoreSpaceButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    transition: 250ms;
+    outline: none;
+}
+
+.#{$o}GetMoreSpaceButton:focus {
+    outline: none;
+}
+
+.#{$o}SettingsHeader {
+    font-size: 30px;
+    height: 100px;
+}
+
+p.#{$o}SettingsHeader {
+    float: left;
+    color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$o}SettingsContent {
+    width: 90%;
+    margin-left: 5%;
+}
+
+.#{$o}NameAndEmail {
+    height: 150px;
+    margin: auto;
+}
+
+.#{$o}NameAndEditName {
+    height: 150px;
+    width: 50%;
+    float: left;
+    margin-left: -35px;
+}
+
+.#{$o}Name {
+    height: 150px;
+    width: 50%;
+    float: left;
+}
+
+.#{$o}EditName {
+    height: 150px;
+    margin-left: 50%;
+}
+
+.#{$o}EmailAndEditEmail {
+    height: 150px;
+    margin-left: 50%;
+}
+
+.#{$o}Email {
+    height: 150px;
+    width: 50%;
+    float: left;
+}
+
+.#{$o}EditEmail {
+    height: 150px;
+    margin-left: 50%;
+}
+
+.#{$o}UsernameAndPassword {
+    height: 150px;
+    width: 100%;
+}
+
+.#{$o}UsernameAndEditUsername {
+    float: left;
+    height: 150px;
+    width: 50%;
+}
+
+.#{$o}Username {
+    height: 150px;
+    width: 50%;
+    float: left;
+}
+
+.#{$o}EditUsername {
+    height: 150px;
+    margin-left: 50%;
+}
+
+.#{$o}ChangePassword {
+    height: 150px;
+    width: 50%;
+    float: left;
+}
+
+.#{$o}Container {
+    height: 150px;
+    position: relative;
+}
+
+.#{$o}VerticalCenter {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.#{$o}AccountInfo {
+    font-size: 25px;
+}
+
+.#{$o}AccountInfoEdit {
+    font-size: 13px;
+}
+
+.#{$o}Footer, .#{$o}Push {
+    height: 20px;
+}
+
+.#{$o}Footer {
+    font-family: "Square Market", Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: center;
+}

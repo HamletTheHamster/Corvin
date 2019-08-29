@@ -97,13 +97,13 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 ?>
 
 <!DOCTYPE html>
-<html lang = "en">
+<html lang = "en" class = "recycleBin">
 
 <!-- 1 Header -->
 <head>
   <title>Home | Corvin</title>
 
-  <link href = "index.css" type = "text/css" rel = "stylesheet"/>
+  <link href = "one.css" type = "text/css" rel = "stylesheet"/>
 
   <link rel = "apple-touch-icon" sizes = "57x57"
     href = "Art/Favicon/apple-icon-57x57.png" />
@@ -142,25 +142,25 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   <meta name = "google" content = "notranslate"/>
 </head>
 
-<body>
-<div class = "Wrapper">
+<body class = "recycleBin">
+<div class = "recycleBinWrapper">
 
   <!-- 2 Top Bar -->
-  <div class = "TopBar">
-    <div class = "Corvin">
+  <div class = "recycleBinTopBar">
+    <div class = "recycleBinCorvin">
       <?php
       echo "
       <a href = 'home.php'>
-        <h class = 'CorvinHeader'>C</h>
+        <h class = 'recycleBinCorvinHeader'>C</h>
       </a>";
       ?>
     </div>
-    <div class = "AccountMenuDropDown">
-      <p onclick = "accountDropDownMenu()" class = "AccountButton">Account</p>
-      <div id = "AccountMenuContent" class = "AccountMenuContent">
-        <div class = "TopAccountMenuContent">
+    <div class = "recycleBinAccountMenuDropDown">
+      <p onclick = "accountDropDownMenu()" class = "recycleBinAccountButton">Account</p>
+      <div id = "AccountMenuContent" class = "recycleBinAccountMenuContent">
+        <div class = "recycleBinTopAccountMenuContent">
           <?php
-          echo "<p id = 'AccountMenuName'>" . $user[0] . " " . $user[1] .
+          echo "<p class = 'recycleBinAccountMenuName'>" . $user[0] . " " . $user[1] .
             "</p>";
 
           include "humanSize.php";
@@ -179,28 +179,28 @@ elseif (time() - $_SESSION['Created'] > 1200) {
               "../../../../mnt/Raid1Array/Corvin");
             $freeBytes = disk_free_space("../../../../mnt/Raid1Array/Corvin");
 
-            echo "<p id = 'DiskSpace'>" . humanSize($usedBytes) .
+            echo "<p class = 'recycleBinDiskSpace'>" . humanSize($usedBytes) .
               " used of " . humanSize($freeBytes) . " (Unlimited)</p>";
           }
           else {
             $totalBytes = $storageSpaceInMegabytes[0] * 1000000;
             $freeBytes = $totalBytes - $usedBytes;
 
-            echo "<p class = 'DiskSpace'>" . humanSize($usedBytes) .
+            echo "<p class = 'recycleBinDiskSpace'>" . humanSize($usedBytes) .
               " used of " . humanSize($totalBytes) . "</p>";
           }
           ?>
         </div>
-        <div class = "MenuLine">
-          <hr class = "MenuLine"/>
+        <div class = "recycleBinMenuLine">
+          <hr class = "recycleBinMenuLine"/>
         </div>
-        <div class = "BottomAccountMenuContent">
-          <a class = "GetMoreSpaceMenuItem" href = "getMoreSpace.php">
+        <div class = "recycleBinBottomAccountMenuContent">
+          <a class = "recycleBinGetMoreSpaceMenuItem" href = "getMoreSpace.php">
             Get More Space
           </a>
-          <a class = "MenuItem" href = "settings.php">Settings</a>
-          <a class = "MenuItem" href = "help.php">Help</a>
-          <a class = "MenuItem" href = "logout.php">Log Out</a>
+          <a class = "recycleBinMenuItem" href = "settings.php">Settings</a>
+          <a class = "recycleBinMenuItem" href = "help.php">Help</a>
+          <a class = "recycleBinMenuItem" href = "logout.php">Log Out</a>
         </div>
       </div>
     </div>
@@ -208,7 +208,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 
   <script>
   function accountDropDownMenu() {
-    document.getElementById("AccountMenuContent").classList.toggle("Show");
+    document.getElementById("AccountMenuContent").classList.toggle("recycleBinShow");
   }
   /*
   window.onclick = function(event) {
@@ -222,18 +222,18 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   </script>
 
   <!-- 3 Main Content -->
-  <div class = "MainContent">
+  <div class = "recycleBinMainContent">
 
     <!-- 3.1 Back to Home -->
     <form action = "home.php" method = "post" enctype = "multipart/form-data">
-      <input type = "submit" class = "RecentlyDeletedItems"
+      <input type = "submit" class = "recycleBinRecentlyDeletedItems"
         value = "Back To Home" name = "submit" />
     </form>
 
     <br /><br />
 
     <!-- 3.2 Current directory -->
-    <div class = "DirectoryPath">
+    <div class = "recycleBinDirectoryPath">
       <?php
       include "generateURL.php";
 
@@ -241,8 +241,8 @@ elseif (time() - $_SESSION['Created'] > 1200) {
       $CurrentPathString = implode("/", $CurrentPath) . "/";
 
       echo "
-      <a class = 'DirectoryPath' href = 'recycleBin.php'>
-        <p class = 'DirectoryPath'>Recycle</p>
+      <a class = 'recycleBinDirectoryPath' href = 'recycleBin.php'>
+        <p class = 'recycleBinDirectoryPath'>Recycle</p>
       </a>";
 
       parse_str($_SERVER['QUERY_STRING'], $CurrentPath);
@@ -262,9 +262,9 @@ elseif (time() - $_SESSION['Created'] > 1200) {
           array_push($DirectoryPath, $DirectoryPathFolder);
           $i++;
           echo "
-          <p class = 'DirectoryPath'>/</p>
-          <a class = 'DirectoryPath' href = '" . $DirectoryPathFolderURL . "'>
-            <p class = 'DirectoryPath'>" . $DirectoryPathFolder . "</p>
+          <p class = 'recycleBinDirectoryPath'>/</p>
+          <a class = 'recycleBinDirectoryPath' href = '" . $DirectoryPathFolderURL . "'>
+            <p class = 'recycleBinDirectoryPath'>" . $DirectoryPathFolder . "</p>
           </a>";
         }
       }
@@ -275,7 +275,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
     <br /><br />
 
     <!-- 3.3 Items in directory -->
-    <div id = "Directory">
+    <div class = "recycleBinDirectory">
       <?php
       $ReturnPathString = filter_input(
         INPUT_POST, "ReturnPathString", FILTER_SANITIZE_STRING);
@@ -298,8 +298,8 @@ elseif (time() - $_SESSION['Created'] > 1200) {
       // 3.3.1.1 Folder Name
       for ($i = 2; $i < $NumItems; $i++) {
         if (is_dir($DirectoryPath . "/" . $Directory[$i])) {
-          echo "<div id = 'FileNames'>";
-            echo "<div class = 'Folders'>";
+          echo "<div class = 'recycleBinFileNames'>";
+            echo "<div class = 'recycleBinFolders'>";
               $URL = generateURL(
                 "recycleBin.php?", $CurrentPath, $Directory[$i]);
               echo "
@@ -311,10 +311,10 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 
             // 3.3.1.2 Download Folder
             echo "
-            <div class = 'DownloadButtonForm'>
+            <div class = 'recycleBinDownloadButtonForm'>
               <form
                 action = 'Zip/download.php'
-                class = 'DownloadButtonForm'
+                class = 'recycleBinDownloadButtonForm'
                 method = 'post'
                 enctype = 'multipart/form-data'
               >
@@ -324,7 +324,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
                   type = 'image'
                   src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow " .
                     "Icon @ 36 ppi.png'
-                  class = 'DownloadButton'
+                  class = 'recycleBinDownloadButton'
                   value = 'Download'
                   name = 'submit'
                   id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
@@ -346,10 +346,10 @@ elseif (time() - $_SESSION['Created'] > 1200) {
           echo "</div>";
 
           // 3.3.1.3 Folder Sizes
-          echo "<div id = 'FileSizes'>";
+          echo "<div class = 'recycleBinFileSizes'>";
             echo humanSize(folderSize($DirectoryPath . "/" . $Directory[$i]));
           echo "</div>";
-          echo "<br><div id = 'Heath'><br></div>";
+          echo "<br><div class = 'recycleBinHeath'><br></div>";
         }
       }
 
@@ -460,8 +460,8 @@ elseif (time() - $_SESSION['Created'] > 1200) {
             "go",
           ];
 
-          echo "<div id = 'FileNames'>";
-            echo "<div class = 'Files'>";
+          echo "<div class = 'recycleBinFileNames'>";
+            echo "<div class = 'recycleBinFiles'>";
 
               //if the file can be viewed directly in the browser
               if (in_array(
@@ -493,10 +493,10 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 
             // 3.3.2.2 Download File
             echo "
-            <div class = 'DownloadButtonForm'>
+            <div class = 'recycleBinDownloadButtonForm'>
               <form
                 action = 'Zip/download.php'
-                class = 'DownloadButtonForm'
+                class = 'recycleBinDownloadButtonForm'
                 method = 'post'
                 enctype = 'multipart/form-data'
               >
@@ -509,7 +509,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
                   type = 'image'
                   src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow " .
                     "Icon @ 36 ppi.png'
-                  class = 'DownloadButton'
+                  class = 'recycleBinDownloadButton'
                   value = 'Download'
                   name = 'submit'
                   id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
@@ -531,24 +531,24 @@ elseif (time() - $_SESSION['Created'] > 1200) {
           echo "</div>";
 
           // 3.3.2.3 File Size
-          echo "<div id = 'FileSizes'>";
+          echo "<div class = 'recycleBinFileSizes'>";
           $FileSize = filesize($DirectoryPath . "/" . $Directory[$i]);
           echo "" . HumanSize($FileSize);
           echo "</div>";
 
           // 3.3.2.4 Heath
-          echo "<br><div id = 'Heath'><br></div>";
+          echo "<br><div class = 'recycleBinHeath'><br></div>";
         }
       }
       ?>
     </div>
   </div>
 
-  <div class = "Push"></div>
+  <div class = "recycleBinPush"></div>
 </div>
 
 <!-- 4 Footer -->
-<div class = "Footer">&copy; Corvin, Inc.</div>
+<div class = "recycleBinFooter">&copy; Corvin, Inc.</div>
 
 </body>
 </html>

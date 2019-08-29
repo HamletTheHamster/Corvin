@@ -76,13 +76,13 @@ elseif (time() - $_SESSION['Created'] > 1200)
 ?>
 
 <!DOCTYPE html>
-<html lang = "en">
+<html lang = "en" class = "settings">
 
 <!-- 1 Header -->
 <head>
   <title>Home | Corvin</title>
 
-  <link href = "index.css" type = "text/css" rel = "stylesheet"/>
+  <link href = "one.css" type = "text/css" rel = "stylesheet"/>
 
   <link rel = "apple-touch-icon" sizes = "57x57"
     href = "Art/Favicon/apple-icon-57x57.png" />
@@ -121,23 +121,23 @@ elseif (time() - $_SESSION['Created'] > 1200)
   <meta name = "google" content = "notranslate"/>
 </head>
 
-<body>
-<div class = "Wrapper">
+<body class = "settings">
+<div class = "settingsWrapper">
 
   <!-- 2 Top Bar -->
-  <div class = "TopBar">
-    <div class = "Corvin">
+  <div class = "settingsTopBar">
+    <div class = "settingsCorvin">
       <?php
-      echo "<a href = 'home.php'>" . "<h class = 'CorvinHeader'>C</h>" .
+      echo "<a href = 'home.php'>" . "<h class = 'settingsCorvinHeader'>C</h>" .
         "</a>";
       ?>
     </div>
-    <div class = "AccountMenuDropDown">
-      <p onclick = "accountDropDownMenu()" class = "AccountButton">Account</p>
-      <div id = "AccountMenuContent" class = "AccountMenuContent">
-        <div class = "TopAccountMenuContent">
+    <div class = "settingsAccountMenuDropDown">
+      <p onclick = "accountDropDownMenu()" class = "settingsAccountButton">Account</p>
+      <div id = "AccountMenuContent" class = "settingsAccountMenuContent">
+        <div class = "settingsTopAccountMenuContent">
           <?php
-          echo "<p id = 'AccountMenuName'>" . $user[0] . " " . $user[1] .
+          echo "<p class = 'settingsAccountMenuName'>" . $user[0] . " " . $user[1] .
             "</p>";
 
           include "humanSize.php";
@@ -156,27 +156,27 @@ elseif (time() - $_SESSION['Created'] > 1200)
               "../../../../mnt/Raid1Array/Corvin");
             $freeBytes = disk_free_space("../../../../mnt/Raid1Array/Corvin");
 
-            echo "<p id = 'DiskSpace'>" . humanSize($usedBytes) . " used of " .
+            echo "<p class = 'settingsDiskSpace'>" . humanSize($usedBytes) . " used of " .
               humanSize($freeBytes) . " (Unlimited)</p>";
           }
           else {
             $totalBytes = $storageSpaceInMegabytes[0] * 1000000;
             $freeBytes = $totalBytes - $usedBytes;
 
-            echo "<p class = 'DiskSpace'>" . humanSize($usedBytes) .
+            echo "<p class = 'settingsDiskSpace'>" . humanSize($usedBytes) .
               " used of " . humanSize($totalBytes) . "</p>";
           }
           ?>
         </div>
-        <div class = "MenuLine">
-          <hr class = "MenuLine"/>
+        <div class = "settingsMenuLine">
+          <hr class = "settingsMenuLine"/>
         </div>
-        <div class = "BottomAccountMenuContent">
-          <a class = "GetMoreSpaceMenuItem" href = "getMoreSpace.php">
+        <div class = "settingsBottomAccountMenuContent">
+          <a class = "settingsGetMoreSpaceMenuItem" href = "getMoreSpace.php">
             Get More Space</a>
-          <a class = "MenuItem" href = "home.php">Home</a>
-          <a class = "MenuItem" href = "help.php">Help</a>
-          <a class = "MenuItem" href = "logout.php">Log Out</a>
+          <a class = "settingsMenuItem" href = "home.php">Home</a>
+          <a class = "settingsMenuItem" href = "help.php">Help</a>
+          <a class = "settingsMenuItem" href = "logout.php">Log Out</a>
         </div>
       </div>
     </div>
@@ -184,7 +184,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
 
   <script>
   function accountDropDownMenu() {
-    document.getElementById("AccountMenuContent").classList.toggle("Show");
+    document.getElementById("AccountMenuContent").classList.toggle("settingsShow");
   }
   /*
   window.onclick = function(event) {
@@ -198,7 +198,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
   </script>
 
   <!-- 5 Main Content -->
-  <div class = "MainContent">
+  <div class = "settingsMainContent">
     <form
       action = "getMoreSpace.php"
       method = "post"
@@ -206,81 +206,81 @@ elseif (time() - $_SESSION['Created'] > 1200)
     >
       <input
         type = "submit"
-        class = "GetMoreSpaceButton"
+        class = "settingsGetMoreSpaceButton"
         value = "Get More Space"
         name = "submit"
       />
     </form>
 
-    <div class = "SettingsHeader">
-      <p class = "SettingsHeader">Settings</p>
+    <div class = "settingsSettingsHeader">
+      <p class = "settingsSettingsHeader">Settings</p>
     </div>
 
-    <div class = "SettingsContent">
+    <div class = "settingsSettingsContent">
       <?php
-      echo "<div class = 'NameAndEmail'>";
-        echo "<div class = 'NameAndEditName'>";
-          echo "<div class = 'Name'>";
-            echo "<div class = 'Container'>";
-              echo "<div class = 'VerticalCenter'>";
-                echo "<p class = 'AccountInfo'>" . $user[0] . " " . $user[1] .
+      echo "<div class = 'settingsNameAndEmail'>";
+        echo "<div class = 'settingsNameAndEditName'>";
+          echo "<div class = 'settingsName'>";
+            echo "<div class = 'settingsContainer'>";
+              echo "<div class = 'settingsVerticalCenter'>";
+                echo "<p class = 'settingsAccountInfo'>" . $user[0] . " " . $user[1] .
                   "</p>";
               echo "</div>";
             echo "</div>";
           echo "</div>";
-          echo "<div class = 'EditName'>";
-            echo "<div class = 'Container'>";
-              echo "<div class = 'VerticalCenter'>";
-                echo "<a class = 'AccountInfoEdit'>Edit</a>";
+          echo "<div class = 'settingsEditName'>";
+            echo "<div class = 'settingsContainer'>";
+              echo "<div class = 'settingsVerticalCenter'>";
+                echo "<a class = 'settingsAccountInfoEdit'>Edit</a>";
               echo "</div>";
             echo "</div>";
           echo "</div>";
         echo "</div>";
-        echo "<div class = 'EmailAndEditEmail'>";
-          echo "<div class = 'Email'>";
-            echo "<div class = 'Container'>";
-              echo "<div class = 'VerticalCenter'>";
+        echo "<div class = 'settingsEmailAndEditEmail'>";
+          echo "<div class = 'settingsEmail'>";
+            echo "<div class = 'settingsContainer'>";
+              echo "<div class = 'settingsVerticalCenter'>";
                 $sql = "SELECT email FROM UserInfo WHERE id = '" . $userID .
                   "'";
                 $email = mysqli_fetch_row(mysqli_query($conn, $sql));
-                echo "<p class = 'AccountInfo'>" . $email[0] . "</p>";
+                echo "<p class = 'settingsAccountInfo'>" . $email[0] . "</p>";
               echo "</div>";
             echo "</div>";
           echo "</div>";
-          echo "<div class = 'EditEmail'>";
-            echo "<div class = 'Container'>";
-              echo "<div class = 'VerticalCenter'>";
-                echo "<a class = 'AccountInfoEdit'>Update</a>";
+          echo "<div class = 'settingsEditEmail'>";
+            echo "<div class = 'settingsContainer'>";
+              echo "<div class = 'settingsVerticalCenter'>";
+                echo "<a class = 'settingsAccountInfoEdit'>Update</a>";
               echo "</div>";
             echo "</div>";
           echo "</div>";
         echo "</div>";
       echo "</div>";
 
-      echo "<div class = 'UsernameAndPassword'>";
-        echo "<div class = 'UsernameAndEditUsername'>";
-          echo "<div class = 'Username'>";
-            echo "<div class = 'Container'>";
-              echo "<div class = 'VerticalCenter'>";
+      echo "<div class = 'settingsUsernameAndPassword'>";
+        echo "<div class = 'settingsUsernameAndEditUsername'>";
+          echo "<div class = 'settingsUsername'>";
+            echo "<div class = 'settingsContainer'>";
+              echo "<div class = 'settingsVerticalCenter'>";
                 $sql = "SELECT username FROM UserInfo WHERE id = '" . $userID .
                   "'";
                 $username = mysqli_fetch_row(mysqli_query($conn, $sql));
-                echo "<p class = 'AccountInfo'>" . $username[0] . "</p>";
+                echo "<p class = 'settingsAccountInfo'>" . $username[0] . "</p>";
               echo "</div>";
             echo "</div>";
           echo "</div>";
-          echo "<div class = 'EditUsername'>";
-            echo "<div class = 'Container'>";
-              echo "<div class = 'VerticalCenter'>";
-                echo "<a class = 'AccountInfoEdit'>Change Username</a>";
+          echo "<div class = 'settingsEditUsername'>";
+            echo "<div class = 'settingsContainer'>";
+              echo "<div class = 'settingsVerticalCenter'>";
+                echo "<a class = 'settingsAccountInfoEdit'>Change Username</a>";
               echo "</div>";
             echo "</div>";
           echo "</div>";
         echo "</div>";
-        echo "<div class = 'ChangePassword'>";
-          echo "<div class = 'Container'>";
-            echo "<div class = 'VerticalCenter'>";
-              echo "<a id = 'AccountInfoEdit'>Change Password</a>";
+        echo "<div class = 'settingsChangePassword'>";
+          echo "<div class = 'settingsContainer'>";
+            echo "<div class = 'settingsVerticalCenter'>";
+              echo "<a class = 'settingsAccountInfoEdit'>Change Password</a>";
             echo "</div>";
           echo "</div>";
         echo "</div>";
@@ -289,12 +289,12 @@ elseif (time() - $_SESSION['Created'] > 1200)
     </div>
   </div>
 
-  <div class = "Push"></div>
+  <div class = "settingsPush"></div>
 
 </div> <!-- Wrapper -->
 
 <!-- 6 Footer -->
-<div class = "Footer">&copy; Corvin, Inc.</div>
+<div class = "settingsFooter">&copy; Corvin, Inc.</div>
 
 </body>
 </html>
