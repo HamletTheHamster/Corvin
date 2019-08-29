@@ -1,13 +1,15 @@
-/* Coded by: Joel N. Johnson */
+/* _login Coded by: Joel N. Johnson */
 
-html, body {
+$o: login;
+
+html.#{$o}, body.#{$o} {
     background-color: rgb(254, 254, 254);
     height: 100%;
     margin: 0;
     font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.Center {
+.#{$o}Center {
     margin: 0;
     position: absolute;
     top: 50%;
@@ -16,25 +18,25 @@ html, body {
     transform: translate(-50%, -50%);
 }
 
-.Footer, .Push {
+.#{$o}Footer, .#{$o}Push {
     height: 20px;
     width: 100%;
     position: absolute;
     bottom: 0;
 }
 
-.FootCenter {
+.#{$o}FootCenter {
     width: 100%;
     text-align: center;
 }
 
-.TopBar {
+.#{$o}TopBar {
     margin: 0;
     width: 100%;
     float: left;
 }
 
-.Corvin {
+.#{$o}Corvin {
     color: rgba(23, 23, 23, 0.85);
     float: left;
     top: 50%;
@@ -46,44 +48,44 @@ html, body {
     font-size: 120px;
     font-family: "Square Market", Helvetica, sans-serif;
 }
-.Corvin:hover {
+.#{$o}Corvin:hover {
     color: rgb(0, 130, 140);
     transition: 250ms;
     cursor: default;
 }
 
-.CorvinHeader {
+.#{$o}CorvinHeader {
     color: black;
     font-family: "Square Market", Helvetica, sans-serif;
     font-size: 25px;
     line-height: 0;
 }
 
-img.Corvin {
+img.#{$o}Corvin {
     width: 500px;
     padding-left: 70%;
 }
 
-.User {
+.#{$o}User {
     float: right;
     width: 40%;
 }
 
-p.User {
+p.#{$o}User {
     text-align: right;
     line-height: .5em;
     padding-right: 25px;
     font-size: 30px;
 }
 
-#Login {
+##{$o}Login {
     text-align: center;
     font-family: "Square Market", Helvetica, sans-serif;
     font-size: 18px;
     color: rgba(23, 23, 23, 0.85);
 }
 
-.TextBox {
+.#{$o}TextBox {
     width: 300px;
     border-color: rgba(23, 23, 23, 0.25);
     border-width: thin;
@@ -95,13 +97,13 @@ p.User {
     background-color: rgba(0, 130, 140, 0.06);
 }
 
-.TextBox:focus {
+.#{$o}TextBox:focus {
     outline: none;
     border-color: rgba(23, 23, 23, 0.85);
 
 }
 
-.LoginButton {
+.#{$o}LoginButton {
     background-color: rgba(51, 204, 255, 0);
     border-color: rgba(23, 23, 23, 0.25);
     border-width: thin;
@@ -117,23 +119,23 @@ p.User {
     position: relative;
 }
 
-.LoginButton:hover {
+.#{$o}LoginButton:hover {
     background-color: rgba(0, 130, 140, 0.06);
     color: rgb(0, 130, 140);
     cursor: pointer;
 }
 
-.LoginButton:active {
+.#{$o}LoginButton:active {
     box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
     border-color: rgb(0, 130, 140);
     transition: 250ms;
 }
 
-.LoginButton:focus {
+.#{$o}LoginButton:focus {
     outline: none;
 }
 
-.NewUserButton {
+.#{$o}NewUserButton {
     float: right;
     background-color: rgba(51, 204, 255, 0);
     border-color: rgba(23, 23, 23, 0.25);
@@ -152,24 +154,24 @@ p.User {
     position: relative;
 }
 
-.NewUserButton:hover {
+.#{$o}NewUserButton:hover {
     background-color: rgba(0, 130, 140, 0.06);
     color: rgb(0, 130, 140);
     cursor: pointer;
 }
 
-.NewUserButton:active {
+.#{$o}NewUserButton:active {
     box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
     border-color: rgb(0, 130, 140);
     transition: 250ms;
 }
 
-.NewUserButton:focus {
+.#{$o}NewUserButton:focus {
     outline: none;
 }
 
 
-.BackToLoginButton {
+.#{$o}BackToLoginButton {
     float: right;
     background-color: rgba(51, 204, 255, 0);
     border-color: rgba(23, 23, 23, 0.25);
@@ -188,35 +190,35 @@ p.User {
     position: relative;
 }
 
-.BackToLoginButton:hover {
+.#{$o}BackToLoginButton:hover {
     background-color: rgba(0, 130, 140, 0.06);
     color: rgb(0, 130, 140);
     cursor: pointer;
 }
 
-.BackToLoginButton:active {
+.#{$o}BackToLoginButton:active {
     box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
     border-color: rgb(0, 130, 140);
     transition: 250ms;
 }
 
-.BackToLoginButton:focus {
+.#{$o}BackToLoginButton:focus {
     outline: none;
 }
 
-h1 {
+h1.#{$o} {
     color: black;
     font-family: "Square Market", Helvetica, sans-serif;
     font-size: 25px;
     line-height: 0;
 }
 
-p {
+p.#{$o} {
     font-family: "Square Market", Helvetica, sans-serif;
     font-size: 20px;
 }
 
-.Footer {
+.#{$o}Footer {
     font-family: "Square Market", Helvetica, sans-serif;
     font-size: 15px;
     text-align: center;

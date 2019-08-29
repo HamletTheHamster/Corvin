@@ -1,13 +1,13 @@
 <!-- Coded by: Joel N. Johnson -->
 
 <!DOCTYPE html>
-<html lang = "en">
+<html lang = "en" class = "login">
 
 <!-- 1 Head -->
 <head>
   <title>Home | Corvin</title>
 
-  <link href = "login.css" type = "text/css" rel = "stylesheet" />
+  <link href = "one.css" type = "text/css" rel = "stylesheet" />
 
   <link rel = "apple-touch-icon" sizes = "57x57"
     href = "Art/Favicon/apple-icon-57x57.png" />
@@ -46,28 +46,28 @@
   <meta name = "google" content = "notranslate"/>
 </head>
 
-<body>
+<body class = "login">
 
 <!-- 2 Top Bar -->
-<div class = "Container">
-  <div class = "NewUser">
+<div class = "loginContainer">
+  <div class = "loginNewUser">
     <form
-      action = "newUser.php"
+      action = "newUser.html"
       method = "post"
       enctype = "multipart/form-data"
     >
       <input
         type = "submit"
         value = "New User"
-        class = "NewUserButton"
+        class = "loginNewUserButton"
         name = "submit"
       />
     </form>
   </div>
 
-  <div class = "Center">
-    <div class = "TopBar">
-      <div class = "Corvin">
+  <div class = "loginCenter">
+    <div class = "loginTopBar">
+      <div class = "loginCorvin">
         Corvin
       </div>
     </div>
@@ -75,7 +75,7 @@
     <br /><br /><br /><br /><br /><br /><br /><br />
 
     <!-- 3 Login -->
-    <div id = "Login">
+    <div id = "loginLogin">
       <form
         action = "validate.php"
         method = "post"
@@ -85,7 +85,7 @@
           <input
             type = "text"
             name = "username"
-            class = "TextBox"
+            class = "loginTextBox"
             placeholder = "User Name"
             autofocus
           />
@@ -95,7 +95,7 @@
           <input
             type = "password"
             name = "password"
-            class = "TextBox"
+            class = "loginTextBox"
             placeholder = "Password"
           />
         </label>
@@ -103,7 +103,7 @@
         <input
           type = "submit"
           value = "Log In"
-          class = "LoginButton"
+          class = "loginLoginButton"
           name = "submit"
         />
       </form>
@@ -111,12 +111,12 @@
 
     <br /><br />
 
-    <div class = "Push"></div>
+    <div class = "loginPush"></div>
   </div>
 </div>
 
 <!-- 4 Footer -->
-<div class = "Footer"><div class = "FootCenter">&copy; Corvin, Inc.</div></div>
+<div class = "loginFooter"><div class = "loginFootCenter">&copy; Corvin, Inc.</div></div>
 
 </body>
 </html>

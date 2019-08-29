@@ -1,12 +1,12 @@
-/* Coded by: Joel N. Johnson */
-html, body {
+/* _login Coded by: Joel N. Johnson */
+html.login, body.login {
   background-color: #fefefe;
   height: 100%;
   margin: 0;
   font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.Center {
+.loginCenter {
   margin: 0;
   position: absolute;
   top: 50%;
@@ -15,25 +15,25 @@ html, body {
   transform: translate(-50%, -50%);
 }
 
-.Footer, .Push {
+.loginFooter, .loginPush {
   height: 20px;
   width: 100%;
   position: absolute;
   bottom: 0;
 }
 
-.FootCenter {
+.loginFootCenter {
   width: 100%;
   text-align: center;
 }
 
-.TopBar {
+.loginTopBar {
   margin: 0;
   width: 100%;
   float: left;
 }
 
-.Corvin {
+.loginCorvin {
   color: rgba(23, 23, 23, 0.85);
   float: left;
   top: 50%;
@@ -46,44 +46,44 @@ html, body {
   font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.Corvin:hover {
+.loginCorvin:hover {
   color: #00828c;
   transition: 250ms;
   cursor: default;
 }
 
-.CorvinHeader {
+.loginCorvinHeader {
   color: black;
   font-family: "Square Market", Helvetica, sans-serif;
   font-size: 25px;
   line-height: 0;
 }
 
-img.Corvin {
+img.loginCorvin {
   width: 500px;
   padding-left: 70%;
 }
 
-.User {
+.loginUser {
   float: right;
   width: 40%;
 }
 
-p.User {
+p.loginUser {
   text-align: right;
   line-height: 0.5em;
   padding-right: 25px;
   font-size: 30px;
 }
 
-#Login {
+#loginLogin {
   text-align: center;
   font-family: "Square Market", Helvetica, sans-serif;
   font-size: 18px;
   color: rgba(23, 23, 23, 0.85);
 }
 
-.TextBox {
+.loginTextBox {
   width: 300px;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -95,12 +95,12 @@ p.User {
   background-color: rgba(0, 130, 140, 0.06);
 }
 
-.TextBox:focus {
+.loginTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
 }
 
-.LoginButton {
+.loginLoginButton {
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -116,23 +116,23 @@ p.User {
   position: relative;
 }
 
-.LoginButton:hover {
+.loginLoginButton:hover {
   background-color: rgba(0, 130, 140, 0.06);
   color: #00828c;
   cursor: pointer;
 }
 
-.LoginButton:active {
+.loginLoginButton:active {
   box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
   border-color: #00828c;
   transition: 250ms;
 }
 
-.LoginButton:focus {
+.loginLoginButton:focus {
   outline: none;
 }
 
-.NewUserButton {
+.loginNewUserButton {
   float: right;
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
@@ -151,23 +151,23 @@ p.User {
   position: relative;
 }
 
-.NewUserButton:hover {
+.loginNewUserButton:hover {
   background-color: rgba(0, 130, 140, 0.06);
   color: #00828c;
   cursor: pointer;
 }
 
-.NewUserButton:active {
+.loginNewUserButton:active {
   box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
   border-color: #00828c;
   transition: 250ms;
 }
 
-.NewUserButton:focus {
+.loginNewUserButton:focus {
   outline: none;
 }
 
-.BackToLoginButton {
+.loginBackToLoginButton {
   float: right;
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
@@ -186,49 +186,50 @@ p.User {
   position: relative;
 }
 
-.BackToLoginButton:hover {
+.loginBackToLoginButton:hover {
   background-color: rgba(0, 130, 140, 0.06);
   color: #00828c;
   cursor: pointer;
 }
 
-.BackToLoginButton:active {
+.loginBackToLoginButton:active {
   box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
   border-color: #00828c;
   transition: 250ms;
 }
 
-.BackToLoginButton:focus {
+.loginBackToLoginButton:focus {
   outline: none;
 }
 
-h1 {
+h1.login {
   color: black;
   font-family: "Square Market", Helvetica, sans-serif;
   font-size: 25px;
   line-height: 0;
 }
 
-p {
+p.login {
   font-family: "Square Market", Helvetica, sans-serif;
   font-size: 20px;
 }
 
-.Footer {
+.loginFooter {
   font-family: "Square Market", Helvetica, sans-serif;
   font-size: 15px;
   text-align: center;
 }
 
-/* Coded by: Joel N. Johnson */
-html, body {
+/* _newUser Coded by: Joel N. Johnson */
+html.newUser, body.newUser {
   background-color: #fefefe;
-  height: 100%;
   margin: 0;
+  min-height: 100%;
+  position: relative;
   font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.BackToLoginButton {
+.newUserBackToLoginButton {
   float: right;
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
@@ -247,38 +248,33 @@ html, body {
   position: relative;
 }
 
-.BackToLoginButton:hover {
+.newUserBackToLoginButton:hover {
   background-color: rgba(0, 130, 140, 0.06);
   color: #00828c;
   cursor: pointer;
 }
 
-.BackToLoginButton:active {
+.newUserBackToLoginButton:active {
   box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
   border-color: #00828c;
   transition: 250ms;
 }
 
-.BackToLoginButton:focus {
+.newUserBackToLoginButton:focus {
   outline: none;
 }
 
-.Center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+.newUserContainer {
+  margin-bottom: 20px;
 }
 
-.TopBar {
-  margin: 0;
+.newUserTopBar {
+  margin-top: 5%;
   width: 100%;
   float: left;
 }
 
-.Corvin {
+.newUserCorvin {
   color: rgba(23, 23, 23, 0.85);
   float: left;
   top: 50%;
@@ -289,22 +285,23 @@ html, body {
   font-weight: 600;
   font-size: 120px;
   font-family: "Square Market", Helvetica, sans-serif;
+  margin-bottom: 5%;
 }
 
-.Corvin:hover {
+.newUserCorvin:hover {
   color: #00828c;
   transition: 250ms;
   cursor: default;
 }
 
-.Login {
+.newUserLogin {
   text-align: center;
   font-family: "Square Market", Helvetica, sans-serif;
   font-size: 18px;
   color: rgba(23, 23, 23, 0.85);
 }
 
-.TextBox {
+.newUserTextBox {
   width: 300px;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -316,12 +313,12 @@ html, body {
   background-color: rgba(0, 130, 140, 0.06);
 }
 
-.TextBox:focus {
+.newUserTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
 }
 
-.LoginButton {
+.newUserLoginButton {
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -337,33 +334,38 @@ html, body {
   position: relative;
 }
 
-.LoginButton:hover {
+.newUserLoginButton:hover {
   background-color: rgba(0, 130, 140, 0.06);
   color: #00828c;
   cursor: pointer;
 }
 
-.Footer, .Push {
-  height: 20px;
-  width: 100%;
+.newUserPush {
+  height: 3%;
+  position: aboslute;
+}
+
+.newUserFooter {
   position: absolute;
   bottom: 0;
-}
-
-.FootCenter {
-  width: 100%;
+  height: 20px;
+  font-family: "Square Market", Helvetica, sans-serif;
+  font-size: 15px;
   text-align: center;
+  left: 50%;
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
 
-/* Coded by: Joel N. Johnson */
-html, body {
+/* _registerNewUser Coded by: Joel N. Johnson */
+html.registerNewUser, body.registerNewUser {
   background-color: #fefefe;
   height: 100%;
   margin: 0;
   font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.Center {
+.registerNewUserCenter {
   margin: 0;
   position: absolute;
   top: 50%;
@@ -372,13 +374,13 @@ html, body {
   transform: translate(-50%, -50%);
 }
 
-.TopBar {
+.registerNewUserTopBar {
   margin: 0;
   width: 100%;
   float: left;
 }
 
-.Corvin {
+.registerNewUserCorvin {
   color: rgba(23, 23, 23, 0.85);
   float: left;
   top: 50%;
@@ -391,13 +393,13 @@ html, body {
   font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.Corvin:hover {
+.registerNewUserCorvin:hover {
   color: #00828c;
   transition: 250ms;
   cursor: default;
 }
 
-.LoginButton {
+.registerNewUserLoginButton {
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -413,35 +415,46 @@ html, body {
   position: relative;
 }
 
-.LoginButton:hover {
+.registerNewUserLoginButton:hover {
   background-color: rgba(0, 130, 140, 0.06);
   color: #00828c;
   cursor: pointer;
 }
 
-.LoginButton:active {
+.registerNewUserLoginButton:active {
   box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
   border-color: #00828c;
   transition: 250ms;
 }
 
-.LoginButton:focus {
+.registerNewUserLoginButton:focus {
   outline: none;
 }
 
-.Footer {
+.registerNewUserPush {
+  height: 3%;
+  position: absolute;
+}
+
+.registerNewUserFooter {
+  position: absolute;
+  bottom: 0;
+  height: 20px;
   font-family: "Square Market", Helvetica, sans-serif;
   font-size: 15px;
   text-align: center;
+  left: 50%;
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
 
-.FootCenter {
+.registerNewUserFootCenter {
   width: 100%;
   text-align: center;
 }
 
-/* Coded by: Joel N. Johnson */
-html, body {
+/* _home Coded by: Joel N. Johnson */
+html.home, body.home {
   background-color: #fefefe;
   height: 100%;
   margin: 0;
@@ -449,27 +462,23 @@ html, body {
   color: rgba(23, 23, 23, 0.85);
 }
 
-.Wrapper {
+.homeWrapper {
   min-height: calc(100% - 20px);
   height: auto;
 }
 
-.Footer, .Push {
-  height: 20px;
-}
-
-.TopBar {
+.homeTopBar {
   margin-bottom: 200px;
   width: 100%;
   height: 85px;
 }
 
-.Corvin {
+.homeCorvin {
   float: left;
   width: 94%;
 }
 
-.CorvinHeader {
+.homeCorvinHeader {
   color: rgba(23, 23, 23, 0.85);
   font-family: "Square Market", Helvetica, sans-serif;
   margin-top: 30px;
@@ -480,27 +489,43 @@ html, body {
   display: inline-block;
 }
 
-.CorvinHeader:hover {
+.homeCorvinHeader:hover {
   color: #00828c;
   cursor: pointer;
 }
 
-.CorvinHeader:active {
+.homeCorvinHeader:active {
   /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/
 }
 
-.CorvinHeader:focus {
+.homeCorvinHeader:focus {
   outline: none;
   text-shadow: none;
 }
 
-.AccountMenuDropDown {
+.homeAccountMenuDropDown {
   position: absolute;
   display: inline-block;
   float: right;
 }
 
-.AccountMenuContent {
+p.homeAccountButton {
+  color: rgba(23, 23, 23, 0.85);
+  text-align: right;
+  margin-right: 35px;
+  margin-top: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  float: right;
+  display: inline-block;
+}
+
+p.homeAccountButton:hover {
+  color: #00828c;
+  cursor: pointer;
+}
+
+.homeAccountMenuContent {
   display: none;
   position: absolute;
   right: 20px;
@@ -514,7 +539,7 @@ html, body {
   z-index: 2;
 }
 
-a.AccountMenuContent {
+a.homeAccountMenuContent {
   color: rgba(23, 23, 23, 0.85);
   margin-right: 35px;
   font-size: 18px;
@@ -522,17 +547,17 @@ a.AccountMenuContent {
   display: block;
 }
 
-a.AccountMenuContent:hover {
+a.homeAccountMenuContent:hover {
   color: #00828c;
   background-color: rgba(0, 130, 140, 0.06);
   cursor: pointer;
 }
 
-.TopAccountMenuContent {
+.homeTopAccountMenuContent {
   height: 150px;
 }
 
-#AccountMenuName {
+.homeAccountMenuName {
   color: rgba(23, 23, 23, 0.85);
   float: right;
   padding-right: 20px;
@@ -540,26 +565,26 @@ a.AccountMenuContent:hover {
   font-size: 18px;
 }
 
-#DiskSpace {
+.homeDiskSpace {
   text-align: right;
   padding-right: 20px;
   margin-top: 50px;
 }
 
-p#DiskSpace {
+p.homeDiskSpace {
   font-size: 16px;
   font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.MenuLine {
+.homeMenuLine {
   margin: 35px 10px;
 }
 
-hr.MenuLine {
+hr.homeMenuLine {
   color: rgba(23, 23, 23, 0.25);
 }
 
-a.GetMoreSpaceMenuItem {
+a.homeGetMoreSpaceMenuItem {
   color: #009aa4;
   padding-left: 20px;
   padding-top: 15px;
@@ -568,13 +593,13 @@ a.GetMoreSpaceMenuItem {
   display: block;
 }
 
-a.GetMoreSpaceMenuItem:hover {
+a.homeGetMoreSpaceMenuItem:hover {
   color: #009aa4;
   background-color: rgba(0, 130, 140, 0.06);
   cursor: pointer;
 }
 
-a.MenuItem {
+a.homeMenuItem {
   color: rgba(23, 23, 23, 0.85);
   padding-left: 20px;
   padding-top: 15px;
@@ -583,54 +608,23 @@ a.MenuItem {
   display: block;
 }
 
-a.MenuItem:hover {
+a.homeMenuItem:hover {
   color: #009aa4;
   background-color: rgba(0, 130, 140, 0.06);
   cursor: pointer;
 }
 
-.Show {
+.homeShow {
   display: block;
 }
 
-a.HomeButton {
-  color: rgba(23, 23, 23, 0.85);
-  text-align: right;
-  margin-right: 35px;
-  margin-top: 35px;
-  font-size: 18px;
-  font-weight: 700;
-  /*float: right;*/
-  display: inline-block;
+.homeMainContent {
+  padding-left: 12.5%;
+  padding-right: 12.5%;
+  z-index: 1;
 }
 
-a.HomeButton:hover {
-  color: #00828c;
-  cursor: pointer;
-}
-
-p.AccountButton {
-  color: rgba(23, 23, 23, 0.85);
-  text-align: right;
-  margin-right: 35px;
-  margin-top: 35px;
-  font-size: 18px;
-  font-weight: 700;
-  float: right;
-  display: inline-block;
-}
-
-p.AccountButton:hover {
-  color: #00828c;
-  cursor: pointer;
-}
-
-#Logout {
-  text-align: right;
-  padding-right: 25px;
-}
-
-.LogoutButton {
+.homeCustomFileUpload {
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -640,76 +634,36 @@ p.AccountButton:hover {
   text-decoration: none;
   display: inline-block;
   font-size: 18px;
+  float: left;
   padding: 6px 12px;
   border-radius: 4px;
-  margin-left: 16px;
   margin-right: 5px;
   vertical-align: middle;
   position: relative;
 }
 
-.LogoutButton:hover {
+.homeCustomFileUpload:hover {
   background-color: rgba(0, 130, 140, 0.06);
   color: #00828c;
   cursor: pointer;
 }
 
-.LogoutButton:active {
+.homeCustomFileUpload:active {
   box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
   border-color: #00828c;
   transition: 250ms;
-}
-
-.LogoutButton:focus {
   outline: none;
 }
 
-.MainContent {
-  padding-left: 12.5%;
-  padding-right: 12.5%;
-  z-index: 1;
+.homeCustomFileUpload:focus {
+  outline: none;
 }
 
 input[type=file] {
   display: none;
 }
 
-.CustomFileUpload {
-  background-color: rgba(51, 204, 255, 0);
-  border-color: rgba(23, 23, 23, 0.25);
-  border-width: thin;
-  color: #009aa4;
-  font-family: "Square Market", Helvetica, sans-serif;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 18px;
-  float: left;
-  padding: 6px 12px;
-  border-radius: 4px;
-  margin-right: 5px;
-  vertical-align: middle;
-  position: relative;
-}
-
-.CustomFileUpload:hover {
-  background-color: rgba(0, 130, 140, 0.06);
-  color: #00828c;
-  cursor: pointer;
-}
-
-.CustomFileUpload:active {
-  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
-  border-color: #00828c;
-  transition: 250ms;
-  outline: none;
-}
-
-.CustomFileUpload:focus {
-  outline: none;
-}
-
-.UploadButton {
+.homeUploadButton {
   display: none;
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
@@ -727,25 +681,25 @@ input[type=file] {
   position: relative;
 }
 
-.UploadButton:hover {
+.homeUploadButton:hover {
   background-color: rgba(0, 130, 140, 0.06);
   color: #00828c;
   cursor: pointer;
   box-shadow: none;
 }
 
-.UploadButton:active {
+.homeUploadButton:active {
   box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
   transition: 250ms;
   border-color: #00828c;
   outline: none;
 }
 
-.UploadButton:focus {
+.homeUploadButton:focus {
   outline: none;
 }
 
-.CreateFolderButton {
+.homeCreateFolderButton {
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -762,25 +716,25 @@ input[type=file] {
   position: relative;
 }
 
-.CreateFolderButton:hover {
+.homeCreateFolderButton:hover {
   background-color: rgba(0, 130, 140, 0.06);
   color: #00828c;
   cursor: pointer;
   box-shadow: none;
 }
 
-.CreateFolderButton:active {
+.homeCreateFolderButton:active {
   box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
   transition: 250ms;
   border-color: #00828c;
   outline: none;
 }
 
-.CreateFolderButton:focus {
+.homeCreateFolderButton:focus {
   outline: none;
 }
 
-.RecentlyDeletedItems {
+.homeRecentlyDeletedItems {
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -798,177 +752,38 @@ input[type=file] {
   position: relative;
 }
 
-.RecentlyDeletedItems:hover {
+.homeRecentlyDeletedItems:hover {
   background-color: rgba(0, 130, 140, 0.06);
   color: #00828c;
   cursor: pointer;
 }
 
-.RecentlyDeletedItems:active {
+.homeRecentlyDeletedItems:active {
   box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
   border-color: #00828c;
   transition: 250ms;
 }
 
-.RecentlyDeletedItems:focus {
+.homeRecentlyDeletedItems:focus {
   outline: none;
 }
 
-.GetMoreSpaceButton {
-  background-color: #00828c;
-  border-width: thin;
-  color: #fefefe;
-  font-family: "Square Market", Helvetica, sans-serif;
-  text-align: center;
-  text-decoration: none;
-  font-size: 18px;
-  padding: 6px 12px;
-  margin: auto;
-  display: block;
-  border-radius: 4px;
-  vertical-align: middle;
-  position: relative;
-}
-
-.GetMoreSpaceButton:hover {
-  background-color: #009aa4;
-  cursor: pointer;
-  box-shadow: none;
-}
-
-.GetMoreSpaceButton:active {
-  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
-  transition: 250ms;
-  outline: none;
-}
-
-.GetMoreSpaceButton:focus {
-  outline: none;
-}
-
-.DirectoryPath {
+.homeDirectoryPath {
   font-size: 30px;
 }
 
-p, a.DirectoryPath {
+p, a.homeDirectoryPath {
   float: left;
   color: rgba(23, 23, 23, 0.85);
 }
 
-.SettingsHeader {
-  font-size: 30px;
-  height: 100px;
-}
-
-p.SettingsHeader {
-  float: left;
-  color: rgba(23, 23, 23, 0.85);
-}
-
-.SettingsContent {
-  width: 90%;
-  margin-left: 5%;
-}
-
-.NameAndEmail {
-  height: 150px;
-  margin: auto;
-}
-
-.NameAndEditName {
-  height: 150px;
-  width: 50%;
-  float: left;
-  margin-left: -35px;
-}
-
-.Name {
-  height: 150px;
-  width: 50%;
-  float: left;
-}
-
-.EditName {
-  height: 150px;
-  margin-left: 50%;
-}
-
-.EmailAndEditEmail {
-  height: 150px;
-  margin-left: 50%;
-}
-
-.Email {
-  height: 150px;
-  width: 50%;
-  float: left;
-}
-
-.EditEmail {
-  height: 150px;
-  margin-left: 50%;
-}
-
-.UsernameAndPassword {
-  height: 150px;
-  width: 100%;
-}
-
-.UsernameAndEditUsername {
-  float: left;
-  height: 150px;
-  width: 50%;
-}
-
-.Username {
-  height: 150px;
-  width: 50%;
-  float: left;
-}
-
-.EditUsername {
-  height: 150px;
-  margin-left: 50%;
-}
-
-.ChangePassword {
-  height: 150px;
-  width: 50%;
-  float: left;
-}
-
-.Container {
-  height: 150px;
-  position: relative;
-}
-
-.VerticalCenter {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
-.AccountInfo {
-  font-size: 25px;
-}
-
-.AccountInfoEdit {
-  font-size: 13px;
-}
-
-#Directory {
+.homeDirectory {
   width: 90%;
   margin-left: 5%;
   border-radius: 10px;
 }
 
-#LedgerLines {
-  background-color: rgba(0, 130, 140, 0.06);
-}
-
-#FileNames {
+.homeFileNames {
   max-width: 85%;
   float: left;
   font-size: 20px;
@@ -977,65 +792,22 @@ p.SettingsHeader {
   text-overflow: ellipsis;
 }
 
-a#FileNames {
+a.homeFileNames {
   text-decoration: none;
   color: #000000;
 }
 
-.Folders {
+.homeFolders {
   float: left;
 }
 
-.Files {
+.homeDownloadButtonForm {
   float: left;
-}
-
-#FileSizes {
-  float: right;
-  /*background-color: rgba(255, 255, 150, .5);*/
-  /*yellow*/
-  font-size: 20px;
-}
-
-.CopyTextButton {
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  background-color: rgba(51, 204, 255, 0.85);
-  /* cyan */
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 12px;
-  padding: 1px 1px;
-  border-radius: 4px;
-  margin-left: 16px;
-  margin-right: 5px;
-  vertical-align: middle;
+  margin-left: 5px;
   position: relative;
 }
 
-#FileNames:hover .CopyTextButton {
-  opacity: 1;
-}
-
-.CopyTextButton:hover {
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-}
-
-.CopyTextButton:active {
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-  outline: none;
-}
-
-.CopyTextButton:focus {
-  box-shadow: none;
-  outline: none;
-}
-
-.DownloadButton {
+.homeDownloadButton {
   opacity: 0;
   transition: opacity 0.25s ease;
   width: 14px;
@@ -1050,54 +822,28 @@ a#FileNames {
   position: relative;
 }
 
-.DownloadButtonForm {
-  float: left;
-  margin-left: 5px;
-  position: relative;
-  /*background-color: rgba(255, 0, 255, 0.5);*/
-}
-
-.RenameButtonForm {
-  position: relative;
-  margin-left: 3px;
-  float: left;
-  /*background-color: rgba(0, 255, 255, 0.5);*/
-}
-
-.RenameTextField {
-  position: relative;
-  margin-left: 3px;
-  float: left;
-}
-
-.RecycleButtonForm {
-  position: relative;
-  margin-left: 3px;
-  padding-top: 1px;
-  float: left;
-  /*background-color: rgba(255, 255, 0, 0.5);*/
-}
-
-#FileNames:hover .DownloadButton {
-  opacity: 1;
-}
-
-.DownloadButton:hover {
+.homeDownloadButton:hover {
   -webkit-filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
   cursor: pointer;
 }
 
-.DownloadButton:active {
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-  outline: none;
-}
-
-.DownloadButton:focus {
+.homeDownloadButton:focus {
   box-shadow: none;
   outline: none;
 }
 
-.RenameButton {
+.homeDownloadButton:active {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  outline: none;
+}
+
+.homeRenameButtonForm {
+  position: relative;
+  margin-left: 3px;
+  float: left;
+}
+
+.homeRenameButton {
   opacity: 0;
   transition: opacity 0.25s ease;
   border: none;
@@ -1112,65 +858,40 @@ a#FileNames {
   position: relative;
 }
 
-.RenameSubmitButton {
-  background-color: rgba(128, 128, 128, 0.85);
-  /* grey */
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  font-size: 12px;
-  padding: 1px 1px;
-  border-radius: 4px;
-  margin-left: 3px;
-  margin-right: 3px;
-  vertical-align: middle;
-  position: relative;
-  display: none;
-  margin-top: 3px;
-  float: left;
-}
-
-.RenameSubmitButton:hover {
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-}
-
-.RenameSubmitButton:active {
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-  outline: none;
-}
-
-.RenameSubmitButton:focus {
-  box-shadow: none;
-  outline: none;
-}
-
-#FileNames:hover .RenameButton {
-  opacity: 1;
-}
-
-.RenameButton:hover {
+.homeRenameButton:hover {
   -webkit-filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
   cursor: pointer;
 }
 
-.RenameButton:active {
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-  outline: none;
-}
-
-.RenameButton:focus {
+.homeRenameButton:focus {
   box-shadow: none;
   outline: none;
 }
 
-.RenameTextField {
+.homeRenameButton:active {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  outline: none;
+}
+
+.homeRenameTextField {
+  position: relative;
+  margin-left: 3px;
+  float: left;
+}
+
+.homeRenameTextField {
   display: none;
   padding-right: 3px;
 }
 
-.RecycleButton {
+.homeRecycleButtonForm {
+  position: relative;
+  margin-left: 3px;
+  padding-top: 1px;
+  float: left;
+}
+
+.homeRecycleButton {
   opacity: 0;
   transition: opacity 0.25s ease;
   width: 13px;
@@ -1183,39 +904,58 @@ a#FileNames {
   float: left;
 }
 
-#FileNames:hover .RecycleButton {
-  opacity: 1;
-}
-
-.RecycleButton:hover {
+.homeRecycleButton:hover {
   -webkit-filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
   filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
   cursor: pointer;
 }
 
-.RecycleButton:active {
-  -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.4));
-  outline: none;
-}
-
-.RecycleButton:focus {
+.homeRecycleButton:focus {
   box-shadow: none;
   outline: none;
 }
 
-#Heath {
+.homeRecycleButton:active {
+  -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.4));
+  outline: none;
+}
+
+.homeFileNames:hover .homeDownloadButton {
+  opacity: 1;
+}
+
+.homeFileNames:hover .homeRenameButton {
+  opacity: 1;
+}
+
+.homeFileNames:hover .homeRecycleButton {
+  opacity: 1;
+}
+
+.homeFileSizes {
+  float: right;
+  font-size: 20px;
+}
+
+.homeHeath {
   background-color: rgba(240, 240, 240, 0.5);
   border-radius: 2px;
   font-size: 20px;
   margin-top: 5px;
 }
 
-h1 {
-  color: black;
-  /*font-family: "Garamond", serif;*/
+.homeFiles {
+  float: left;
+}
+
+.homeFooter, .homePush {
+  height: 20px;
+}
+
+.homeFooter {
   font-family: "Square Market", Helvetica, sans-serif;
-  font-size: 25px;
-  line-height: 0;
+  font-size: 15px;
+  text-align: center;
 }
 
 a {
@@ -1223,25 +963,7 @@ a {
   color: #000000;
 }
 
-p {
-  /*font-family: "Times New Roman", serif;*/
-  font-family: "Square Market", Helvetica, sans-serif;
-  font-size: 20px;
-}
-
-li, ul {
-  list-style-type: none;
-}
-
-.Footer {
-  font-family: "Square Market", Helvetica, sans-serif;
-  font-size: 15px;
-  text-align: center;
-}
-
-#DiskSpace {
-  text-align: right;
-  border-width: 1px;
-}
+/* _recycleBin Coded by: Joel N. Johnson */
+/* _settings Coded by: Joel N. Johnson */
 
 /*# sourceMappingURL=one.css.map */

@@ -1,13 +1,15 @@
-/* Coded by: Joel N. Johnson */
+/* _registerNewUser Coded by: Joel N. Johnson */
 
-html, body {
+$o: registerNewUser;
+
+html.#{$o}, body.#{$o} {
     background-color: rgb(254, 254, 254);
     height: 100%;
     margin: 0;
     font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.Center {
+.#{$o}Center {
     margin: 0;
     position: absolute;
     top: 50%;
@@ -16,13 +18,13 @@ html, body {
     transform: translate(-50%, -50%);
 }
 
-.TopBar {
+.#{$o}TopBar {
     margin: 0;
     width: 100%;
     float: left;
 }
 
-.Corvin {
+.#{$o}Corvin {
     color: rgba(23, 23, 23, 0.85);
     float: left;
     top: 50%;
@@ -35,13 +37,13 @@ html, body {
     font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.Corvin:hover {
+.#{$o}Corvin:hover {
     color: rgb(0, 130, 140);
     transition: 250ms;
     cursor: default;
 }
 
-.LoginButton {
+.#{$o}LoginButton {
     background-color: rgba(51, 204, 255, 0);
     border-color: rgba(23, 23, 23, 0.25);
     border-width: thin;
@@ -57,29 +59,40 @@ html, body {
     position: relative;
 }
 
-.LoginButton:hover {
+.#{$o}LoginButton:hover {
     background-color: rgba(0, 130, 140, 0.06);
     color: rgb(0, 130, 140);
     cursor: pointer;
 }
 
-.LoginButton:active {
+.#{$o}LoginButton:active {
     box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
     border-color: rgb(0, 130, 140);
     transition: 250ms;
 }
 
-.LoginButton:focus {
+.#{$o}LoginButton:focus {
     outline: none;
 }
 
-.Footer {
-    font-family: "Square Market", Helvetica, sans-serif;
-    font-size: 15px;
-    text-align: center;
+.#{$o}Push {
+  height: 3%;
+  position: absolute;
 }
 
-.FootCenter {
+.#{$o}Footer {
+  position: absolute;
+  bottom: 0;
+  height: 20px;
+  font-family: "Square Market", Helvetica, sans-serif;
+  font-size: 15px;
+  text-align: center;
+  left: 50%;
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+
+.#{$o}FootCenter {
     width: 100%;
     text-align: center;
 }

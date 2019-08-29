@@ -14,7 +14,7 @@ Coded by: Joel N. Johnson
 <head>
   <title>Home | Corvin</title>
 
-  <link href = "registerNewUser.css" type = "text/css" rel = "stylesheet"/>
+  <link href = "one.css" type = "text/css" rel = "stylesheet"/>
 
   <link rel = "apple-touch-icon" sizes = "57x57"
     href = "Art/Favicon/apple-icon-57x57.png" />
@@ -54,11 +54,11 @@ Coded by: Joel N. Johnson
 </head>
 
 <!-- 2 Top Bar -->
-<body>
-<div class = 'Container'>
-    <div class = 'Center'>
-        <div class = 'TopBar'>
-            <div class = 'Corvin'>
+<body class = "registerNewUser">
+<div class = 'registerNewUserContainer'>
+    <div class = 'registerNewUserCenter'>
+        <div class = 'registerNewUserTopBar'>
+            <div class = 'registerNewUserCorvin'>
                 Corvin
             </div>
         </div>
@@ -286,7 +286,8 @@ The Corvin Team";
 
           echo "
           <form action = 'login.php'>
-            <input class = 'LoginButton' type = 'submit' value = 'Login'>
+            <input class = 'registerNewUserLoginButton' type = 'submit'
+              value = 'Login'>
           </form>";
         }
         else {
@@ -298,7 +299,8 @@ The Corvin Team";
         echo "Incorrect referral code.";
         echo "<br /><br />";
         echo "
-          <button class = 'LoginButton' onclick = 'window.history.back()'>
+          <button class = 'registerNewUserLoginButton'
+            onclick = 'window.history.back()'>
             Go back
           </button>";
       }
@@ -307,7 +309,8 @@ The Corvin Team";
       echo "Email already associated with another account.";
       echo "<br /><br />";
       echo "
-      <button class = 'LoginButton' onclick = 'window.history.back()'>
+      <button class = 'registerNewUserLoginButton'
+        onclick = 'window.history.back()'>
         Go back
       </button>";
     }
@@ -316,7 +319,8 @@ The Corvin Team";
     echo "Invalid email address.";
     echo "<br /><br />";
     echo "
-    <button class = 'LoginButton' onclick = 'window.history.back()'>
+    <button class = 'registerNewUserLoginButton'
+      onclick = 'window.history.back()'>
       Go back
     </button>";
   }
@@ -325,7 +329,8 @@ else {
   echo "Username already taken.";
   echo "<br /><br />";
   echo "
-  <button class = 'LoginButton' onclick = 'window.history.back()'>
+  <button class = 'registerNewUserLoginButton'
+    onclick = 'window.history.back()'>
     Go back
   </button>";
 }
@@ -335,10 +340,9 @@ mysqli_close($conn);
 <br /><br />
 
 </div>
+<div class = 'registerNewUserPush'></div>
 </div>
 
 <!-- 5 Footer -->
-<div class = 'Footer'>
-  <div class = 'FootCenter'>&copy; Corvin, Inc.</div>
-</div>
+<div class = 'registerNewUserFooter'>&copy; Corvin, Inc.</div>
 </body>

@@ -15,9 +15,10 @@ Coded By: Joel N. Johnson
 -->
 
 <!-- 1 Header -->
-<head>
+<html class = "newUser">
+<head class = "newUser">
   <title>Register | Corvin</title>
-  <link href = 'newUser.css' type = 'text/css' rel = 'stylesheet' />
+  <link href = 'one.css' type = 'text/css' rel = 'stylesheet' />
 
   <link rel = 'apple-touch-icon' sizes = '57x57'
     href = '../Art/Favicon/apple-icon-57x57.png' />
@@ -58,16 +59,16 @@ Coded By: Joel N. Johnson
 
 <!-- 2 Top Bar -->
 <body>
-<div class = 'Container'>
-  <div class = 'BackToLogin'>
+<div class = 'newUserContainer'>
+  <div class = 'newUserBackToLogin'>
     <form action = 'login.php'>
       <input type = 'submit' value = 'Back To Log In'
-        class = 'BackToLoginButton' name = 'submit' />
+        class = 'newUserBackToLoginButton' name = 'submit' />
     </form>
   </div>
-  <div class = 'Center'>
-    <div class = 'TopBar'>
-      <div class = 'Corvin'>
+  <div class = 'newUserCenter'>
+    <div class = 'newUserTopBar'>
+      <div class = 'newUserCorvin'>
         Corvin
       </div>
     </div>
@@ -75,7 +76,7 @@ Coded By: Joel N. Johnson
     <br /><br /><br /><br /><br /><br /><br /><br />
 
     <!-- 3 Create new user form -->
-    <div class = 'Login'>
+    <div class = 'newUserLogin'>
       <form
         action = 'registerNewUser.php'
         method = 'post'
@@ -84,7 +85,7 @@ Coded By: Joel N. Johnson
         <label>
           <input
             type = 'text'
-            class = 'TextBox'
+            class = 'newUserTextBox'
             name = 'firstName'
             style = 'width: 300px'
             placeholder = 'First Name'
@@ -95,7 +96,7 @@ Coded By: Joel N. Johnson
         <label>
           <input
             type = 'text'
-            class = 'TextBox'
+            class = 'newUserTextBox'
             name = 'lastName'
             style = 'width: 300px'
             placeholder = 'Last Name'
@@ -105,7 +106,7 @@ Coded By: Joel N. Johnson
         <label>
           <input
             type = 'email'
-            class = 'TextBox'
+            class = 'newUserTextBox'
             name = 'email'
             style = 'width: 300px'
             placeholder = 'Email'
@@ -115,7 +116,7 @@ Coded By: Joel N. Johnson
         <label>
           <input
             type = 'text'
-            class = 'TextBox'
+            class = 'newUserTextBox'
             name = 'username'
             style = 'width: 300px'
             placeholder = 'User Name'
@@ -125,7 +126,7 @@ Coded By: Joel N. Johnson
         <label>
           <input
             type = 'password'
-            class = 'TextBox'
+            class = 'newUserTextBox'
             name = 'password'
             style = 'width: 300px'
             placeholder = 'Password (at least 8 characters)'
@@ -135,7 +136,7 @@ Coded By: Joel N. Johnson
         <label>
           <input
             type = 'password'
-            class = 'TextBox'
+            class = 'newUserTextBox'
             name = 'password2'
             style = 'width: 300px'
             placeholder = 'Re-enter Password'
@@ -174,7 +175,7 @@ Coded By: Joel N. Johnson
         <label>
           <input
             type = 'text'
-            class = 'TextBox'
+            class = 'newUserTextBox'
             name = 'referralCode'
             style = 'width: 300px'
             placeholder = 'Referral Code'
@@ -184,18 +185,16 @@ Coded By: Joel N. Johnson
         <input
           type = 'submit'
           value = 'Register'
-          class = 'LoginButton'
+          class = 'newUserLoginButton'
         />
       </form>
     </div>
   </div>
+  <div class = 'newUserPush'></div>
 </div>
-
-<div class = 'Push'></div>
 
 <!-- 4 Footer -->
-<div class = 'Footer'>
-  <div class = 'FootCenter'>&copy; Corvin, Inc.</div>
-</div>
+<div class = 'newUserFooter'>&copy; Corvin, Inc.</div>
 
 </body>
+</html>
