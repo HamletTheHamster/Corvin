@@ -207,107 +207,161 @@ a.#{$o}MenuItem:hover {
     outline: none;
 }
 
-.#{$o}SettingsHeader {
+.#{$o}Header {
     font-size: 30px;
     height: 100px;
 }
 
-p.#{$o}SettingsHeader {
-    float: left;
+p.#{$o}Header {
     color: rgba(23, 23, 23, 0.85);
 }
 
-.#{$o}SettingsContent {
-    width: 90%;
-    margin-left: 5%;
-}
-
-.#{$o}NameAndEmail {
-    height: 150px;
-    margin: auto;
-}
-
-.#{$o}NameAndEditName {
-    height: 150px;
+.#{$o}Content {
     width: 50%;
-    float: left;
-    margin-left: -35px;
+    margin-left: 25%;
+    font-size: 20px;
 }
 
-.#{$o}Name {
-    height: 150px;
-    width: 50%;
-    float: left;
+.#{$o}FirstLine {
+  margin-top: 100px;
 }
 
-.#{$o}EditName {
-    height: 150px;
-    margin-left: 50%;
+.#{$o}Setting {
+  height: 50px;
+  margin-top: -10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.#{$o}EmailAndEditEmail {
-    height: 150px;
-    margin-left: 50%;
+.#{$o}Setting:hover {
+  background-color: rgba(0, 130, 140, 0.06);
 }
 
-.#{$o}Email {
-    height: 150px;
-    width: 50%;
-    float: left;
+.#{$o}SettingWithButton {
+  height: 50px;
+  margin-top: -10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
 }
 
-.#{$o}EditEmail {
-    height: 150px;
-    margin-left: 50%;
+.#{$o}LeftItemBox {
+  float: left;
+  height: 50px;
+  width: 50%;
 }
 
-.#{$o}UsernameAndPassword {
-    height: 150px;
-    width: 100%;
+.#{$o}Item {
+  text-align: left;
 }
 
-.#{$o}UsernameAndEditUsername {
-    float: left;
-    height: 150px;
-    width: 50%;
+.#{$o}RightItemBox {
+  float: right;
+  height: 50px;
+  width: 50%;
 }
 
-.#{$o}Username {
-    height: 150px;
-    width: 50%;
-    float: left;
+.#{$o}Value {
+  float: right;
+  text-align: right;
 }
 
-.#{$o}EditUsername {
-    height: 150px;
-    margin-left: 50%;
-}
-
-.#{$o}ChangePassword {
-    height: 150px;
-    width: 50%;
-    float: left;
-}
-
-.#{$o}Container {
-    height: 150px;
+.#{$o}ChangePasswordButton {
+    background-color: rgba(51, 204, 255, 0);
+    border-color: rgba(23, 23, 23, 0.25);
+    border-width: thin;
+    color: rgb(0, 154, 164);
+    font-family: "Square Market", Helvetica, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 6px 12px;
+    margin-top: 13px;
+    border-radius: 4px;
     position: relative;
 }
 
-.#{$o}VerticalCenter {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+.#{$o}ChangePasswordButton:hover {
+    background-color: rgba(0, 130, 140, 0.06);
+    color: rgb(0, 130, 140);
+    cursor: pointer;
 }
 
-.#{$o}AccountInfo {
-    font-size: 25px;
+.#{$o}ChangePasswordButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    border-color: rgb(0, 130, 140);
+    transition: 250ms;
 }
 
-.#{$o}AccountInfoEdit {
-    font-size: 13px;
+.#{$o}ChangePasswordButton:focus {
+    outline: none;
+}
+
+.#{$o}DarkModeButton {
+    background-color: rgba(51, 204, 255, 0);
+    border-color: rgba(23, 23, 23, 0.25);
+    border-width: thin;
+    color: rgb(0, 154, 164);
+    font-family: "Square Market", Helvetica, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 6px 12px;
+    margin-top: 13px;
+    border-radius: 4px;
+    position: relative;
+}
+
+.#{$o}DarkModeButton:hover {
+    background-color: rgba(0, 130, 140, 0.06);
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$o}DarkModeButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    border-color: rgb(0, 130, 140);
+    transition: 250ms;
+}
+
+.#{$o}DarkModeButton:focus {
+    outline: none;
+}
+
+.#{$o}DeleteAccountButton {
+    background-color: rgba(51, 204, 255, 0);
+    border-color: rgba(23, 23, 23, 0.25);
+    border-width: thin;
+    color: rgb(0, 154, 164);
+    font-family: "Square Market", Helvetica, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 6px 12px;
+    margin-top: 13px;
+    border-radius: 4px;
+    position: relative;
+}
+
+.#{$o}DeleteAccountButton:hover {
+    background-color: rgb(180, 33, 33);
+    color: rgba(255, 255, 255);
+    cursor: pointer;
+}
+
+.#{$o}DeletAccountButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    border-color: rgb(0, 130, 140);
+    transition: 250ms;
+}
+
+.#{$o}DeleteAccountButton:focus {
+    outline: none;
 }
 
 .#{$o}Footer, .#{$o}Push {

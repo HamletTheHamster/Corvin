@@ -212,86 +212,119 @@ elseif (time() - $_SESSION['Created'] > 1200)
       />
     </form>
 
-    <div class = "settingsSettingsHeader">
-      <p class = "settingsSettingsHeader">Settings</p>
+    <div class = "settingsHeader">
+      <p class = "settingsHeader">Settings</p>
     </div>
 
-    <div class = "settingsSettingsContent">
-      <?php
-      echo "<div class = 'settingsNameAndEmail'>";
-        echo "<div class = 'settingsNameAndEditName'>";
-          echo "<div class = 'settingsName'>";
-            echo "<div class = 'settingsContainer'>";
-              echo "<div class = 'settingsVerticalCenter'>";
-                echo "<p class = 'settingsAccountInfo'>" . $user[0] . " " . $user[1] .
-                  "</p>";
-              echo "</div>";
-            echo "</div>";
-          echo "</div>";
-          echo "<div class = 'settingsEditName'>";
-            echo "<div class = 'settingsContainer'>";
-              echo "<div class = 'settingsVerticalCenter'>";
-                echo "<a class = 'settingsAccountInfoEdit'>Edit</a>";
-              echo "</div>";
-            echo "</div>";
-          echo "</div>";
-        echo "</div>";
-        echo "<div class = 'settingsEmailAndEditEmail'>";
-          echo "<div class = 'settingsEmail'>";
-            echo "<div class = 'settingsContainer'>";
-              echo "<div class = 'settingsVerticalCenter'>";
-                $sql = "SELECT email FROM UserInfo WHERE id = '" . $userID .
-                  "'";
-                $email = mysqli_fetch_row(mysqli_query($conn, $sql));
-                echo "<p class = 'settingsAccountInfo'>" . $email[0] . "</p>";
-              echo "</div>";
-            echo "</div>";
-          echo "</div>";
-          echo "<div class = 'settingsEditEmail'>";
-            echo "<div class = 'settingsContainer'>";
-              echo "<div class = 'settingsVerticalCenter'>";
-                echo "<a class = 'settingsAccountInfoEdit'>Update</a>";
-              echo "</div>";
-            echo "</div>";
-          echo "</div>";
-        echo "</div>";
-      echo "</div>";
-
-      echo "<div class = 'settingsUsernameAndPassword'>";
-        echo "<div class = 'settingsUsernameAndEditUsername'>";
-          echo "<div class = 'settingsUsername'>";
-            echo "<div class = 'settingsContainer'>";
-              echo "<div class = 'settingsVerticalCenter'>";
-                $sql = "SELECT username FROM UserInfo WHERE id = '" . $userID .
-                  "'";
-                $username = mysqli_fetch_row(mysqli_query($conn, $sql));
-                echo "<p class = 'settingsAccountInfo'>" . $username[0] . "</p>";
-              echo "</div>";
-            echo "</div>";
-          echo "</div>";
-          echo "<div class = 'settingsEditUsername'>";
-            echo "<div class = 'settingsContainer'>";
-              echo "<div class = 'settingsVerticalCenter'>";
-                echo "<a class = 'settingsAccountInfoEdit'>Change Username</a>";
-              echo "</div>";
-            echo "</div>";
-          echo "</div>";
-        echo "</div>";
-        echo "<div class = 'settingsChangePassword'>";
-          echo "<div class = 'settingsContainer'>";
-            echo "<div class = 'settingsVerticalCenter'>";
-              echo "<a class = 'settingsAccountInfoEdit'>Change Password</a>";
-            echo "</div>";
-          echo "</div>";
-        echo "</div>";
-      echo "</div>";
-      ?>
+    <div class = "settingsContent">
+      <hr class = "settingsFirstLine">
+      <!-- Name -->
+      <div class = "settingsSetting">
+        <div class = "settingsLeftItemBox">
+          <div class = "settingsItem">
+            <p>Name</p>
+          </div>
+        </div>
+        <div class = "settingsRightItemBox">
+          <div class = "settingsValue">
+            <?php
+            $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '" .
+              $userID . "'";
+            $user = mysqli_fetch_row(mysqli_query($conn, $sql));
+            echo "<p>" . $user[0] . " " . $user[1] . "</p>";
+            ?>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!-- Email -->
+      <div class = "settingsSetting">
+        <div class = "settingsLeftItemBox">
+          <div class = "settingsItem">
+            <p>Email</p>
+          </div>
+        </div>
+        <div class = "settingsRightItemBox">
+          <div class = "settingsValue">
+            <?php
+            $sql = "SELECT email FROM UserInfo WHERE id = '" . $userID . "'";
+            $email = mysqli_fetch_row(mysqli_query($conn, $sql));
+            echo "<p>" . $email[0] . "</p>";
+            ?>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!-- Username -->
+      <div class = "settingsSetting">
+        <div class = "settingsLeftItemBox">
+          <div class = "settingsItem">
+            <p>Username</p>
+          </div>
+        </div>
+        <div class = "settingsRightItemBox">
+          <div class = "settingsValue">
+            <?php
+            $sql = "SELECT username FROM UserInfo WHERE id = '" . $userID . "'";
+            $username = mysqli_fetch_row(mysqli_query($conn, $sql));
+            echo "<p>" . $username[0] . "</p>";
+            ?>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!-- Password -->
+      <div class = "settingsSettingWithButton">
+        <div class = "settingsLeftItemBox">
+          <div class = "settingsItem">
+            <p>Password</p>
+          </div>
+        </div>
+        <div class = "settingsRightItemBox">
+          <div class = "settingsValue">
+            <button class = "settingsChangePasswordButton">
+              Change Password
+            </button>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!-- Dark Mode -->
+      <div class = "settingsSettingWithButton">
+        <div class = "settingsLeftItemBox">
+          <div class = "settingsItem">
+            <p>Dark Mode</p>
+          </div>
+        </div>
+        <div class = "settingsRightItemBox">
+          <div class = "settingsValue">
+            <button class = "settingsDarkModeButton">Off</button>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!-- Delete my Corvin Account -->
+      <div class = "settingsSettingWithButton">
+        <div class = "settingsLeftItemBox">
+          <div class = "settingsItem">
+            <p>Delete my Corvin account</p>
+          </div>
+        </div>
+        <div class = "settingsRightItemBox">
+          <div class = "settingsValue">
+            <button class = "settingsDeleteAccountButton">
+              Delete Account
+            </button>
+          </div>
+        </div>
+      </div>
+      <hr>
     </div>
   </div>
 
   <div class = "settingsPush"></div>
 
-</div> <!-- Wrapper -->
+</div>
 
 <!-- 6 Footer -->
 <div class = "settingsFooter">&copy; Corvin, Inc.</div>

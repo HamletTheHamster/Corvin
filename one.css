@@ -1476,107 +1476,161 @@ a.settingsMenuItem:hover {
   outline: none;
 }
 
-.settingsSettingsHeader {
+.settingsHeader {
   font-size: 30px;
   height: 100px;
 }
 
-p.settingsSettingsHeader {
-  float: left;
+p.settingsHeader {
   color: rgba(23, 23, 23, 0.85);
 }
 
-.settingsSettingsContent {
-  width: 90%;
-  margin-left: 5%;
-}
-
-.settingsNameAndEmail {
-  height: 150px;
-  margin: auto;
-}
-
-.settingsNameAndEditName {
-  height: 150px;
+.settingsContent {
   width: 50%;
+  margin-left: 25%;
+  font-size: 20px;
+}
+
+.settingsFirstLine {
+  margin-top: 100px;
+}
+
+.settingsSetting {
+  height: 50px;
+  margin-top: -10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.settingsSetting:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.settingsSettingWithButton {
+  height: 50px;
+  margin-top: -10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+}
+
+.settingsLeftItemBox {
   float: left;
-  margin-left: -35px;
-}
-
-.settingsName {
-  height: 150px;
-  width: 50%;
-  float: left;
-}
-
-.settingsEditName {
-  height: 150px;
-  margin-left: 50%;
-}
-
-.settingsEmailAndEditEmail {
-  height: 150px;
-  margin-left: 50%;
-}
-
-.settingsEmail {
-  height: 150px;
-  width: 50%;
-  float: left;
-}
-
-.settingsEditEmail {
-  height: 150px;
-  margin-left: 50%;
-}
-
-.settingsUsernameAndPassword {
-  height: 150px;
-  width: 100%;
-}
-
-.settingsUsernameAndEditUsername {
-  float: left;
-  height: 150px;
+  height: 50px;
   width: 50%;
 }
 
-.settingsUsername {
-  height: 150px;
+.settingsItem {
+  text-align: left;
+}
+
+.settingsRightItemBox {
+  float: right;
+  height: 50px;
   width: 50%;
-  float: left;
 }
 
-.settingsEditUsername {
-  height: 150px;
-  margin-left: 50%;
+.settingsValue {
+  float: right;
+  text-align: right;
 }
 
-.settingsChangePassword {
-  height: 150px;
-  width: 50%;
-  float: left;
-}
-
-.settingsContainer {
-  height: 150px;
+.settingsChangePasswordButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  margin-top: 13px;
+  border-radius: 4px;
   position: relative;
 }
 
-.settingsVerticalCenter {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+.settingsChangePasswordButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer;
 }
 
-.settingsAccountInfo {
-  font-size: 25px;
+.settingsChangePasswordButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms;
 }
 
-.settingsAccountInfoEdit {
-  font-size: 13px;
+.settingsChangePasswordButton:focus {
+  outline: none;
+}
+
+.settingsDarkModeButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  margin-top: 13px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.settingsDarkModeButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer;
+}
+
+.settingsDarkModeButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms;
+}
+
+.settingsDarkModeButton:focus {
+  outline: none;
+}
+
+.settingsDeleteAccountButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  margin-top: 13px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.settingsDeleteAccountButton:hover {
+  background-color: #b42121;
+  color: white;
+  cursor: pointer;
+}
+
+.settingsDeletAccountButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms;
+}
+
+.settingsDeleteAccountButton:focus {
+  outline: none;
 }
 
 .settingsFooter, .settingsPush {
