@@ -512,7 +512,8 @@ function accountDropDownMenu() {
             <input
               type = 'text'
               value = '" . $Directory[$i] . "'
-              size = '" . strlen($Directory[$i]) . "' onfocus = 'this.select()'
+              size = '" . strlen($Directory[$i]) . "'
+              onfocus = 'this.select()'
               id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
                 "RenameTextField'
                 class = 'homeRenameTextField'

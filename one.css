@@ -1486,13 +1486,14 @@ p.settingsHeader {
 }
 
 .settingsContent {
-  width: 50%;
-  margin-left: 25%;
+  width: 960px;
+  margin: 0 auto;
   font-size: 20px;
 }
 
-.settingsFirstLine {
-  margin-top: 100px;
+.settingsFirstHeader {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .settingsSetting {
@@ -1541,8 +1542,105 @@ p.settingsHeader {
 }
 
 .settingsDropdownSetting {
-  height: 50px;
+  height: 75px;
+  margin-top: 25px;
   transition: 250ms;
+}
+
+.settingsFirstNameChangeTextBox {
+  margin-left: 257px;
+}
+
+.settingsLastNameChangeTextBox {
+  margin-left: 15px;
+}
+
+.settingsFirstNameChangeTextBox, .settingsLastNameChangeTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.settingsFirstNameChangeTextBox:focus, .settingsLastNameChangeTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.settingsSaveChangesButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  margin-left: 15px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.settingsSaveChangesButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer;
+}
+
+.settingsSaveChangesButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms;
+}
+
+.settingsSaveChangesButton:focus {
+  outline: none;
+}
+
+.settingsEmailChangeTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  margin-left: 534px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.settingsEmailChangeTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.settingsUsernameChangeTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  margin-left: 534px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.settingsUsernameChangeTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
 }
 
 .settingsChangePasswordButton {
@@ -1576,6 +1674,20 @@ p.settingsHeader {
   outline: none;
 }
 
+.settingsSpace {
+  height: 100px;
+  margin-top: -10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+}
+
+.settingsHeaders {
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .settingsDarkModeButton {
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
@@ -1604,6 +1716,37 @@ p.settingsHeader {
 }
 
 .settingsDarkModeButton:focus {
+  outline: none;
+}
+
+.settingsLedgerSizeButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  margin-top: 13px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.settingsLedgerSizeButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer;
+}
+
+.settingsLedgerSizeButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms;
+}
+
+.settingsLedgerSizeButton:focus {
   outline: none;
 }
 
@@ -1639,7 +1782,7 @@ p.settingsHeader {
 }
 
 .settingsFooter, .settingsPush {
-  height: 20px;
+  height: 200px;
 }
 
 .settingsFooter {

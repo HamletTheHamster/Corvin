@@ -217,13 +217,14 @@ p.#{$o}Header {
 }
 
 .#{$o}Content {
-    width: 50%;
-    margin-left: 25%;
+    width: 960px;
+    margin: 0 auto;
     font-size: 20px;
 }
 
-.#{$o}FirstLine {
-  margin-top: 100px;
+.#{$o}FirstHeader {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .#{$o}Setting {
@@ -272,8 +273,105 @@ p.#{$o}Header {
 }
 
 .#{$o}DropdownSetting {
-  height: 50px;
+  height: 75px;
+  margin-top: 25px;
   transition: 250ms;
+}
+
+.#{$o}FirstNameChangeTextBox {
+  margin-left: 257px;
+}
+
+.#{$o}LastNameChangeTextBox {
+  margin-left: 15px;
+}
+
+.#{$o}FirstNameChangeTextBox, .#{$o}LastNameChangeTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.#{$o}FirstNameChangeTextBox:focus, .#{$o}LastNameChangeTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$o}SaveChangesButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: rgb(0, 154, 164);
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  margin-left: 15px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.#{$o}SaveChangesButton:hover {
+    background-color: rgba(0, 130, 140, 0.06);
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$o}SaveChangesButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    border-color: rgb(0, 130, 140);
+    transition: 250ms;
+}
+
+.#{$o}SaveChangesButton:focus {
+    outline: none;
+}
+
+.#{$o}EmailChangeTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  margin-left: 534px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.#{$o}EmailChangeTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$o}UsernameChangeTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  margin-left: 534px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.#{$o}UsernameChangeTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
 }
 
 .#{$o}ChangePasswordButton {
@@ -307,6 +405,20 @@ p.#{$o}Header {
     outline: none;
 }
 
+.#{$o}Space {
+  height: 100px;
+  margin-top: -10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+}
+
+.#{$o}Headers {
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .#{$o}DarkModeButton {
     background-color: rgba(51, 204, 255, 0);
     border-color: rgba(23, 23, 23, 0.25);
@@ -335,6 +447,37 @@ p.#{$o}Header {
 }
 
 .#{$o}DarkModeButton:focus {
+    outline: none;
+}
+
+.#{$o}LedgerSizeButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: rgb(0, 154, 164);
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  margin-top: 13px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.#{$o}LedgerSizeButton:hover {
+    background-color: rgba(0, 130, 140, 0.06);
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$o}LedgerSizeButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    border-color: rgb(0, 130, 140);
+    transition: 250ms;
+}
+
+.#{$o}LedgerSizeButton:focus {
     outline: none;
 }
 
@@ -370,7 +513,7 @@ p.#{$o}Header {
 }
 
 .#{$o}Footer, .#{$o}Push {
-    height: 20px;
+    height: 200px;
 }
 
 .#{$o}Footer {

@@ -217,10 +217,11 @@ elseif (time() - $_SESSION['Created'] > 1200)
     </div>
 
     <div class = "settingsContent">
-      <hr class = "settingsFirstLine">
-
+      <div class = "settingsSpace"></div>
+      <h class = "settingsFirstHeader">Account Details</h>
+      <hr>
       <!-- Name -->
-      <div id = "settingsName" class = "settingsSetting">
+      <div onclick = "toggleNameDropdown()" class = "settingsSetting">
         <div class = "settingsLeftItemBox">
           <div class = "settingsItem">
             <p>Name</p>
@@ -248,13 +249,15 @@ elseif (time() - $_SESSION['Created'] > 1200)
             type = "text"
             name = "firstNameChange"
             id = "firstNameChange"
-            class = "settingsFirstNameChange"
+            class = "settingsFirstNameChangeTextBox"
+            value = <?php echo "'" . $user[0] . "'"; ?>
             placeholder = "First Name"
           />
           <input
             type = "text"
             name = "lastNameChange"
-            class = "settingsLastNameChange"
+            class = "settingsLastNameChangeTextBox"
+            value = <?php echo "'" . $user[1] . "'"; ?>
             placeholder = "Last Name"
           />
           <input
@@ -265,38 +268,33 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </form>
       </div>
       <script>
-      var nameSetting = document.getElementById("settingsName");
-      var nameDropdown = document.getElementById("settingsDropdownName");
+      document.getElementById("settingsDropdownName").style.display = "none";
 
-      nameDropdown.style.display = "none";
-      nameSetting.addEventListener("click", showNameDropdown);
+      function toggleNameDropdown() {
+        var settingsDropdownName = document.getElementById("settingsDropdownName");
 
-      function showNameDropdown() {
-        document.getElementById("settingsDropdownName").style.display = "block";
-        document.getElementById("settingsNameValue").style.display = "none";
-        document.getElementById("firstNameChange").focus();
-        document.getElementById("settingsName").addEventListener("click", hideNameDropdown);
-      }
-
-      function hideNameDropdown() {
-        document.getElementById("settingsDropdownName").style.display = "none";
-        document.getElementById("settingsNameValue").style.display = "block";
-        document.getElementById("settingsName").addEventListener(
-          "click", showNameDropdown);
-
+        if (settingsDropdownName.style.display == "none") {
+          settingsDropdownName.style.display = "block";
+          settingsNameValue.style.display = "none";
+          document.getElementById("firstNameChange").focus();
+        }
+        else {
+          settingsDropdownName.style.display = "none";
+          settingsNameValue.style.display = "block";
+        }
       }
       </script>
       <hr>
 
       <!-- Email -->
-      <div class = "settingsSetting">
+      <div onclick = "toggleEmailDropdown()" class = "settingsSetting">
         <div class = "settingsLeftItemBox">
           <div class = "settingsItem">
             <p>Email</p>
           </div>
         </div>
         <div class = "settingsRightItemBox">
-          <div class = "settingsValue">
+          <div id = "settingsEmailValue" class = "settingsValue">
             <?php
             $sql = "SELECT email FROM UserInfo WHERE id = '" . $userID . "'";
             $email = mysqli_fetch_row(mysqli_query($conn, $sql));
@@ -305,16 +303,56 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
+      <div id = "settingsDropdownEmail" class = "settingsDropdownSetting">
+        <form
+          action = "#"
+          method = "post"
+          enctype = "multipart/form-data"
+          class = "settingsChangeName"
+        >
+          <input
+            type = "text"
+            name = "emailChange"
+            id = "emailChange"
+            class = "settingsEmailChangeTextBox"
+            value = <?php echo "'" . $email[0] . "'"; ?>
+            placeholder = "Email"
+          />
+          <input
+            type = "submit"
+            value = "Save Changes"
+            class = "settingsSaveChangesButton"
+          />
+        </form>
+      </div>
+      <script>
+      document.getElementById("settingsDropdownEmail").style.display = "none";
+
+      function toggleEmailDropdown() {
+        var settingsDropdownEmail = document.getElementById("settingsDropdownEmail");
+
+        if (settingsDropdownEmail.style.display == "none") {
+          settingsDropdownEmail.style.display = "block";
+          settingsEmailValue.style.display = "none";
+          document.getElementById("emailChange").focus();
+        }
+        else {
+          settingsDropdownEmail.style.display = "none";
+          settingsEmailValue.style.display = "block";
+        }
+      }
+      </script>
       <hr>
+
       <!-- Username -->
-      <div class = "settingsSetting">
+      <div onclick = "toggleUsernameDropdown()" class = "settingsSetting">
         <div class = "settingsLeftItemBox">
           <div class = "settingsItem">
             <p>Username</p>
           </div>
         </div>
         <div class = "settingsRightItemBox">
-          <div class = "settingsValue">
+          <div id = "settingsUsernameValue" class = "settingsValue">
             <?php
             $sql = "SELECT username FROM UserInfo WHERE id = '" . $userID . "'";
             $username = mysqli_fetch_row(mysqli_query($conn, $sql));
@@ -323,7 +361,47 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
+      <div id = "settingsDropdownUsername" class = "settingsDropdownSetting">
+        <form
+          action = "#"
+          method = "post"
+          enctype = "multipart/form-data"
+          class = "settingsChangeName"
+        >
+          <input
+            type = "text"
+            name = "usernameChange"
+            id = "usernameChange"
+            class = "settingsUsernameChangeTextBox"
+            value = <?php echo "'" . $username[0] . "'"; ?>
+            placeholder = "Username"
+          />
+          <input
+            type = "submit"
+            value = "Save Changes"
+            class = "settingsSaveChangesButton"
+          />
+        </form>
+      </div>
+      <script>
+      document.getElementById("settingsDropdownUsername").style.display = "none";
+
+      function toggleUsernameDropdown() {
+        var settingsDropdownUsername = document.getElementById("settingsDropdownUsername");
+
+        if (settingsDropdownUsername.style.display == "none") {
+          settingsDropdownUsername.style.display = "block";
+          settingsUsernameValue.style.display = "none";
+          document.getElementById("usernameChange").focus();
+        }
+        else {
+          settingsDropdownUsername.style.display = "none";
+          settingsUsernameValue.style.display = "block";
+        }
+      }
+      </script>
       <hr>
+
       <!-- Password -->
       <div class = "settingsSettingWithButton">
         <div class = "settingsLeftItemBox">
@@ -340,6 +418,12 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
       </div>
       <hr>
+
+      <!-- Space -->
+      <div class = "settingsSpace"></div>
+      <h class = "settingsHeaders">Visual Settings</h>
+      <hr>
+
       <!-- Dark Mode -->
       <div class = "settingsSettingWithButton">
         <div class = "settingsLeftItemBox">
@@ -354,6 +438,26 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
       </div>
       <hr>
+      <div class = "settingsSettingWithButton">
+        <div class = "settingsLeftItemBox">
+          <div class = "settingsItem">
+            <p>Ledger Size</p>
+          </div>
+        </div>
+        <div class = "settingsRightItemBox">
+          <div class = "settingsValue">
+            <button class = "settingsLedgerSizeButton">Small</button>
+            <button class = "settingsLedgerSizeButton">Medium</button>
+            <button class = "settingsLedgerSizeButton">Large</button>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Space -->
+      <div class = "settingsSpace"></div>
+      <hr>
+
       <!-- Delete my Corvin Account -->
       <div class = "settingsSettingWithButton">
         <div class = "settingsLeftItemBox">
@@ -372,10 +476,9 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <hr>
     </div>
   </div>
-
-  <div class = "settingsPush"></div>
-
 </div>
+
+<div class = "settingsPush"></div>
 
 <!-- 6 Footer -->
 <div class = "settingsFooter">&copy; Corvin, Inc.</div>
