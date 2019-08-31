@@ -229,8 +229,8 @@ p.#{$o}Header {
 .#{$o}Setting {
   height: 50px;
   margin-top: -10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   padding-bottom: 10px;
   margin-bottom: -10px;
   border-radius: 5px;
@@ -244,8 +244,8 @@ p.#{$o}Header {
 .#{$o}SettingWithButton {
   height: 50px;
   margin-top: -10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   padding-bottom: 10px;
   margin-bottom: -10px;
 }
@@ -269,6 +269,11 @@ p.#{$o}Header {
 .#{$o}Value {
   float: right;
   text-align: right;
+}
+
+.#{$o}DropdownSetting {
+  height: 50px;
+  transition: 250ms;
 }
 
 .#{$o}ChangePasswordButton {

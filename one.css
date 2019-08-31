@@ -1498,8 +1498,8 @@ p.settingsHeader {
 .settingsSetting {
   height: 50px;
   margin-top: -10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   padding-bottom: 10px;
   margin-bottom: -10px;
   border-radius: 5px;
@@ -1513,8 +1513,8 @@ p.settingsHeader {
 .settingsSettingWithButton {
   height: 50px;
   margin-top: -10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   padding-bottom: 10px;
   margin-bottom: -10px;
 }
@@ -1538,6 +1538,11 @@ p.settingsHeader {
 .settingsValue {
   float: right;
   text-align: right;
+}
+
+.settingsDropdownSetting {
+  height: 50px;
+  transition: 250ms;
 }
 
 .settingsChangePasswordButton {

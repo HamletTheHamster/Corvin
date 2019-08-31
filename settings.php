@@ -218,15 +218,16 @@ elseif (time() - $_SESSION['Created'] > 1200)
 
     <div class = "settingsContent">
       <hr class = "settingsFirstLine">
+
       <!-- Name -->
-      <div class = "settingsSetting">
+      <div id = "settingsName" class = "settingsSetting">
         <div class = "settingsLeftItemBox">
           <div class = "settingsItem">
             <p>Name</p>
           </div>
         </div>
         <div class = "settingsRightItemBox">
-          <div class = "settingsValue">
+          <div id = "settingsNameValue" class = "settingsValue">
             <?php
             $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '" .
               $userID . "'";
@@ -236,7 +237,57 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
+      <div id = "settingsDropdownName" class = "settingsDropdownSetting">
+        <form
+          action = "#"
+          method = "post"
+          enctype = "multipart/form-data"
+          class = "settingsChangeName"
+        >
+          <input
+            type = "text"
+            name = "firstNameChange"
+            id = "firstNameChange"
+            class = "settingsFirstNameChange"
+            placeholder = "First Name"
+          />
+          <input
+            type = "text"
+            name = "lastNameChange"
+            class = "settingsLastNameChange"
+            placeholder = "Last Name"
+          />
+          <input
+            type = "submit"
+            value = "Save Changes"
+            class = "settingsSaveChangesButton"
+          />
+        </form>
+      </div>
+      <script>
+      var nameSetting = document.getElementById("settingsName");
+      var nameDropdown = document.getElementById("settingsDropdownName");
+
+      nameDropdown.style.display = "none";
+      nameSetting.addEventListener("click", showNameDropdown);
+
+      function showNameDropdown() {
+        document.getElementById("settingsDropdownName").style.display = "block";
+        document.getElementById("settingsNameValue").style.display = "none";
+        document.getElementById("firstNameChange").focus();
+        document.getElementById("settingsName").addEventListener("click", hideNameDropdown);
+      }
+
+      function hideNameDropdown() {
+        document.getElementById("settingsDropdownName").style.display = "none";
+        document.getElementById("settingsNameValue").style.display = "block";
+        document.getElementById("settingsName").addEventListener(
+          "click", showNameDropdown);
+
+      }
+      </script>
       <hr>
+
       <!-- Email -->
       <div class = "settingsSetting">
         <div class = "settingsLeftItemBox">
