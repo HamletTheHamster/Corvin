@@ -253,22 +253,16 @@ The Corvin Team";
             "../../../mnt/Raid1Array/Corvin/0 - Recycle/" .
             $sanitizedUserFolderName;
 
-          // Make sure not to overwrite any data already there
-          if (
-            $userFolderName != "1 - JoelJohnson" &&
-            $userFolderName != "2 - LaurenBiddle" &&
-            $userFolderName != "3 - JeffJohnson" &&
-            $userFolderName != "4 - JoshHensley"
-          ) {
-            if (mkdir($userFolderFullPath, 0777, true)) {
-              chmod($userFolderFullPath, 0777);
+          // Make user's main and recycle folders
+          if (mkdir($userFolderFullPath, 0777, true)) {
+            chmod($userFolderFullPath, 0777);
 
-              if (mkdir($userRecycleFolderFullPath, 0777, true)) {
-                chmod($userRecycleFolderFullPath, 0777);
-              }
-              else {echo "Error: User recycle folder not created.";}
+            if (mkdir($userRecycleFolderFullPath, 0777, true)) {
+              chmod($userRecycleFolderFullPath, 0777);
             }
-            else {echo "Error: User folder not created.";}
+            else {echo "Error: User recycle folder not created.";}
+          }
+          else {echo "Error: User folder not created.";}
           }
           else {
             echo "You were about to write over someone's data on corvin.";

@@ -240,7 +240,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
       </div>
       <div id = "settingsDropdownName" class = "settingsDropdownSetting">
         <form
-          action = "#"
+          action = "updateAccountSettings.php"
           method = "post"
           enctype = "multipart/form-data"
           class = "settingsChangeName"
@@ -305,13 +305,13 @@ elseif (time() - $_SESSION['Created'] > 1200)
       </div>
       <div id = "settingsDropdownEmail" class = "settingsDropdownSetting">
         <form
-          action = "#"
+          action = "updateAccountSettings.php"
           method = "post"
           enctype = "multipart/form-data"
           class = "settingsChangeName"
         >
           <input
-            type = "text"
+            type = "email"
             name = "emailChange"
             id = "emailChange"
             class = "settingsEmailChangeTextBox"
@@ -363,7 +363,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
       </div>
       <div id = "settingsDropdownUsername" class = "settingsDropdownSetting">
         <form
-          action = "#"
+          action = "updateAccountSettings.php"
           method = "post"
           enctype = "multipart/form-data"
           class = "settingsChangeName"

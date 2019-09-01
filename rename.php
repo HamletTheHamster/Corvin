@@ -66,7 +66,7 @@ mysqli_query($conn, "USE Corvin;");
 // Assign user's ID passed from validate.php
 $userID = $_SESSION["userID"];
 
-$sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
+$sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '" . $userID . "'";
 $user = mysqli_fetch_array(mysqli_query($conn, $sql));
 
 $currentPathString = filter_input(
