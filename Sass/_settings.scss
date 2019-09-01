@@ -278,16 +278,20 @@ p.#{$o}Header {
   transition: 250ms;
 }
 
+.#{$o}NamePasswordVerifyTextBox {
+  margin-left: 16px;
+}
+
 .#{$o}FirstNameChangeTextBox {
-  margin-left: 257px;
+  margin-left: 15px;
 }
 
 .#{$o}LastNameChangeTextBox {
   margin-left: 15px;
 }
 
-.#{$o}FirstNameChangeTextBox, .#{$o}LastNameChangeTextBox {
-  width: 250px;
+.#{$o}FirstNameChangeTextBox, .#{$o}LastNameChangeTextBox, .#{$o}NamePasswordVerifyTextBox {
+  width: 238px;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
   border-radius: 4px;
@@ -299,7 +303,7 @@ p.#{$o}Header {
   background-color: rgba(0, 130, 140, 0.06);
 }
 
-.#{$o}FirstNameChangeTextBox:focus, .#{$o}LastNameChangeTextBox:focus {
+.#{$o}FirstNameChangeTextBox:focus, .#{$o}LastNameChangeTextBox:focus, .#{$o}NamePasswordVerifyTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
 }
@@ -336,6 +340,25 @@ p.#{$o}Header {
     outline: none;
 }
 
+.#{$o}EmailPasswordVerifyTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  margin-left: 257px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.#{$o}EmailPasswordVerifyTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
 .#{$o}EmailChangeTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -343,7 +366,7 @@ p.#{$o}Header {
   border-radius: 4px;
   float: left;
   font-size: 18px;
-  margin-left: 534px;
+  margin-left: 15px;
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
@@ -355,6 +378,25 @@ p.#{$o}Header {
   border-color: rgba(23, 23, 23, 0.85);
 }
 
+.#{$o}UsernamePasswordVerifyTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  margin-left: 257px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.#{$o}UsernamePasswordVerifyTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
 .#{$o}UsernameChangeTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -362,7 +404,7 @@ p.#{$o}Header {
   border-radius: 4px;
   float: left;
   font-size: 18px;
-  margin-left: 534px;
+  margin-left: 15px;
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;

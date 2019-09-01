@@ -220,6 +220,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <div class = "settingsSpace"></div>
       <h class = "settingsFirstHeader">Account Details</h>
       <hr>
+
       <!-- Name -->
       <div onclick = "toggleNameDropdown()" class = "settingsSetting">
         <div class = "settingsLeftItemBox">
@@ -245,6 +246,12 @@ elseif (time() - $_SESSION['Created'] > 1200)
           enctype = "multipart/form-data"
           class = "settingsChangeName"
         >
+          <input
+            type = "password"
+            name = "submittedPassword"
+            class = "settingsNamePasswordVerifyTextBox"
+            placeholder = "Password"
+          >
           <input
             type = "text"
             name = "firstNameChange"
@@ -311,6 +318,12 @@ elseif (time() - $_SESSION['Created'] > 1200)
           class = "settingsChangeName"
         >
           <input
+            type = "password"
+            name = "submittedPassword"
+            class = "settingsEmailPasswordVerifyTextBox"
+            placeholder = "Password"
+          >
+          <input
             type = "email"
             name = "emailChange"
             id = "emailChange"
@@ -368,6 +381,12 @@ elseif (time() - $_SESSION['Created'] > 1200)
           enctype = "multipart/form-data"
           class = "settingsChangeName"
         >
+          <input
+            type = "password"
+            name = "submittedPassword"
+            class = "settingsUsernamePasswordVerifyTextBox"
+            placeholder = "Password"
+          >
           <input
             type = "text"
             name = "usernameChange"
@@ -462,7 +481,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <div class = "settingsSettingWithButton">
         <div class = "settingsLeftItemBox">
           <div class = "settingsItem">
-            <p>Delete my Corvin account</p>
+            <p>Delete my Corvin</p>
           </div>
         </div>
         <div class = "settingsRightItemBox">

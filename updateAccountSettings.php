@@ -102,71 +102,80 @@ ini_set("display_errors", 1);
 // And be verbose about it
 error_reporting(E_ALL);
 
-// If name change POST data is set
-if (isset($_POST["firstNameChange"])) {
+// Get submitted password and verify
+$submittedPassword = $_POST["submittedPassword"];
+$sql = "SELECT password from UserInfo WHERE id = '$userID'";
+$referencePassword = mysqli_fetch_row(mysqli_query($conn, $sql));
 
-  // Update first and last name in database
-  $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
-  $oldUser = mysqli_fetch_array(mysqli_query($conn, $sql));
-  $newFirstName = filter_input(
-    INPUT_POST, "firstNameChange", FILTER_SANITIZE_STRING);
-  $newLastName = filter_input(
-    INPUT_POST, "lastNameChange", FILTER_SANITIZE_STRING);
+if (password_verify($submittedPassword, $referencePassword[0])) {
 
-  $sql = "UPDATE UserInfo SET firstName = '$newFirstName' WHERE id = '$userID'";
-  mysqli_query($conn, $sql);
+  // If name change POST data is set
+  if (isset($_POST["firstNameChange"])) {
 
-  $sql = "UPDATE UserInfo SET lastName = '$newLastName' WHERE id = '$userID'";
-  mysqli_query($conn, $sql);
+    // Update first and last name in database
+    $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
+    $oldUser = mysqli_fetch_array(mysqli_query($conn, $sql));
+    $newFirstName = filter_input(
+      INPUT_POST, "firstNameChange", FILTER_SANITIZE_STRING);
+    $newLastName = filter_input(
+      INPUT_POST, "lastNameChange", FILTER_SANITIZE_STRING);
 
-  // Change the name of the user's main folder to reflect new name
-  $oldUserFolderFullPath = "../../../mnt/Raid1Array/Corvin/" . $userID .
-    " - " . $oldUser[0] . $oldUser[1];
-  $oldUserRecycleFolderFullPath = "../../../mnt/Raid1Array/Corvin/0 - Recycle/" .
-    $userID . " - " . $oldUser[0] . $oldUser[1];
-  $user = array($newFirstName, $newLastName);
-  $newUserFolderName = $userID . " - " . $user[0] . $user[1];
-  $newSanitizedUserFolderName = filter_var(
-    $newUserFolderName, FILTER_SANITIZE_STRING);
-  $newUserFolderFullPath = "../../../mnt/Raid1Array/Corvin/" .
-    $newSanitizedUserFolderName;
-  $newUserRecycleFolderFullPath =
-    "../../../mnt/Raid1Array/Corvin/0 - Recycle/" .
-    $newSanitizedUserFolderName;
+    $sql = "UPDATE UserInfo SET firstName = '$newFirstName' WHERE id = '$userID'";
+    mysqli_query($conn, $sql);
 
-  if (rename($oldUserFolderFullPath, $newUserFolderFullPath)) {
-    if (rename($oldUserRecycleFolderFullPath, $newUserRecycleFolderFullPath)) {
+    $sql = "UPDATE UserInfo SET lastName = '$newLastName' WHERE id = '$userID'";
+    mysqli_query($conn, $sql);
 
-      echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
+    // Change the name of the user's main folder to reflect new name
+    $oldUserFolderFullPath = "../../../mnt/Raid1Array/Corvin/" . $userID .
+      " - " . $oldUser[0] . $oldUser[1];
+    $oldUserRecycleFolderFullPath = "../../../mnt/Raid1Array/Corvin/0 - Recycle/" .
+      $userID . " - " . $oldUser[0] . $oldUser[1];
+    $user = array($newFirstName, $newLastName);
+    $newUserFolderName = $userID . " - " . $user[0] . $user[1];
+    $newSanitizedUserFolderName = filter_var(
+      $newUserFolderName, FILTER_SANITIZE_STRING);
+    $newUserFolderFullPath = "../../../mnt/Raid1Array/Corvin/" .
+      $newSanitizedUserFolderName;
+    $newUserRecycleFolderFullPath =
+      "../../../mnt/Raid1Array/Corvin/0 - Recycle/" .
+      $newSanitizedUserFolderName;
+
+    if (rename($oldUserFolderFullPath, $newUserFolderFullPath)) {
+      if (rename($oldUserRecycleFolderFullPath, $newUserRecycleFolderFullPath)) {
+
+        echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
+      }
+      else {echo "There was a problem renaming your recycle folder.";}
     }
-    else {echo "There was a problem renaming your recycle folder.";}
+    else {echo "There was a problem renaming your main folder.";}
   }
-  else {echo "There was a problem renaming your main folder.";}
+  // Else, if email change POST data is set
+  elseif (isset($_POST["emailChange"])) {
+
+    // Update email in database
+    $newEmail = filter_input(INPUT_POST, "emailChange", FILTER_SANITIZE_EMAIL);
+
+    $sql = "UPDATE UserInfo SET email = '$newEmail' WHERE id = '$userID'";
+    mysqli_query($conn, $sql);
+
+    echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
+  }
+  // Else, if username POST data is set
+  elseif (isset($_POST["usernameChange"])) {
+
+    // Update username in database
+    $newUsername = filter_input(
+      INPUT_POST, "usernameChange", FILTER_SANITIZE_STRING);
+
+    $sql = "UPDATE UserInfo SET username = '$newUsername' WHERE id = '$userID'";
+    mysqli_query($conn, $sql);
+
+    echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
+  }
+  else {
+    echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
+  }
 }
-// Else, if email change POST data is set
-elseif (isset($_POST["emailChange"])) {
-
-  // Update email in database
-  $newEmail = filter_input(INPUT_POST, "emailChange", FILTER_SANITIZE_EMAIL);
-
-  $sql = "UPDATE UserInfo SET email = '$newEmail' WHERE id = '$userID'";
-  mysqli_query($conn, $sql);
-
-  echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
-}
-// Else, if username POST data is set
-elseif (isset($_POST["usernameChange"])) {
-
-  // Update username in database
-  $newUsername = filter_input(
-    INPUT_POST, "usernameChange", FILTER_SANITIZE_STRING);
-
-  $sql = "UPDATE UserInfo SET username = '$newUsername' WHERE id = '$userID'";
-  mysqli_query($conn, $sql);
-
-  echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
-}
-else {
-  echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
-}
+else {echo "Incorrect password.";}
 ?>

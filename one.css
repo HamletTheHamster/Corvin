@@ -1547,16 +1547,20 @@ p.settingsHeader {
   transition: 250ms;
 }
 
+.settingsNamePasswordVerifyTextBox {
+  margin-left: 16px;
+}
+
 .settingsFirstNameChangeTextBox {
-  margin-left: 257px;
+  margin-left: 15px;
 }
 
 .settingsLastNameChangeTextBox {
   margin-left: 15px;
 }
 
-.settingsFirstNameChangeTextBox, .settingsLastNameChangeTextBox {
-  width: 250px;
+.settingsFirstNameChangeTextBox, .settingsLastNameChangeTextBox, .settingsNamePasswordVerifyTextBox {
+  width: 238px;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
   border-radius: 4px;
@@ -1568,7 +1572,7 @@ p.settingsHeader {
   background-color: rgba(0, 130, 140, 0.06);
 }
 
-.settingsFirstNameChangeTextBox:focus, .settingsLastNameChangeTextBox:focus {
+.settingsFirstNameChangeTextBox:focus, .settingsLastNameChangeTextBox:focus, .settingsNamePasswordVerifyTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
 }
@@ -1605,6 +1609,25 @@ p.settingsHeader {
   outline: none;
 }
 
+.settingsEmailPasswordVerifyTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  margin-left: 257px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.settingsEmailPasswordVerifyTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
 .settingsEmailChangeTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -1612,7 +1635,7 @@ p.settingsHeader {
   border-radius: 4px;
   float: left;
   font-size: 18px;
-  margin-left: 534px;
+  margin-left: 15px;
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
@@ -1624,6 +1647,25 @@ p.settingsHeader {
   border-color: rgba(23, 23, 23, 0.85);
 }
 
+.settingsUsernamePasswordVerifyTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  margin-left: 257px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.settingsUsernamePasswordVerifyTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
 .settingsUsernameChangeTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -1631,7 +1673,7 @@ p.settingsHeader {
   border-radius: 4px;
   float: left;
   font-size: 18px;
-  margin-left: 534px;
+  margin-left: 15px;
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
