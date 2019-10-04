@@ -122,30 +122,35 @@ if (is_readable($fullPath)) {
     );
 
   foreach ($files as $name => $file) {
-  // Skip directories (they would be added automatically)
-  if (!$file->isDir()) {
-  // Get real and relative path for current file
-  $filePath = $file->getrealPath();
-  echo "filePath: " . $filePath . "<br>";
-  $relativePath = substr($filePath, strlen($realPath) + 1);
-  echo "relativePath: " . $relativePath . "<br>";
+    // Skip directories (they would be added automatically)
+    if (!$file->isDir()) {
+      // Get real and relative path for current file
+      $filePath = $file->getrealPath();
+      echo "filePath: " . $filePath . "<br>";
+      $relativePath = substr($filePath, strlen($realPath) + 1);
+      echo "relativePath: " . $relativePath . "<br>";
 
-  // Add current file to archive
-  $zip->addFile($filePath, $relativePath);
-  }
+      // Add current file to archive
+      $zip->addFile($filePath, $relativePath);
+    }
   }
 
-  // Zip archive will be created only after closing object
-  $zip->close();
+  //IDEAS TO FIX ZIP GARBAGE DUMP ON LARGE ZIP FOLDERS
+  //increase script execution time, other php.ini settings
+  //close and reopen ZipArchive after n files added (only so many might be
+  // allowed open at once, closing and reopening forces the thus far added filesize
+  // to be compressed and added before adding more)
+  //cap the maximum file size or number of files allowed in a single zip file
+  // and move on to the next zip file for the rest.
 
   // State headers
   header("Content-Description: File Transfer");
   header("Content-Type: application/octet-stream");
-  header("Content-Disposition: attachment; filename = '" .
-  basename($zipfilename) . "'");
+  header("Content-Disposition: attachment; filename = " .
+    basename($zipfilename));
   header('Content-Transfer-Encoding: binary');
   header('Expires: 0');
-  header('Cache-Control: must-revalidate, ' . 'post-check=0, pre-check=0');
+  header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
   header('Pragma: public');
   header('Content-Length: ' . filesize($zipfilename));
   ob_clean();
