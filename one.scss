@@ -1,0 +1,1609 @@
+/* _login Coded by: Joel N. Johnson */
+html.login, body.login {
+  background-color: #fefefe;
+  height: 100%;
+  margin: 0;
+  font-family: "Square Market", Helvetica, sans-serif; }
+
+.loginCenter {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+
+.loginFooter, .loginPush {
+  height: 20px;
+  width: 100%;
+  position: absolute;
+  bottom: 0; }
+
+.loginFootCenter {
+  width: 100%;
+  text-align: center; }
+
+.loginTopBar {
+  margin: 0;
+  width: 100%;
+  float: left; }
+
+.loginCorvin {
+  color: rgba(23, 23, 23, 0.85);
+  float: left;
+  top: 50%;
+  left: 50%;
+  position: relative;
+  transform: translate(-50%, -50%);
+  line-height: .5em;
+  font-weight: 600;
+  font-size: 120px;
+  font-family: "Square Market", Helvetica, sans-serif; }
+
+.loginCorvin:hover {
+  color: #00828c;
+  transition: 250ms;
+  cursor: default; }
+
+.loginCorvinHeader {
+  color: black;
+  font-family: "Square Market", Helvetica, sans-serif;
+  font-size: 25px;
+  line-height: 0; }
+
+img.loginCorvin {
+  width: 500px;
+  padding-left: 70%; }
+
+.loginUser {
+  float: right;
+  width: 40%; }
+
+p.loginUser {
+  text-align: right;
+  line-height: .5em;
+  padding-right: 25px;
+  font-size: 30px; }
+
+#loginLogin {
+  text-align: center;
+  font-family: "Square Market", Helvetica, sans-serif;
+  font-size: 18px;
+  color: rgba(23, 23, 23, 0.85); }
+
+.loginTextBox {
+  width: 300px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  font-size: 18px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06); }
+
+.loginTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85); }
+
+.loginLoginButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative; }
+
+.loginLoginButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer; }
+
+.loginLoginButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms; }
+
+.loginLoginButton:focus {
+  outline: none; }
+
+.loginNewUserButton {
+  float: right;
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-top: 30px;
+  margin-right: 35px;
+  vertical-align: middle;
+  position: relative; }
+
+.loginNewUserButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer; }
+
+.loginNewUserButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms; }
+
+.loginNewUserButton:focus {
+  outline: none; }
+
+.loginBackToLoginButton {
+  float: right;
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-top: 30px;
+  margin-right: 35px;
+  vertical-align: middle;
+  position: relative; }
+
+.loginBackToLoginButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer; }
+
+.loginBackToLoginButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms; }
+
+.loginBackToLoginButton:focus {
+  outline: none; }
+
+h1.login {
+  color: black;
+  font-family: "Square Market", Helvetica, sans-serif;
+  font-size: 25px;
+  line-height: 0; }
+
+p.login {
+  font-family: "Square Market", Helvetica, sans-serif;
+  font-size: 20px; }
+
+.loginFooter {
+  font-family: "Square Market", Helvetica, sans-serif;
+  font-size: 15px;
+  text-align: center; }
+
+/* _newUser Coded by: Joel N. Johnson */
+html.newUser, body.newUser {
+  background-color: #fefefe;
+  margin: 0;
+  min-height: 100%;
+  position: relative;
+  font-family: "Square Market", Helvetica, sans-serif; }
+
+.newUserBackToLoginButton {
+  float: right;
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-top: 30px;
+  margin-right: 35px;
+  vertical-align: middle;
+  position: relative; }
+
+.newUserBackToLoginButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer; }
+
+.newUserBackToLoginButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms; }
+
+.newUserBackToLoginButton:focus {
+  outline: none; }
+
+.newUserContainer {
+  margin-bottom: 20px; }
+
+.newUserTopBar {
+  margin-top: 5%;
+  width: 100%;
+  float: left; }
+
+.newUserCorvin {
+  color: rgba(23, 23, 23, 0.85);
+  float: left;
+  top: 50%;
+  left: 50%;
+  position: relative;
+  transform: translate(-50%, -50%);
+  line-height: .5em;
+  font-weight: 600;
+  font-size: 120px;
+  font-family: "Square Market", Helvetica, sans-serif;
+  margin-bottom: 5%; }
+
+.newUserCorvin:hover {
+  color: #00828c;
+  transition: 250ms;
+  cursor: default; }
+
+.newUserLogin {
+  text-align: center;
+  font-family: "Square Market", Helvetica, sans-serif;
+  font-size: 18px;
+  color: rgba(23, 23, 23, 0.85); }
+
+.newUserTextBox {
+  width: 300px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  font-size: 18px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06); }
+
+.newUserTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85); }
+
+.newUserLoginButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative; }
+
+.newUserLoginButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer; }
+
+.newUserPush {
+  height: 3%;
+  position: aboslute; }
+
+.newUserFooter {
+  position: absolute;
+  bottom: 0;
+  height: 20px;
+  font-family: "Square Market", Helvetica, sans-serif;
+  font-size: 15px;
+  text-align: center;
+  left: 50%;
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0); }
+
+/* _registerNewUser Coded by: Joel N. Johnson */
+html.registerNewUser, body.registerNewUser {
+  background-color: #fefefe;
+  height: 100%;
+  margin: 0;
+  font-family: "Square Market", Helvetica, sans-serif; }
+
+.registerNewUserCenter {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+
+.registerNewUserTopBar {
+  margin: 0;
+  width: 100%;
+  float: left; }
+
+.registerNewUserCorvin {
+  color: rgba(23, 23, 23, 0.85);
+  float: left;
+  top: 50%;
+  left: 50%;
+  position: relative;
+  transform: translate(-50%, -50%);
+  line-height: .5em;
+  font-weight: 600;
+  font-size: 120px;
+  font-family: "Square Market", Helvetica, sans-serif; }
+
+.registerNewUserCorvin:hover {
+  color: #00828c;
+  transition: 250ms;
+  cursor: default; }
+
+.registerNewUserLoginButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative; }
+
+.registerNewUserLoginButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer; }
+
+.registerNewUserLoginButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms; }
+
+.registerNewUserLoginButton:focus {
+  outline: none; }
+
+.registerNewUserPush {
+  height: 3%;
+  position: absolute; }
+
+.registerNewUserFooter {
+  position: absolute;
+  bottom: 0;
+  height: 20px;
+  font-family: "Square Market", Helvetica, sans-serif;
+  font-size: 15px;
+  text-align: center;
+  left: 50%;
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0); }
+
+.registerNewUserFootCenter {
+  width: 100%;
+  text-align: center; }
+
+/* _home Coded by: Joel N. Johnson */
+html.home, body.home {
+  background-color: #fefefe;
+  height: 100%;
+  margin: 0;
+  font-family: "Square Market", Helvetica, sans-serif;
+  color: rgba(23, 23, 23, 0.85); }
+
+.homeWrapper {
+  min-height: calc(100% - 20px);
+  height: auto; }
+
+.homeTopBar {
+  margin-bottom: 200px;
+  width: 100%;
+  height: 85px; }
+
+.homeCorvin {
+  float: left;
+  width: 94%; }
+
+.homeCorvinHeader {
+  color: rgba(23, 23, 23, 0.85);
+  font-family: "Square Market", Helvetica, sans-serif;
+  margin-top: 30px;
+  margin-left: 35px;
+  line-height: .5em;
+  font-weight: 600;
+  font-size: 50px;
+  display: inline-block; }
+
+.homeCorvinHeader:hover {
+  color: #00828c;
+  cursor: pointer; }
+
+.homeCorvinHeader:active {
+  /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/ }
+
+.homeCorvinHeader:focus {
+  outline: none;
+  text-shadow: none; }
+
+.homeAccountMenuDropDown {
+  position: absolute;
+  display: inline-block;
+  float: right; }
+
+p.homeAccountButton {
+  color: rgba(23, 23, 23, 0.85);
+  text-align: right;
+  margin-right: 35px;
+  margin-top: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  float: right;
+  display: inline-block; }
+
+p.homeAccountButton:hover {
+  color: #00828c;
+  cursor: pointer; }
+
+.homeAccountMenuContent {
+  display: none;
+  position: absolute;
+  right: 20px;
+  margin-top: 60px;
+  background-color: #fefefe;
+  min-width: 260px;
+  border-radius: 6px;
+  border-width: thin;
+  border-color: rgba(23, 23, 23, 0.25);
+  box-shadow: 0 2px 4px 0 rgba(23, 23, 23, 0.1);
+  z-index: 2; }
+
+a.homeAccountMenuContent {
+  color: rgba(23, 23, 23, 0.85);
+  margin-right: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  display: block; }
+
+a.homeAccountMenuContent:hover {
+  color: #00828c;
+  background-color: rgba(0, 130, 140, 0.06);
+  cursor: pointer; }
+
+.homeTopAccountMenuContent {
+  height: 150px; }
+
+.homeAccountMenuName {
+  color: rgba(23, 23, 23, 0.85);
+  float: right;
+  padding-right: 20px;
+  text-align: right;
+  font-size: 18px; }
+
+.homeDiskSpace {
+  text-align: right;
+  padding-right: 20px;
+  margin-top: 50px; }
+
+p.homeDiskSpace {
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif; }
+
+.homeMenuLine {
+  margin: 35px 10px; }
+
+hr.homeMenuLine {
+  color: rgba(23, 23, 23, 0.25); }
+
+a.homeGetMoreSpaceMenuItem {
+  color: #009aa4;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block; }
+
+a.homeGetMoreSpaceMenuItem:hover {
+  color: #009aa4;
+  background-color: rgba(0, 130, 140, 0.06);
+  cursor: pointer; }
+
+a.homeMenuItem {
+  color: rgba(23, 23, 23, 0.85);
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block; }
+
+a.homeMenuItem:hover {
+  color: #009aa4;
+  background-color: rgba(0, 130, 140, 0.06);
+  cursor: pointer; }
+
+.homeShow {
+  display: block; }
+
+.homeMainContent {
+  padding-left: 12.5%;
+  padding-right: 12.5%;
+  z-index: 1; }
+
+.homeCustomFileUpload {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  float: left;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative; }
+
+.homeCustomFileUpload:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer; }
+
+.homeCustomFileUpload:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms;
+  outline: none; }
+
+.homeCustomFileUpload:focus {
+  outline: none; }
+
+input[type="file"] {
+  display: none; }
+
+.homeUploadButton {
+  display: none;
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  float: left;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative; }
+
+.homeUploadButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none; }
+
+.homeUploadButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none; }
+
+.homeUploadButton:focus {
+  outline: none; }
+
+.homeCreateFolderButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  float: left;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative; }
+
+.homeCreateFolderButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none; }
+
+.homeCreateFolderButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none; }
+
+.homeCreateFolderButton:focus {
+  outline: none; }
+
+.homeRecentlyDeletedItems {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  float: left;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative; }
+
+.homeRecentlyDeletedItems:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer; }
+
+.homeRecentlyDeletedItems:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms; }
+
+.homeRecentlyDeletedItems:focus {
+  outline: none; }
+
+.homeDirectoryPath {
+  font-size: 30px; }
+
+p, a.homeDirectoryPath {
+  float: left;
+  color: rgba(23, 23, 23, 0.85); }
+
+.homeDirectory {
+  width: 90%;
+  margin-left: 5%;
+  border-radius: 10px; }
+
+.homeFileNames {
+  max-width: 85%;
+  float: left;
+  font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+a.homeFileNames {
+  text-decoration: none;
+  color: #000000; }
+
+.homeFolders {
+  float: left; }
+
+.homeDownloadButtonForm {
+  float: left;
+  margin-left: 5px;
+  position: relative; }
+
+.homeDownloadButton {
+  opacity: 0;
+  transition: opacity .25s ease;
+  width: 14px;
+  border: none;
+  display: inline-block;
+  padding: 1px 1px;
+  background: transparent;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative; }
+
+.homeDownloadButton:hover {
+  -webkit-filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
+  cursor: pointer; }
+
+.homeDownloadButton:focus {
+  box-shadow: none;
+  outline: none; }
+
+.homeDownloadButton:active {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  outline: none; }
+
+.homeRenameButtonForm {
+  position: relative;
+  margin-left: 3px;
+  float: left; }
+
+.homeRenameButton {
+  opacity: 0;
+  transition: opacity .25s ease;
+  border: none;
+  height: 17px;
+  background: transparent;
+  display: inline-block;
+  padding: 1px 1px;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative; }
+
+.homeRenameButton:hover {
+  -webkit-filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
+  cursor: pointer; }
+
+.homeRenameButton:focus {
+  box-shadow: none;
+  outline: none; }
+
+.homeRenameButton:active {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  outline: none; }
+
+.homeRenameTextField {
+  position: relative;
+  margin-left: 3px;
+  float: left; }
+
+.homeRenameTextField {
+  display: none;
+  padding-right: 3px; }
+
+.homeRecycleButtonForm {
+  position: relative;
+  margin-left: 3px;
+  padding-top: 1px;
+  float: left; }
+
+.homeRecycleButton {
+  opacity: 0;
+  transition: opacity .25s ease;
+  width: 13px;
+  background: transparent;
+  border: none;
+  margin-top: 3px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative;
+  float: left; }
+
+.homeRecycleButton:hover {
+  -webkit-filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
+  cursor: pointer; }
+
+.homeRecycleButton:focus {
+  box-shadow: none;
+  outline: none; }
+
+.homeRecycleButton:active {
+  -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.4));
+  outline: none; }
+
+.homeFileNames:hover .homeDownloadButton {
+  opacity: 1; }
+
+.homeFileNames:hover .homeRenameButton {
+  opacity: 1; }
+
+.homeFileNames:hover .homeRecycleButton {
+  opacity: 1; }
+
+.homeFileSizes {
+  float: right;
+  font-size: 20px; }
+
+.homeHeath {
+  background-color: rgba(240, 240, 240, 0.5);
+  border-radius: 2px;
+  font-size: 20px;
+  margin-top: 5px; }
+
+.homeFiles {
+  float: left; }
+
+.homeFooter, .homePush {
+  height: 20px; }
+
+.homeFooter {
+  font-family: "Square Market", Helvetica, sans-serif;
+  font-size: 15px;
+  text-align: center; }
+
+a {
+  text-decoration: none;
+  color: #000000; }
+
+/* _recycleBin Coded by: Joel N. Johnson */
+html.recycleBin, body.recycleBin {
+  background-color: #fefefe;
+  height: 100%;
+  margin: 0;
+  font-family: "Square Market", Helvetica, sans-serif;
+  color: rgba(23, 23, 23, 0.85); }
+
+.recycleBinWrapper {
+  min-height: calc(100% - 20px);
+  height: auto; }
+
+.recycleBinTopBar {
+  margin-bottom: 200px;
+  width: 100%;
+  height: 85px; }
+
+.recycleBinCorvin {
+  float: left;
+  width: 94%; }
+
+.recycleBinCorvinHeader {
+  color: rgba(23, 23, 23, 0.85);
+  font-family: "Square Market", Helvetica, sans-serif;
+  margin-top: 30px;
+  margin-left: 35px;
+  line-height: .5em;
+  font-weight: 600;
+  font-size: 50px;
+  display: inline-block; }
+
+.recycleBinCorvinHeader:hover {
+  color: #00828c;
+  cursor: pointer; }
+
+.recycleBinCorvinHeader:active {
+  /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/ }
+
+.recycleBinCorvinHeader:focus {
+  outline: none;
+  text-shadow: none; }
+
+.recycleBinAccountMenuDropDown {
+  position: absolute;
+  display: inline-block;
+  float: right; }
+
+p.recycleBinAccountButton {
+  color: rgba(23, 23, 23, 0.85);
+  text-align: right;
+  margin-right: 35px;
+  margin-top: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  float: right;
+  display: inline-block; }
+
+p.recycleBinAccountButton:hover {
+  color: #00828c;
+  cursor: pointer; }
+
+.recycleBinAccountMenuContent {
+  display: none;
+  position: absolute;
+  right: 20px;
+  margin-top: 60px;
+  background-color: #fefefe;
+  min-width: 260px;
+  border-radius: 6px;
+  border-width: thin;
+  border-color: rgba(23, 23, 23, 0.25);
+  box-shadow: 0 2px 4px 0 rgba(23, 23, 23, 0.1);
+  z-index: 2; }
+
+a.recycleBinAccountMenuContent {
+  color: rgba(23, 23, 23, 0.85);
+  margin-right: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  display: block; }
+
+a.recycleBinAccountMenuContent:hover {
+  color: #00828c;
+  background-color: rgba(0, 130, 140, 0.06);
+  cursor: pointer; }
+
+.recycleBinTopAccountMenuContent {
+  height: 150px; }
+
+.recycleBinAccountMenuName {
+  color: rgba(23, 23, 23, 0.85);
+  float: right;
+  padding-right: 20px;
+  text-align: right;
+  font-size: 18px; }
+
+.recycleBinDiskSpace {
+  text-align: right;
+  padding-right: 20px;
+  margin-top: 50px; }
+
+p.recycleBinDiskSpace {
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif; }
+
+.recycleBinMenuLine {
+  margin: 35px 10px; }
+
+hr.recycleBinMenuLine {
+  color: rgba(23, 23, 23, 0.25); }
+
+a.recycleBinGetMoreSpaceMenuItem {
+  color: #009aa4;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block; }
+
+a.recycleBinGetMoreSpaceMenuItem:hover {
+  color: #009aa4;
+  background-color: rgba(0, 130, 140, 0.06);
+  cursor: pointer; }
+
+a.recycleBinMenuItem {
+  color: rgba(23, 23, 23, 0.85);
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block; }
+
+a.recycleBinMenuItem:hover {
+  color: #009aa4;
+  background-color: rgba(0, 130, 140, 0.06);
+  cursor: pointer; }
+
+.recycleBinShow {
+  display: block; }
+
+.recycleBinMainContent {
+  padding-left: 12.5%;
+  padding-right: 12.5%;
+  z-index: 1; }
+
+.recycleBinRecentlyDeletedItems {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  float: left;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative; }
+
+.recycleBinRecentlyDeletedItems:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer; }
+
+.recycleBinRecentlyDeletedItems:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms; }
+
+.recycleBinRecentlyDeletedItems:focus {
+  outline: none; }
+
+.recycleBinDirectoryPath {
+  font-size: 30px; }
+
+p, a.recycleBinDirectoryPath {
+  float: left;
+  color: rgba(23, 23, 23, 0.85); }
+
+.recycleBinDirectory {
+  width: 90%;
+  margin-left: 5%;
+  border-radius: 10px; }
+
+.recycleBinFileNames {
+  max-width: 85%;
+  float: left;
+  font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.recycleBinFolders {
+  float: left; }
+
+a.recycleBinFileNames {
+  text-decoration: none;
+  color: #000000; }
+
+.recycleBinDownloadButtonForm {
+  float: left;
+  margin-left: 5px;
+  position: relative; }
+
+.recycleBinRenameButtonForm {
+  position: relative;
+  margin-left: 3px;
+  float: left; }
+
+.recycleBinDownloadButton {
+  opacity: 0;
+  transition: opacity .25s ease;
+  width: 14px;
+  border: none;
+  display: inline-block;
+  padding: 1px 1px;
+  background: transparent;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative; }
+
+.recycleBinDownloadButton:hover {
+  -webkit-filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
+  cursor: pointer; }
+
+.recycleBinDownloadButton:focus {
+  box-shadow: none;
+  outline: none; }
+
+.recycleBinDownloadButton:active {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  outline: none; }
+
+.recycleBinFileNames:hover .recycleBinDownloadButton {
+  opacity: 1; }
+
+.recycleBinFileSizes {
+  float: right;
+  font-size: 20px; }
+
+.recycleBinHeath {
+  background-color: rgba(240, 240, 240, 0.5);
+  border-radius: 2px;
+  font-size: 20px;
+  margin-top: 5px; }
+
+.recycleBinFiles {
+  float: left; }
+
+.recycleBinFooter, .recycleBinPush {
+  height: 20px; }
+
+.recycleBinFooter {
+  font-family: "Square Market", Helvetica, sans-serif;
+  font-size: 15px;
+  text-align: center; }
+
+/* _settings Coded by: Joel N. Johnson */
+html.settings, body.settings {
+  background-color: #fefefe;
+  height: 100%;
+  margin: 0;
+  font-family: "Square Market", Helvetica, sans-serif;
+  color: rgba(23, 23, 23, 0.85); }
+
+.settingsWrapper {
+  min-height: calc(100% - 20px);
+  height: auto; }
+
+.settingsTopBar {
+  margin-bottom: 200px;
+  width: 100%;
+  height: 85px; }
+
+.settingsCorvin {
+  float: left;
+  width: 94%; }
+
+.settingsCorvinHeader {
+  color: rgba(23, 23, 23, 0.85);
+  font-family: "Square Market", Helvetica, sans-serif;
+  margin-top: 30px;
+  margin-left: 35px;
+  line-height: .5em;
+  font-weight: 600;
+  font-size: 50px;
+  display: inline-block; }
+
+.settingsCorvinHeader:hover {
+  color: #00828c;
+  cursor: pointer; }
+
+.settingsCorvinHeader:active {
+  /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/ }
+
+.settingsCorvinHeader:focus {
+  outline: none;
+  text-shadow: none; }
+
+.settingsAccountMenuDropDown {
+  position: absolute;
+  display: inline-block;
+  float: right; }
+
+p.settingsAccountButton {
+  color: rgba(23, 23, 23, 0.85);
+  text-align: right;
+  margin-right: 35px;
+  margin-top: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  float: right;
+  display: inline-block; }
+
+p.settingsAccountButton:hover {
+  color: #00828c;
+  cursor: pointer; }
+
+.settingsAccountMenuContent {
+  display: none;
+  position: absolute;
+  right: 20px;
+  margin-top: 60px;
+  background-color: #fefefe;
+  min-width: 260px;
+  border-radius: 6px;
+  border-width: thin;
+  border-color: rgba(23, 23, 23, 0.25);
+  box-shadow: 0 2px 4px 0 rgba(23, 23, 23, 0.1);
+  z-index: 2; }
+
+a.settingsAccountMenuContent {
+  color: rgba(23, 23, 23, 0.85);
+  margin-right: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  display: block; }
+
+a.settingsAccountMenuContent:hover {
+  color: #00828c;
+  background-color: rgba(0, 130, 140, 0.06);
+  cursor: pointer; }
+
+.settingsTopAccountMenuContent {
+  height: 150px; }
+
+.settingsAccountMenuName {
+  color: rgba(23, 23, 23, 0.85);
+  float: right;
+  padding-right: 20px;
+  text-align: right;
+  font-size: 18px; }
+
+.settingsDiskSpace {
+  text-align: right;
+  padding-right: 20px;
+  margin-top: 50px; }
+
+p.settingsDiskSpace {
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif; }
+
+.settingsMenuLine {
+  margin: 35px 10px; }
+
+hr.settingsMenuLine {
+  color: rgba(23, 23, 23, 0.25); }
+
+a.settingsGetMoreSpaceMenuItem {
+  color: #009aa4;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block; }
+
+a.settingsGetMoreSpaceMenuItem:hover {
+  color: #009aa4;
+  background-color: rgba(0, 130, 140, 0.06);
+  cursor: pointer; }
+
+a.settingsMenuItem {
+  color: rgba(23, 23, 23, 0.85);
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block; }
+
+a.settingsMenuItem:hover {
+  color: #009aa4;
+  background-color: rgba(0, 130, 140, 0.06);
+  cursor: pointer; }
+
+.settingsShow {
+  display: block; }
+
+.settingsMainContent {
+  padding-left: 12.5%;
+  padding-right: 12.5%;
+  z-index: 1; }
+
+.settingsGetMoreSpaceButton {
+  background-color: #00828c;
+  border-width: thin;
+  color: #fefefe;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  margin: auto;
+  display: block;
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative; }
+
+.settingsGetMoreSpaceButton:hover {
+  background-color: #009aa4;
+  cursor: pointer;
+  box-shadow: none; }
+
+.settingsGetMoreSpaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  outline: none; }
+
+.settingsGetMoreSpaceButton:focus {
+  outline: none; }
+
+.settingsHeader {
+  font-size: 30px;
+  height: 100px; }
+
+p.settingsHeader {
+  color: rgba(23, 23, 23, 0.85); }
+
+.settingsContent {
+  width: 960px;
+  margin: 0 auto;
+  font-size: 20px; }
+
+.settingsFirstHeader {
+  font-size: 20px;
+  font-weight: bold; }
+
+.settingsSetting {
+  height: 50px;
+  margin-top: -10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+  border-radius: 5px;
+  cursor: pointer; }
+
+.settingsSetting:hover {
+  background-color: rgba(0, 130, 140, 0.06); }
+
+.settingsSettingWithButton {
+  height: 50px;
+  margin-top: -10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  margin-bottom: -10px; }
+
+.settingsLeftItemBox {
+  float: left;
+  height: 50px;
+  width: 50%; }
+
+.settingsItem {
+  text-align: left; }
+
+.settingsRightItemBox {
+  float: right;
+  height: 50px;
+  width: 50%; }
+
+.settingsValue {
+  float: right;
+  text-align: right; }
+
+.settingsDropdownSetting {
+  height: 75px;
+  margin-top: 25px;
+  transition: 250ms; }
+
+.settingsNamePasswordVerifyTextBox {
+  margin-left: 16px; }
+
+.settingsFirstNameChangeTextBox {
+  margin-left: 15px; }
+
+.settingsLastNameChangeTextBox {
+  margin-left: 15px; }
+
+.settingsFirstNameChangeTextBox, .settingsLastNameChangeTextBox, .settingsNamePasswordVerifyTextBox {
+  width: 238px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06); }
+
+.settingsFirstNameChangeTextBox:focus, .settingsLastNameChangeTextBox:focus, .settingsNamePasswordVerifyTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85); }
+
+.settingsSaveChangesButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  margin-left: 15px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative; }
+
+.settingsSaveChangesButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer; }
+
+.settingsSaveChangesButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms; }
+
+.settingsSaveChangesButton:focus {
+  outline: none; }
+
+.settingsEmailPasswordVerifyTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  margin-left: 257px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06); }
+
+.settingsEmailPasswordVerifyTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85); }
+
+.settingsProfileImage {
+  width: 45px;
+  border-radius: 4px;
+  margin-top: 7px; }
+
+.settingsEmailChangeTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  margin-left: 15px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06); }
+
+.settingsEmailChangeTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85); }
+
+.settingsUsernamePasswordVerifyTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  margin-left: 257px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06); }
+
+.settingsUsernamePasswordVerifyTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85); }
+
+.settingsUsernameChangeTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  margin-left: 15px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06); }
+
+.settingsUsernameChangeTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85); }
+
+.settingsChangePasswordButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  margin-top: 13px;
+  border-radius: 4px;
+  position: relative; }
+
+.settingsChangePasswordButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer; }
+
+.settingsChangePasswordButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms; }
+
+.settingsChangePasswordButton:focus {
+  outline: none; }
+
+.settingsSpace {
+  height: 100px;
+  margin-top: -10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  margin-bottom: -10px; }
+
+.settingsHeaders {
+  font-size: 20px;
+  font-weight: bold; }
+
+.settingsDarkModeButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  margin-top: 13px;
+  border-radius: 4px;
+  position: relative; }
+
+.settingsDarkModeButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer; }
+
+.settingsDarkModeButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms; }
+
+.settingsDarkModeButton:focus {
+  outline: none; }
+
+.settingsLedgerSizeButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  margin-top: 13px;
+  border-radius: 4px;
+  position: relative; }
+
+.settingsLedgerSizeButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer; }
+
+.settingsLedgerSizeButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms; }
+
+.settingsLedgerSizeButton:focus {
+  outline: none; }
+
+.settingsDateFormatButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  margin-top: 13px;
+  border-radius: 4px;
+  position: relative; }
+
+.settingsDateFormatButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer; }
+
+.settingsDateFormatButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms; }
+
+.settingsDateFormatButton:focus {
+  outline: none; }
+
+.settingsDeleteAccountButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  margin-top: 13px;
+  border-radius: 4px;
+  position: relative; }
+
+.settingsDeleteAccountButton:hover {
+  background-color: #b42121;
+  color: white;
+  cursor: pointer; }
+
+.settingsDeletAccountButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms; }
+
+.settingsDeleteAccountButton:focus {
+  outline: none; }
+
+.settingsFooter, .settingsPush {
+  height: 200px; }
+
+.settingsFooter {
+  font-family: "Square Market", Helvetica, sans-serif;
+  font-size: 15px;
+  text-align: center; }
+
+/*# sourceMappingURL=one.scss.map */
