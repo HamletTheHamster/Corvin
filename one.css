@@ -1628,6 +1628,12 @@ p.settingsHeader {
   border-color: rgba(23, 23, 23, 0.85);
 }
 
+.settingsProfileImage {
+  width: 45px;
+  border-radius: 4px;
+  margin-top: 7px;
+}
+
 .settingsEmailChangeTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -1789,6 +1795,37 @@ p.settingsHeader {
 }
 
 .settingsLedgerSizeButton:focus {
+  outline: none;
+}
+
+.settingsDateFormatButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  margin-top: 13px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.settingsDateFormatButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer;
+}
+
+.settingsDateFormatButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms;
+}
+
+.settingsDateFormatButton:focus {
   outline: none;
 }
 

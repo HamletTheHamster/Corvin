@@ -293,6 +293,36 @@ elseif (time() - $_SESSION['Created'] > 1200)
       </script>
       <hr>
 
+      <!-- Profile Picture -->
+      <div class = "settingsSettingWithButton">
+        <div class = "settingsLeftItemBox">
+          <div class = "settingsItem">
+            <p>Profile Picture</p>
+          </div>
+        </div>
+        <div class = "settingsRightItemBox">
+          <div class = "settingsValue">
+            <?php
+            $uploadedProfileImage =
+              "../../../../mnt/Raid1Array/Corvin/00 - Profile Images/" .
+              $userID . " - " . $user[0] . $user[1] . ".jpg";
+            $defaultProfileImage =
+              "Art/1 - Default Profile Icons/Corvin Castle Icon" .
+              ($userID % 10) . ".jpg";
+            if (file_exists($uploadedProfileImage)) {
+              echo "<img class = 'settingsProfileImage' src = '" .
+                $uploadedProfileImage . "'>";
+            }
+            else {
+              echo "<img class = 'settingsProfileImage' src = '" .
+                $defaultProfileImage . "'>";
+            }
+            ?>
+          </div>
+        </div>
+      </div>
+      <hr>
+
       <!-- Email -->
       <div onclick = "toggleEmailDropdown()" class = "settingsSetting">
         <div class = "settingsLeftItemBox">
@@ -440,7 +470,9 @@ elseif (time() - $_SESSION['Created'] > 1200)
 
       <!-- Space -->
       <div class = "settingsSpace"></div>
-      <h class = "settingsHeaders">Visual Settings</h>
+
+      <!-- Preferences -->
+      <h class = "settingsHeaders">Preferences</h>
       <hr>
 
       <!-- Dark Mode -->
@@ -457,6 +489,8 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
       </div>
       <hr>
+
+      <!-- Ledger Size -->
       <div class = "settingsSettingWithButton">
         <div class = "settingsLeftItemBox">
           <div class = "settingsItem">
@@ -468,6 +502,162 @@ elseif (time() - $_SESSION['Created'] > 1200)
             <button class = "settingsLedgerSizeButton">Small</button>
             <button class = "settingsLedgerSizeButton">Medium</button>
             <button class = "settingsLedgerSizeButton">Large</button>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Date Format -->
+      <div class = "settingsSettingWithButton">
+        <div class = "settingsLeftItemBox">
+          <div class = "settingsItem">
+            <p>Date Format</p>
+          </div>
+        </div>
+        <div class = "settingsRightItemBox">
+          <div class = "settingsValue">
+            <?php //want today's date as examples ?>
+            <select class = "settingsDateFormatSelect">
+              <option selected value = "1">10/14/2019</option>
+              <option value = "2">14/10/2019</option>
+              <option value = "3">October 14th, 2019</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Time Zone -->
+      <div class = "settingsSettingWithButton">
+        <div class = "settingsLeftItemBox">
+          <div class = "settingsItem">
+            <p>Time Zone</p>
+          </div>
+        </div>
+        <div class = "settingsRightItemBox">
+          <div class = "settingsValue">
+            <select class = "settingsTimeZoneSelect">
+              <?php //loop through array of all time zones ?>
+              <option value = "(UTC-07:00) Arizona">(UTC-07:00) Arizona</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Language -->
+      <div class = "settingsSettingWithButton">
+        <div class = "settingsLeftItemBox">
+          <div class = "settingsItem">
+            <p>Language</p>
+          </div>
+        </div>
+        <div class = "settingsRightItemBox">
+          <div class = "settingsValue">
+            <select class = "settingsLanguageSelect">
+              <?php //loop through array of all supported languages ?>
+              <option value = "English (US)">English (US)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Corvin Beta Program -->
+      <div class = "settingsSettingWithButton">
+        <div class = "settingsLeftItemBox">
+          <div class = "settingsItem">
+            <p>Corvin Beta Program</p>
+          </div>
+        </div>
+        <div class = "settingsRightItemBox">
+          <div class = "settingsValue">
+            <select class = "settingsNewSignInEmailNotificationsSelect">
+              <option value = "1">Opt In for Early Releases</option>
+              <option value = "0">Opt Out</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Space -->
+      <div class = "settingsSpace"></div>
+
+      <!-- Notifications -->
+      <h class = "settingsHeaders">Notifications</h>
+      <hr>
+
+      <!-- New Sign-in -->
+      <div class = "settingsSettingWithButton">
+        <div class = "settingsLeftItemBox">
+          <div class = "settingsItem">
+            <p>New Sign-in</p>
+          </div>
+        </div>
+        <div class = "settingsRightItemBox">
+          <div class = "settingsValue">
+            <select class = "settingsNewSignInSelect">
+              <option selected value = "2">Most Secure (Recommended)</option>
+              <option value = "1">Standard</option>
+              <option value = "0">None</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Workspace File Changes -->
+      <div class = "settingsSettingWithButton">
+        <div class = "settingsLeftItemBox">
+          <div class = "settingsItem">
+            <p>Workspace File Changes</p>
+          </div>
+        </div>
+        <div class = "settingsRightItemBox">
+          <div class = "settingsValue">
+            <select class = "settingsFileChangesSelect">
+              <option value = "3">Notify Me of All File Changes</option>
+              <option value = "2">Notify Me Only of New File Uploads</option>
+              <option value = "1">Notify Me Only of File Renames</option>
+              <option selected value = "0">Do Not Notify Me of Any Changes</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <!-- New Workspace Member -->
+      <div class = "settingsSettingWithButton">
+        <div class = "settingsLeftItemBox">
+          <div class = "settingsItem">
+            <p>New Workspace Member</p>
+          </div>
+        </div>
+        <div class = "settingsRightItemBox">
+          <div class = "settingsValue">
+            <select class = "settingsNewWorkspaceMemberSelect">
+              <option value = "1">Notify Me</option>
+              <option selected value = "0">Do Not Notify Me</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Promotional -->
+      <div class = "settingsSettingWithButton">
+        <div class = "settingsLeftItemBox">
+          <div class = "settingsItem">
+            <p>Promotional Corvin News</p>
+          </div>
+        </div>
+        <div class = "settingsRightItemBox">
+          <div class = "settingsValue">
+            <select class = "settingsPromotionalCorvinNewsSelect">
+              <option value = "1">Notify Me of Corvin Promotional News</option>
+              <option selected value = "0">Do Not Notify Me</option>
+            </select>
           </div>
         </div>
       </div>

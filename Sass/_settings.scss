@@ -359,6 +359,12 @@ p.#{$o}Header {
   border-color: rgba(23, 23, 23, 0.85);
 }
 
+.#{$o}ProfileImage {
+  width: 45px;
+  border-radius: 4px;
+  margin-top: 7px;
+}
+
 .#{$o}EmailChangeTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -520,6 +526,37 @@ p.#{$o}Header {
 }
 
 .#{$o}LedgerSizeButton:focus {
+    outline: none;
+}
+
+.#{$o}DateFormatButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: rgb(0, 154, 164);
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  margin-top: 13px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.#{$o}DateFormatButton:hover {
+    background-color: rgba(0, 130, 140, 0.06);
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$o}DateFormatButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    border-color: rgb(0, 130, 140);
+    transition: 250ms;
+}
+
+.#{$o}DateFormatButton:focus {
     outline: none;
 }
 
