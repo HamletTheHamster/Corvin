@@ -1,4 +1,4 @@
-<!--0
+<!--
 This is an external php function for Corvin that takes a value in bytes and
 converts that value to the appropriate prefix unit of MB, GB, etc. It then
 returns that information in a statement in the following format:
