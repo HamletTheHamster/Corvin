@@ -173,6 +173,32 @@ if (password_verify($submittedPassword, $referencePassword[0])) {
 
     echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
   }
+  // Else, if password POST data is set
+  elseif (isset($_POST["newPassword"])) {
+
+    // Check if passwords match
+    if ($_POST["newPassword"] == $_POST["newPassword2"]) {
+
+      // Check if password meets criteria
+      if (strlen($_POST["newPassword"]) > 7) {
+
+        // Password_hash automatically uses currently recommended hashing
+        // algorithm with salt
+        $hashedPassword = password_hash($_POST["newPassword"], PASSWORD_DEFAULT);
+
+        $sql = "UPDATE UserInfo SET password = '$hashedPassword' WHERE id = '$userID'";
+        mysqli_query($conn, $sql);
+
+        echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
+      }
+      else {
+        echo "Password needs to be at least 8 characters.";
+      }
+    }
+    else {
+      echo "Passwords do not match.";
+    }
+  }
   else {
     echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
   }

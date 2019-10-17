@@ -83,6 +83,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
   <title>Home | Corvin</title>
 
   <link href = "one.css" type = "text/css" rel = "stylesheet"/>
+  <script src="jquery-3.4.1.min.js"></script>
 
   <link rel = "apple-touch-icon" sizes = "57x57"
     href = "Art/Favicon/apple-icon-57x57.png" />
@@ -249,13 +250,13 @@ elseif (time() - $_SESSION['Created'] > 1200)
           <input
             type = "password"
             name = "submittedPassword"
+            id = "namePasswordCheck"
             class = "settingsNamePasswordVerifyTextBox"
             placeholder = "Password"
           >
           <input
             type = "text"
             name = "firstNameChange"
-            id = "firstNameChange"
             class = "settingsFirstNameChangeTextBox"
             value = <?php echo "'" . $user[0] . "'"; ?>
             placeholder = "First Name"
@@ -283,7 +284,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
         if (settingsDropdownName.style.display == "none") {
           settingsDropdownName.style.display = "block";
           settingsNameValue.style.display = "none";
-          document.getElementById("firstNameChange").focus();
+          document.getElementById("namePasswordCheck").focus();
         }
         else {
           settingsDropdownName.style.display = "none";
@@ -293,11 +294,11 @@ elseif (time() - $_SESSION['Created'] > 1200)
       </script>
       <hr>
 
-      <!-- Profile Picture -->
+      <!-- Profile Image -->
       <div class = "settingsSettingWithButton">
         <div class = "settingsLeftItemBox">
           <div class = "settingsItem">
-            <p>Profile Picture</p>
+            <p>Profile Image</p>
           </div>
         </div>
         <div class = "settingsRightItemBox">
@@ -350,13 +351,13 @@ elseif (time() - $_SESSION['Created'] > 1200)
           <input
             type = "password"
             name = "submittedPassword"
+            id = "emailPasswordCheck"
             class = "settingsEmailPasswordVerifyTextBox"
             placeholder = "Password"
           >
           <input
             type = "email"
             name = "emailChange"
-            id = "emailChange"
             class = "settingsEmailChangeTextBox"
             value = <?php echo "'" . $email[0] . "'"; ?>
             placeholder = "Email"
@@ -377,7 +378,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
         if (settingsDropdownEmail.style.display == "none") {
           settingsDropdownEmail.style.display = "block";
           settingsEmailValue.style.display = "none";
-          document.getElementById("emailChange").focus();
+          document.getElementById("emailPasswordCheck").focus();
         }
         else {
           settingsDropdownEmail.style.display = "none";
@@ -414,13 +415,13 @@ elseif (time() - $_SESSION['Created'] > 1200)
           <input
             type = "password"
             name = "submittedPassword"
+            id = "usernamePasswordCheck"
             class = "settingsUsernamePasswordVerifyTextBox"
             placeholder = "Password"
           >
           <input
             type = "text"
             name = "usernameChange"
-            id = "usernameChange"
             class = "settingsUsernameChangeTextBox"
             value = <?php echo "'" . $username[0] . "'"; ?>
             placeholder = "Username"
@@ -441,7 +442,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
         if (settingsDropdownUsername.style.display == "none") {
           settingsDropdownUsername.style.display = "block";
           settingsUsernameValue.style.display = "none";
-          document.getElementById("usernameChange").focus();
+          document.getElementById("usernamePasswordCheck").focus();
         }
         else {
           settingsDropdownUsername.style.display = "none";
@@ -452,7 +453,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <hr>
 
       <!-- Password -->
-      <div class = "settingsSettingWithButton">
+      <div onclick = "togglePasswordDropdown()" class = "settingsSetting">
         <div class = "settingsLeftItemBox">
           <div class = "settingsItem">
             <p>Password</p>
@@ -460,12 +461,65 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
         <div class = "settingsRightItemBox">
           <div class = "settingsValue">
-            <button class = "settingsChangePasswordButton">
-              Change Password
-            </button>
           </div>
         </div>
       </div>
+      <div id = "settingsDropdownPassword"
+        class = "settingsDropdownSettingPassword">
+        <div class = "settingsPasswordRequirement">
+          <p class = "settingsPasswordRequirement">
+            Password must contain at least 8 characters
+          </P>
+        </div>
+        <div class = "settingsPasswordChangeForm">
+          <form
+            action = "updateAccountSettings.php"
+            method = "post"
+            enctype = "multipart/form-data"
+            class = "settingsChangeName"
+          >
+            <input
+              type = "password"
+              name = "submittedPassword"
+              id = "oldPassword"
+              class = "settingsPasswordOldPasswordVerifyTextBox"
+              placeholder = "Old Password"
+            >
+            <input
+              type = "password"
+              name = "newPassword"
+              class = "settingsPasswordChangeTextBox"
+              placeholder = "New Password"
+            />
+            <input
+              type = "password"
+              name = "newPassword2"
+              class = "settingsPasswordChangeTextBox"
+              placeholder = "Re-enter New Password"
+            />
+            <input
+              type = "submit"
+              value = "Save Changes"
+              class = "settingsSaveChangesButton"
+            />
+          </form>
+        </div>
+      </div>
+      <script>
+      document.getElementById("settingsDropdownPassword").style.display = "none";
+
+      function togglePasswordDropdown() {
+        var settingsDropdownPassword = document.getElementById("settingsDropdownPassword");
+
+        if (settingsDropdownPassword.style.display == "none") {
+          settingsDropdownPassword.style.display = "block";
+          document.getElementById("oldPassword").focus();
+        }
+        else {
+          settingsDropdownPassword.style.display = "none";
+        }
+      }
+      </script>
       <hr>
 
       <!-- Space -->
@@ -476,7 +530,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <hr>
 
       <!-- Dark Mode -->
-      <div class = "settingsSettingWithButton">
+      <div onclick = "toggleDarkmodeDropdown()" class = "settingsSetting">
         <div class = "settingsLeftItemBox">
           <div class = "settingsItem">
             <p>Dark Mode</p>
@@ -484,10 +538,44 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
         <div class = "settingsRightItemBox">
           <div class = "settingsValue">
-            <button class = "settingsDarkModeButton">Off</button>
+            <p id = "darkmodeStatus">Off</p>
           </div>
         </div>
       </div>
+      <div id = "settingsDropdownDarkmode" class = "settingsDropdownSetting">
+        <label class="settingsSwitch">
+          <input id = "darkmodeSlider" type="checkbox">
+          <span class="settingsSlider"></span>
+          <form id = "darkmodeForm">
+          </form>
+
+        </label>
+      </div>
+      <script>
+      var darkmodeSlider = document.getElementById("darkmodeSlider");
+
+      darkmodeSlider.addEventListener("change", function() {
+        if (event.target.checked) {
+          document.getElementById("darkmodeStatus").innerHTML = "On";
+        }
+        else {
+          document.getElementById("darkmodeStatus").innerHTML = "Off";
+        }
+      });
+
+      document.getElementById("settingsDropdownDarkmode").style.display = "none";
+      function toggleDarkmodeDropdown() {
+        var settingsDropdownDarkmode = document.getElementById("settingsDropdownDarkmode");
+
+        if (settingsDropdownDarkmode.style.display == "none") {
+          settingsDropdownDarkmode.style.display = "block";
+          document.getElementById("oldPassword").focus();
+        }
+        else {
+          settingsDropdownDarkmode.style.display = "none";
+        }
+      }
+      </script>
       <hr>
 
       <!-- Ledger Size -->
@@ -499,9 +587,9 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
         <div class = "settingsRightItemBox">
           <div class = "settingsValue">
-            <button class = "settingsLedgerSizeButton">Small</button>
-            <button class = "settingsLedgerSizeButton">Medium</button>
-            <button class = "settingsLedgerSizeButton">Large</button>
+            <button class = "settingsLedgerSizeButton">Smaller</button>
+            <button class = "settingsLedgerSizeButton">Standard</button>
+            <button class = "settingsLedgerSizeButton">Larger</button>
           </div>
         </div>
       </div>
@@ -563,18 +651,18 @@ elseif (time() - $_SESSION['Created'] > 1200)
       </div>
       <hr>
 
-      <!-- Corvin Beta Program -->
+      <!-- Corvin βeta Program -->
       <div class = "settingsSettingWithButton">
         <div class = "settingsLeftItemBox">
           <div class = "settingsItem">
-            <p>Corvin Beta Program</p>
+            <p>Corvin βeta Program</p>
           </div>
         </div>
         <div class = "settingsRightItemBox">
           <div class = "settingsValue">
             <select class = "settingsNewSignInEmailNotificationsSelect">
               <option value = "1">Opt In for Early Releases</option>
-              <option value = "0">Opt Out</option>
+              <option selected value = "0">Opt Out</option>
             </select>
           </div>
         </div>

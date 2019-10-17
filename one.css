@@ -1547,6 +1547,12 @@ p.settingsHeader {
   transition: 250ms;
 }
 
+.settingsDropdownSettingPassword {
+  height: 140px;
+  margin-top: 25px;
+  transition: 250ms;
+}
+
 .settingsNamePasswordVerifyTextBox {
   margin-left: 16px;
 }
@@ -1722,6 +1728,47 @@ p.settingsHeader {
   outline: none;
 }
 
+.settingsPasswordRequirement {
+  height: 50px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-left: 15px;
+}
+
+p.settingsPasswordRequirement {
+  font-size: 16px;
+}
+
+.settingsPasswordChangeForm {
+  float: left;
+}
+
+.settingsPasswordOldPasswordVerifyTextBox {
+  margin-left: 16px;
+}
+
+.settingsPasswordChangeTextBox {
+  margin-left: 15px;
+}
+
+.settingsPasswordChangeTextBox, .settingsPasswordOldPasswordVerifyTextBox {
+  width: 238px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.settingsPasswordChangeTextBox:focus, .settingsPasswordOldPasswordVerifyTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
 .settingsSpace {
   height: 100px;
   margin-top: -10px;
@@ -1736,35 +1783,59 @@ p.settingsHeader {
   font-weight: bold;
 }
 
-.settingsDarkModeButton {
-  background-color: rgba(51, 204, 255, 0);
-  border-color: rgba(23, 23, 23, 0.25);
-  border-width: thin;
-  color: #009aa4;
-  font-family: "Square Market", Helvetica, sans-serif;
-  text-align: center;
-  text-decoration: none;
-  font-size: 18px;
-  padding: 6px 12px;
-  margin-top: 13px;
-  border-radius: 4px;
+.settingsSwitch {
   position: relative;
+  display: inline-block;
+  float: right;
+  width: 60px;
+  height: 34px;
 }
 
-.settingsDarkModeButton:hover {
-  background-color: rgba(0, 130, 140, 0.06);
-  color: #00828c;
+.settingsSwitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.settingsSlider {
+  position: absolute;
   cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 2px;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
-.settingsDarkModeButton:active {
-  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
-  border-color: #00828c;
-  transition: 250ms;
+.settingsSlider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  border-radius: 2px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
-.settingsDarkModeButton:focus {
+input:checked + .settingsSlider {
+  background-color: #0f0f0f;
+}
+
+input:focus + .settingsSlider {
+  box-shadow: 0 0 1px #0f0f0f;
   outline: none;
+}
+
+input:checked + .settingsSlider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
 }
 
 .settingsLedgerSizeButton {
