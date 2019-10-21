@@ -37,6 +37,16 @@ $userID = $_SESSION["userID"];
 $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
 $user = mysqli_fetch_array(mysqli_query($conn, $sql));
 
+$sql = "SELECT darkmode FROM UserInfo WHERE id = '$userID'";
+$darkmodeSetting = mysqli_fetch_array(mysqli_query($conn, $sql));
+
+if ($darkmodeSetting[0] == 1) {
+  $o = "darkSettings";
+}
+elseif ($darkmodeSetting[0] == 0) {
+  $o = "lightSettings";
+}
+
 // Session Timeout after 854 seconds (14.2 minutes)
 // If last request was more than 854 seconds ago (14.2 minutes)
 if (
@@ -76,14 +86,13 @@ elseif (time() - $_SESSION['Created'] > 1200)
 ?>
 
 <!DOCTYPE html>
-<html lang = "en" class = "settings">
+<html lang = 'en' class = <?php echo "'".$o."'";?>>
 
 <!-- 1 Header -->
 <head>
   <title>Home | Corvin</title>
 
   <link href = "one.css" type = "text/css" rel = "stylesheet"/>
-  <script src="jquery-3.4.1.min.js"></script>
 
   <link rel = "apple-touch-icon" sizes = "57x57"
     href = "Art/Favicon/apple-icon-57x57.png" />
@@ -120,26 +129,27 @@ elseif (time() - $_SESSION['Created'] > 1200)
   <meta http-equiv = "refresh" content = "855"/>
 
   <meta name = "google" content = "notranslate"/>
+
+  <script type = "text/javascript" src = "jquery-3.4.1.min.js"></script>
+  <script>var o = <?php echo json_encode($o); ?>;</script>
 </head>
 
-<body class = "settings">
-<div class = "settingsWrapper">
+<body class = <?php echo "'".$o."'";?>>
+<div id = 'wrapper' class = <?php echo "'".$o."Wrapper'";?>>
 
   <!-- 2 Top Bar -->
-  <div class = "settingsTopBar">
-    <div class = "settingsCorvin">
-      <?php
-      echo "<a href = 'home.php'>" . "<h class = 'settingsCorvinHeader'>C</h>" .
-        "</a>";
-      ?>
+  <div class = <?php echo "'".$o."TopBar'";?>>
+    <div class = <?php echo "'".$o."Corvin'";?>>
+      <a href = "home.php">
+        <h id = "corvinHeader" class = <?php echo "'".$o."CorvinHeader'";?>>C</h>
+      </a>
     </div>
-    <div class = "settingsAccountMenuDropDown">
-      <p onclick = "accountDropDownMenu()" class = "settingsAccountButton">Account</p>
-      <div id = "AccountMenuContent" class = "settingsAccountMenuContent">
-        <div class = "settingsTopAccountMenuContent">
+    <div class = <?php echo "'".$o."AccountMenuDropDown'";?>>
+      <p onclick = 'accountDropDownMenu()' id = "accountButton" class = <?php echo "'".$o."AccountButton'";?>>Account</p>
+      <div id = 'accountMenuContent' class = <?php echo "'".$o."AccountMenuContent'";?>>
+        <div class = <?php echo "'".$o."TopAccountMenuContent'";?>>
           <?php
-          echo "<p class = 'settingsAccountMenuName'>" . $user[0] . " " . $user[1] .
-            "</p>";
+          echo "<p id = 'accountMenuName' class = '".$o."AccountMenuName'>" . $user[0] . " " . $user[1] . "</p>";
 
           include "humanSize.php";
           include "folderSize.php";
@@ -157,27 +167,27 @@ elseif (time() - $_SESSION['Created'] > 1200)
               "../../../../mnt/Raid1Array/Corvin");
             $freeBytes = disk_free_space("../../../../mnt/Raid1Array/Corvin");
 
-            echo "<p class = 'settingsDiskSpace'>" . humanSize($usedBytes) . " used of " .
+            echo "<p id = 'diskSpace' class = '".$o."DiskSpace'>" . humanSize($usedBytes) . " used of " .
               humanSize($freeBytes) . " (Unlimited)</p>";
           }
           else {
             $totalBytes = $storageSpaceInMegabytes[0] * 1000000;
             $freeBytes = $totalBytes - $usedBytes;
 
-            echo "<p class = 'settingsDiskSpace'>" . humanSize($usedBytes) .
+            echo "<p id = 'diskSpace' class = '".$o."DiskSpace'>" . humanSize($usedBytes) .
               " used of " . humanSize($totalBytes) . "</p>";
           }
           ?>
         </div>
-        <div class = "settingsMenuLine">
-          <hr class = "settingsMenuLine"/>
+        <div class = <?php echo "'".$o."MenuLine'";?>>
+          <hr class = <?php echo "'".$o."MenuLine'";?>/>
         </div>
-        <div class = "settingsBottomAccountMenuContent">
-          <a class = "settingsGetMoreSpaceMenuItem" href = "getMoreSpace.php">
+        <div class = <?php echo "'".$o."BottomAccountMenuContent'";?>>
+          <a class = <?php echo "'".$o."GetMoreSpaceMenuItem'";?> href = 'getMoreSpace.php'>
             Get More Space</a>
-          <a class = "settingsMenuItem" href = "home.php">Home</a>
-          <a class = "settingsMenuItem" href = "help.php">Help</a>
-          <a class = "settingsMenuItem" href = "logout.php">Log Out</a>
+          <a id = 'home' class = <?php echo "'".$o."MenuItem'";?> href = 'home.php'>Home</a>
+          <a id = 'help' class = <?php echo "'".$o."MenuItem'";?> href = 'help.php'>Help</a>
+          <a id = 'logout' class = <?php echo "'".$o."MenuItem'";?> href = 'logout.php'>Log Out</a>
         </div>
       </div>
     </div>
@@ -185,7 +195,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
 
   <script>
   function accountDropDownMenu() {
-    document.getElementById("AccountMenuContent").classList.toggle("settingsShow");
+    document.getElementById('accountMenuContent').classList.toggle(o+"Show");
   }
   /*
   window.onclick = function(event) {
@@ -199,110 +209,114 @@ elseif (time() - $_SESSION['Created'] > 1200)
   </script>
 
   <!-- 5 Main Content -->
-  <div class = "settingsMainContent">
+  <div  id = 'mainContent' class = <?php echo "'".$o."MainContent'";?>>
     <form
-      action = "getMoreSpace.php"
-      method = "post"
-      enctype = "multipart/form-data"
+      action = 'getMoreSpace.php'
+      method = 'post'
+      enctype = 'multipart/form-data'
     >
       <input
-        type = "submit"
-        class = "settingsGetMoreSpaceButton"
-        value = "Get More Space"
-        name = "submit"
+        type = 'submit'
+        class = <?php echo "'".$o."GetMoreSpaceButton'";?>
+        id = 'getMoreSpaceButton'
+        value = 'Get More Space'
+        name = 'submit'
       />
     </form>
 
-    <div class = "settingsHeader">
-      <p class = "settingsHeader">Settings</p>
+    <div class = <?php echo "'".$o."Header'";?>>
+      <p id = 'settingsHeader' class = <?php echo "'".$o."Header'";?>>Settings</p>
     </div>
 
-    <div class = "settingsContent">
-      <div class = "settingsSpace"></div>
-      <h class = "settingsFirstHeader">Account Details</h>
+    <div class = <?php echo "'".$o."Content'";?>>
+      <div class = <?php echo "'".$o."Space'";?>></div>
+      <h class = <?php echo "'".$o."FirstHeader'";?>>Account Details</h>
       <hr>
 
       <!-- Name -->
-      <div onclick = "toggleNameDropdown()" class = "settingsSetting">
-        <div class = "settingsLeftItemBox">
-          <div class = "settingsItem">
-            <p>Name</p>
+      <div onclick = 'toggleNameDropdown()' class = <?php echo "'".$o."Setting'";?>>
+        <div class = <?php echo "'".$o."LeftItemBox'";?>>
+          <div class = <?php echo "'".$o."Item'";?>>
+            <p id = 'name' class = <?php echo "'".$o."Item'";?>>Name</p>
           </div>
         </div>
-        <div class = "settingsRightItemBox">
-          <div id = "settingsNameValue" class = "settingsValue">
+        <div class = <?php echo "'".$o."RightItemBox'";?>>
+          <div id = 'nameValue' class = <?php echo "'".$o."Value'";?>>
             <?php
             $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '" .
               $userID . "'";
             $user = mysqli_fetch_row(mysqli_query($conn, $sql));
-            echo "<p>" . $user[0] . " " . $user[1] . "</p>";
+            echo "<p id = 'nameValuep'>" . $user[0] . " " . $user[1] . "</p>";
             ?>
           </div>
         </div>
       </div>
-      <div id = "settingsDropdownName" class = "settingsDropdownSetting">
+      <div id = 'dropdownName' class = <?php echo "'".$o."DropdownSetting'";?>>
         <form
           action = "updateAccountSettings.php"
           method = "post"
           enctype = "multipart/form-data"
-          class = "settingsChangeName"
+          class = <?php echo "'".$o."ChangeName'";?>
         >
           <input
             type = "password"
             name = "submittedPassword"
             id = "namePasswordCheck"
-            class = "settingsNamePasswordVerifyTextBox"
+            class = <?php echo "'".$o."NamePasswordVerifyTextBox'";?>
             placeholder = "Password"
+            required
           >
           <input
             type = "text"
             name = "firstNameChange"
-            class = "settingsFirstNameChangeTextBox"
-            value = <?php echo "'" . $user[0] . "'"; ?>
+            class = <?php echo "'".$o."FirstNameChangeTextBox'";?>
+            value = <?php echo "'" . $user[0] . "'";?>
             placeholder = "First Name"
+            required
           />
           <input
             type = "text"
             name = "lastNameChange"
-            class = "settingsLastNameChangeTextBox"
-            value = <?php echo "'" . $user[1] . "'"; ?>
+            class = <?php echo "'".$o."LastNameChangeTextBox'";?>
+            value = <?php echo "'" . $user[1] . "'";?>
             placeholder = "Last Name"
+            required
           />
           <input
             type = "submit"
             value = "Save Changes"
-            class = "settingsSaveChangesButton"
+            class = <?php echo "'".$o."SaveChangesButton'";?>
           />
         </form>
       </div>
       <script>
-      document.getElementById("settingsDropdownName").style.display = "none";
+      document.getElementById("dropdownName").style.display = "none";
 
       function toggleNameDropdown() {
-        var settingsDropdownName = document.getElementById("settingsDropdownName");
+        var dropdownName = document.getElementById("dropdownName");
 
-        if (settingsDropdownName.style.display == "none") {
-          settingsDropdownName.style.display = "block";
-          settingsNameValue.style.display = "none";
+        if (dropdownName.style.display == "none") {
+          dropdownName.style.display = "block";
+          nameValue.style.display = "none";
           document.getElementById("namePasswordCheck").focus();
         }
         else {
-          settingsDropdownName.style.display = "none";
-          settingsNameValue.style.display = "block";
+          dropdownName.style.display = "none";
+          nameValue.style.display = "block";
         }
       }
       </script>
       <hr>
 
       <!-- Profile Image -->
-      <div class = "settingsSettingWithButton">
-        <div class = "settingsLeftItemBox">
-          <div class = "settingsItem">
-            <p>Profile Image</p>
+      <div class = <?php echo "'".$o."SettingWithButton'";?>>
+        <div class = <?php echo "'".$o."LeftItemBox'";?>>
+          <div class = <?php echo "'".$o."Item'";?>>
+            <p id = 'profileImage' class = <?php echo "'".$o."Item'";?>>Profile Image</p>
           </div>
         </div>
-        <div class = "settingsRightItemBox">
-          <div class = "settingsValue">
+        <div class = <?php echo "'".$o."RightItemBox'";?>>
+          <div class = <?php echo "'".$o."Value'";?>>
             <?php
             $uploadedProfileImage =
               "../../../../mnt/Raid1Array/Corvin/00 - Profile Images/" .
@@ -311,11 +325,11 @@ elseif (time() - $_SESSION['Created'] > 1200)
               "Art/1 - Default Profile Icons/Corvin Castle Icon" .
               ($userID % 10) . ".jpg";
             if (file_exists($uploadedProfileImage)) {
-              echo "<img class = 'settingsProfileImage' src = '" .
+              echo "<img class = '".$o."ProfileImage' src = '" .
                 $uploadedProfileImage . "'>";
             }
             else {
-              echo "<img class = 'settingsProfileImage' src = '" .
+              echo "<img class = '".$o."ProfileImage' src = '" .
                 $defaultProfileImage . "'>";
             }
             ?>
@@ -325,14 +339,14 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <hr>
 
       <!-- Email -->
-      <div onclick = "toggleEmailDropdown()" class = "settingsSetting">
-        <div class = "settingsLeftItemBox">
-          <div class = "settingsItem">
-            <p>Email</p>
+      <div onclick = "toggleEmailDropdown()" class = <?php echo "'".$o."Setting'";?>>
+        <div class = <?php echo "'".$o."LeftItemBox'";?>>
+          <div class = <?php echo "'".$o."Item'";?>>
+            <p id = 'email' class = <?php echo "'".$o."Item'";?>>Email</p>
           </div>
         </div>
-        <div class = "settingsRightItemBox">
-          <div id = "settingsEmailValue" class = "settingsValue">
+        <div class = <?php echo "'".$o."RightItemBox'";?>>
+          <div id = "emailValue" class = <?php echo "'".$o."Value'";?>>
             <?php
             $sql = "SELECT email FROM UserInfo WHERE id = '" . $userID . "'";
             $email = mysqli_fetch_row(mysqli_query($conn, $sql));
@@ -341,62 +355,64 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
-      <div id = "settingsDropdownEmail" class = "settingsDropdownSetting">
+      <div id = "dropdownEmail" class = <?php echo "'".$o."DropdownSetting'";?>>
         <form
           action = "updateAccountSettings.php"
           method = "post"
           enctype = "multipart/form-data"
-          class = "settingsChangeName"
+          class = "ChangeName"
         >
           <input
             type = "password"
             name = "submittedPassword"
             id = "emailPasswordCheck"
-            class = "settingsEmailPasswordVerifyTextBox"
+            class = <?php echo "'".$o."EmailPasswordVerifyTextBox'";?>
             placeholder = "Password"
+            required
           >
           <input
             type = "email"
             name = "emailChange"
-            class = "settingsEmailChangeTextBox"
-            value = <?php echo "'" . $email[0] . "'"; ?>
+            class = <?php echo "'".$o."EmailChangeTextBox'";?>
+            value = <?php echo "'" . $email[0] . "'";?>
             placeholder = "Email"
+            required
           />
           <input
             type = "submit"
             value = "Save Changes"
-            class = "settingsSaveChangesButton"
+            class = <?php echo "'".$o."SaveChangesButton'";?>
           />
         </form>
       </div>
       <script>
-      document.getElementById("settingsDropdownEmail").style.display = "none";
+      document.getElementById("dropdownEmail").style.display = "none";
 
       function toggleEmailDropdown() {
-        var settingsDropdownEmail = document.getElementById("settingsDropdownEmail");
+        var dropdownEmail = document.getElementById("dropdownEmail");
 
-        if (settingsDropdownEmail.style.display == "none") {
-          settingsDropdownEmail.style.display = "block";
-          settingsEmailValue.style.display = "none";
+        if (dropdownEmail.style.display == "none") {
+          dropdownEmail.style.display = "block";
+          emailValue.style.display = "none";
           document.getElementById("emailPasswordCheck").focus();
         }
         else {
-          settingsDropdownEmail.style.display = "none";
-          settingsEmailValue.style.display = "block";
+          dropdownEmail.style.display = "none";
+          emailValue.style.display = "block";
         }
       }
       </script>
       <hr>
 
       <!-- Username -->
-      <div onclick = "toggleUsernameDropdown()" class = "settingsSetting">
-        <div class = "settingsLeftItemBox">
-          <div class = "settingsItem">
-            <p>Username</p>
+      <div onclick = "toggleUsernameDropdown()" class = <?php echo "'".$o."Setting'";?>>
+        <div class = <?php echo "'".$o."LeftItemBox'";?>>
+          <div class = <?php echo "'".$o."Item'";?>>
+            <p id = 'username' class = <?php echo "'".$o."Item'";?>>Username</p>
           </div>
         </div>
-        <div class = "settingsRightItemBox">
-          <div id = "settingsUsernameValue" class = "settingsValue">
+        <div class = <?php echo "'".$o."RightItemBox'";?>>
+          <div id = "usernameValue" class = <?php echo "'".$o."Value'";?>>
             <?php
             $sql = "SELECT username FROM UserInfo WHERE id = '" . $userID . "'";
             $username = mysqli_fetch_row(mysqli_query($conn, $sql));
@@ -405,207 +421,259 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
-      <div id = "settingsDropdownUsername" class = "settingsDropdownSetting">
+      <div id = "dropdownUsername" class = <?php echo "'".$o."DropdownSetting'";?>>
         <form
           action = "updateAccountSettings.php"
           method = "post"
           enctype = "multipart/form-data"
-          class = "settingsChangeName"
+          class = <?php echo "'".$o."ChangeName";?>
         >
           <input
             type = "password"
             name = "submittedPassword"
             id = "usernamePasswordCheck"
-            class = "settingsUsernamePasswordVerifyTextBox"
+            class = <?php echo "'".$o."UsernamePasswordVerifyTextBox'";?>
             placeholder = "Password"
+            required
           >
           <input
             type = "text"
             name = "usernameChange"
-            class = "settingsUsernameChangeTextBox"
-            value = <?php echo "'" . $username[0] . "'"; ?>
+            class = <?php echo "'".$o."UsernameChangeTextBox'";?>
+            value = <?php echo "'" . $username[0] . "'";?>
             placeholder = "Username"
+            required
           />
           <input
             type = "submit"
             value = "Save Changes"
-            class = "settingsSaveChangesButton"
+            class = <?php echo "'".$o."SaveChangesButton'";?>
           />
         </form>
       </div>
       <script>
-      document.getElementById("settingsDropdownUsername").style.display = "none";
+      document.getElementById("dropdownUsername").style.display = "none";
 
       function toggleUsernameDropdown() {
-        var settingsDropdownUsername = document.getElementById("settingsDropdownUsername");
+        var dropdownUsername = document.getElementById("dropdownUsername");
 
-        if (settingsDropdownUsername.style.display == "none") {
-          settingsDropdownUsername.style.display = "block";
-          settingsUsernameValue.style.display = "none";
+        if (dropdownUsername.style.display == "none") {
+          dropdownUsername.style.display = "block";
+          usernameValue.style.display = "none";
           document.getElementById("usernamePasswordCheck").focus();
         }
         else {
-          settingsDropdownUsername.style.display = "none";
-          settingsUsernameValue.style.display = "block";
+          dropdownUsername.style.display = "none";
+          usernameValue.style.display = "block";
         }
       }
       </script>
       <hr>
 
       <!-- Password -->
-      <div onclick = "togglePasswordDropdown()" class = "settingsSetting">
-        <div class = "settingsLeftItemBox">
-          <div class = "settingsItem">
-            <p>Password</p>
+      <div onclick = "togglePasswordDropdown()" class = <?php echo "'".$o."Setting'";?>>
+        <div class = <?php echo "'".$o."LeftItemBox'";?>>
+          <div class = <?php echo "'".$o."Item'";?>>
+            <p id = 'password' class = <?php echo "'".$o."Item'";?>>Password</p>
           </div>
         </div>
-        <div class = "settingsRightItemBox">
-          <div class = "settingsValue">
+        <div class = <?php echo "'".$o."RightItemBox'";?>>
+          <div class = <?php echo "'".$o."Value'";?>>
           </div>
         </div>
       </div>
-      <div id = "settingsDropdownPassword"
-        class = "settingsDropdownSettingPassword">
-        <div class = "settingsPasswordRequirement">
-          <p class = "settingsPasswordRequirement">
+      <div id = "dropdownPassword"
+        class = <?php echo "'".$o."DropdownSettingPassword'";?>>
+        <div class = <?php echo "'".$o."PasswordRequirement'";?>>
+          <p class = <?php echo "'".$o."PasswordRequirement'";?>>
             Password must contain at least 8 characters
           </P>
         </div>
-        <div class = "settingsPasswordChangeForm">
+        <div class = <?php echo "'".$o."PasswordChangeForm'";?>>
           <form
             action = "updateAccountSettings.php"
             method = "post"
             enctype = "multipart/form-data"
-            class = "settingsChangeName"
+            class = <?php echo "'".$o."ChangeName'";?>
           >
             <input
               type = "password"
               name = "submittedPassword"
               id = "oldPassword"
-              class = "settingsPasswordOldPasswordVerifyTextBox"
+              class = <?php echo "'".$o."PasswordOldPasswordVerifyTextBox'";?>
               placeholder = "Old Password"
+              required
             >
             <input
               type = "password"
               name = "newPassword"
-              class = "settingsPasswordChangeTextBox"
+              class = <?php echo "'".$o."PasswordChangeTextBox'";?>
               placeholder = "New Password"
+              required
             />
             <input
               type = "password"
               name = "newPassword2"
-              class = "settingsPasswordChangeTextBox"
+              class = <?php echo "'".$o."PasswordChangeTextBox'";?>
               placeholder = "Re-enter New Password"
+              required
             />
             <input
               type = "submit"
               value = "Save Changes"
-              class = "settingsSaveChangesButton"
+              class = <?php echo "'".$o."SaveChangesButton'";?>
             />
           </form>
         </div>
       </div>
       <script>
-      document.getElementById("settingsDropdownPassword").style.display = "none";
+      document.getElementById("dropdownPassword").style.display = "none";
 
       function togglePasswordDropdown() {
-        var settingsDropdownPassword = document.getElementById("settingsDropdownPassword");
+        var dropdownPassword = document.getElementById("dropdownPassword");
 
-        if (settingsDropdownPassword.style.display == "none") {
-          settingsDropdownPassword.style.display = "block";
+        if (dropdownPassword.style.display == "none") {
+          dropdownPassword.style.display = "block";
           document.getElementById("oldPassword").focus();
         }
         else {
-          settingsDropdownPassword.style.display = "none";
+          dropdownPassword.style.display = "none";
         }
       }
       </script>
       <hr>
 
       <!-- Space -->
-      <div class = "settingsSpace"></div>
+      <div class = <?php echo "'".$o."Space'";?>></div>
 
       <!-- Preferences -->
-      <h class = "settingsHeaders">Preferences</h>
+      <h class = <?php echo "'".$o."Headers'";?>>Preferences</h>
       <hr>
 
       <!-- Dark Mode -->
-      <div onclick = "toggleDarkmodeDropdown()" class = "settingsSetting">
-        <div class = "settingsLeftItemBox">
-          <div class = "settingsItem">
-            <p>Dark Mode</p>
+      <div class = <?php echo "'".$o."SettingWithButton'";?>>
+        <div class = <?php echo "'".$o."LeftItemBox'";?>>
+          <div class = <?php echo "'".$o."Item'";?>>
+            <p id = 'darkMode' class = <?php echo "'".$o."Item'";?>>Dark Mode</p>
           </div>
         </div>
-        <div class = "settingsRightItemBox">
-          <div class = "settingsValue">
-            <p id = "darkmodeStatus">Off</p>
+        <div class = <?php echo "'".$o."RightItemBox'";?>>
+          <div class = <?php echo "'".$o."Value'";?>>
+            <form id = "darkmodeForm">
+              <label class = <?php echo "'".$o."Switch'";?>>
+                <input id = "darkmodeSlider" onclick = "manualModeSwitch()" type="checkbox"
+                <?php
+                if ($o == "darkSettings") {echo "checked";}
+                elseif ($o == "lightSettings") {echo "unchecked";}
+                ?>
+                >
+                <span class = <?php echo "'".$o."Slider'";?>></span>
+              </label>
+            </form>
           </div>
         </div>
       </div>
-      <div id = "settingsDropdownDarkmode" class = "settingsDropdownSetting">
-        <label class="settingsSwitch">
-          <input id = "darkmodeSlider" type="checkbox">
-          <span class="settingsSlider"></span>
-          <form id = "darkmodeForm">
-          </form>
+      <script type = "text/javascript">
+        $("#darkmodeSlider").change(function() {
 
-        </label>
-      </div>
-      <script>
-      var darkmodeSlider = document.getElementById("darkmodeSlider");
+          var mode = $(this).prop("checked");
 
-      darkmodeSlider.addEventListener("change", function() {
-        if (event.target.checked) {
-          document.getElementById("darkmodeStatus").innerHTML = "On";
-        }
-        else {
-          document.getElementById("darkmodeStatus").innerHTML = "Off";
-        }
-      });
+          $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "updateAccountPreferences.php",
+            data: {darkmode: mode},
+            /*
+            success: function(data) {
 
-      document.getElementById("settingsDropdownDarkmode").style.display = "none";
-      function toggleDarkmodeDropdown() {
-        var settingsDropdownDarkmode = document.getElementById("settingsDropdownDarkmode");
+              var data = eval(data);
+              message = data.message;
+              success = data.success;
+              alert("data: " + message + "\nsuccess: " + success);
+            }
+            */
+          });
+        });
+        </script>
+        <script>
+        function manualModeSwitch() {
 
-        if (settingsDropdownDarkmode.style.display == "none") {
-          settingsDropdownDarkmode.style.display = "block";
-          document.getElementById("oldPassword").focus();
-        }
-        else {
-          settingsDropdownDarkmode.style.display = "none";
-        }
+            if (document.getElementById("darkmodeSlider").checked) {
+              document.getElementById("wrapper").style.backgroundColor = "rgb(28, 29, 31)";
+              document.getElementById("mainContent").style.backgroundColor = "rgb(28, 29, 31)";
+              document.getElementById("push").style.backgroundColor = "rgb(28, 29, 31)";
+              document.getElementById("footer").style.backgroundColor = "rgb(28, 29, 31)";
+              document.body.style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("corvinHeader").style.color = "rgb(0, 130, 140)";
+              document.getElementById("accountButton").style.color = "rgb(0, 130, 140)";
+              document.getElementById("accountMenuContent").style.backgroundColor = "rgb(33, 34, 36)";
+              document.getElementById("accountMenuContent").style.borderColor = "rgba(255, 255, 255, 0.25)";
+              document.getElementById("accountMenuContent").style.boxShadow = "0 2px 4px 0 rgba(255, 255, 255, 0.1)";
+              document.getElementById("accountMenuName").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("diskSpace").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("home").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("help").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("logout").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("getMoreSpaceButton").style.borderColor = "rgb(28, 29, 31)";
+              document.getElementById("settingsHeader").style.color = "rgb(255, 255, 255, 0.85)";
+              document.getElementById("name").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("nameValuep").style.color = "rgba(255, 255, 255, 0.85)";
+
+            }
+            else {
+              document.getElementById("wrapper").style.backgroundColor = "rgb(254, 254, 254)";
+              document.getElementById("mainContent").style.backgroundColor = "rgb(254, 254, 254)";
+              document.getElementById("push").style.backgroundColor = "rgb(254, 254, 254)";
+              document.getElementById("footer").style.backgroundColor = "rgb(254, 254, 254)";
+              document.body.style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("corvinHeader").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("accountButton").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("accountMenuContent").style.backgroundColor = "rgb(254, 254, 254)";
+              document.getElementById("accountMenuContent").style.borderColor = "rgba(23, 23, 23, 0.25)";
+              document.getElementById("accountMenuContent").style.boxShadow = "0 2px 4px 0 rgba(23, 23, 23, 0.25)";
+              document.getElementById("accountMenuName").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("diskSpace").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("home").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("help").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("logout").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("getMoreSpaceButton").style.borderColor = "rgb(254, 254, 254)";
+              document.getElementById("settingsHeader").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("name").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("nameValuep").style.color = "rgba(23, 23, 23 0.85)";
+
+            }
       }
       </script>
       <hr>
 
       <!-- Ledger Size -->
-      <div class = "settingsSettingWithButton">
-        <div class = "settingsLeftItemBox">
-          <div class = "settingsItem">
-            <p>Ledger Size</p>
+      <div class = <?php echo "'".$o."SettingWithButton'";?>>
+        <div class = <?php echo "'".$o."LeftItemBox'";?>>
+          <div class = <?php echo "'".$o."Item'";?>>
+            <p id = 'ledgerSize' class = <?php echo "'".$o."Item'";?>>Ledger Size</p>
           </div>
         </div>
-        <div class = "settingsRightItemBox">
-          <div class = "settingsValue">
-            <button class = "settingsLedgerSizeButton">Smaller</button>
-            <button class = "settingsLedgerSizeButton">Standard</button>
-            <button class = "settingsLedgerSizeButton">Larger</button>
+        <div class = <?php echo "'".$o."RightItemBox'";?>>
+          <div class = <?php echo "'".$o."Value'";?>>
+            <button class = <?php echo "'".$o."LedgerSizeButton'";?>>Smaller</button>
+            <button class = <?php echo "'".$o."LedgerSizeButton'";?>>Standard</button>
+            <button class = <?php echo "'".$o."LedgerSizeButton'";?>>Larger</button>
           </div>
         </div>
       </div>
       <hr>
 
       <!-- Date Format -->
-      <div class = "settingsSettingWithButton">
-        <div class = "settingsLeftItemBox">
-          <div class = "settingsItem">
-            <p>Date Format</p>
+      <div class = <?php echo "'".$o."SettingWithButton'";?>>
+        <div class = <?php echo "'".$o."LeftItemBox'";?>>
+          <div class = <?php echo "'".$o."Item'";?>>
+            <p id = 'dateFormat' class = <?php echo "'".$o."Item'";?>>Date Format</p>
           </div>
         </div>
-        <div class = "settingsRightItemBox">
-          <div class = "settingsValue">
+        <div class = <?php echo "'".$o."RightItemBox'";?>>
+          <div class = <?php echo "'".$o."Value'";?>>
             <?php //want today's date as examples ?>
-            <select class = "settingsDateFormatSelect">
+            <select class = <?php echo "'".$o."DateFormatSelect'";?>>
               <option selected value = "1">10/14/2019</option>
               <option value = "2">14/10/2019</option>
               <option value = "3">October 14th, 2019</option>
@@ -616,15 +684,15 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <hr>
 
       <!-- Time Zone -->
-      <div class = "settingsSettingWithButton">
-        <div class = "settingsLeftItemBox">
-          <div class = "settingsItem">
-            <p>Time Zone</p>
+      <div class = <?php echo "'".$o."SettingWithButton'";?>>
+        <div class = <?php echo "'".$o."LeftItemBox'";?>>
+          <div class = <?php echo "'".$o."Item'";?>>
+            <p id = 'timeZone' class = <?php echo "'".$o."Item'";?>>Time Zone</p>
           </div>
         </div>
-        <div class = "settingsRightItemBox">
-          <div class = "settingsValue">
-            <select class = "settingsTimeZoneSelect">
+        <div class = <?php echo "'".$o."RightItemBox'";?>>
+          <div class = <?php echo "'".$o."Value'";?>>
+            <select class = <?php echo "'".$o."TimeZoneSelect'";?>>
               <?php //loop through array of all time zones ?>
               <option value = "(UTC-07:00) Arizona">(UTC-07:00) Arizona</option>
             </select>
@@ -634,15 +702,15 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <hr>
 
       <!-- Language -->
-      <div class = "settingsSettingWithButton">
-        <div class = "settingsLeftItemBox">
-          <div class = "settingsItem">
-            <p>Language</p>
+      <div class = <?php echo "'".$o."SettingWithButton'";?>>
+        <div class = <?php echo "'".$o."LeftItemBox'";?>>
+          <div class = <?php echo "'".$o."Item'";?>>
+            <p id = 'language' class = <?php echo "'".$o."Item'";?>>Language</p>
           </div>
         </div>
-        <div class = "settingsRightItemBox">
-          <div class = "settingsValue">
-            <select class = "settingsLanguageSelect">
+        <div class = <?php echo "'".$o."RightItemBox'";?>>
+          <div class = <?php echo "'".$o."Value'";?>>
+            <select class = <?php echo "'".$o."LanguageSelect'";?>>
               <?php //loop through array of all supported languages ?>
               <option value = "English (US)">English (US)</option>
             </select>
@@ -652,15 +720,15 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <hr>
 
       <!-- Corvin βeta Program -->
-      <div class = "settingsSettingWithButton">
-        <div class = "settingsLeftItemBox">
-          <div class = "settingsItem">
-            <p>Corvin βeta Program</p>
+      <div class = <?php echo "'".$o."SettingWithButton'";?>>
+        <div class = <?php echo "'".$o."LeftItemBox'";?>>
+          <div class = <?php echo "'".$o."Item'";?>>
+            <p id = 'corvinBetaProgram' class = <?php echo "'".$o."Item'";?>>Corvin βeta Program</p>
           </div>
         </div>
-        <div class = "settingsRightItemBox">
-          <div class = "settingsValue">
-            <select class = "settingsNewSignInEmailNotificationsSelect">
+        <div class = <?php echo "'".$o."RightItemBox'";?>>
+          <div class = <?php echo "'".$o."Value'";?>>
+            <select class = <?php echo "'".$o."NewSignInEmailNotificationsSelect'";?>>
               <option value = "1">Opt In for Early Releases</option>
               <option selected value = "0">Opt Out</option>
             </select>
@@ -670,22 +738,22 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <hr>
 
       <!-- Space -->
-      <div class = "settingsSpace"></div>
+      <div class = <?php echo "'".$o."Space'";?>></div>
 
       <!-- Notifications -->
-      <h class = "settingsHeaders">Notifications</h>
+      <h class = <?php echo "'".$o."Headers'";?>>Notifications</h>
       <hr>
 
       <!-- New Sign-in -->
-      <div class = "settingsSettingWithButton">
-        <div class = "settingsLeftItemBox">
-          <div class = "settingsItem">
-            <p>New Sign-in</p>
+      <div class = <?php echo "'".$o."SettingWithButton'";?>>
+        <div class = <?php echo "'".$o."LeftItemBox'";?>>
+          <div class = <?php echo "'".$o."Item'";?>>
+            <p id = 'newSignIn' class = <?php echo "'".$o."Item'";?>>New Sign-in</p>
           </div>
         </div>
-        <div class = "settingsRightItemBox">
-          <div class = "settingsValue">
-            <select class = "settingsNewSignInSelect">
+        <div class = <?php echo "'".$o."RightItemBox'";?>>
+          <div class = <?php echo "'".$o."Value'";?>>
+            <select class = <?php echo "'".$o."NewSignInSelect'";?>>
               <option selected value = "2">Most Secure (Recommended)</option>
               <option value = "1">Standard</option>
               <option value = "0">None</option>
@@ -696,15 +764,15 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <hr>
 
       <!-- Workspace File Changes -->
-      <div class = "settingsSettingWithButton">
-        <div class = "settingsLeftItemBox">
-          <div class = "settingsItem">
-            <p>Workspace File Changes</p>
+      <div class = <?php echo "'".$o."SettingWithButton'";?>>
+        <div class = <?php echo "'".$o."LeftItemBox'";?>>
+          <div class = <?php echo "'".$o."Item'";?>>
+            <p id = 'workspaceFileChanges' class = <?php echo "'".$o."Item'";?>>Workspace File Changes</p>
           </div>
         </div>
-        <div class = "settingsRightItemBox">
-          <div class = "settingsValue">
-            <select class = "settingsFileChangesSelect">
+        <div class = <?php echo "'".$o."RightItemBox'";?>>
+          <div class = <?php echo "'".$o."Value'";?>>
+            <select class = <?php echo "'".$o."FileChangesSelect'";?>>
               <option value = "3">Notify Me of All File Changes</option>
               <option value = "2">Notify Me Only of New File Uploads</option>
               <option value = "1">Notify Me Only of File Renames</option>
@@ -716,15 +784,15 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <hr>
 
       <!-- New Workspace Member -->
-      <div class = "settingsSettingWithButton">
-        <div class = "settingsLeftItemBox">
-          <div class = "settingsItem">
-            <p>New Workspace Member</p>
+      <div class = <?php echo "'".$o."SettingWithButton'";?>>
+        <div class = <?php echo "'".$o."LeftItemBox'";?>>
+          <div class = <?php echo "'".$o."Item'";?>>
+            <p id = 'newWorkspaceMember' class = <?php echo "'".$o."Item'";?>>New Workspace Member</p>
           </div>
         </div>
-        <div class = "settingsRightItemBox">
-          <div class = "settingsValue">
-            <select class = "settingsNewWorkspaceMemberSelect">
+        <div class = <?php echo "'".$o."RightItemBox'";?>>
+          <div class = <?php echo "'".$o."Value'";?>>
+            <select class = <?php echo "'".$o."NewWorkspaceMemberSelect'";?>>
               <option value = "1">Notify Me</option>
               <option selected value = "0">Do Not Notify Me</option>
             </select>
@@ -734,15 +802,15 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <hr>
 
       <!-- Promotional -->
-      <div class = "settingsSettingWithButton">
-        <div class = "settingsLeftItemBox">
-          <div class = "settingsItem">
-            <p>Promotional Corvin News</p>
+      <div class = <?php echo "'".$o."SettingWithButton'";?>>
+        <div class = <?php echo "'".$o."LeftItemBox'";?>>
+          <div class = <?php echo "'".$o."Item'";?>>
+            <p id = 'promotionalCorvinNews' class = <?php echo "'".$o."Item'";?>>Promotional Corvin News</p>
           </div>
         </div>
-        <div class = "settingsRightItemBox">
-          <div class = "settingsValue">
-            <select class = "settingsPromotionalCorvinNewsSelect">
+        <div class = <?php echo "'".$o."RightItemBox'";?>>
+          <div class = <?php echo "'".$o."Value'";?>>
+            <select class = <?php echo "'".$o."PromotionalCorvinNewsSelect'";?>>
               <option value = "1">Notify Me of Corvin Promotional News</option>
               <option selected value = "0">Do Not Notify Me</option>
             </select>
@@ -752,33 +820,32 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <hr>
 
       <!-- Space -->
-      <div class = "settingsSpace"></div>
+      <div class = <?php echo "'".$o."Space'";?>></div>
       <hr>
 
       <!-- Delete my Corvin Account -->
-      <div class = "settingsSettingWithButton">
-        <div class = "settingsLeftItemBox">
-          <div class = "settingsItem">
-            <p>Delete my Corvin</p>
+      <div class = <?php echo "'".$o."SettingWithButton'";?>>
+        <div class = <?php echo "'".$o."LeftItemBox'";?>>
+          <div class = <?php echo "'".$o."Item'";?>>
+            <p id = 'deleteMyCorvin' class = <?php echo "'".$o."Item'";?>>Delete my Corvin</p>
           </div>
         </div>
-        <div class = "settingsRightItemBox">
-          <div class = "settingsValue">
-            <button class = "settingsDeleteAccountButton">
+        <div class = <?php echo "'".$o."RightItemBox'";?>>
+          <div class = <?php echo "'".$o."Value'";?>>
+            <button class = <?php echo "'".$o."DeleteAccountButton'";?>>
               Delete Account
             </button>
           </div>
         </div>
       </div>
-      <hr>
     </div>
   </div>
 </div>
 
-<div class = "settingsPush"></div>
+<div id = 'push' class = <?php echo "'".$o."Push'";?>></div>
 
 <!-- 6 Footer -->
-<div class = "settingsFooter">&copy; Corvin, Inc.</div>
+<div id = 'footer' class = <?php echo "'".$o."Footer'";?>>&copy; Corvin, Inc.</div>
 
 </body>
 </html>

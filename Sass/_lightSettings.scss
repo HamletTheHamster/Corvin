@@ -1,0 +1,676 @@
+/* _settings Coded by: Joel N. Johnson */
+
+$light: lightSettings;
+
+html.#{$light}, body.#{$light} {
+    background-color: rgb(254, 254, 254);
+    height: 100%;
+    margin: 0;
+    font-family: "Square Market", Helvetica, sans-serif;
+    color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}Wrapper {
+    min-height: calc(100% - 20px);
+    height: auto;
+}
+
+.#{$light}TopBar {
+    margin-bottom: 200px;
+    width: 100%;
+    height: 85px;
+}
+
+.#{$light}Corvin {
+    float: left;
+    width: 94%;
+}
+
+.#{$light}CorvinHeader {
+    color: rgba(23, 23, 23, 0.85);
+    font-family: "Square Market", Helvetica, sans-serif;
+    margin-top: 30px;
+    margin-left: 35px;
+    line-height: .5em;
+    font-weight: 600;
+    font-size: 50px;
+    display: inline-block;
+}
+
+.#{$light}CorvinHeader:hover {
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$light}CorvinHeader:active {
+    /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/
+}
+
+.#{$light}CorvinHeader:focus {
+    outline: none;
+    text-shadow: none;
+}
+
+.#{$light}AccountMenuDropDown {
+    position: absolute;
+    display: inline-block;
+    float: right;
+}
+
+p.#{$light}AccountButton {
+    color: rgba(23, 23, 23, 0.85);
+    text-align: right;
+    margin-right: 35px;
+    margin-top: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    float: right;
+    display: inline-block;
+}
+
+p.#{$light}AccountButton:hover {
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$light}AccountMenuContent {
+    display: none;
+    position: absolute;
+    right: 20px;
+    margin-top: 60px;
+    background-color: rgb(254, 254, 254);
+    min-width: 260px;
+    border-radius: 6px;
+    border-width: thin;
+    border-color: rgba(23, 23, 23, 0.25);
+    box-shadow: 0 2px 4px 0 rgba(23, 23, 23, 0.1);
+    z-index: 2;
+}
+
+a.#{$light}AccountMenuContent {
+    color: rgba(23, 23, 23, 0.85);
+    margin-right: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    display: block;
+}
+
+a.#{$light}AccountMenuContent:hover {
+    color: rgb(0, 130, 140);
+    background-color: rgba(0, 130, 140, 0.06);
+    cursor: pointer;
+}
+
+.#{$light}TopAccountMenuContent {
+    height: 150px;
+}
+
+.#{$light}AccountMenuName {
+    color: rgba(23, 23, 23, 0.85);
+    float: right;
+    padding-right: 20px;
+    text-align: right;
+    font-size: 18px;
+}
+
+.#{$light}DiskSpace {
+    text-align: right;
+    padding-right: 20px;
+    margin-top: 50px;
+}
+
+p.#{$light}DiskSpace {
+  color: rgba(23, 23, 23, 0.85);
+    font-size: 16px;
+    font-family: "Square Market", Helvetica, sans-serif;
+}
+
+.#{$light}MenuLine {
+    margin: 35px 10px;
+}
+
+hr.#{$light}MenuLine {
+    color: rgba(23, 23, 23, 0.25);
+}
+
+.#{$light}BottomAccountMenuContent {
+}
+
+a.#{$light}GetMoreSpaceMenuItem {
+    color: rgb(0, 154, 164);
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    display: block;
+}
+
+a.#{$light}GetMoreSpaceMenuItem:hover {
+    color: rgb(0, 154, 164);
+    background-color: rgba(0, 130, 140, 0.06);
+    cursor: pointer;
+}
+
+a.#{$light}MenuItem {
+    color: rgba(23, 23, 23, 0.85);
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    display: block;
+}
+
+a.#{$light}MenuItem:hover {
+    color: rgb(0, 154, 164);
+    background-color: rgba(0, 130, 140, 0.06);
+    cursor: pointer;
+}
+
+.#{$light}Show {
+    display: block;
+}
+
+.#{$light}MainContent {
+    padding-left: 12.5%;
+    padding-right: 12.5%;
+    z-index: 1;
+}
+
+.#{$light}GetMoreSpaceButton {
+    background-color: rgb(0, 130, 140);
+    border-width: thin;
+    color: rgb(254, 254, 254);
+    font-family: "Square Market", Helvetica, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 6px 12px;
+    margin: auto;
+    display: block;
+    border-radius: 4px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.#{$light}GetMoreSpaceButton:hover {
+    background-color: rgb(0, 154, 164);
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.#{$light}GetMoreSpaceButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    transition: 250ms;
+    outline: none;
+}
+
+.#{$light}GetMoreSpaceButton:focus {
+    outline: none;
+}
+
+.#{$light}Header {
+    font-size: 30px;
+    height: 100px;
+}
+
+p.#{$light}Header {
+    color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}Content {
+    width: 960px;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.#{$light}FirstHeader {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.#{$light}Setting {
+  height: 50px;
+  margin-top: -10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.#{$light}Setting:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.#{$light}SettingWithButton {
+  height: 50px;
+  margin-top: -10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+}
+
+.#{$light}LeftItemBox {
+  float: left;
+  height: 50px;
+  width: 50%;
+}
+
+p##{$light}Item {
+  color: rgba(23, 23, 23, 0.85);
+  text-align: left;
+}
+
+.#{$light}RightItemBox {
+  float: right;
+  height: 50px;
+  width: 50%;
+}
+
+.#{$light}Value {
+  float: right;
+  text-align: right;
+}
+
+.#{$light}DropdownSetting {
+  height: 75px;
+  margin-top: 25px;
+  transition: 250ms;
+}
+
+.#{$light}DropdownSettingPassword {
+  height: 140px;
+  margin-top: 25px;
+  transition: 250ms;
+}
+
+.#{$light}NamePasswordVerifyTextBox {
+  margin-left: 16px;
+}
+
+.#{$light}FirstNameChangeTextBox {
+  margin-left: 15px;
+}
+
+.#{$light}LastNameChangeTextBox {
+  margin-left: 15px;
+}
+
+.#{$light}FirstNameChangeTextBox, .#{$light}LastNameChangeTextBox, .#{$light}NamePasswordVerifyTextBox {
+  width: 238px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.#{$light}FirstNameChangeTextBox:focus, .#{$light}LastNameChangeTextBox:focus, .#{$light}NamePasswordVerifyTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}SaveChangesButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: rgb(0, 154, 164);
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  margin-left: 15px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.#{$light}SaveChangesButton:hover {
+    background-color: rgba(0, 130, 140, 0.06);
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$light}SaveChangesButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    border-color: rgb(0, 130, 140);
+    transition: 250ms;
+}
+
+.#{$light}SaveChangesButton:focus {
+    outline: none;
+}
+
+.#{$light}EmailPasswordVerifyTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  margin-left: 257px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.#{$light}EmailPasswordVerifyTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}ProfileImage {
+  width: 45px;
+  border-radius: 4px;
+  margin-top: 7px;
+}
+
+.#{$light}EmailChangeTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  margin-left: 15px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.#{$light}EmailChangeTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}UsernamePasswordVerifyTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  margin-left: 257px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.#{$light}UsernamePasswordVerifyTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}UsernameChangeTextBox {
+  width: 250px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  margin-left: 15px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.#{$light}UsernameChangeTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}ChangePasswordButton {
+    background-color: rgba(51, 204, 255, 0);
+    border-color: rgba(23, 23, 23, 0.25);
+    border-width: thin;
+    color: rgb(0, 154, 164);
+    font-family: "Square Market", Helvetica, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 6px 12px;
+    margin-top: 13px;
+    border-radius: 4px;
+    position: relative;
+}
+
+.#{$light}ChangePasswordButton:hover {
+    background-color: rgba(0, 130, 140, 0.06);
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$light}ChangePasswordButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    border-color: rgb(0, 130, 140);
+    transition: 250ms;
+}
+
+.#{$light}ChangePasswordButton:focus {
+    outline: none;
+}
+
+.#{$light}PasswordRequirement {
+  height: 50px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-left: 15px;
+}
+
+p.#{$light}PasswordRequirement {
+  font-size: 16px;
+}
+
+.#{$light}PasswordChangeForm {
+  float: left;
+}
+
+.#{$light}PasswordOldPasswordVerifyTextBox {
+  margin-left: 16px;
+}
+
+.#{$light}PasswordChangeTextBox {
+  margin-left: 15px;
+}
+
+.#{$light}PasswordChangeTextBox, .#{$light}PasswordOldPasswordVerifyTextBox {
+  width: 238px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.06);
+}
+
+.#{$light}PasswordChangeTextBox:focus, .#{$light}PasswordOldPasswordVerifyTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}Space {
+  height: 100px;
+  margin-top: -10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+}
+
+.#{$light}Headers {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.#{$light}Switch {
+  position: relative;
+  display: inline-block;
+  float: right;
+  width: 60px;
+  height: 34px;
+  margin-top: 12px;
+}
+
+.#{$light}Switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.#{$light}Slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 4px;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.#{$light}Slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  border-radius: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .#{$light}Slider {
+  background-color: rgba(15, 15, 15, 1);
+}
+
+input:focus + .#{$light}Slider {
+  box-shadow: 0 0 1px rgba(15, 15, 15, 1);
+  outline: none;
+}
+
+input:checked + .#{$light}Slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.#{$light}LedgerSizeButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: rgb(0, 154, 164);
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  margin-top: 13px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.#{$light}LedgerSizeButton:hover {
+    background-color: rgba(0, 130, 140, 0.06);
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$light}LedgerSizeButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    border-color: rgb(0, 130, 140);
+    transition: 250ms;
+}
+
+.#{$light}LedgerSizeButton:focus {
+    outline: none;
+}
+
+.#{$light}DateFormatButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  color: rgb(0, 154, 164);
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  margin-top: 13px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.#{$light}DateFormatButton:hover {
+    background-color: rgba(0, 130, 140, 0.06);
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$light}DateFormatButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    border-color: rgb(0, 130, 140);
+    transition: 250ms;
+}
+
+.#{$light}DateFormatButton:focus {
+    outline: none;
+}
+
+.#{$light}DeleteAccountButton {
+    background-color: rgba(51, 204, 255, 0);
+    border-color: rgba(23, 23, 23, 0.25);
+    border-width: thin;
+    color: rgb(0, 154, 164);
+    font-family: "Square Market", Helvetica, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 6px 12px;
+    margin-top: 13px;
+    border-radius: 4px;
+    position: relative;
+}
+
+.#{$light}DeleteAccountButton:hover {
+    background-color: rgb(180, 33, 33);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.#{$light}DeletAccountButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    border-color: rgb(0, 130, 140);
+    transition: 250ms;
+}
+
+.#{$light}DeleteAccountButton:focus {
+    outline: none;
+}
+
+.#{$light}Footer, .#{$light}Push {
+    height: 200px;
+}
+
+.#{$light}Footer {
+    font-family: "Square Market", Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: center;
+}

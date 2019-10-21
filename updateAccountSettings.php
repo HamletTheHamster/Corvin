@@ -102,106 +102,110 @@ ini_set("display_errors", 1);
 // And be verbose about it
 error_reporting(E_ALL);
 
-// Get submitted password and verify
-$submittedPassword = $_POST["submittedPassword"];
-$sql = "SELECT password from UserInfo WHERE id = '$userID'";
-$referencePassword = mysqli_fetch_row(mysqli_query($conn, $sql));
+//If change requires password check
+if (isset($_POST["submittedPassword"])) {
 
-if (password_verify($submittedPassword, $referencePassword[0])) {
+  // Get submitted password and verify
+  $submittedPassword = $_POST["submittedPassword"];
+  $sql = "SELECT password from UserInfo WHERE id = '$userID'";
+  $referencePassword = mysqli_fetch_row(mysqli_query($conn, $sql));
 
-  // If name change POST data is set
-  if (isset($_POST["firstNameChange"])) {
+  if (password_verify($submittedPassword, $referencePassword[0])) {
 
-    // Update first and last name in database
-    $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
-    $oldUser = mysqli_fetch_array(mysqli_query($conn, $sql));
-    $newFirstName = filter_input(
-      INPUT_POST, "firstNameChange", FILTER_SANITIZE_STRING);
-    $newLastName = filter_input(
-      INPUT_POST, "lastNameChange", FILTER_SANITIZE_STRING);
+    // If changing name
+    if (isset($_POST["firstNameChange"])) {
 
-    $sql = "UPDATE UserInfo SET firstName = '$newFirstName' WHERE id = '$userID'";
-    mysqli_query($conn, $sql);
+      // Update first and last name in database
+      $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
+      $oldUser = mysqli_fetch_array(mysqli_query($conn, $sql));
+      $newFirstName = filter_input(
+        INPUT_POST, "firstNameChange", FILTER_SANITIZE_STRING);
+      $newLastName = filter_input(
+        INPUT_POST, "lastNameChange", FILTER_SANITIZE_STRING);
 
-    $sql = "UPDATE UserInfo SET lastName = '$newLastName' WHERE id = '$userID'";
-    mysqli_query($conn, $sql);
+      $sql = "UPDATE UserInfo SET firstName = '$newFirstName' WHERE id = '$userID'";
+      mysqli_query($conn, $sql);
 
-    // Change the name of the user's main folder to reflect new name
-    $oldUserFolderFullPath = "../../../mnt/Raid1Array/Corvin/" . $userID .
-      " - " . $oldUser[0] . $oldUser[1];
-    $oldUserRecycleFolderFullPath = "../../../mnt/Raid1Array/Corvin/0 - Recycle/" .
-      $userID . " - " . $oldUser[0] . $oldUser[1];
-    $user = array($newFirstName, $newLastName);
-    $newUserFolderName = $userID . " - " . $user[0] . $user[1];
-    $newSanitizedUserFolderName = filter_var(
-      $newUserFolderName, FILTER_SANITIZE_STRING);
-    $newUserFolderFullPath = "../../../mnt/Raid1Array/Corvin/" .
-      $newSanitizedUserFolderName;
-    $newUserRecycleFolderFullPath =
-      "../../../mnt/Raid1Array/Corvin/0 - Recycle/" .
-      $newSanitizedUserFolderName;
+      $sql = "UPDATE UserInfo SET lastName = '$newLastName' WHERE id = '$userID'";
+      mysqli_query($conn, $sql);
 
-    if (rename($oldUserFolderFullPath, $newUserFolderFullPath)) {
-      if (rename($oldUserRecycleFolderFullPath, $newUserRecycleFolderFullPath)) {
+      // Change the name of the user's main folder to reflect new name
+      $oldUserFolderFullPath = "../../../mnt/Raid1Array/Corvin/" . $userID .
+        " - " . $oldUser[0] . $oldUser[1];
+      $oldUserRecycleFolderFullPath = "../../../mnt/Raid1Array/Corvin/0 - Recycle/" .
+        $userID . " - " . $oldUser[0] . $oldUser[1];
+      $user = array($newFirstName, $newLastName);
+      $newUserFolderName = $userID . " - " . $user[0] . $user[1];
+      $newSanitizedUserFolderName = filter_var(
+        $newUserFolderName, FILTER_SANITIZE_STRING);
+      $newUserFolderFullPath = "../../../mnt/Raid1Array/Corvin/" .
+        $newSanitizedUserFolderName;
+      $newUserRecycleFolderFullPath =
+        "../../../mnt/Raid1Array/Corvin/0 - Recycle/" .
+        $newSanitizedUserFolderName;
 
-        echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
+      if (rename($oldUserFolderFullPath, $newUserFolderFullPath)) {
+        if (rename($oldUserRecycleFolderFullPath, $newUserRecycleFolderFullPath)) {
+
+          echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
+        }
+        else {echo "There was a problem renaming your recycle folder.";}
       }
-      else {echo "There was a problem renaming your recycle folder.";}
+      else {echo "There was a problem renaming your main folder.";}
     }
-    else {echo "There was a problem renaming your main folder.";}
-  }
-  // Else, if email change POST data is set
-  elseif (isset($_POST["emailChange"])) {
+    // Else, if changing email
+    elseif (isset($_POST["emailChange"])) {
 
-    // Update email in database
-    $newEmail = filter_input(INPUT_POST, "emailChange", FILTER_SANITIZE_EMAIL);
+      // Update email in database
+      $newEmail = filter_input(INPUT_POST, "emailChange", FILTER_SANITIZE_EMAIL);
 
-    $sql = "UPDATE UserInfo SET email = '$newEmail' WHERE id = '$userID'";
-    mysqli_query($conn, $sql);
+      $sql = "UPDATE UserInfo SET email = '$newEmail' WHERE id = '$userID'";
+      mysqli_query($conn, $sql);
 
-    echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
-  }
-  // Else, if username POST data is set
-  elseif (isset($_POST["usernameChange"])) {
+      echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
+    }
+    // Else, if changing username
+    elseif (isset($_POST["usernameChange"])) {
 
-    // Update username in database
-    $newUsername = filter_input(
-      INPUT_POST, "usernameChange", FILTER_SANITIZE_STRING);
+      // Update username in database
+      $newUsername = filter_input(
+        INPUT_POST, "usernameChange", FILTER_SANITIZE_STRING);
 
-    $sql = "UPDATE UserInfo SET username = '$newUsername' WHERE id = '$userID'";
-    mysqli_query($conn, $sql);
+      $sql = "UPDATE UserInfo SET username = '$newUsername' WHERE id = '$userID'";
+      mysqli_query($conn, $sql);
 
-    echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
-  }
-  // Else, if password POST data is set
-  elseif (isset($_POST["newPassword"])) {
+      echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
+    }
+    // Else, if changing password
+    elseif (isset($_POST["newPassword"])) {
 
-    // Check if passwords match
-    if ($_POST["newPassword"] == $_POST["newPassword2"]) {
+      // Check if passwords match
+      if ($_POST["newPassword"] == $_POST["newPassword2"]) {
 
-      // Check if password meets criteria
-      if (strlen($_POST["newPassword"]) > 7) {
+        // Check if password meets criteria
+        if (strlen($_POST["newPassword"]) > 7) {
 
-        // Password_hash automatically uses currently recommended hashing
-        // algorithm with salt
-        $hashedPassword = password_hash($_POST["newPassword"], PASSWORD_DEFAULT);
+          // Password_hash automatically uses currently recommended hashing
+          // algorithm with salt
+          $hashedPassword = password_hash($_POST["newPassword"], PASSWORD_DEFAULT);
 
-        $sql = "UPDATE UserInfo SET password = '$hashedPassword' WHERE id = '$userID'";
-        mysqli_query($conn, $sql);
+          $sql = "UPDATE UserInfo SET password = '$hashedPassword' WHERE id = '$userID'";
+          mysqli_query($conn, $sql);
 
-        echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
+          echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
+        }
+        else {
+          echo "Password needs to be at least 8 characters.";
+        }
       }
       else {
-        echo "Password needs to be at least 8 characters.";
+        echo "Passwords do not match.";
       }
     }
     else {
-      echo "Passwords do not match.";
+      echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
     }
   }
-  else {
-    echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
-  }
+  else {echo "Incorrect password.";}
 }
-else {echo "Incorrect password.";}
 ?>

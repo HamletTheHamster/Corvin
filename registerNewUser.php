@@ -97,8 +97,8 @@ $sql = "CREATE TABLE IF NOT EXISTS UserInfo (
   lastActive DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   storageSpaceInMegabytes INT(255) SIGNED,
   accountTier VARCHAR(100),
-  active INT(1) NOT NULL DEFAULT 0,
-  uiPreferences INT(6) DEFAULT 000000);
+  active BIT DEFAULT 0,
+  darkmode BIT DEFAULT 0);
 ";
 
 if (!mysqli_query($conn, $sql)) {
