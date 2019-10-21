@@ -1567,7 +1567,9 @@ p#lightSettingsItem {
   margin-left: 15px;
 }
 
-.lightSettingsFirstNameChangeTextBox, .lightSettingsLastNameChangeTextBox, .lightSettingsNamePasswordVerifyTextBox {
+.lightSettingsFirstNameChangeTextBox,
+.lightSettingsLastNameChangeTextBox,
+.lightSettingsNamePasswordVerifyTextBox {
   width: 238px;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -1580,7 +1582,9 @@ p#lightSettingsItem {
   background-color: rgba(0, 130, 140, 0.06);
 }
 
-.lightSettingsFirstNameChangeTextBox:focus, .lightSettingsLastNameChangeTextBox:focus, .lightSettingsNamePasswordVerifyTextBox:focus {
+.lightSettingsFirstNameChangeTextBox:focus,
+.lightSettingsLastNameChangeTextBox:focus,
+.lightSettingsNamePasswordVerifyTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
 }
@@ -1617,6 +1621,12 @@ p#lightSettingsItem {
   outline: none;
 }
 
+.lightSettingsProfileImage {
+  width: 45px;
+  border-radius: 4px;
+  margin-top: 7px;
+}
+
 .lightSettingsEmailPasswordVerifyTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -1634,12 +1644,6 @@ p#lightSettingsItem {
 .lightSettingsEmailPasswordVerifyTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
-}
-
-.lightSettingsProfileImage {
-  width: 45px;
-  border-radius: 4px;
-  margin-top: 7px;
 }
 
 .lightSettingsEmailChangeTextBox {
@@ -1739,6 +1743,7 @@ p#lightSettingsItem {
 
 p.lightSettingsPasswordRequirement {
   font-size: 16px;
+  color: rgba(23, 23, 23, 0.85);
 }
 
 .lightSettingsPasswordChangeForm {
@@ -1813,7 +1818,7 @@ p.lightSettingsPasswordRequirement {
   transition: 0.4s;
 }
 
-.lightSettingsSlider:before {
+.lightSettingsSlider::before {
   position: absolute;
   content: "";
   height: 26px;
@@ -1827,7 +1832,7 @@ p.lightSettingsPasswordRequirement {
 }
 
 input:checked + .lightSettingsSlider {
-  background-color: #0f0f0f;
+  background-color: #00828c;
 }
 
 input:focus + .lightSettingsSlider {
@@ -1835,7 +1840,7 @@ input:focus + .lightSettingsSlider {
   outline: none;
 }
 
-input:checked + .lightSettingsSlider:before {
+input:checked + .lightSettingsSlider::before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
@@ -1981,7 +1986,7 @@ html.darkSettings, body.darkSettings {
 }
 
 .darkSettingsCorvinHeader:hover {
-  color: #00828c;
+  color: rgba(255, 255, 255, 0.85);
   cursor: pointer;
 }
 
@@ -2012,7 +2017,7 @@ p.darkSettingsAccountButton {
 }
 
 p.darkSettingsAccountButton:hover {
-  color: #00828c;
+  color: rgba(255, 255, 255, 0.85);
   cursor: pointer;
 }
 
@@ -2021,12 +2026,12 @@ p.darkSettingsAccountButton:hover {
   position: absolute;
   right: 20px;
   margin-top: 60px;
-  background-color: #212224;
+  background-color: #353638;
   min-width: 260px;
   border-radius: 6px;
   border-width: thin;
   border-color: rgba(23, 23, 23, 0.25);
-  box-shadow: 0 2px 4px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 4px 0 rgba(255, 255, 255, 0);
   z-index: 2;
 }
 
@@ -2040,7 +2045,7 @@ a.darkSettingsAccountMenuContent {
 
 a.darkSettingsAccountMenuContent:hover {
   color: #00828c;
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(255, 255, 255, 0.15);
   cursor: pointer;
 }
 
@@ -2087,7 +2092,8 @@ a.darkSettingsGetMoreSpaceMenuItem {
 
 a.darkSettingsGetMoreSpaceMenuItem:hover {
   color: #009aa4;
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -2102,7 +2108,8 @@ a.darkSettingsMenuItem {
 
 a.darkSettingsMenuItem:hover {
   color: #009aa4;
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -2181,7 +2188,7 @@ p.darkSettingsHeader {
 }
 
 .darkSettingsSetting:hover {
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .darkSettingsSettingWithButton {
@@ -2211,6 +2218,7 @@ p.darkSettingsHeader {
 }
 
 .darkSettingsValue {
+  color: rgba(255, 255, 255, 0.85);
   float: right;
   text-align: right;
 }
@@ -2249,17 +2257,26 @@ p.darkSettingsHeader {
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
-.darkSettingsFirstNameChangeTextBox:focus, .darkSettingsLastNameChangeTextBox:focus, .darkSettingsNamePasswordVerifyTextBox:focus {
+.darkSettingsFirstNameChangeTextBox::placeholder,
+.darkSettingsLastNameChangeTextBox::placeholder,
+.darkSettingsNamePasswordVerifyTextBox::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.darkSettingsFirstNameChangeTextBox:focus,
+.darkSettingsLastNameChangeTextBox:focus,
+.darkSettingsNamePasswordVerifyTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
 }
 
 .darkSettingsSaveChangesButton {
-  background-color: rgba(51, 204, 255, 0);
-  border-color: rgba(23, 23, 23, 0.25);
+  background-color: #353638;
+  border-color: rgba(255, 255, 255, 0);
   border-width: thin;
   color: #009aa4;
   font-family: "Square Market", Helvetica, sans-serif;
@@ -2274,7 +2291,7 @@ p.darkSettingsHeader {
 }
 
 .darkSettingsSaveChangesButton:hover {
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(255, 255, 255, 0.25);
   color: #00828c;
   cursor: pointer;
 }
@@ -2289,6 +2306,12 @@ p.darkSettingsHeader {
   outline: none;
 }
 
+.darkSettingsProfileImage {
+  width: 45px;
+  border-radius: 4px;
+  margin-top: 7px;
+}
+
 .darkSettingsEmailPasswordVerifyTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -2300,7 +2323,8 @@ p.darkSettingsHeader {
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .darkSettingsEmailPasswordVerifyTextBox:focus {
@@ -2308,10 +2332,8 @@ p.darkSettingsHeader {
   border-color: rgba(23, 23, 23, 0.85);
 }
 
-.darkSettingsProfileImage {
-  width: 45px;
-  border-radius: 4px;
-  margin-top: 7px;
+.darkSettingsEmailPasswordVerifyTextBox::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .darkSettingsEmailChangeTextBox {
@@ -2325,12 +2347,17 @@ p.darkSettingsHeader {
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .darkSettingsEmailChangeTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
+}
+
+.darkSettingsEmailChangeTextBox::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .darkSettingsUsernamePasswordVerifyTextBox {
@@ -2344,12 +2371,17 @@ p.darkSettingsHeader {
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .darkSettingsUsernamePasswordVerifyTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
+}
+
+.darkSettingsUsernamePasswordVerifyTextBox::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .darkSettingsUsernameChangeTextBox {
@@ -2363,12 +2395,17 @@ p.darkSettingsHeader {
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .darkSettingsUsernameChangeTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
+}
+
+.darkSettingsUsernameChangeTextBox::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .darkSettingsChangePasswordButton {
@@ -2411,6 +2448,7 @@ p.darkSettingsHeader {
 
 p.darkSettingsPasswordRequirement {
   font-size: 16px;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .darkSettingsPasswordChangeForm {
@@ -2425,7 +2463,8 @@ p.darkSettingsPasswordRequirement {
   margin-left: 15px;
 }
 
-.darkSettingsPasswordChangeTextBox, .darkSettingsPasswordOldPasswordVerifyTextBox {
+.darkSettingsPasswordChangeTextBox,
+.darkSettingsPasswordOldPasswordVerifyTextBox {
   width: 238px;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -2435,12 +2474,19 @@ p.darkSettingsPasswordRequirement {
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
-.darkSettingsPasswordChangeTextBox:focus, .darkSettingsPasswordOldPasswordVerifyTextBox:focus {
+.darkSettingsPasswordChangeTextBox:focus,
+.darkSettingsPasswordOldPasswordVerifyTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
+}
+
+.darkSettingsPasswordChangeTextBox::placeholder,
+.darkSettingsPasswordOldPasswordVerifyTextBox::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .darkSettingsSpace {
@@ -2493,13 +2539,13 @@ p.darkSettingsPasswordRequirement {
   left: 4px;
   bottom: 4px;
   border-radius: 4px;
-  background-color: white;
+  background-color: black;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
 input:checked + .darkSettingsSlider {
-  background-color: #0f0f0f;
+  background-color: #00828c;
 }
 
 input:focus + .darkSettingsSlider {
@@ -2514,10 +2560,10 @@ input:checked + .darkSettingsSlider:before {
 }
 
 .darkSettingsLedgerSizeButton {
-  background-color: rgba(51, 204, 255, 0);
-  border-color: rgba(23, 23, 23, 0.25);
+  background-color: #353638;
+  border-color: rgba(255, 255, 255, 0);
   border-width: thin;
-  color: #009aa4;
+  color: #00828c;
   font-family: "Square Market", Helvetica, sans-serif;
   text-align: center;
   text-decoration: none;
@@ -2529,8 +2575,7 @@ input:checked + .darkSettingsSlider:before {
 }
 
 .darkSettingsLedgerSizeButton:hover {
-  background-color: rgba(0, 130, 140, 0.06);
-  color: #00828c;
+  background-color: rgba(255, 255, 255, 0.25);
   cursor: pointer;
 }
 
@@ -2576,10 +2621,10 @@ input:checked + .darkSettingsSlider:before {
 }
 
 .darkSettingsDeleteAccountButton {
-  background-color: rgba(51, 204, 255, 0);
-  border-color: rgba(23, 23, 23, 0.25);
+  color: #00828c;
+  background-color: #353638;
+  border-color: rgba(255, 255, 255, 0);
   border-width: thin;
-  color: #009aa4;
   font-family: "Square Market", Helvetica, sans-serif;
   text-align: center;
   text-decoration: none;

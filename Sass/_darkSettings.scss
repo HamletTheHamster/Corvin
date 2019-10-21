@@ -38,7 +38,7 @@ html.#{$dark}, body.#{$dark} {
 }
 
 .#{$dark}CorvinHeader:hover {
-    color: rgb(0, 130, 140);
+    color: rgba(255, 255, 255, 0.85);
     cursor: pointer;
 }
 
@@ -69,7 +69,7 @@ p.#{$dark}AccountButton {
 }
 
 p.#{$dark}AccountButton:hover {
-    color: rgb(0, 130, 140);
+    color: rgba(255, 255, 255, 0.85);
     cursor: pointer;
 }
 
@@ -78,12 +78,12 @@ p.#{$dark}AccountButton:hover {
     position: absolute;
     right: 20px;
     margin-top: 60px;
-    background-color: rgb(33, 34, 36);
+    background-color: rgb(53, 54, 56);
     min-width: 260px;
     border-radius: 6px;
     border-width: thin;
     border-color: rgba(23, 23, 23, 0.25);
-    box-shadow: 0 2px 4px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 4px 0 rgba(255, 255, 255, 0);
     z-index: 2;
 }
 
@@ -97,7 +97,7 @@ a.#{$dark}AccountMenuContent {
 
 a.#{$dark}AccountMenuContent:hover {
     color: rgb(0, 130, 140);
-    background-color: rgba(0, 130, 140, 0.06);
+    background-color: rgba(255, 255, 255, 0.15);
     cursor: pointer;
 }
 
@@ -147,7 +147,8 @@ a.#{$dark}GetMoreSpaceMenuItem {
 
 a.#{$dark}GetMoreSpaceMenuItem:hover {
     color: rgb(0, 154, 164);
-    background-color: rgba(0, 130, 140, 0.06);
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
     cursor: pointer;
 }
 
@@ -162,7 +163,8 @@ a.#{$dark}MenuItem {
 
 a.#{$dark}MenuItem:hover {
     color: rgb(0, 154, 164);
-    background-color: rgba(0, 130, 140, 0.06);
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
     cursor: pointer;
 }
 
@@ -241,7 +243,7 @@ p.#{$dark}Header {
 }
 
 .#{$dark}Setting:hover {
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .#{$dark}SettingWithButton {
@@ -271,6 +273,7 @@ p.#{$dark}Header {
 }
 
 .#{$dark}Value {
+  color: rgba(255, 255, 255, 0.85);
   float: right;
   text-align: right;
 }
@@ -309,17 +312,26 @@ p.#{$dark}Header {
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
-.#{$dark}FirstNameChangeTextBox:focus, .#{$dark}LastNameChangeTextBox:focus, .#{$dark}NamePasswordVerifyTextBox:focus {
+.#{$dark}FirstNameChangeTextBox::placeholder,
+.#{$dark}LastNameChangeTextBox::placeholder,
+.#{$dark}NamePasswordVerifyTextBox::placeholder {
+  color: rgba(255, 255, 255, .5);
+}
+
+.#{$dark}FirstNameChangeTextBox:focus,
+.#{$dark}LastNameChangeTextBox:focus,
+.#{$dark}NamePasswordVerifyTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
 }
 
 .#{$dark}SaveChangesButton {
-  background-color: rgba(51, 204, 255, 0);
-  border-color: rgba(23, 23, 23, 0.25);
+  background-color: rgb(53, 54, 56);
+  border-color: rgba(255, 255, 255, 0);
   border-width: thin;
   color: rgb(0, 154, 164);
   font-family: "Square Market", Helvetica, sans-serif;
@@ -334,7 +346,7 @@ p.#{$dark}Header {
 }
 
 .#{$dark}SaveChangesButton:hover {
-    background-color: rgba(0, 130, 140, 0.06);
+    background-color: rgba(255, 255, 255, 0.25);
     color: rgb(0, 130, 140);
     cursor: pointer;
 }
@@ -349,6 +361,12 @@ p.#{$dark}Header {
     outline: none;
 }
 
+.#{$dark}ProfileImage {
+  width: 45px;
+  border-radius: 4px;
+  margin-top: 7px;
+}
+
 .#{$dark}EmailPasswordVerifyTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -360,7 +378,8 @@ p.#{$dark}Header {
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .#{$dark}EmailPasswordVerifyTextBox:focus {
@@ -368,10 +387,8 @@ p.#{$dark}Header {
   border-color: rgba(23, 23, 23, 0.85);
 }
 
-.#{$dark}ProfileImage {
-  width: 45px;
-  border-radius: 4px;
-  margin-top: 7px;
+.#{$dark}EmailPasswordVerifyTextBox::placeholder {
+  color: rgba(255, 255, 255, .5);
 }
 
 .#{$dark}EmailChangeTextBox {
@@ -385,12 +402,17 @@ p.#{$dark}Header {
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .#{$dark}EmailChangeTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$dark}EmailChangeTextBox::placeholder {
+  color: rgba(255, 255, 255, .5);
 }
 
 .#{$dark}UsernamePasswordVerifyTextBox {
@@ -404,12 +426,17 @@ p.#{$dark}Header {
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .#{$dark}UsernamePasswordVerifyTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$dark}UsernamePasswordVerifyTextBox::placeholder {
+  color: rgba(255, 255, 255, .5);
 }
 
 .#{$dark}UsernameChangeTextBox {
@@ -423,12 +450,17 @@ p.#{$dark}Header {
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .#{$dark}UsernameChangeTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$dark}UsernameChangeTextBox::placeholder {
+  color: rgba(255, 255, 255, .5);
 }
 
 .#{$dark}ChangePasswordButton {
@@ -471,6 +503,7 @@ p.#{$dark}Header {
 
 p.#{$dark}PasswordRequirement {
   font-size: 16px;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .#{$dark}PasswordChangeForm {
@@ -485,7 +518,8 @@ p.#{$dark}PasswordRequirement {
   margin-left: 15px;
 }
 
-.#{$dark}PasswordChangeTextBox, .#{$dark}PasswordOldPasswordVerifyTextBox {
+.#{$dark}PasswordChangeTextBox,
+.#{$dark}PasswordOldPasswordVerifyTextBox {
   width: 238px;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -495,12 +529,19 @@ p.#{$dark}PasswordRequirement {
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
-  background-color: rgba(0, 130, 140, 0.06);
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
-.#{$dark}PasswordChangeTextBox:focus, .#{$dark}PasswordOldPasswordVerifyTextBox:focus {
+.#{$dark}PasswordChangeTextBox:focus,
+.#{$dark}PasswordOldPasswordVerifyTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$dark}PasswordChangeTextBox::placeholder,
+.#{$dark}PasswordOldPasswordVerifyTextBox::placeholder {
+  color: rgba(255, 255, 255, .5);
 }
 
 .#{$dark}Space {
@@ -553,13 +594,13 @@ p.#{$dark}PasswordRequirement {
   left: 4px;
   bottom: 4px;
   border-radius: 4px;
-  background-color: white;
+  background-color: black;
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 input:checked + .#{$dark}Slider {
-  background-color: rgba(15, 15, 15, 1);
+  background-color: rgb(0, 130, 140);
 }
 
 input:focus + .#{$dark}Slider {
@@ -574,10 +615,10 @@ input:checked + .#{$dark}Slider:before {
 }
 
 .#{$dark}LedgerSizeButton {
-  background-color: rgba(51, 204, 255, 0);
-  border-color: rgba(23, 23, 23, 0.25);
+  background-color: rgb(53, 54, 56);
+  border-color: rgba(255, 255, 255, 0);
   border-width: thin;
-  color: rgb(0, 154, 164);
+  color: rgb(0, 130, 140);
   font-family: "Square Market", Helvetica, sans-serif;
   text-align: center;
   text-decoration: none;
@@ -589,8 +630,7 @@ input:checked + .#{$dark}Slider:before {
 }
 
 .#{$dark}LedgerSizeButton:hover {
-    background-color: rgba(0, 130, 140, 0.06);
-    color: rgb(0, 130, 140);
+    background-color: rgba(255, 255, 255, 0.25);
     cursor: pointer;
 }
 
@@ -636,10 +676,10 @@ input:checked + .#{$dark}Slider:before {
 }
 
 .#{$dark}DeleteAccountButton {
-    background-color: rgba(51, 204, 255, 0);
-    border-color: rgba(23, 23, 23, 0.25);
+    color: rgb(0, 130, 140);
+    background-color: rgb(53, 54, 56);
+    border-color: rgba(255, 255, 255, 0);
     border-width: thin;
-    color: rgb(0, 154, 164);
     font-family: "Square Market", Helvetica, sans-serif;
     text-align: center;
     text-decoration: none;
@@ -651,7 +691,7 @@ input:checked + .#{$dark}Slider:before {
 }
 
 .#{$dark}DeleteAccountButton:hover {
-    background-color: rgb(180, 33, 33);
+    background-color: rgba(180, 33, 33);
     color: rgb(255, 255, 255);
     cursor: pointer;
 }

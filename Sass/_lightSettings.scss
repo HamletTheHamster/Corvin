@@ -298,7 +298,9 @@ p##{$light}Item {
   margin-left: 15px;
 }
 
-.#{$light}FirstNameChangeTextBox, .#{$light}LastNameChangeTextBox, .#{$light}NamePasswordVerifyTextBox {
+.#{$light}FirstNameChangeTextBox,
+.#{$light}LastNameChangeTextBox,
+.#{$light}NamePasswordVerifyTextBox {
   width: 238px;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -311,7 +313,9 @@ p##{$light}Item {
   background-color: rgba(0, 130, 140, 0.06);
 }
 
-.#{$light}FirstNameChangeTextBox:focus, .#{$light}LastNameChangeTextBox:focus, .#{$light}NamePasswordVerifyTextBox:focus {
+.#{$light}FirstNameChangeTextBox:focus,
+.#{$light}LastNameChangeTextBox:focus,
+.#{$light}NamePasswordVerifyTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
 }
@@ -348,6 +352,12 @@ p##{$light}Item {
     outline: none;
 }
 
+.#{$light}ProfileImage {
+  width: 45px;
+  border-radius: 4px;
+  margin-top: 7px;
+}
+
 .#{$light}EmailPasswordVerifyTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -365,12 +375,6 @@ p##{$light}Item {
 .#{$light}EmailPasswordVerifyTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
-}
-
-.#{$light}ProfileImage {
-  width: 45px;
-  border-radius: 4px;
-  margin-top: 7px;
 }
 
 .#{$light}EmailChangeTextBox {
@@ -470,6 +474,7 @@ p##{$light}Item {
 
 p.#{$light}PasswordRequirement {
   font-size: 16px;
+  color: rgba(23, 23, 23, 0.85);
 }
 
 .#{$light}PasswordChangeForm {
@@ -544,7 +549,7 @@ p.#{$light}PasswordRequirement {
   transition: .4s;
 }
 
-.#{$light}Slider:before {
+.#{$light}Slider::before {
   position: absolute;
   content: "";
   height: 26px;
@@ -558,7 +563,7 @@ p.#{$light}PasswordRequirement {
 }
 
 input:checked + .#{$light}Slider {
-  background-color: rgba(15, 15, 15, 1);
+  background-color: rgb(0, 130, 140);
 }
 
 input:focus + .#{$light}Slider {
@@ -566,7 +571,7 @@ input:focus + .#{$light}Slider {
   outline: none;
 }
 
-input:checked + .#{$light}Slider:before {
+input:checked + .#{$light}Slider::before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);

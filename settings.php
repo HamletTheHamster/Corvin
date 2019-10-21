@@ -246,7 +246,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '" .
               $userID . "'";
             $user = mysqli_fetch_row(mysqli_query($conn, $sql));
-            echo "<p id = 'nameValuep'>" . $user[0] . " " . $user[1] . "</p>";
+            echo "<p id = 'nameValuep' class = '".$o."Value'>" . $user[0] . " " . $user[1] . "</p>";
             ?>
           </div>
         </div>
@@ -269,6 +269,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           <input
             type = "text"
             name = "firstNameChange"
+            id = "firstNameChangeTextBox"
             class = <?php echo "'".$o."FirstNameChangeTextBox'";?>
             value = <?php echo "'" . $user[0] . "'";?>
             placeholder = "First Name"
@@ -277,6 +278,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           <input
             type = "text"
             name = "lastNameChange"
+            id = "lastNameChangeTextBox"
             class = <?php echo "'".$o."LastNameChangeTextBox'";?>
             value = <?php echo "'" . $user[1] . "'";?>
             placeholder = "Last Name"
@@ -285,6 +287,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           <input
             type = "submit"
             value = "Save Changes"
+            id = "nameSaveChangesButton"
             class = <?php echo "'".$o."SaveChangesButton'";?>
           />
         </form>
@@ -350,7 +353,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             <?php
             $sql = "SELECT email FROM UserInfo WHERE id = '" . $userID . "'";
             $email = mysqli_fetch_row(mysqli_query($conn, $sql));
-            echo "<p>" . $email[0] . "</p>";
+            echo "<p id = 'emailValuep' class = '".$o."Value'>" . $email[0] . "</p>";
             ?>
           </div>
         </div>
@@ -373,6 +376,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           <input
             type = "email"
             name = "emailChange"
+            id = "emailChangeTextBox"
             class = <?php echo "'".$o."EmailChangeTextBox'";?>
             value = <?php echo "'" . $email[0] . "'";?>
             placeholder = "Email"
@@ -381,6 +385,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           <input
             type = "submit"
             value = "Save Changes"
+            id = "emailSaveChangesButton"
             class = <?php echo "'".$o."SaveChangesButton'";?>
           />
         </form>
@@ -416,7 +421,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             <?php
             $sql = "SELECT username FROM UserInfo WHERE id = '" . $userID . "'";
             $username = mysqli_fetch_row(mysqli_query($conn, $sql));
-            echo "<p>" . $username[0] . "</p>";
+            echo "<p id = 'usernameValuep' class = '".$o."Value'>" . $username[0] . "</p>";
             ?>
           </div>
         </div>
@@ -426,7 +431,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           action = "updateAccountSettings.php"
           method = "post"
           enctype = "multipart/form-data"
-          class = <?php echo "'".$o."ChangeName";?>
+          class = <?php echo "'".$o."ChangeName'";?>
         >
           <input
             type = "password"
@@ -439,6 +444,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           <input
             type = "text"
             name = "usernameChange"
+            id = "usernameChangeTextBox"
             class = <?php echo "'".$o."UsernameChangeTextBox'";?>
             value = <?php echo "'" . $username[0] . "'";?>
             placeholder = "Username"
@@ -447,6 +453,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           <input
             type = "submit"
             value = "Save Changes"
+            id = "usernameSaveChangesButton"
             class = <?php echo "'".$o."SaveChangesButton'";?>
           />
         </form>
@@ -485,7 +492,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <div id = "dropdownPassword"
         class = <?php echo "'".$o."DropdownSettingPassword'";?>>
         <div class = <?php echo "'".$o."PasswordRequirement'";?>>
-          <p class = <?php echo "'".$o."PasswordRequirement'";?>>
+          <p id = "passwordLengthRequirement" class = <?php echo "'".$o."PasswordRequirement'";?>>
             Password must contain at least 8 characters
           </P>
         </div>
@@ -507,6 +514,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             <input
               type = "password"
               name = "newPassword"
+              id = "newPasswordTextBox"
               class = <?php echo "'".$o."PasswordChangeTextBox'";?>
               placeholder = "New Password"
               required
@@ -514,6 +522,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             <input
               type = "password"
               name = "newPassword2"
+              id = "newPassword2TextBox"
               class = <?php echo "'".$o."PasswordChangeTextBox'";?>
               placeholder = "Re-enter New Password"
               required
@@ -521,6 +530,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             <input
               type = "submit"
               value = "Save Changes"
+              id = "passwordSaveChangesButton"
               class = <?php echo "'".$o."SaveChangesButton'";?>
             />
           </form>
@@ -554,7 +564,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <div class = <?php echo "'".$o."SettingWithButton'";?>>
         <div class = <?php echo "'".$o."LeftItemBox'";?>>
           <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'darkMode' class = <?php echo "'".$o."Item'";?>>Dark Mode</p>
+            <p id = 'darkmode' class = <?php echo "'".$o."Item'";?>>Dark Mode</p>
           </div>
         </div>
         <div class = <?php echo "'".$o."RightItemBox'";?>>
@@ -599,33 +609,113 @@ elseif (time() - $_SESSION['Created'] > 1200)
         function manualModeSwitch() {
 
             if (document.getElementById("darkmodeSlider").checked) {
+
+              // Body
               document.getElementById("wrapper").style.backgroundColor = "rgb(28, 29, 31)";
               document.getElementById("mainContent").style.backgroundColor = "rgb(28, 29, 31)";
               document.getElementById("push").style.backgroundColor = "rgb(28, 29, 31)";
               document.getElementById("footer").style.backgroundColor = "rgb(28, 29, 31)";
               document.body.style.color = "rgba(255, 255, 255, 0.85)";
+
+              // Corvin C & Account Menu
               document.getElementById("corvinHeader").style.color = "rgb(0, 130, 140)";
               document.getElementById("accountButton").style.color = "rgb(0, 130, 140)";
-              document.getElementById("accountMenuContent").style.backgroundColor = "rgb(33, 34, 36)";
+              document.getElementById("accountMenuContent").style.backgroundColor = "rgb(53, 54, 56)";
               document.getElementById("accountMenuContent").style.borderColor = "rgba(255, 255, 255, 0.25)";
-              document.getElementById("accountMenuContent").style.boxShadow = "0 2px 4px 0 rgba(255, 255, 255, 0.1)";
+              document.getElementById("accountMenuContent").style.boxShadow = "0 2px 4px 0 rgba(255, 255, 255, 0)";
               document.getElementById("accountMenuName").style.color = "rgba(255, 255, 255, 0.85)";
               document.getElementById("diskSpace").style.color = "rgba(255, 255, 255, 0.85)";
               document.getElementById("home").style.color = "rgba(255, 255, 255, 0.85)";
               document.getElementById("help").style.color = "rgba(255, 255, 255, 0.85)";
               document.getElementById("logout").style.color = "rgba(255, 255, 255, 0.85)";
+
+              // Header Area
               document.getElementById("getMoreSpaceButton").style.borderColor = "rgb(28, 29, 31)";
               document.getElementById("settingsHeader").style.color = "rgb(255, 255, 255, 0.85)";
+
+              // Collapsed Account Details
               document.getElementById("name").style.color = "rgba(255, 255, 255, 0.85)";
               document.getElementById("nameValuep").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("profileImage").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("email").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("emailValuep").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("username").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("usernameValuep").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("password").style.color = "rgba(255, 255, 255, 0.85)";
+
+              // Expanded Name
+              document.getElementById("namePasswordCheck").style.backgroundColor = "rgba(0, 130, 140, 0.85)";
+              document.getElementById("namePasswordCheck").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("firstNameChangeTextBox").style.backgroundColor = "rgba(0, 130, 140, 0.85)";
+              document.getElementById("firstNameChangeTextBox").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("lastNameChangeTextBox").style.backgroundColor = "rgba(0, 130, 140, 0.85)";
+              document.getElementById("lastNameChangeTextBox").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("nameSaveChangesButton").style.backgroundColor = "rgb(53, 54, 56)";
+              document.getElementById("nameSaveChangesButton").style.borderColor = "rgba(255, 255, 255, 0)";
+
+              // Expanded Email
+              document.getElementById("emailPasswordCheck").style.backgroundColor = "rgba(0, 130, 140, 0.85)";
+              document.getElementById("emailPasswordCheck").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("emailChangeTextBox").style.backgroundColor = "rgba(0, 130, 140, 0.85)";
+              document.getElementById("emailChangeTextBox").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("emailSaveChangesButton").style.backgroundColor = "rgb(53, 54, 56)";
+              document.getElementById("emailSaveChangesButton").style.borderColor = "rgba(255, 255, 255, 0)";
+
+              // Expanded Username
+              document.getElementById("usernamePasswordCheck").style.backgroundColor = "rgba(0, 130, 140, 0.85)";
+              document.getElementById("usernamePasswordCheck").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("usernameChangeTextBox").style.backgroundColor = "rgba(0, 130, 140, 0.85)";
+              document.getElementById("usernameChangeTextBox").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("usernameSaveChangesButton").style.backgroundColor = "rgb(53, 54, 56)";
+              document.getElementById("usernameSaveChangesButton").style.borderColor = "rgba(255, 255, 255, 0)";
+
+              // Expanded Password
+              document.getElementById("passwordLengthRequirement").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("oldPassword").style.backgroundColor = "rgba(0, 130, 140, 0.85)";
+              document.getElementById("oldPassword").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("newPasswordTextBox").style.backgroundColor = "rgba(0, 130, 140, 0.85)";
+              document.getElementById("newPasswordTextBox").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("newPassword2TextBox").style.backgroundColor = "rgba(0, 130, 140, 0.85)";
+              document.getElementById("newPassword2TextBox").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("passwordSaveChangesButton").style.backgroundColor = "rgb(53, 54, 56)";
+              document.getElementById("passwordSaveChangesButton").style.borderColor = "rgba(255, 255, 255, 0)";
+
+              // Preferences
+              document.getElementById("darkmode").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("ledgerSize").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("smallerLedgerSizeButton").style.backgroundColor = "rgb(53, 54, 56)";
+              document.getElementById("smallerLedgerSizeButton").style.borderColor = "rgba(255, 255, 255, 0)";
+              document.getElementById("standardLedgerSizeButton").style.backgroundColor = "rgb(53, 54, 56)";
+              document.getElementById("standardLedgerSizeButton").style.borderColor = "rgba(255, 255, 255, 0)";
+              document.getElementById("largerLedgerSizeButton").style.backgroundColor = "rgb(53, 54, 56)";
+              document.getElementById("largerLedgerSizeButton").style.borderColor = "rgba(255, 255, 255, 0)";
+              document.getElementById("dateFormat").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("timeZone").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("language").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("corvinBetaProgram").style.color = "rgba(255, 255, 255, 0.85)";
+
+              // Notifications
+              document.getElementById("newSignIn").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("workspaceFileChanges").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("newWorkspaceMember").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("promotionalCorvinNews").style.color = "rgba(255, 255, 255, 0.85)";
+
+              // Delete My Corvin
+              document.getElementById("deleteMyCorvin").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("deleteMyCorvinButton").style.backgroundColor = "rgb(53, 54, 56)";
+              document.getElementById("deleteMyCorvinButton").style.borderColor = "rgba(255, 255, 255, 0)";
 
             }
             else {
+
+              // Body
               document.getElementById("wrapper").style.backgroundColor = "rgb(254, 254, 254)";
               document.getElementById("mainContent").style.backgroundColor = "rgb(254, 254, 254)";
               document.getElementById("push").style.backgroundColor = "rgb(254, 254, 254)";
               document.getElementById("footer").style.backgroundColor = "rgb(254, 254, 254)";
               document.body.style.color = "rgba(23, 23, 23, 0.85)";
+
+              // Corvin C & Account Menu
               document.getElementById("corvinHeader").style.color = "rgba(23, 23, 23, 0.85)";
               document.getElementById("accountButton").style.color = "rgba(23, 23, 23, 0.85)";
               document.getElementById("accountMenuContent").style.backgroundColor = "rgb(254, 254, 254)";
@@ -636,10 +726,82 @@ elseif (time() - $_SESSION['Created'] > 1200)
               document.getElementById("home").style.color = "rgba(23, 23, 23, 0.85)";
               document.getElementById("help").style.color = "rgba(23, 23, 23, 0.85)";
               document.getElementById("logout").style.color = "rgba(23, 23, 23, 0.85)";
+
+              // Header Area
               document.getElementById("getMoreSpaceButton").style.borderColor = "rgb(254, 254, 254)";
               document.getElementById("settingsHeader").style.color = "rgba(23, 23, 23, 0.85)";
+
+              // Collapsed Account Details
               document.getElementById("name").style.color = "rgba(23, 23, 23, 0.85)";
-              document.getElementById("nameValuep").style.color = "rgba(23, 23, 23 0.85)";
+              document.getElementById("nameValuep").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("profileImage").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("email").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("emailValuep").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("username").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("usernameValuep").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("password").style.color = "rgba(23, 23, 23, 0.85)";
+
+              // Expanded Name
+              document.getElementById("namePasswordCheck").style.backgroundColor = "rgba(0, 130, 140, 0.06)";
+              document.getElementById("namePasswordCheck").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("firstNameChangeTextBox").style.backgroundColor = "rgba(0, 130, 140, 0.06)";
+              document.getElementById("firstNameChangeTextBox").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("lastNameChangeTextBox").style.backgroundColor = "rgba(0, 130, 140, 0.06)";
+              document.getElementById("lastNameChangeTextBox").style.color = "rgba(0, 23, 23, 0.85)";
+              document.getElementById("nameSaveChangesButton").style.backgroundColor = "rgba(51, 204, 255, 0)";
+              document.getElementById("nameSaveChangesButton").style.borderColor = "rgba(23, 23, 23, 0.25)";
+
+              // Expanded Email
+              document.getElementById("emailPasswordCheck").style.backgroundColor = "rgba(0, 130, 140, 0.06)";
+              document.getElementById("emailPasswordCheck").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("emailChangeTextBox").style.backgroundColor = "rgba(0, 130, 140, 0.06)";
+              document.getElementById("emailChangeTextBox").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("emailSaveChangesButton").style.backgroundColor = "rgb(51, 204, 255, 0)";
+              document.getElementById("emailSaveChangesButton").style.borderColor = "rgba(23, 23, 23, 0.25)";
+
+              // Expanded Username
+              document.getElementById("usernamePasswordCheck").style.backgroundColor = "rgba(0, 130, 140, 0.06)";
+              document.getElementById("usernamePasswordCheck").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("usernameChangeTextBox").style.backgroundColor = "rgba(0, 130, 140, 0.06)";
+              document.getElementById("usernameChangeTextBox").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("usernameSaveChangesButton").style.backgroundColor = "rgb(51, 204, 255, 0)";
+              document.getElementById("usernameSaveChangesButton").style.borderColor = "rgba(23, 23, 23, 0.25)";
+
+              // Expanded Password
+              document.getElementById("passwordLengthRequirement").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("oldPassword").style.backgroundColor = "rgba(0, 130, 140, 0.06)";
+              document.getElementById("oldPassword").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("newPasswordTextBox").style.backgroundColor = "rgba(0, 130, 140, 0.06)";
+              document.getElementById("newPasswordTextBox").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("newPassword2TextBox").style.backgroundColor = "rgba(0, 130, 140, 0.06)";
+              document.getElementById("newPassword2TextBox").style.color = "rgba(0, 23, 23, 0.85)";
+              document.getElementById("passwordSaveChangesButton").style.backgroundColor = "rgb(51, 204, 255, 0)";
+              document.getElementById("passwordSaveChangesButton").style.borderColor = "rgba(23, 23, 23, 0.25)";
+
+              // Preferences
+              document.getElementById("darkmode").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("ledgerSize").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("smallerLedgerSizeButton").style.backgroundColor = "rgba(51, 204, 255, 0)";
+              document.getElementById("smallerLedgerSizeButton").style.borderColor = "rgba(23, 23, 23, 0.25)";
+              document.getElementById("standardLedgerSizeButton").style.backgroundColor = "rgba(51, 204, 255, 0)";
+              document.getElementById("standardLedgerSizeButton").style.borderColor = "rgba(23, 23, 23, 0.25)";
+              document.getElementById("largerLedgerSizeButton").style.backgroundColor = "rgba(51, 204, 255, 0)";
+              document.getElementById("largerLedgerSizeButton").style.borderColor = "rgba(23, 23, 23, 0.25)";
+              document.getElementById("dateFormat").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("timeZone").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("language").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("corvinBetaProgram").style.color = "rgba(23, 23, 23, 0.85)";
+
+              // Notifications
+              document.getElementById("newSignIn").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("workspaceFileChanges").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("newWorkspaceMember").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("promotionalCorvinNews").style.color = "rgba(23, 23, 23, 0.85)";
+
+              // Delete My Corvin
+              document.getElementById("deleteMyCorvin").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("deleteMyCorvinButton").style.backgroundColor = "rgba(51, 204, 255, 0)";
+              document.getElementById("deleteMyCorvinButton").style.borderColor = "rgba(23, 23, 23, 0.25)";
 
             }
       }
@@ -655,9 +817,9 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
         <div class = <?php echo "'".$o."RightItemBox'";?>>
           <div class = <?php echo "'".$o."Value'";?>>
-            <button class = <?php echo "'".$o."LedgerSizeButton'";?>>Smaller</button>
-            <button class = <?php echo "'".$o."LedgerSizeButton'";?>>Standard</button>
-            <button class = <?php echo "'".$o."LedgerSizeButton'";?>>Larger</button>
+            <button id = "smallerLedgerSizeButton" class = <?php echo "'".$o."LedgerSizeButton'";?>>Smaller</button>
+            <button id = "standardLedgerSizeButton" class = <?php echo "'".$o."LedgerSizeButton'";?>>Standard</button>
+            <button id = "largerLedgerSizeButton" class = <?php echo "'".$o."LedgerSizeButton'";?>>Larger</button>
           </div>
         </div>
       </div>
@@ -832,7 +994,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
         <div class = <?php echo "'".$o."RightItemBox'";?>>
           <div class = <?php echo "'".$o."Value'";?>>
-            <button class = <?php echo "'".$o."DeleteAccountButton'";?>>
+            <button id = "deleteMyCorvinButton" class = <?php echo "'".$o."DeleteAccountButton'";?>>
               Delete Account
             </button>
           </div>
