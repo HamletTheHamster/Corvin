@@ -96,7 +96,10 @@ html.#{$o}, body.#{$o} {
 .#{$o}TextBox:focus {
     outline: none;
     border-color: rgba(23, 23, 23, 0.85);
+}
 
+.#{$o}TextBox::selection {
+  background: rgba(0, 130, 140, 0.25);
 }
 
 .#{$o}LoginButton {
