@@ -202,9 +202,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
         }
         ?>
       </div><!--TopAccountMenuContent-->
-      <div class = <?php echo "'".$o."MenuLine'";?>>
-        <hr class = <?php echo "'".$o."MenuLine'";?>/>
-      </div>
+      <br><div class = <?php echo "'".$o."MenuHeath'";?>><br></div>
       <div class = <?php echo "'".$o."BottomAccountMenuContent'";?>>
         <a class = <?php echo "'".$o."GetMoreSpaceMenuItem'";?> href = "getMoreSpace.php">
           Get More Space</a>

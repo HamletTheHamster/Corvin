@@ -125,12 +125,11 @@ p.#{$dark}DiskSpace {
     font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.#{$dark}MenuLine {
+.#{$dark}MenuHeath {
+    background-color: rgb(18, 19, 21);
+    border-radius: 4px;
+    height: 3px;
     margin: 35px 10px;
-}
-
-hr.#{$dark}MenuLine {
-    color: rgba(23, 23, 23, 0.25);
 }
 
 .#{$dark}BottomAccountMenuContent {
@@ -445,14 +444,33 @@ a.#{$dark}FileNames {
 }
 
 .#{$dark}RenameTextField {
-    position: relative;
-    margin-left: 3px;
-    float: left;
-}
-
-.#{$dark}RenameTextField {
     display: none;
     padding-right: 3px;
+    position: relative;
+    margin-left: -5px;
+    padding: 3px 0;
+    padding-left: 3px;
+    float: left;
+    border-color: rgba(23, 23, 23, 0.25);
+    border-width: thin;
+    border-radius: 4px;
+    font-size: 20px;
+    background-color: rgba(0, 130, 140, 0.85);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.#{$dark}RenameTextField::placeholder {
+  color: rgba(255, 255, 255, .5);
+  padding-left: 3px;
+}
+
+.#{$dark}RenameTextField:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$dark}RenameTextField::selection {
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .#{$dark}RecycleButtonForm {
@@ -468,6 +486,7 @@ a.#{$dark}FileNames {
     width: 13px;
     background: transparent;
     border: none;
+    border-radius: 4px;
     margin-top: 3px;
     margin-right: 5px;
     vertical-align: middle;
@@ -477,7 +496,6 @@ a.#{$dark}FileNames {
 
 .#{$dark}RecycleButton:hover {
     -webkit-filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.4));
-    filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.4));
     cursor: pointer;
 }
 
@@ -511,8 +529,8 @@ a.#{$dark}FileNames {
 .#{$dark}Heath {
     background-color: rgb(18, 19, 21);
     border-radius: 2px;
-    font-size: 20px;
-    margin-top: 5px;
+    height: 3px;
+    margin: 20px 0;
 }
 
 .#{$dark}Files {

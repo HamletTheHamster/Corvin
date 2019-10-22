@@ -180,9 +180,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           }
           ?>
         </div>
-        <div class = <?php echo "'".$o."MenuLine'";?>>
-          <hr class = <?php echo "'".$o."MenuLine'";?>/>
-        </div>
+        <br><div id = "menuHeath" class = <?php echo "'".$o."MenuHeath'";?>><br></div>
         <div class = <?php echo "'".$o."BottomAccountMenuContent'";?>>
           <a class = <?php echo "'".$o."GetMoreSpaceMenuItem'";?> href = 'getMoreSpace.php'>
             Get More Space</a>
@@ -231,8 +229,8 @@ elseif (time() - $_SESSION['Created'] > 1200)
 
     <div class = <?php echo "'".$o."Content'";?>>
       <div class = <?php echo "'".$o."Space'";?>></div>
-      <h class = <?php echo "'".$o."FirstHeader'";?>>Account Details</h>
-      <hr>
+      <h class = <?php echo "'".$o."FirstHeader'";?>>Account Details</h><br>
+      <br><div id = "heath1" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Name -->
       <div onclick = 'toggleNameDropdown()' class = <?php echo "'".$o."Setting'";?>>
@@ -310,7 +308,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
         }
       }
       </script>
-      <hr>
+      <br><div id = "heath2" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Profile Image -->
       <div class = <?php echo "'".$o."SettingWithButton'";?>>
@@ -340,7 +338,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
-      <hr>
+      <br><div id = "heath3" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Email -->
       <div onclick = "toggleEmailDropdown()" class = <?php echo "'".$o."Setting'";?>>
@@ -408,7 +406,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
         }
       }
       </script>
-      <hr>
+      <br><div id = "heath4" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Username -->
       <div onclick = "toggleUsernameDropdown()" class = <?php echo "'".$o."Setting'";?>>
@@ -476,7 +474,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
         }
       }
       </script>
-      <hr>
+      <br><div id = "heath5" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Password -->
       <div onclick = "togglePasswordDropdown()" class = <?php echo "'".$o."Setting'";?>>
@@ -509,7 +507,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
               name = "submittedPassword"
               id = "oldPassword"
               class = <?php echo "'".$o."PasswordOldPasswordVerifyTextBox'";?>
-              placeholder = "Old Password"
+              placeholder = "Current Password"
               required
             >
             <input
@@ -552,14 +550,14 @@ elseif (time() - $_SESSION['Created'] > 1200)
         }
       }
       </script>
-      <hr>
+      <br><div id = "heath6" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Space -->
       <div class = <?php echo "'".$o."Space'";?>></div>
 
       <!-- Preferences -->
-      <h class = <?php echo "'".$o."Headers'";?>>Preferences</h>
-      <hr>
+      <h class = <?php echo "'".$o."FirstHeader'";?>>Preferences</h><br>
+      <br><div id = "heath7" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Dark Mode -->
       <div class = <?php echo "'".$o."SettingWithButton'";?>>
@@ -626,6 +624,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
               document.getElementById("accountMenuContent").style.boxShadow = "0 2px 4px 0 rgba(255, 255, 255, 0)";
               document.getElementById("accountMenuName").style.color = "rgba(255, 255, 255, 0.85)";
               document.getElementById("diskSpace").style.color = "rgba(255, 255, 255, 0.85)";
+              document.getElementById("menuHeath").style.backgroundColor = "rgb(18, 19, 21)";
               document.getElementById("home").style.color = "rgba(255, 255, 255, 0.85)";
               document.getElementById("help").style.color = "rgba(255, 255, 255, 0.85)";
               document.getElementById("logout").style.color = "rgba(255, 255, 255, 0.85)";
@@ -633,6 +632,11 @@ elseif (time() - $_SESSION['Created'] > 1200)
               // Header Area
               document.getElementById("getMoreSpaceButton").style.borderColor = "rgb(28, 29, 31)";
               document.getElementById("settingsHeader").style.color = "rgb(255, 255, 255, 0.85)";
+
+              // Bars
+              for (bar = 1; bar < 20; bar++) {
+                document.getElementById("heath"+bar).style.backgroundColor = "rgb(18, 19, 21)";
+              }
 
               // Collapsed Account Details
               document.getElementById("name").style.color = "rgba(255, 255, 255, 0.85)";
@@ -724,6 +728,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
               document.getElementById("accountMenuContent").style.boxShadow = "0 2px 4px 0 rgba(23, 23, 23, 0.25)";
               document.getElementById("accountMenuName").style.color = "rgba(23, 23, 23, 0.85)";
               document.getElementById("diskSpace").style.color = "rgba(23, 23, 23, 0.85)";
+              document.getElementById("menuHeath").style.backgroundColor = "rgba(18, 19, 21, 0.25)";
               document.getElementById("home").style.color = "rgba(23, 23, 23, 0.85)";
               document.getElementById("help").style.color = "rgba(23, 23, 23, 0.85)";
               document.getElementById("logout").style.color = "rgba(23, 23, 23, 0.85)";
@@ -731,6 +736,11 @@ elseif (time() - $_SESSION['Created'] > 1200)
               // Header Area
               document.getElementById("getMoreSpaceButton").style.borderColor = "rgb(254, 254, 254)";
               document.getElementById("settingsHeader").style.color = "rgba(23, 23, 23, 0.85)";
+
+              // Bars
+              for (bar = 1; bar < 20; bar++) {
+                document.getElementById("heath"+bar).style.backgroundColor = "rgb(18, 19, 21, 0.25)";
+              }
 
               // Collapsed Account Details
               document.getElementById("name").style.color = "rgba(23, 23, 23, 0.85)";
@@ -807,7 +817,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             }
       }
       </script>
-      <hr>
+      <br><div id = "heath8" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Ledger Size -->
       <div class = <?php echo "'".$o."SettingWithButton'";?>>
@@ -824,7 +834,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
-      <hr>
+      <br><div id = "heath9" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Date Format -->
       <div class = <?php echo "'".$o."SettingWithButton'";?>>
@@ -844,7 +854,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
-      <hr>
+      <br><div id = "heath10" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Time Zone -->
       <div class = <?php echo "'".$o."SettingWithButton'";?>>
@@ -862,7 +872,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
-      <hr>
+      <br><div id = "heath11" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Language -->
       <div class = <?php echo "'".$o."SettingWithButton'";?>>
@@ -880,7 +890,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
-      <hr>
+      <br><div id = "heath12" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Corvin βeta Program -->
       <div class = <?php echo "'".$o."SettingWithButton'";?>>
@@ -898,14 +908,14 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
-      <hr>
+      <br><div id = "heath13" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Space -->
       <div class = <?php echo "'".$o."Space'";?>></div>
 
       <!-- Notifications -->
-      <h class = <?php echo "'".$o."Headers'";?>>Notifications</h>
-      <hr>
+      <h class = <?php echo "'".$o."FirstHeader'";?>>Notifications</h><br>
+      <br><div id = "heath14" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- New Sign-in -->
       <div class = <?php echo "'".$o."SettingWithButton'";?>>
@@ -924,7 +934,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
-      <hr>
+      <br><div id = "heath15" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Workspace File Changes -->
       <div class = <?php echo "'".$o."SettingWithButton'";?>>
@@ -944,7 +954,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
-      <hr>
+      <br><div id = "heath16" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- New Workspace Member -->
       <div class = <?php echo "'".$o."SettingWithButton'";?>>
@@ -962,7 +972,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
-      <hr>
+      <br><div id = "heath17" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Promotional -->
       <div class = <?php echo "'".$o."SettingWithButton'";?>>
@@ -980,11 +990,11 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
-      <hr>
+      <br><div id = "heath18" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Space -->
       <div class = <?php echo "'".$o."Space'";?>></div>
-      <hr>
+      <br><div id = "heath19" class = <?php echo "'".$o."Heath'";?>><br></div>
 
       <!-- Delete my Corvin Account -->
       <div class = <?php echo "'".$o."SettingWithButton'";?>>

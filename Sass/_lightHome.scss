@@ -125,12 +125,11 @@ p.#{$light}DiskSpace {
     font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.#{$light}MenuLine {
+.#{$light}MenuHeath {
+    background-color: rgba(18, 19, 21, 0.25);
+    border-radius: 4px;
+    height: 3px;
     margin: 35px 10px;
-}
-
-hr.#{$light}MenuLine {
-    color: rgba(23, 23, 23, 0.25);
 }
 
 .#{$light}BottomAccountMenuContent {
@@ -503,10 +502,10 @@ a.#{$light}FileNames {
 }
 
 .#{$light}Heath {
-    background-color: rgba(240, 240, 240, .5);
+    background-color: rgba(18, 19, 21, 0.25);
     border-radius: 2px;
-    font-size: 20px;
-    margin-top: 5px;
+    font-size: 3px;
+    margin: 20px 0;
 }
 
 .#{$light}Files {

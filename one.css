@@ -577,12 +577,11 @@ p.lightHomeDiskSpace {
   font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.lightHomeMenuLine {
+.lightHomeMenuHeath {
+  background-color: rgba(18, 19, 21, 0.25);
+  border-radius: 4px;
+  height: 3px;
   margin: 35px 10px;
-}
-
-hr.lightHomeMenuLine {
-  color: rgba(23, 23, 23, 0.25);
 }
 
 a.lightHomeGetMoreSpaceMenuItem {
@@ -952,10 +951,10 @@ a.lightHomeFileNames {
 }
 
 .lightHomeHeath {
-  background-color: rgba(240, 240, 240, 0.5);
+  background-color: rgba(18, 19, 21, 0.25);
   border-radius: 2px;
-  font-size: 20px;
-  margin-top: 5px;
+  font-size: 3px;
+  margin: 20px 0;
 }
 
 .lightHomeFiles {
@@ -1101,12 +1100,11 @@ p.darkHomeDiskSpace {
   font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.darkHomeMenuLine {
+.darkHomeMenuHeath {
+  background-color: #121315;
+  border-radius: 4px;
+  height: 3px;
   margin: 35px 10px;
-}
-
-hr.darkHomeMenuLine {
-  color: rgba(23, 23, 23, 0.25);
 }
 
 a.darkHomeGetMoreSpaceMenuItem {
@@ -1418,14 +1416,33 @@ a.darkHomeFileNames {
 }
 
 .darkHomeRenameTextField {
-  position: relative;
-  margin-left: 3px;
-  float: left;
-}
-
-.darkHomeRenameTextField {
   display: none;
   padding-right: 3px;
+  position: relative;
+  margin-left: -5px;
+  padding: 3px 0;
+  padding-left: 3px;
+  float: left;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.darkHomeRenameTextField::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  padding-left: 3px;
+}
+
+.darkHomeRenameTextField:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.darkHomeRenameTextField::selection {
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .darkHomeRecycleButtonForm {
@@ -1441,6 +1458,7 @@ a.darkHomeFileNames {
   width: 13px;
   background: transparent;
   border: none;
+  border-radius: 4px;
   margin-top: 3px;
   margin-right: 5px;
   vertical-align: middle;
@@ -1450,7 +1468,6 @@ a.darkHomeFileNames {
 
 .darkHomeRecycleButton:hover {
   -webkit-filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
-  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
   cursor: pointer;
 }
 
@@ -1484,8 +1501,8 @@ a.darkHomeFileNames {
 .darkHomeHeath {
   background-color: #121315;
   border-radius: 2px;
-  font-size: 20px;
-  margin-top: 5px;
+  height: 3px;
+  margin: 20px 0;
 }
 
 .darkHomeFiles {
@@ -1942,12 +1959,11 @@ p.lightSettingsDiskSpace {
   font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.lightSettingsMenuLine {
+.lightSettingsMenuHeath {
+  background-color: rgba(18, 19, 21, 0.25);
+  border-radius: 4px;
+  height: 3px;
   margin: 35px 10px;
-}
-
-hr.lightSettingsMenuLine {
-  color: rgba(23, 23, 23, 0.25);
 }
 
 a.lightSettingsGetMoreSpaceMenuItem {
@@ -2042,13 +2058,20 @@ p.lightSettingsHeader {
   font-weight: bold;
 }
 
+.lightSettingsHeath {
+  background-color: rgba(18, 19, 21, 0.25);
+  border-radius: 2px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 3px;
+}
+
 .lightSettingsSetting {
   height: 50px;
-  margin-top: -10px;
-  padding-left: 5px;
-  padding-right: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
   padding-bottom: 10px;
-  margin-bottom: -10px;
+  margin-bottom: -23px;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -2059,11 +2082,10 @@ p.lightSettingsHeader {
 
 .lightSettingsSettingWithButton {
   height: 50px;
-  margin-top: -10px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
   padding-bottom: 10px;
-  margin-bottom: -10px;
+  margin-bottom: -23px;
 }
 
 .lightSettingsLeftItemBox {
@@ -2072,7 +2094,7 @@ p.lightSettingsHeader {
   width: 50%;
 }
 
-p#lightSettingsItem {
+.lightSettingsItem {
   color: rgba(23, 23, 23, 0.85);
   text-align: left;
 }
@@ -2090,7 +2112,8 @@ p#lightSettingsItem {
 
 .lightSettingsDropdownSetting {
   height: 75px;
-  margin-top: 25px;
+  margin-top: 50px;
+  margin-bottom: -25px;
   transition: 250ms;
 }
 
@@ -2619,12 +2642,11 @@ p.darkSettingsDiskSpace {
   font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.darkSettingsMenuLine {
+.darkSettingsMenuHeath {
+  background-color: #121315;
+  border-radius: 4px;
+  height: 3px;
   margin: 35px 10px;
-}
-
-hr.darkSettingsMenuLine {
-  color: rgba(23, 23, 23, 0.25);
 }
 
 a.darkSettingsGetMoreSpaceMenuItem {
@@ -2722,13 +2744,20 @@ p.darkSettingsHeader {
   font-weight: bold;
 }
 
+.darkSettingsHeath {
+  background-color: #121315;
+  border-radius: 2px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 3px;
+}
+
 .darkSettingsSetting {
   height: 50px;
-  margin-top: -10px;
-  padding-left: 5px;
-  padding-right: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
   padding-bottom: 10px;
-  margin-bottom: -10px;
+  margin-bottom: -23px;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -2739,11 +2768,10 @@ p.darkSettingsHeader {
 
 .darkSettingsSettingWithButton {
   height: 50px;
-  margin-top: -10px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
   padding-bottom: 10px;
-  margin-bottom: -10px;
+  margin-bottom: -23px;
 }
 
 .darkSettingsLeftItemBox {
@@ -2771,7 +2799,8 @@ p.darkSettingsHeader {
 
 .darkSettingsDropdownSetting {
   height: 75px;
-  margin-top: 25px;
+  margin-top: 50px;
+  margin-bottom: -25px;
   transition: 250ms;
 }
 
