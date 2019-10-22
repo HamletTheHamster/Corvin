@@ -1,0 +1,529 @@
+/* _lightHome Coded by: Joel N. Johnson */
+
+$light: lightHome;
+
+html.#{$light}, body.#{$light} {
+    background-color: rgb(254, 254, 254);
+    height: 100%;
+    margin: 0;
+    font-family: "Square Market", Helvetica, sans-serif;
+    color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}Wrapper {
+    min-height: calc(100% - 20px);
+    height: auto;
+}
+
+.#{$light}TopBar {
+    margin-bottom: 200px;
+    width: 100%;
+    height: 85px;
+}
+
+.#{$light}Corvin {
+    float: left;
+    width: 94%;
+}
+
+.#{$light}CorvinHeader {
+    color: rgba(23, 23, 23, 0.85);
+    font-family: "Square Market", Helvetica, sans-serif;
+    margin-top: 30px;
+    margin-left: 35px;
+    line-height: .5em;
+    font-weight: 600;
+    font-size: 50px;
+    display: inline-block;
+}
+
+.#{$light}CorvinHeader:hover {
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$light}CorvinHeader:active {
+    /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/
+}
+
+.#{$light}CorvinHeader:focus {
+    outline: none;
+    text-shadow: none;
+}
+
+.#{$light}AccountMenuDropDown {
+    position: absolute;
+    display: inline-block;
+    float: right;
+}
+
+p.#{$light}AccountButton {
+    color: rgba(23, 23, 23, 0.85);
+    text-align: right;
+    margin-right: 35px;
+    margin-top: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    float: right;
+    display: inline-block;
+}
+
+p.#{$light}AccountButton:hover {
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$light}AccountMenuContent {
+    display: none;
+    position: absolute;
+    right: 20px;
+    margin-top: 60px;
+    background-color: rgb(254, 254, 254);
+    min-width: 260px;
+    border-radius: 6px;
+    border-width: thin;
+    border-color: rgba(23, 23, 23, 0.25);
+    box-shadow: 0 2px 4px 0 rgba(23, 23, 23, 0.1);
+    z-index: 2;
+}
+
+a.#{$light}AccountMenuContent {
+    color: rgba(23, 23, 23, 0.85);
+    margin-right: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    display: block;
+}
+
+a.#{$light}AccountMenuContent:hover {
+    color: rgb(0, 130, 140);
+    background-color: rgba(0, 130, 140, 0.06);
+    cursor: pointer;
+}
+
+.#{$light}TopAccountMenuContent {
+    height: 150px;
+}
+
+.#{$light}AccountMenuName {
+    color: rgba(23, 23, 23, 0.85);
+    float: right;
+    padding-right: 20px;
+    text-align: right;
+    font-size: 18px;
+}
+
+.#{$light}DiskSpace {
+    text-align: right;
+    padding-right: 20px;
+    margin-top: 50px;
+}
+
+p.#{$light}DiskSpace {
+    color: rgba(23, 23, 23, 0.85);
+    font-size: 16px;
+    font-family: "Square Market", Helvetica, sans-serif;
+}
+
+.#{$light}MenuLine {
+    margin: 35px 10px;
+}
+
+hr.#{$light}MenuLine {
+    color: rgba(23, 23, 23, 0.25);
+}
+
+.#{$light}BottomAccountMenuContent {
+}
+
+a.#{$light}GetMoreSpaceMenuItem {
+    color: rgb(0, 154, 164);
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    display: block;
+}
+
+a.#{$light}GetMoreSpaceMenuItem:hover {
+    color: rgb(0, 154, 164);
+    background-color: rgba(0, 130, 140, 0.06);
+    cursor: pointer;
+}
+
+a.#{$light}MenuItem {
+    color: rgba(23, 23, 23, 0.85);
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    display: block;
+}
+
+a.#{$light}MenuItem:hover {
+    color: rgb(0, 154, 164);
+    background-color: rgba(0, 130, 140, 0.06);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.#{$light}Show {
+    display: block;
+}
+
+.#{$light}MainContent {
+    padding-left: 12.5%;
+    padding-right: 12.5%;
+    z-index: 1;
+}
+
+.#{$light}CustomFileUpload {
+    background-color: rgba(51, 204, 255, 0);
+    border-color: rgba(23, 23, 23, 0.25);
+    border-width: thin;
+    color: rgb(0, 154, 164);
+    font-family: "Square Market", Helvetica, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    float: left;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.#{$light}CustomFileUpload:hover {
+    background-color: rgba(0, 130, 140, 0.06);
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$light}CustomFileUpload:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    border-color: rgb(0, 130, 140);
+    transition: 250ms;
+    outline: none;
+}
+
+.#{$light}CustomFileUpload:focus {
+    outline: none;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.#{$light}UploadButton {
+    display: none;
+    background-color: rgba(51, 204, 255, 0);
+    border-color: rgba(23, 23, 23, 0.25);
+    border-width: thin;
+    color: rgb(0, 154, 164);
+    font-family: "Square Market", Helvetica, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    float: left;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.#{$light}UploadButton:hover {
+    background-color: rgba(0, 130, 140, 0.06);
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.#{$light}UploadButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    transition: 250ms;
+    border-color: rgb(0, 130, 140);
+    outline: none;
+}
+
+.#{$light}UploadButton:focus {
+    outline: none;
+}
+
+.#{$light}CreateFolderButton {
+    background-color: rgba(51, 204, 255, 0);
+    border-color: rgba(23, 23, 23, 0.25);
+    border-width: thin;
+    color: rgb(0, 154, 164);
+    font-family: "Square Market", Helvetica, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    float: left;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.#{$light}CreateFolderButton:hover {
+    background-color: rgba(0, 130, 140, 0.06);
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.#{$light}CreateFolderButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    transition: 250ms;
+    border-color: rgb(0, 130, 140);
+    outline: none;
+}
+
+.#{$light}CreateFolderButton:focus {
+    outline: none;
+}
+
+.#{$light}NewFolderNameTextField {
+    border-color: rgba(23, 23, 23, 0.25);
+    background-color: rgba(0, 130, 140, 0.06);
+    color: rgba(23, 23, 23, 0.85);
+    border-width: thin;
+}
+
+.#{$light}NewFolderNameTextBox:focus {
+    outline: none;
+    border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}RecentlyDeletedItems {
+    background-color: rgba(51, 204, 255, 0);
+    border-color: rgba(23, 23, 23, 0.25);
+    border-width: thin;
+    color: rgb(0, 154, 164);
+    font-family: "Square Market", Helvetica, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    float: left;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.#{$light}RecentlyDeletedItems:hover {
+    background-color: rgba(0, 130, 140, 0.06);
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$light}RecentlyDeletedItems:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    border-color: rgb(0, 130, 140);
+    transition: 250ms;
+}
+
+.#{$light}RecentlyDeletedItems:focus {
+    outline: none;
+}
+
+.#{$light}DirectoryPath {
+    font-size: 30px;
+}
+
+p,a.#{$light}DirectoryPath {
+	float: left;
+	color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}Directory {
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 10px;
+}
+
+.#{$light}FileNames {
+    max-width: 85%;
+    float: left;
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+a.#{$light}FileNames {
+    text-decoration: none;
+    color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}Folders {
+    float: left;
+}
+
+.#{$light}DownloadButtonForm {
+    float: left;
+    margin-left: 5px;
+    position: relative;
+}
+
+.#{$light}DownloadButton {
+    opacity: 0;
+    transition: opacity .25s ease;
+    width: 14px;
+    border: none;
+    display: inline-block;
+    padding: 1px 1px;
+    background: transparent;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.#{$light}DownloadButton:hover {
+    -webkit-filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.4));
+    cursor: pointer;
+}
+
+.#{$light}DownloadButton:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.#{$light}DownloadButton:active {
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    outline: none;
+}
+
+.#{$light}RenameButtonForm {
+    position: relative;
+    margin-left: 3px;
+    float: left;
+}
+
+.#{$light}RenameButton {
+    opacity: 0;
+    transition: opacity .25s ease;
+    border: none;
+    height: 17px;
+    background: transparent;
+    display: inline-block;
+    padding: 1px 1px;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.#{$light}RenameButton:hover {
+    -webkit-filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.4));
+    cursor: pointer;
+}
+
+.#{$light}RenameButton:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.#{$light}RenameButton:active {
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    outline: none;
+}
+
+.#{$light}RenameTextField {
+    position: relative;
+    margin-left: 3px;
+    float: left;
+}
+
+.#{$light}RenameTextField {
+    display: none;
+    padding-right: 3px;
+}
+
+.#{$light}RecycleButtonForm {
+    position: relative;
+    margin-left: 3px;
+    padding-top: 1px;
+    float: left;
+}
+
+.#{$light}RecycleButton {
+    opacity: 0;
+    transition: opacity .25s ease;
+    width: 13px;
+    background: transparent;
+    border: none;
+    margin-top: 3px;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+    float: left;
+}
+
+.#{$light}RecycleButton:hover {
+    -webkit-filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.4));
+    filter: drop-shadow(2px 2px 1px rgba(0,0,0,0.4));
+    cursor: pointer;
+}
+
+.#{$light}RecycleButton:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.#{$light}RecycleButton:active {
+    -webkit-filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.4));
+    outline: none;
+}
+
+.#{$light}FileNames:hover .#{$light}DownloadButton {
+    opacity: 1;
+}
+
+.#{$light}FileNames:hover .#{$light}RenameButton {
+    opacity: 1;
+}
+
+.#{$light}FileNames:hover .#{$light}RecycleButton {
+    opacity: 1;
+}
+
+.#{$light}FileSizes {
+    float: right;
+    font-size: 20px;
+}
+
+.#{$light}Heath {
+    background-color: rgba(240, 240, 240, .5);
+    border-radius: 2px;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.#{$light}Files {
+    float: left;
+}
+
+.#{$light}Footer, .#{$light}Push {
+    height: 20px;
+}
+
+.#{$light}Footer {
+    font-family: "Square Market", Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}

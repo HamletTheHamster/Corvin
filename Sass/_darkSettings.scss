@@ -1,4 +1,4 @@
-/* _settings Coded by: Joel N. Johnson */
+/* _darkSettings Coded by: Joel N. Johnson */
 
 $dark: darkSettings;
 
@@ -302,7 +302,9 @@ p.#{$dark}Header {
   margin-left: 15px;
 }
 
-.#{$dark}FirstNameChangeTextBox, .#{$dark}LastNameChangeTextBox, .#{$dark}NamePasswordVerifyTextBox {
+.#{$dark}FirstNameChangeTextBox,
+.#{$dark}LastNameChangeTextBox,
+.#{$dark}NamePasswordVerifyTextBox {
   width: 238px;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;

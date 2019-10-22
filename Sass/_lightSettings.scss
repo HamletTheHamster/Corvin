@@ -1,4 +1,4 @@
-/* _settings Coded by: Joel N. Johnson */
+/* _lightSettings Coded by: Joel N. Johnson */
 
 $light: lightSettings;
 
@@ -120,7 +120,7 @@ a.#{$light}AccountMenuContent:hover {
 }
 
 p.#{$light}DiskSpace {
-  color: rgba(23, 23, 23, 0.85);
+    color: rgba(23, 23, 23, 0.85);
     font-size: 16px;
     font-family: "Square Market", Helvetica, sans-serif;
 }
@@ -311,6 +311,7 @@ p##{$light}Item {
   padding-top: 6px;
   padding-bottom: 6px;
   background-color: rgba(0, 130, 140, 0.06);
+  color: rgba(23, 23, 23, 0.85);
 }
 
 .#{$light}FirstNameChangeTextBox:focus,

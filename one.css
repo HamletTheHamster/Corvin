@@ -453,8 +453,8 @@ html.registerNewUser, body.registerNewUser {
   text-align: center;
 }
 
-/* _home Coded by: Joel N. Johnson */
-html.home, body.home {
+/* _lightHome Coded by: Joel N. Johnson */
+html.lightHome, body.lightHome {
   background-color: #fefefe;
   height: 100%;
   margin: 0;
@@ -462,23 +462,23 @@ html.home, body.home {
   color: rgba(23, 23, 23, 0.85);
 }
 
-.homeWrapper {
+.lightHomeWrapper {
   min-height: calc(100% - 20px);
   height: auto;
 }
 
-.homeTopBar {
+.lightHomeTopBar {
   margin-bottom: 200px;
   width: 100%;
   height: 85px;
 }
 
-.homeCorvin {
+.lightHomeCorvin {
   float: left;
   width: 94%;
 }
 
-.homeCorvinHeader {
+.lightHomeCorvinHeader {
   color: rgba(23, 23, 23, 0.85);
   font-family: "Square Market", Helvetica, sans-serif;
   margin-top: 30px;
@@ -489,27 +489,27 @@ html.home, body.home {
   display: inline-block;
 }
 
-.homeCorvinHeader:hover {
+.lightHomeCorvinHeader:hover {
   color: #00828c;
   cursor: pointer;
 }
 
-.homeCorvinHeader:active {
+.lightHomeCorvinHeader:active {
   /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/
 }
 
-.homeCorvinHeader:focus {
+.lightHomeCorvinHeader:focus {
   outline: none;
   text-shadow: none;
 }
 
-.homeAccountMenuDropDown {
+.lightHomeAccountMenuDropDown {
   position: absolute;
   display: inline-block;
   float: right;
 }
 
-p.homeAccountButton {
+p.lightHomeAccountButton {
   color: rgba(23, 23, 23, 0.85);
   text-align: right;
   margin-right: 35px;
@@ -520,12 +520,12 @@ p.homeAccountButton {
   display: inline-block;
 }
 
-p.homeAccountButton:hover {
+p.lightHomeAccountButton:hover {
   color: #00828c;
   cursor: pointer;
 }
 
-.homeAccountMenuContent {
+.lightHomeAccountMenuContent {
   display: none;
   position: absolute;
   right: 20px;
@@ -539,7 +539,7 @@ p.homeAccountButton:hover {
   z-index: 2;
 }
 
-a.homeAccountMenuContent {
+a.lightHomeAccountMenuContent {
   color: rgba(23, 23, 23, 0.85);
   margin-right: 35px;
   font-size: 18px;
@@ -547,17 +547,17 @@ a.homeAccountMenuContent {
   display: block;
 }
 
-a.homeAccountMenuContent:hover {
+a.lightHomeAccountMenuContent:hover {
   color: #00828c;
   background-color: rgba(0, 130, 140, 0.06);
   cursor: pointer;
 }
 
-.homeTopAccountMenuContent {
+.lightHomeTopAccountMenuContent {
   height: 150px;
 }
 
-.homeAccountMenuName {
+.lightHomeAccountMenuName {
   color: rgba(23, 23, 23, 0.85);
   float: right;
   padding-right: 20px;
@@ -565,26 +565,27 @@ a.homeAccountMenuContent:hover {
   font-size: 18px;
 }
 
-.homeDiskSpace {
+.lightHomeDiskSpace {
   text-align: right;
   padding-right: 20px;
   margin-top: 50px;
 }
 
-p.homeDiskSpace {
+p.lightHomeDiskSpace {
+  color: rgba(23, 23, 23, 0.85);
   font-size: 16px;
   font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.homeMenuLine {
+.lightHomeMenuLine {
   margin: 35px 10px;
 }
 
-hr.homeMenuLine {
+hr.lightHomeMenuLine {
   color: rgba(23, 23, 23, 0.25);
 }
 
-a.homeGetMoreSpaceMenuItem {
+a.lightHomeGetMoreSpaceMenuItem {
   color: #009aa4;
   padding-left: 20px;
   padding-top: 15px;
@@ -593,13 +594,13 @@ a.homeGetMoreSpaceMenuItem {
   display: block;
 }
 
-a.homeGetMoreSpaceMenuItem:hover {
+a.lightHomeGetMoreSpaceMenuItem:hover {
   color: #009aa4;
   background-color: rgba(0, 130, 140, 0.06);
   cursor: pointer;
 }
 
-a.homeMenuItem {
+a.lightHomeMenuItem {
   color: rgba(23, 23, 23, 0.85);
   padding-left: 20px;
   padding-top: 15px;
@@ -608,23 +609,24 @@ a.homeMenuItem {
   display: block;
 }
 
-a.homeMenuItem:hover {
+a.lightHomeMenuItem:hover {
   color: #009aa4;
   background-color: rgba(0, 130, 140, 0.06);
+  border-radius: 4px;
   cursor: pointer;
 }
 
-.homeShow {
+.lightHomeShow {
   display: block;
 }
 
-.homeMainContent {
+.lightHomeMainContent {
   padding-left: 12.5%;
   padding-right: 12.5%;
   z-index: 1;
 }
 
-.homeCustomFileUpload {
+.lightHomeCustomFileUpload {
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -642,20 +644,20 @@ a.homeMenuItem:hover {
   position: relative;
 }
 
-.homeCustomFileUpload:hover {
+.lightHomeCustomFileUpload:hover {
   background-color: rgba(0, 130, 140, 0.06);
   color: #00828c;
   cursor: pointer;
 }
 
-.homeCustomFileUpload:active {
+.lightHomeCustomFileUpload:active {
   box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
   border-color: #00828c;
   transition: 250ms;
   outline: none;
 }
 
-.homeCustomFileUpload:focus {
+.lightHomeCustomFileUpload:focus {
   outline: none;
 }
 
@@ -663,7 +665,7 @@ input[type=file] {
   display: none;
 }
 
-.homeUploadButton {
+.lightHomeUploadButton {
   display: none;
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
@@ -681,25 +683,25 @@ input[type=file] {
   position: relative;
 }
 
-.homeUploadButton:hover {
+.lightHomeUploadButton:hover {
   background-color: rgba(0, 130, 140, 0.06);
   color: #00828c;
   cursor: pointer;
   box-shadow: none;
 }
 
-.homeUploadButton:active {
+.lightHomeUploadButton:active {
   box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
   transition: 250ms;
   border-color: #00828c;
   outline: none;
 }
 
-.homeUploadButton:focus {
+.lightHomeUploadButton:focus {
   outline: none;
 }
 
-.homeCreateFolderButton {
+.lightHomeCreateFolderButton {
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -716,25 +718,37 @@ input[type=file] {
   position: relative;
 }
 
-.homeCreateFolderButton:hover {
+.lightHomeCreateFolderButton:hover {
   background-color: rgba(0, 130, 140, 0.06);
   color: #00828c;
   cursor: pointer;
   box-shadow: none;
 }
 
-.homeCreateFolderButton:active {
+.lightHomeCreateFolderButton:active {
   box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
   transition: 250ms;
   border-color: #00828c;
   outline: none;
 }
 
-.homeCreateFolderButton:focus {
+.lightHomeCreateFolderButton:focus {
   outline: none;
 }
 
-.homeRecentlyDeletedItems {
+.lightHomeNewFolderNameTextField {
+  border-color: rgba(23, 23, 23, 0.25);
+  background-color: rgba(0, 130, 140, 0.06);
+  color: rgba(23, 23, 23, 0.85);
+  border-width: thin;
+}
+
+.lightHomeNewFolderNameTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.lightHomeRecentlyDeletedItems {
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -752,38 +766,38 @@ input[type=file] {
   position: relative;
 }
 
-.homeRecentlyDeletedItems:hover {
+.lightHomeRecentlyDeletedItems:hover {
   background-color: rgba(0, 130, 140, 0.06);
   color: #00828c;
   cursor: pointer;
 }
 
-.homeRecentlyDeletedItems:active {
+.lightHomeRecentlyDeletedItems:active {
   box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
   border-color: #00828c;
   transition: 250ms;
 }
 
-.homeRecentlyDeletedItems:focus {
+.lightHomeRecentlyDeletedItems:focus {
   outline: none;
 }
 
-.homeDirectoryPath {
+.lightHomeDirectoryPath {
   font-size: 30px;
 }
 
-p, a.homeDirectoryPath {
+p, a.lightHomeDirectoryPath {
   float: left;
   color: rgba(23, 23, 23, 0.85);
 }
 
-.homeDirectory {
+.lightHomeDirectory {
   width: 90%;
   margin-left: 5%;
   border-radius: 10px;
 }
 
-.homeFileNames {
+.lightHomeFileNames {
   max-width: 85%;
   float: left;
   font-size: 20px;
@@ -792,22 +806,22 @@ p, a.homeDirectoryPath {
   text-overflow: ellipsis;
 }
 
-a.homeFileNames {
+a.lightHomeFileNames {
   text-decoration: none;
-  color: #000000;
+  color: rgba(23, 23, 23, 0.85);
 }
 
-.homeFolders {
+.lightHomeFolders {
   float: left;
 }
 
-.homeDownloadButtonForm {
+.lightHomeDownloadButtonForm {
   float: left;
   margin-left: 5px;
   position: relative;
 }
 
-.homeDownloadButton {
+.lightHomeDownloadButton {
   opacity: 0;
   transition: opacity 0.25s ease;
   width: 14px;
@@ -822,28 +836,28 @@ a.homeFileNames {
   position: relative;
 }
 
-.homeDownloadButton:hover {
+.lightHomeDownloadButton:hover {
   -webkit-filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
   cursor: pointer;
 }
 
-.homeDownloadButton:focus {
+.lightHomeDownloadButton:focus {
   box-shadow: none;
   outline: none;
 }
 
-.homeDownloadButton:active {
+.lightHomeDownloadButton:active {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
   outline: none;
 }
 
-.homeRenameButtonForm {
+.lightHomeRenameButtonForm {
   position: relative;
   margin-left: 3px;
   float: left;
 }
 
-.homeRenameButton {
+.lightHomeRenameButton {
   opacity: 0;
   transition: opacity 0.25s ease;
   border: none;
@@ -858,40 +872,40 @@ a.homeFileNames {
   position: relative;
 }
 
-.homeRenameButton:hover {
+.lightHomeRenameButton:hover {
   -webkit-filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
   cursor: pointer;
 }
 
-.homeRenameButton:focus {
+.lightHomeRenameButton:focus {
   box-shadow: none;
   outline: none;
 }
 
-.homeRenameButton:active {
+.lightHomeRenameButton:active {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
   outline: none;
 }
 
-.homeRenameTextField {
+.lightHomeRenameTextField {
   position: relative;
   margin-left: 3px;
   float: left;
 }
 
-.homeRenameTextField {
+.lightHomeRenameTextField {
   display: none;
   padding-right: 3px;
 }
 
-.homeRecycleButtonForm {
+.lightHomeRecycleButtonForm {
   position: relative;
   margin-left: 3px;
   padding-top: 1px;
   float: left;
 }
 
-.homeRecycleButton {
+.lightHomeRecycleButton {
   opacity: 0;
   transition: opacity 0.25s ease;
   width: 13px;
@@ -904,55 +918,586 @@ a.homeFileNames {
   float: left;
 }
 
-.homeRecycleButton:hover {
+.lightHomeRecycleButton:hover {
   -webkit-filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
   filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
   cursor: pointer;
 }
 
-.homeRecycleButton:focus {
+.lightHomeRecycleButton:focus {
   box-shadow: none;
   outline: none;
 }
 
-.homeRecycleButton:active {
+.lightHomeRecycleButton:active {
   -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.4));
   outline: none;
 }
 
-.homeFileNames:hover .homeDownloadButton {
+.lightHomeFileNames:hover .lightHomeDownloadButton {
   opacity: 1;
 }
 
-.homeFileNames:hover .homeRenameButton {
+.lightHomeFileNames:hover .lightHomeRenameButton {
   opacity: 1;
 }
 
-.homeFileNames:hover .homeRecycleButton {
+.lightHomeFileNames:hover .lightHomeRecycleButton {
   opacity: 1;
 }
 
-.homeFileSizes {
+.lightHomeFileSizes {
   float: right;
   font-size: 20px;
 }
 
-.homeHeath {
+.lightHomeHeath {
   background-color: rgba(240, 240, 240, 0.5);
   border-radius: 2px;
   font-size: 20px;
   margin-top: 5px;
 }
 
-.homeFiles {
+.lightHomeFiles {
   float: left;
 }
 
-.homeFooter, .homePush {
+.lightHomeFooter, .lightHomePush {
   height: 20px;
 }
 
-.homeFooter {
+.lightHomeFooter {
+  font-family: "Square Market", Helvetica, sans-serif;
+  font-size: 15px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+/* _darkHome Coded by: Joel N. Johnson */
+html.darkHome, body.darkHome {
+  background-color: #1c1d1f;
+  height: 100%;
+  margin: 0;
+  font-family: "Square Market", Helvetica, sans-serif;
+  color: rgba(225, 225, 225, 0.85);
+}
+
+.darkHomeWrapper {
+  min-height: calc(100% - 20px);
+  height: auto;
+}
+
+.darkHomeTopBar {
+  margin-bottom: 200px;
+  width: 100%;
+  height: 85px;
+}
+
+.darkHomeCorvin {
+  float: left;
+  width: 94%;
+}
+
+.darkHomeCorvinHeader {
+  color: #00828c;
+  font-family: "Square Market", Helvetica, sans-serif;
+  margin-top: 30px;
+  margin-left: 35px;
+  line-height: 0.5em;
+  font-weight: 600;
+  font-size: 50px;
+  display: inline-block;
+}
+
+.darkHomeCorvinHeader:hover {
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+
+.darkHomeCorvinHeader:active {
+  /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/
+}
+
+.darkHomeCorvinHeader:focus {
+  outline: none;
+  text-shadow: none;
+}
+
+.darkHomeAccountMenuDropDown {
+  position: absolute;
+  display: inline-block;
+  float: right;
+}
+
+p.darkHomeAccountButton {
+  color: #00828c;
+  text-align: right;
+  margin-right: 35px;
+  margin-top: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  float: right;
+  display: inline-block;
+}
+
+p.darkHomeAccountButton:hover {
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+
+.darkHomeAccountMenuContent {
+  display: none;
+  position: absolute;
+  right: 20px;
+  margin-top: 60px;
+  background-color: #353638;
+  min-width: 260px;
+  border-radius: 6px;
+  border-width: thin;
+  border-color: rgba(23, 23, 23, 0.25);
+  box-shadow: 0 2px 4px 0 rgba(255, 255, 255, 0);
+  z-index: 2;
+}
+
+a.darkHomeAccountMenuContent {
+  color: rgba(255, 255, 255, 0.85);
+  margin-right: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  display: block;
+}
+
+a.darkHomeAccountMenuContent:hover {
+  color: #00828c;
+  background-color: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+}
+
+.darkHomeTopAccountMenuContent {
+  height: 150px;
+}
+
+.darkHomeAccountMenuName {
+  color: white;
+  float: right;
+  padding-right: 20px;
+  text-align: right;
+  font-size: 18px;
+}
+
+.darkHomeDiskSpace {
+  text-align: right;
+  padding-right: 20px;
+  margin-top: 50px;
+}
+
+p.darkHomeDiskSpace {
+  color: white;
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
+}
+
+.darkHomeMenuLine {
+  margin: 35px 10px;
+}
+
+hr.darkHomeMenuLine {
+  color: rgba(23, 23, 23, 0.25);
+}
+
+a.darkHomeGetMoreSpaceMenuItem {
+  color: #009aa4;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block;
+}
+
+a.darkHomeGetMoreSpaceMenuItem:hover {
+  color: #009aa4;
+  background-color: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+}
+
+a.darkHomeMenuItem {
+  color: rgba(225, 225, 225, 0.85);
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block;
+}
+
+a.darkHomeMenuItem:hover {
+  color: #009aa4;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.darkHomeShow {
+  display: block;
+}
+
+.darkHomeMainContent {
+  padding-left: 12.5%;
+  padding-right: 12.5%;
+  z-index: 1;
+}
+
+.darkHomeCustomFileUpload {
+  background-color: #353638;
+  border-color: rgba(255, 255, 255, 0);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  float: left;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.darkHomeCustomFileUpload:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #00828c;
+  cursor: pointer;
+}
+
+.darkHomeCustomFileUpload:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms;
+  outline: none;
+}
+
+.darkHomeCustomFileUpload:focus {
+  outline: none;
+}
+
+input[type=file] {
+  display: none;
+}
+
+.darkHomeUploadButton {
+  display: none;
+  background-color: #353638;
+  border-color: rgba(23, 23, 23, 0);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  float: left;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.darkHomeUploadButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.darkHomeUploadButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.darkHomeUploadButton:focus {
+  outline: none;
+}
+
+.darkHomeCreateFolderButton {
+  background-color: #353638;
+  border-color: rgba(255, 255, 255, 0);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  float: left;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.darkHomeCreateFolderButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.darkHomeCreateFolderButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.darkHomeCreateFolderButton:focus {
+  outline: none;
+}
+
+.darkHomeNewFolderNameTextBox {
+  border-color: rgba(23, 23, 23, 0.25);
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
+  border-width: thin;
+}
+
+.darkHomeNewFolderNameTextBox::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.darkHomeNewFolderNameTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.darkHomeRecentlyDeletedItems {
+  background-color: #353638;
+  border-color: rgba(255, 255, 255, 0);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  float: left;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.darkHomeRecentlyDeletedItems:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #00828c;
+  cursor: pointer;
+}
+
+.darkHomeRecentlyDeletedItems:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms;
+}
+
+.darkHomeRecentlyDeletedItems:focus {
+  outline: none;
+}
+
+.darkHomeDirectoryPath {
+  font-size: 30px;
+}
+
+p.darkHomeDirectoryPath,
+a.darkHomeDirectoryPath {
+  float: left;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.darkHomeDirectory {
+  width: 90%;
+  margin-left: 5%;
+  border-radius: 10px;
+}
+
+.darkHomeFileNames {
+  max-width: 85%;
+  float: left;
+  font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+a.darkHomeFileNames {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.darkHomeFolders {
+  float: left;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.darkHomeDownloadButtonForm {
+  float: left;
+  margin-left: 5px;
+  position: relative;
+}
+
+.darkHomeDownloadButton {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  width: 14px;
+  border: none;
+  display: inline-block;
+  padding: 1px 1px;
+  background: transparent;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.darkHomeDownloadButton:hover {
+  -webkit-filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
+  cursor: pointer;
+}
+
+.darkHomeDownloadButton:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.darkHomeDownloadButton:active {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  outline: none;
+}
+
+.darkHomeRenameButtonForm {
+  position: relative;
+  margin-left: 3px;
+  float: left;
+}
+
+.darkHomeRenameButton {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  border: none;
+  height: 17px;
+  background: transparent;
+  display: inline-block;
+  padding: 1px 1px;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.darkHomeRenameButton:hover {
+  -webkit-filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
+  cursor: pointer;
+}
+
+.darkHomeRenameButton:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.darkHomeRenameButton:active {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  outline: none;
+}
+
+.darkHomeRenameTextField {
+  position: relative;
+  margin-left: 3px;
+  float: left;
+}
+
+.darkHomeRenameTextField {
+  display: none;
+  padding-right: 3px;
+}
+
+.darkHomeRecycleButtonForm {
+  position: relative;
+  margin-left: 3px;
+  padding-top: 1px;
+  float: left;
+}
+
+.darkHomeRecycleButton {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  width: 13px;
+  background: transparent;
+  border: none;
+  margin-top: 3px;
+  margin-right: 5px;
+  vertical-align: middle;
+  position: relative;
+  float: left;
+}
+
+.darkHomeRecycleButton:hover {
+  -webkit-filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
+  cursor: pointer;
+}
+
+.darkHomeRecycleButton:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.darkHomeRecycleButton:active {
+  -webkit-filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.4));
+  outline: none;
+}
+
+.darkHomeFileNames:hover .darkHomeDownloadButton {
+  opacity: 1;
+}
+
+.darkHomeFileNames:hover .darkHomeRenameButton {
+  opacity: 1;
+}
+
+.darkHomeFileNames:hover .darkHomeRecycleButton {
+  opacity: 1;
+}
+
+.darkHomeFileSizes {
+  float: right;
+  font-size: 20px;
+}
+
+.darkHomeHeath {
+  background-color: #121315;
+  border-radius: 2px;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.darkHomeFiles {
+  float: left;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.darkHomeFooter, .darkHomePush {
+  height: 20px;
+}
+
+.darkHomeFooter {
   font-family: "Square Market", Helvetica, sans-serif;
   font-size: 15px;
   text-align: center;
@@ -1273,7 +1818,7 @@ a.recycleBinFileNames {
   text-align: center;
 }
 
-/* _settings Coded by: Joel N. Johnson */
+/* _lightSettings Coded by: Joel N. Johnson */
 html.lightSettings, body.lightSettings {
   background-color: #fefefe;
   height: 100%;
@@ -1580,6 +2125,7 @@ p#lightSettingsItem {
   padding-top: 6px;
   padding-bottom: 6px;
   background-color: rgba(0, 130, 140, 0.06);
+  color: rgba(23, 23, 23, 0.85);
 }
 
 .lightSettingsFirstNameChangeTextBox:focus,
@@ -1949,7 +2495,7 @@ input:checked + .lightSettingsSlider::before {
   text-align: center;
 }
 
-/* _settings Coded by: Joel N. Johnson */
+/* _darkSettings Coded by: Joel N. Johnson */
 html.darkSettings, body.darkSettings {
   background-color: #1c1d1f;
   height: 100%;
@@ -2247,7 +2793,9 @@ p.darkSettingsHeader {
   margin-left: 15px;
 }
 
-.darkSettingsFirstNameChangeTextBox, .darkSettingsLastNameChangeTextBox, .darkSettingsNamePasswordVerifyTextBox {
+.darkSettingsFirstNameChangeTextBox,
+.darkSettingsLastNameChangeTextBox,
+.darkSettingsNamePasswordVerifyTextBox {
   width: 238px;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;

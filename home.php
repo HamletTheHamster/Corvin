@@ -58,11 +58,22 @@ if (!$conn) {
 // Go into Corvin database
 mysqli_query($conn, "USE Corvin;");
 
-//Assign user's ID, set in validate.php
+// Assign user's ID, set in validate.php
 $userID = $_SESSION["userID"];
 
 $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
 $user = mysqli_fetch_array(mysqli_query($conn, $sql));
+
+// Set Darkmode/Lightmode
+$sql = "SELECT darkmode FROM UserInfo WHERE id = '$userID'";
+$darkmodeSetting = mysqli_fetch_array(mysqli_query($conn, $sql));
+
+if ($darkmodeSetting[0] == 1) {
+  $o = "darkHome";
+}
+elseif ($darkmodeSetting[0] == 0) {
+  $o = "lightHome";
+}
 
 // Session Timeout after 854 seconds (14.2 minutes)
 // If last request was more than 854 seconds ago (14.2 minutes)
@@ -101,7 +112,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 ?>
 
 <!DOCTYPE html>
-<html lang = "en" class = "home">
+<html lang = "en" class = <?php echo "'".$o."'";?>>
 
 <!-- 1 Header -->
 <head>
@@ -144,24 +155,26 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   <meta http-equiv = "refresh" content = "855"/>
 
   <meta name = "google" content = "notranslate"/>
+
+  <script>var o = <?php echo json_encode($o); ?>;</script>
 </head>
 
-<body class = "home">
-<div class = "homeWrapper">
+<body class = <?php echo "'".$o."'";?>>
+<div class = <?php echo "'".$o."Wrapper'";?>>
 
 <!-- 2 Top Bar -->
-<div class = "homeTopBar">
-  <div class = "homeCorvin">
+<div class = <?php echo "'".$o."TopBar'";?>>
+  <div class = <?php echo "'".$o."Corvin'";?>>
     <?php
-    echo "<a href = 'home.php'>" . "<h class = 'homeCorvinHeader'>C</h>" . "</a>";
+    echo "<a href = 'home.php'>" . "<h class = '".$o."CorvinHeader'>C</h>" . "</a>";
     ?>
   </div>
-  <div class = "homeAccountMenuDropDown">
-    <p onclick = "accountDropDownMenu()" class = "homeAccountButton">Account</p>
-    <div id = "AccountMenuContent" class = "homeAccountMenuContent">
-      <div class = "homeTopAccountMenuContent">
+  <div class = <?php echo "'".$o."AccountMenuDropDown'";?>>
+    <p onclick = "accountDropDownMenu()" class = <?php echo "'".$o."AccountButton'";?>>Account</p>
+    <div id = "accountMenuContent" class = <?php echo "'".$o."AccountMenuContent'";?>>
+      <div class = <?php echo "'".$o."TopAccountMenuContent'";?>>
         <?php
-        echo "<p class = 'homeAccountMenuName'>" . $user[0] . " " . $user[1] . "</p>";
+        echo "<p class = '".$o."AccountMenuName'>" . $user[0] . " " . $user[1] . "</p>";
 
         include "humanSize.php";
         include "folderSize.php";
@@ -177,27 +190,27 @@ elseif (time() - $_SESSION['Created'] > 1200) {
           $totalBytes = disk_total_space("../../../../mnt/Raid1Array/Corvin");
           $freeBytes = disk_free_space("../../../../mnt/Raid1Array/Corvin");
 
-          echo "<p class = 'homeDiskSpace'>" . humanSize($usedBytes) .  " used of " .
+          echo "<p class = '".$o."DiskSpace'>" . humanSize($usedBytes) .  " used of " .
             humanSize($freeBytes) . " (Unlimited)</p>";
         }
         else {
           $totalBytes = $storageSpaceInMegabytes[0] * 1000000;
           $freeBytes = $totalBytes - $usedBytes;
 
-          echo "<p class = 'homeDiskSpace'>" . humanSize($usedBytes) .
+          echo "<p class = '".$o."DiskSpace'>" . humanSize($usedBytes) .
             " used of " . humanSize($totalBytes) . "</p>";
         }
         ?>
       </div><!--TopAccountMenuContent-->
-      <div class = "homeMenuLine">
-        <hr class = "homeMenuLine"/>
+      <div class = <?php echo "'".$o."MenuLine'";?>>
+        <hr class = <?php echo "'".$o."MenuLine'";?>/>
       </div>
-      <div class = "homeBottomAccountMenuContent">
-        <a class = "homeGetMoreSpaceMenuItem" href = "getMoreSpace.php">
+      <div class = <?php echo "'".$o."BottomAccountMenuContent'";?>>
+        <a class = <?php echo "'".$o."GetMoreSpaceMenuItem'";?> href = "getMoreSpace.php">
           Get More Space</a>
-        <a class = "homeMenuItem" href = "settings.php">Settings</a>
-        <a class = "homeMenuItem" href = "help.php">Help</a>
-        <a class = "homeMenuItem" href = "logout.php">Log Out</a>
+        <a class = <?php echo "'".$o."MenuItem'";?> href = "settings.php">Settings</a>
+        <a class = <?php echo "'".$o."MenuItem'";?> href = "help.php">Help</a>
+        <a class = <?php echo "'".$o."MenuItem'";?> href = "logout.php">Log Out</a>
       </div>
     </div>
   </div>
@@ -205,7 +218,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 
 <script>
 function accountDropDownMenu() {
-  document.getElementById("AccountMenuContent").classList.toggle("homeShow");
+  document.getElementById("accountMenuContent").classList.toggle(o+"Show");
 }
 /*
   window.onclick = function(event) {
@@ -219,12 +232,12 @@ function accountDropDownMenu() {
 </script>
 
 <!-- 3 Main Content -->
-<div class = "homeMainContent">
+<div class = <?php echo "'".$o."MainContent'";?>>
 
   <!-- 3.1 Upload File -->
   <form action = "upload.php" method = "post" enctype = "multipart/form-data">
     <span id = "hideWhenFilesSelected">
-      <button type = "button" class = "homeCustomFileUpload">
+      <button type = 'button' class = <?php echo "'".$o."CustomFileUpload'";?>>
         <label for = "filesToUpload">Upload Files</label>
       </button>
       <input
@@ -237,7 +250,7 @@ function accountDropDownMenu() {
     </span>
     <input
       type = "submit"
-      class = "homeUploadButton"
+      class = <?php echo "'".$o."UploadButton'";?>
       id = "uploadButton"
       value = "Upload"
       name = "submit"
@@ -254,7 +267,7 @@ function accountDropDownMenu() {
     />
     <input type = 'hidden' value = '" . $freeBytes . "' name = 'freeBytes'/>";
     ?>
-    <div id="fileList"></div>
+    <div id = "fileList"></div>
   </form>
 
   <script>
@@ -280,7 +293,7 @@ function accountDropDownMenu() {
       }
 
       document.getElementById('hideWhenFilesSelected').style.display = 'none';
-      document.getElementById('CreateFolderButton').style.display = 'none';
+      document.getElementById('createFolderButton').style.display = 'none';
       document.getElementById('recentlyDeletedItems').style.display = 'none';
 
       output.innerHTML += '<br /><br /><ul>';
@@ -303,14 +316,15 @@ function accountDropDownMenu() {
     method = "post"
     enctype = "multipart/form-data"
   >
-    <input type = "text" name = "folderName" id = "NewFolderNameTextField"/>
+    <input type = "text" name = "folderName" id = "newFolderNameTextField"
+      class = <?php echo "'".$o."NewFolderNameTextBox'";?>
+    />
     <input
       type = "button"
-      class = "homeCreateFolderButton"
-      id = "CreateFolderButton"
+      class = <?php echo "'".$o."CreateFolderButton'";?>
+      id = "createFolderButton"
       value = "Create Folder"
       name = "submit"
-      id = "CreateFolderButton"
     />
     <?php
     echo "
@@ -322,43 +336,7 @@ function accountDropDownMenu() {
     ?>
   </form>
 
-  <script>
-  var createFolderButton = document.getElementById("CreateFolderButton");
-  var newFolderNameTextField = document.getElementById(
-    "NewFolderNameTextField");
 
-  newFolderNameTextField.style.display = "none";
-  createFolderButton.addEventListener(
-    "click", expandNewFolderTextField, false);
-
-  function expandNewFolderTextField() {
-    createFolderButton.style.display = "none";
-    newFolderNameTextField.style.display = "block";
-    newFolderNameTextField.style.fontSize = "18px";
-    newFolderNameTextField.style.cssFloat = "left";
-    newFolderNameTextField.style.marginRight = "5px";
-    newFolderNameTextField.style.borderColor = "rgba(23, 23, 23, 0.25)";
-    newFolderNameTextField.style.borderWidth = "thin";
-    newFolderNameTextField.style.borderRadius = "4px";
-    newFolderNameTextField.style.paddingLeft = "10px";
-    newFolderNameTextField.style.paddingTop = "6px";
-    newFolderNameTextField.style.paddingBottom = "6px";
-    newFolderNameTextField.placeholder = "New Folder Name";
-    newFolderNameTextField.style.backgroundColor = "rgba(0, 130, 140, 0.06)";
-    newFolderNameTextField.addEventListener("focus", function () {
-      newFolderNameTextField.style.outline = "none";
-      newFolderNameTextField.style.borderColor = "rgba(23, 23, 23, 0.85)";
-    });
-    newFolderNameTextField.focus();
-    newFolderNameTextField.addEventListener(
-      "focusout", hideNewFolderTextField, false);
-  }
-
-  function hideNewFolderTextField() {
-    newFolderNameTextField.style.display = "none";
-    createFolderButton.style.display = "block";
-  }
-  </script>
 
   <!-- 3.3 Recently Deleted Items -->
   <form
@@ -368,23 +346,57 @@ function accountDropDownMenu() {
   >
     <input
       type = "submit"
-      class = "homeRecentlyDeletedItems"
+      class = <?php echo "'".$o."RecentlyDeletedItems'";?>
       id = "recentlyDeletedItems"
       value = "Recently Deleted Items"
       name = "submit"
     />
   </form>
+  <script>
+  var createFolderButton = document.getElementById("createFolderButton");
+  var newFolderNameTextField = document.getElementById(
+    "newFolderNameTextField");
+  var recentlyDeletedItems = document.getElementById("recentlyDeletedItems");
+
+  newFolderNameTextField.style.display = "none";
+  createFolderButton.addEventListener(
+    "click", expandNewFolderTextField, false);
+
+  function expandNewFolderTextField() {
+    createFolderButton.style.display = "none";
+    newFolderNameTextField.style.display = "block";
+    recentlyDeletedItems.style.left = "0px";
+    newFolderNameTextField.style.fontSize = "18px";
+    newFolderNameTextField.style.cssFloat = "left";
+    newFolderNameTextField.style.marginRight = "5px";
+    newFolderNameTextField.style.borderWidth = "thin";
+    newFolderNameTextField.style.borderRadius = "4px";
+    newFolderNameTextField.style.paddingLeft = "10px";
+    newFolderNameTextField.style.paddingTop = "6px";
+    newFolderNameTextField.style.paddingBottom = "6px";
+    newFolderNameTextField.placeholder = "New Folder Name";
+    newFolderNameTextField.focus();
+    newFolderNameTextField.addEventListener(
+      "focusout", hideNewFolderTextField, false);
+  }
+
+  function hideNewFolderTextField() {
+    newFolderNameTextField.style.display = "none";
+    createFolderButton.style.display = "block";
+    recentlyDeletedItems.style.right = "0px";
+  }
+  </script>
 
   <br /><br />
 
   <!-- 3.4 Current Directory Navigation Banner -->
-  <div class = "DirectoryPath">
+  <div class = <?php echo "'".$o."DirectoryPath'";?>>
     <?php
     include "generateURL.php";
 
     echo "
-    <a class = 'homeDirectoryPath' href = 'home.php'>
-      <p class = 'homeDirectoryPath'>Home</p>
+    <a class = '".$o."DirectoryPath' href = 'home.php'>
+      <p class = '".$o."DirectoryPath'>Home</p>
     </a>";
 
     parse_str($_SERVER['QUERY_STRING'], $CurrentPath);
@@ -404,9 +416,9 @@ function accountDropDownMenu() {
         array_push($DirectoryPath, $DirectoryPathFolder);
         $i++;
         echo "
-        <p class = 'homeDirectoryPath'>/</p>
-        <a class = 'homeDirectoryPath' href = '" . $DirectoryPathFolderURL . "'>
-          <p class = 'homeDirectoryPath'>" . $DirectoryPathFolder . "</p>
+        <p class = '".$o."DirectoryPath'>/</p>
+        <a class = '".$o."DirectoryPath' href = '" . $DirectoryPathFolderURL . "'>
+          <p class = '".$o."DirectoryPath'>" . $DirectoryPathFolder . "</p>
         </a>";
       }
     }
@@ -419,7 +431,7 @@ function accountDropDownMenu() {
   <br /><br /><br /><br />
 
   <!-- 3.5 Files in directory -->
-  <div class = "homeDirectory">
+  <div class = <?php echo "'".$o."Directory'";?>>
   <?php
   $ReturnPathString = filter_input(
     INPUT_POST, "ReturnPathString", FILTER_SANITIZE_STRING);
@@ -441,12 +453,13 @@ function accountDropDownMenu() {
   // 3.5.1.1 List Folder Name
   for ($i = 2; $i < $NumItems; $i++) {
     if (is_dir($DirectoryPath . "/" . $Directory[$i])) {
-      echo "<div class = 'homeFileNames'>";
-        echo "<div class = 'homeFolders'>";
+      echo "<div class = '".$o."FileNames'>";
+        echo "<div class = '".$o."Folders'>";
           $URL = generateURL("home.php?", $CurrentPath, $Directory[$i]);
           echo "
           <a
             href = '" . $URL . "'
+            class = '".$o."Folders'
             id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
             "DirectoryName'
           >" .
@@ -456,10 +469,10 @@ function accountDropDownMenu() {
 
         // 3.5.1.2 Download Folder
         echo "
-        <div class = 'homeDownloadButtonForm'>
+        <div class = '".$o."DownloadButtonForm'>
           <form
             action = 'Zip/download.php'
-            class = 'homeDownloadButtonForm'
+            class = '".$o."DownloadButtonForm'
             method = 'post'
             enctype = 'multipart/form-data'
           >
@@ -472,7 +485,7 @@ function accountDropDownMenu() {
               type = 'image'
               src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow " .
                 "Icon @ 36 ppi.png'
-                class = 'homeDownloadButton'
+                class = '".$o."DownloadButton'
                 value = 'Download'
                 name = 'submit'
                 id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
@@ -489,18 +502,18 @@ function accountDropDownMenu() {
 
         // 3.5.1.3 Rename Folder
         echo "
-        <div class = 'homeRenameButtonForm'>
+        <div class = '".$o."RenameButtonForm'>
           <input
             type = 'image'
             src = 'Art/4 - Rename Cursor Icon/NanoLab Rename Cursor Icon @ " .
               "36 ppi.png'
             id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
               "CursorButton'
-            class = 'homeRenameButton'
+            class = '".$o."RenameButton'
           />
           <form
             action = 'rename.php'
-            class = 'homeRenameButtonForm'
+            class = '".$o."RenameButtonForm'
             method = 'post'
             enctype = 'multipart/form-data'
           >
@@ -516,7 +529,7 @@ function accountDropDownMenu() {
               onfocus = 'this.select()'
               id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
                 "RenameTextField'
-                class = 'homeRenameTextField'
+                class = '".$o."RenameTextField'
                 name = 'newName'
             />
             <input
@@ -571,10 +584,10 @@ function accountDropDownMenu() {
 
         // 3.5.1.4 Recycle Folder
         echo "
-        <div class = 'homeRecycleButtonForm'>
+        <div class = '".$o."RecycleButtonForm'>
           <form
             action = 'recycle.php'
-            class = 'homeRecycleButtonForm'
+            class = '".$o."RecycleButtonForm'
             method = 'post'
             enctype = 'multipart/form-data'
           >
@@ -587,7 +600,7 @@ function accountDropDownMenu() {
               type = 'image'
               src = 'Art/3 - Delete Trash Can Icon/NanoLab Delete Trash Can " .
                 "Select @ 36 ppi.png'
-              class = 'homeRecycleButton'
+              class = '".$o."RecycleButton'
               id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
                 "RecycleButton'
             />
@@ -602,18 +615,18 @@ function accountDropDownMenu() {
       echo "</div>";
 
       // 3.5.1.5 File Sizes
-      echo "<div class = 'homeFileSizes'>";
+      echo "<div class = '".$o."FileSizes'>";
       echo humanSize(folderSize($DirectoryPath . "/" . $Directory[$i]));
       echo "</div>";
 
       // 3.5.1.6 Heath
-      echo "<br><div class = 'homeHeath'><br></div>";
+      echo "<br><div class = '".$o."Heath'><br></div>";
     }
   }
 
   // 3.5.2 List Files and File Sizes
   // 3.5.2.1 File Name
-  function supportedFileTypes($suffix, $directoryi, $directoryPath) {
+  function supportedFileTypes($suffix, $directoryi, $directoryPath, $oo) {
     $needstxt = ["csv", "php", "html", "cu", "c", "go"];
 
     if ($_GET) {
@@ -622,6 +635,7 @@ function accountDropDownMenu() {
         href = '" . $_SERVER['REQUEST_URI'] . "&" . $suffix . "=" .
           rawurlencode($directoryi) . "'
         target = '_blank'
+        class = '".$oo."Files'
         id = '" . preg_replace('/\s+/', '', $directoryi) . "FileName'
       >" .
         $directoryi .
@@ -633,6 +647,7 @@ function accountDropDownMenu() {
         href = '" . $_SERVER['REQUEST_URI'] . "?" . $suffix . "=" .
           rawurlencode($directoryi) . "'
         target = '_blank'
+        class = '".$oo."Files'
         id = '" . preg_replace('/\s+/', '', $directoryi) . "FileName'
       >" .
         $directoryi .
@@ -716,33 +731,33 @@ function accountDropDownMenu() {
         "go",
       ];
 
-      echo "<div class = 'homeFileNames'>";
-        echo "<div class = 'homeFiles'>";
+      echo "<div class = '".$o."FileNames'>";
+        echo "<div class = '".$o."Files'>";
 
           // If the file can be viewed directly in the browser
           if (in_array(
             strtolower(substr($Directory[$i], -4)), $SupportedFileTypes)
           ) {
             supportedFileTypes(strtolower(substr(
-              $Directory[$i], -4)), $Directory[$i], $DirectoryPath);
+              $Directory[$i], -4)), $Directory[$i], $DirectoryPath, $o);
           }
           else if (in_array(
             strtolower(substr($Directory[$i], -3)), $SupportedFileTypes)
           ) {
             supportedFileTypes(strtolower(substr(
-              $Directory[$i], -3)), $Directory[$i], $DirectoryPath);
+              $Directory[$i], -3)), $Directory[$i], $DirectoryPath, $o);
           }
           else if (in_array(
             strtolower(substr($Directory[$i], -2)), $SupportedFileTypes)
           ) {
             supportedFileTypes(strtolower(substr(
-              $Directory[$i], -2)), $Directory[$i], $DirectoryPath);
+              $Directory[$i], -2)), $Directory[$i], $DirectoryPath, $o);
           }
           else if (in_array(
             strtolower(substr($Directory[$i], -1)), $SupportedFileTypes)
           ) {
             supportedFileTypes(strtolower(substr(
-              $Directory[$i], -1)), $Directory[$i], $DirectoryPath);
+              $Directory[$i], -1)), $Directory[$i], $DirectoryPath, $o);
           }
           else {
             echo "" . $Directory[$i];
@@ -751,10 +766,10 @@ function accountDropDownMenu() {
 
         // 3.5.2.2 Download File
         echo "
-        <div class = 'homeDownloadButtonForm'>
+        <div class = '".$o."DownloadButtonForm'>
           <form
             action = 'Zip/download.php'
-            class = 'homeDownloadButtonForm'
+            class = '".$o."DownloadButtonForm'
             method = 'post'
             enctype = 'multipart/form-data'
           >
@@ -767,7 +782,7 @@ function accountDropDownMenu() {
               type = 'image'
               src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow " .
                 "Icon @ 36 ppi.png'
-              class = 'homeDownloadButton'
+              class = '".$o."DownloadButton'
               value = 'Download'
               name = 'submit'
               id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
@@ -784,18 +799,18 @@ function accountDropDownMenu() {
 
         //3.5.2.3 Rename File
         echo "
-        <div class = 'homeRenameButtonForm'>
+        <div class = '".$o."RenameButtonForm'>
           <input
             type = 'image'
             src = 'Art/4 - Rename Cursor Icon/NanoLab Rename Cursor Icon " .
               "@ 36 ppi.png'
             id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
               "CursorButton'
-            class = 'homeRenameButton'
+            class = '".$o."RenameButton'
           />
           <form
             action = 'rename.php'
-            class = 'homeRenameButtonForm'
+            class = '".$o."RenameButtonForm'
             method = 'post'
             enctype = 'multipart/form-data'
           >
@@ -810,7 +825,7 @@ function accountDropDownMenu() {
               size = '" . strlen($Directory[$i]) . "'
               id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
                 "RenameTextField'
-              class = 'homeRenameTextField'
+              class = '".$o."RenameTextField'
               name = 'newName'
             />
             <input
@@ -868,10 +883,10 @@ function accountDropDownMenu() {
 
         // 3.5.2.4 Recycle File
         echo "
-        <div class = 'homeRecycleButtonForm'>
+        <div class = '".$o."RecycleButtonForm'>
           <form
             action = 'recycle.php'
-            class = 'homeRecycleButtonForm'
+            class = '".$o."RecycleButtonForm'
             method = 'post'
             enctype = 'multipart/form-data'
           >
@@ -884,7 +899,7 @@ function accountDropDownMenu() {
               type = 'image'
               src = 'Art/3 - Delete Trash Can Icon/NanoLab Delete Trash Can " .
                 "Select @ 36 ppi.png'
-              class = 'homeRecycleButton'
+              class = '".$o."RecycleButton'
               id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
                 "RecycleButton'
             />
@@ -899,13 +914,13 @@ function accountDropDownMenu() {
       echo "</div>";
 
       // 3.5.2.5 File Size
-      echo "<div class = 'homeFileSizes'>";
+      echo "<div class = '".$o."FileSizes'>";
       $FileSize = filesize($DirectoryPath . "/" . $Directory[$i]);
       echo "" . HumanSize($FileSize);
       echo "</div>";
 
       // 3.5.2.6 Heath
-      echo "<br><div class = 'homeHeath'><br></div>";
+      echo "<br><div class = '".$o."Heath'><br></div>";
     }
   }
   ?>
@@ -913,10 +928,10 @@ function accountDropDownMenu() {
 </div> <!-- Main Content -->
 
 <!-- 4 Footer -->
-<div class = "homePush"></div>
+<div class = <?php echo "'".$o."Push'";?>></div>
 </div> <!-- Wrapper -->
 
-<div class = "homeFooter">&copy; Corvin, Inc.</div>
+<div class = <?php echo "'".$o."Footer'";?>>&copy; Corvin, Inc.</div>
 
 </body>
 </html>
