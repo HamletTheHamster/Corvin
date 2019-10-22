@@ -747,6 +747,10 @@ input[type=file] {
   border-color: rgba(23, 23, 23, 0.85);
 }
 
+.lightHomeNewFolderNameTextBox::selection {
+  background: rgba(0, 130, 140, 0.25);
+}
+
 .lightHomeRecentlyDeletedItems {
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
@@ -887,14 +891,33 @@ a.lightHomeFileNames {
 }
 
 .lightHomeRenameTextField {
-  position: relative;
-  margin-left: 3px;
-  float: left;
-}
-
-.lightHomeRenameTextField {
   display: none;
   padding-right: 3px;
+  position: relative;
+  margin-left: -5px;
+  padding: 3px 0;
+  padding-left: 3px;
+  float: left;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: rgba(0, 130, 140, 0.06);
+  color: rgba(23, 23, 23, 0.85);
+}
+
+.lightHomeRenameTextField::placeholder {
+  color: rgba(23, 23, 23, 0.5);
+  padding-left: 3px;
+}
+
+.lightHomeRenameTextField:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.lightHomeRenameTextField::selection {
+  background: rgba(0, 130, 140, 0.25);
 }
 
 .lightHomeRecycleButtonForm {
@@ -1274,6 +1297,10 @@ input[type=file] {
   border-color: rgba(23, 23, 23, 0.85);
 }
 
+.darkHomeNewFolderNameTextBox::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
 .darkHomeRecentlyDeletedItems {
   background-color: #353638;
   border-color: rgba(255, 255, 255, 0);
@@ -1442,7 +1469,7 @@ a.darkHomeFileNames {
 }
 
 .darkHomeRenameTextField::selection {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(23, 23, 23, 0.25);
 }
 
 .darkHomeRecycleButtonForm {
@@ -2158,6 +2185,12 @@ p.lightSettingsHeader {
   border-color: rgba(23, 23, 23, 0.85);
 }
 
+.lightSettingsFirstNameChangeTextBox::selection,
+.lightSettingsLastNameChangeTextBox::selection,
+.lightSettingsNamePasswordVerifyTextBox::selection {
+  background: rgba(0, 130, 140, 0.25);
+}
+
 .lightSettingsSaveChangesButton {
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
@@ -2215,6 +2248,10 @@ p.lightSettingsHeader {
   border-color: rgba(23, 23, 23, 0.85);
 }
 
+.lightSettingsEmailPasswordVerifyTextBox::selection {
+  background: rgba(0, 130, 140, 0.25);
+}
+
 .lightSettingsEmailChangeTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -2232,6 +2269,10 @@ p.lightSettingsHeader {
 .lightSettingsEmailChangeTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
+}
+
+.lightSettingsEmailChangeTextBox::selection {
+  background: rgba(0, 130, 140, 0.25);
 }
 
 .lightSettingsUsernamePasswordVerifyTextBox {
@@ -2253,6 +2294,10 @@ p.lightSettingsHeader {
   border-color: rgba(23, 23, 23, 0.85);
 }
 
+.lightSettingsUsernamePasswordVerifyTextBox::selection {
+  background: rgba(0, 130, 140, 0.25);
+}
+
 .lightSettingsUsernameChangeTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -2270,6 +2315,10 @@ p.lightSettingsHeader {
 .lightSettingsUsernameChangeTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
+}
+
+.lightSettingsUsernameChangeTextBox::selection {
+  background: rgba(0, 130, 140, 0.25);
 }
 
 .lightSettingsChangePasswordButton {
@@ -2327,7 +2376,8 @@ p.lightSettingsPasswordRequirement {
   margin-left: 15px;
 }
 
-.lightSettingsPasswordChangeTextBox, .lightSettingsPasswordOldPasswordVerifyTextBox {
+.lightSettingsPasswordChangeTextBox,
+.lightSettingsPasswordOldPasswordVerifyTextBox {
   width: 238px;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -2340,9 +2390,15 @@ p.lightSettingsPasswordRequirement {
   background-color: rgba(0, 130, 140, 0.06);
 }
 
-.lightSettingsPasswordChangeTextBox:focus, .lightSettingsPasswordOldPasswordVerifyTextBox:focus {
+.lightSettingsPasswordChangeTextBox:focus,
+.lightSettingsPasswordOldPasswordVerifyTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
+}
+
+.lightSettingsPasswordChangeTextBox::selection,
+.lightSettingsPasswordOldPasswordVerifyTextBox::selection {
+  background: rgba(0, 130, 140, 0.25);
 }
 
 .lightSettingsSpace {
@@ -2851,6 +2907,12 @@ p.darkSettingsHeader {
   border-color: rgba(23, 23, 23, 0.85);
 }
 
+.darkSettingsFirstNameChangeTextBox::selection,
+.darkSettingsLastNameChangeTextBox::selection,
+.darkSettingsNamePasswordVerifyTextBox::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
 .darkSettingsSaveChangesButton {
   background-color: #353638;
   border-color: rgba(255, 255, 255, 0);
@@ -2913,6 +2975,10 @@ p.darkSettingsHeader {
   color: rgba(255, 255, 255, 0.5);
 }
 
+.darkSettingsEmailPasswordVerifyTextBox::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
 .darkSettingsEmailChangeTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -2935,6 +3001,10 @@ p.darkSettingsHeader {
 
 .darkSettingsEmailChangeTextBox::placeholder {
   color: rgba(255, 255, 255, 0.5);
+}
+
+.darkSettingsEmailChangeTextBox::selection {
+  background: rgba(23, 23, 23, 0.25);
 }
 
 .darkSettingsUsernamePasswordVerifyTextBox {
@@ -2961,6 +3031,10 @@ p.darkSettingsHeader {
   color: rgba(255, 255, 255, 0.5);
 }
 
+.darkSettingsUsernamePasswordVerifyTextBox::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
 .darkSettingsUsernameChangeTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -2983,6 +3057,10 @@ p.darkSettingsHeader {
 
 .darkSettingsUsernameChangeTextBox::placeholder {
   color: rgba(255, 255, 255, 0.5);
+}
+
+.darkSettingsUsernameChangeTextBox::selection {
+  background: rgba(23, 23, 23, 0.25);
 }
 
 .darkSettingsChangePasswordButton {
@@ -3064,6 +3142,11 @@ p.darkSettingsPasswordRequirement {
 .darkSettingsPasswordChangeTextBox::placeholder,
 .darkSettingsPasswordOldPasswordVerifyTextBox::placeholder {
   color: rgba(255, 255, 255, 0.5);
+}
+
+.darkSettingsPasswordChangeTextBox::selection,
+.darkSettingsPasswordOldPasswordVerifyTextBox::selection {
+  background: rgba(23, 23, 23, 0.25);
 }
 
 .darkSettingsSpace {

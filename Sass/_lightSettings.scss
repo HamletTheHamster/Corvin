@@ -327,6 +327,12 @@ p.#{$light}Header {
   border-color: rgba(23, 23, 23, 0.85);
 }
 
+.#{$light}FirstNameChangeTextBox::selection,
+.#{$light}LastNameChangeTextBox::selection,
+.#{$light}NamePasswordVerifyTextBox::selection {
+  background: rgba(0, 130, 140, 0.25);
+}
+
 .#{$light}SaveChangesButton {
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
@@ -384,6 +390,10 @@ p.#{$light}Header {
   border-color: rgba(23, 23, 23, 0.85);
 }
 
+.#{$light}EmailPasswordVerifyTextBox::selection {
+  background: rgba(0, 130, 140, 0.25);
+}
+
 .#{$light}EmailChangeTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -401,6 +411,10 @@ p.#{$light}Header {
 .#{$light}EmailChangeTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}EmailChangeTextBox::selection {
+  background: rgba(0, 130, 140, 0.25);
 }
 
 .#{$light}UsernamePasswordVerifyTextBox {
@@ -422,6 +436,10 @@ p.#{$light}Header {
   border-color: rgba(23, 23, 23, 0.85);
 }
 
+.#{$light}UsernamePasswordVerifyTextBox::selection {
+  background: rgba(0, 130, 140, 0.25);
+}
+
 .#{$light}UsernameChangeTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -439,6 +457,10 @@ p.#{$light}Header {
 .#{$light}UsernameChangeTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}UsernameChangeTextBox::selection {
+  background: rgba(0, 130, 140, 0.25);
 }
 
 .#{$light}ChangePasswordButton {
@@ -496,7 +518,8 @@ p.#{$light}PasswordRequirement {
   margin-left: 15px;
 }
 
-.#{$light}PasswordChangeTextBox, .#{$light}PasswordOldPasswordVerifyTextBox {
+.#{$light}PasswordChangeTextBox,
+.#{$light}PasswordOldPasswordVerifyTextBox {
   width: 238px;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
@@ -509,9 +532,15 @@ p.#{$light}PasswordRequirement {
   background-color: rgba(0, 130, 140, 0.06);
 }
 
-.#{$light}PasswordChangeTextBox:focus, .#{$light}PasswordOldPasswordVerifyTextBox:focus {
+.#{$light}PasswordChangeTextBox:focus,
+.#{$light}PasswordOldPasswordVerifyTextBox:focus {
   outline: none;
   border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}PasswordChangeTextBox::selection,
+.#{$light}PasswordOldPasswordVerifyTextBox::selection {
+  background: rgba(0, 130, 140, 0.25);
 }
 
 .#{$light}Space {

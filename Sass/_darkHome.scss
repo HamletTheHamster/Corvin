@@ -302,6 +302,10 @@ input[type="file"] {
     border-color: rgba(23, 23, 23, 0.85);
 }
 
+.#{$dark}NewFolderNameTextBox::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
 .#{$dark}RecentlyDeletedItems {
     background-color: rgb(53, 54, 56);
     border-color: rgba(255, 255, 255, 0);
@@ -470,7 +474,7 @@ a.#{$dark}FileNames {
 }
 
 .#{$dark}RenameTextField::selection {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(23, 23, 23, 0.25);
 }
 
 .#{$dark}RecycleButtonForm {

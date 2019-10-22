@@ -298,6 +298,10 @@ input[type="file"] {
     border-color: rgba(23, 23, 23, 0.85);
 }
 
+.#{$light}NewFolderNameTextBox::selection {
+  background: rgba(0, 130, 140, 0.25);
+}
+
 .#{$light}RecentlyDeletedItems {
     background-color: rgba(51, 204, 255, 0);
     border-color: rgba(23, 23, 23, 0.25);
@@ -438,14 +442,33 @@ a.#{$light}FileNames {
 }
 
 .#{$light}RenameTextField {
-    position: relative;
-    margin-left: 3px;
-    float: left;
+  display: none;
+  padding-right: 3px;
+  position: relative;
+  margin-left: -5px;
+  padding: 3px 0;
+  padding-left: 3px;
+  float: left;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: rgba(0, 130, 140, 0.06);
+  color: rgba(23, 23, 23, 0.85);
 }
 
-.#{$light}RenameTextField {
-    display: none;
-    padding-right: 3px;
+.#{$light}RenameTextField::placeholder {
+  color: rgba(23, 23, 23, .5);
+  padding-left: 3px;
+}
+
+.#{$light}RenameTextField:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}RenameTextField::selection {
+  background: rgba(0, 130, 140, 0.25);
 }
 
 .#{$light}RecycleButtonForm {

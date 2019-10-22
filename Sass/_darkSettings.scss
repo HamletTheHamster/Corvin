@@ -337,6 +337,12 @@ p.#{$dark}Header {
   border-color: rgba(23, 23, 23, 0.85);
 }
 
+.#{$dark}FirstNameChangeTextBox::selection,
+.#{$dark}LastNameChangeTextBox::selection,
+.#{$dark}NamePasswordVerifyTextBox::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
 .#{$dark}SaveChangesButton {
   background-color: rgb(53, 54, 56);
   border-color: rgba(255, 255, 255, 0);
@@ -399,6 +405,10 @@ p.#{$dark}Header {
   color: rgba(255, 255, 255, .5);
 }
 
+.#{$dark}EmailPasswordVerifyTextBox::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
 .#{$dark}EmailChangeTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -421,6 +431,10 @@ p.#{$dark}Header {
 
 .#{$dark}EmailChangeTextBox::placeholder {
   color: rgba(255, 255, 255, .5);
+}
+
+.#{$dark}EmailChangeTextBox::selection {
+  background: rgba(23, 23, 23, 0.25);
 }
 
 .#{$dark}UsernamePasswordVerifyTextBox {
@@ -447,6 +461,10 @@ p.#{$dark}Header {
   color: rgba(255, 255, 255, .5);
 }
 
+.#{$dark}UsernamePasswordVerifyTextBox::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
 .#{$dark}UsernameChangeTextBox {
   width: 250px;
   border-color: rgba(23, 23, 23, 0.25);
@@ -469,6 +487,10 @@ p.#{$dark}Header {
 
 .#{$dark}UsernameChangeTextBox::placeholder {
   color: rgba(255, 255, 255, .5);
+}
+
+.#{$dark}UsernameChangeTextBox::selection {
+  background: rgba(23, 23, 23, 0.25);
 }
 
 .#{$dark}ChangePasswordButton {
@@ -550,6 +572,11 @@ p.#{$dark}PasswordRequirement {
 .#{$dark}PasswordChangeTextBox::placeholder,
 .#{$dark}PasswordOldPasswordVerifyTextBox::placeholder {
   color: rgba(255, 255, 255, .5);
+}
+
+.#{$dark}PasswordChangeTextBox::selection,
+.#{$dark}PasswordOldPasswordVerifyTextBox::selection{
+  background: rgba(23, 23, 23, 0.25);
 }
 
 .#{$dark}Space {
