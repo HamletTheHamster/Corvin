@@ -78,6 +78,11 @@ error_reporting(E_ALL);
 
 session_start();
 
+//Check if user is logged in
+if (!isset($_SESSION["loginUser"]) && $_SESSION["loginUser"] != TRUE) {
+  header("Location: login.php");
+}
+
 // MySQL server connection
 $conn = mysqli_connect("127.0.0.1", "joel", "Daytona675");
 

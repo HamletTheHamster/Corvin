@@ -104,6 +104,11 @@ p.loginUser {
   background: rgba(0, 130, 140, 0.25);
 }
 
+.loginInvalidLogin {
+  padding-left: 121px;
+  display: block;
+}
+
 .loginLoginButton {
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);

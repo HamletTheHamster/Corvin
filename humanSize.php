@@ -15,6 +15,12 @@ Coded by: Joel N. Johnson
 -->
 
 <?php
+
+//Check if user is logged in
+if (!isset($_SESSION["loginUser"]) && $_SESSION["loginUser"] != TRUE) {
+  header("Location: login.php");
+}
+
 // HumanSize accepts an integer number of bytes as input
 function humanSize($bytes) {
   // Assign array containing prefix abbreviations

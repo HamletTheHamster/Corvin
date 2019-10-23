@@ -22,6 +22,12 @@ Coded by: Joel N. Johnson
 -->
 
 <?php
+
+//Check if user is logged in
+if (!isset($_SESSION["loginUser"]) && $_SESSION["loginUser"] != TRUE) {
+  header("Location: login.php");
+}
+
 function generateURL($base, $currentPath, $item) {
   // Append the name of the folder that was clicked on to the end of the
   // current path string

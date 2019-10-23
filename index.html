@@ -44,6 +44,8 @@
   <meta http-equiv = "refresh" content = "855"/>
 
   <meta name = "google" content = "notranslate"/>
+
+  <script type = "text/javascript" src = "jquery-3.4.1.min.js"></script>
 </head>
 
 <body class = "login">
@@ -74,17 +76,20 @@
 
     <br /><br /><br /><br /><br /><br /><br /><br />
 
-    <!-- 3 Login -->
+    <!-- 3 Login
+    action = "validate.php"
+    method = "post"
+    enctype = "multipart/form-data"
+    -->
     <div id = "loginLogin">
       <form
-        action = "validate.php"
-        method = "post"
-        enctype = "multipart/form-data"
+        id = "loginForm"
       >
         <label>
           <input
             type = "text"
             name = "username"
+            id = "username"
             class = "loginTextBox"
             placeholder = "User Name"
             autofocus
@@ -97,20 +102,66 @@
           <input
             type = "password"
             name = "password"
+            id = "password"
             class = "loginTextBox"
             placeholder = "Password"
             required
           />
         </label>
-        <br /><br /><br /><br />
-        <input
-          type = "submit"
-          value = "Log In"
-          class = "loginLoginButton"
-          name = "submit"
-        />
+        <br /><br />
+        <button id = "loginButton" class = "loginLoginButton"/>
+          Log In
+        </button>
       </form>
+      <div class = "loginInvalidLogin">
+        <p id = "invalidLogin"></p>
+      </div>
     </div>
+    <script>
+    document.getElementById("invalidLogin").style.height = "50px";
+    document.getElementById("invalidLogin").style.color = "red";
+    document.getElementById("invalidLogin").style.fontSize = "16px";
+    document.getElementById("invalidLogin").style.fontWeight = "bold";
+    document.getElementById("invalidLogin").style.fontFamily = "'Square Market', Helvetica, sans-serif";
+    document.getElementById("invalidLogin").style.color = "rgb(0, 130, 140)";
+    document.getElementById("invalidLogin").style.textAlign = "center";
+    document.getElementById("invalidLogin").style.position = "absolute";
+    </script>
+    <script type = "text/javascript">
+
+      $('#loginForm').submit(function (event) {
+
+        event.preventDefault();
+
+        var username = $('#username').val();
+        var password = $('#password').val();
+
+        $.ajax({
+          type: 'POST',
+          dataType: 'JSON',
+          url: 'validate.php',
+          data: {username: username, password: password},
+          success: function(data) {
+
+            var data = eval(data);
+            loginUser = data.loginUser;
+
+            if (loginUser === 'true') {
+              location.href = "home.php"
+            }
+            else {
+              $('#invalidLogin').show().text("Invalid credentials");
+              $('#username').on('input', function() {
+                $('#invalidLogin').hide(1);
+              });
+              $('#password').on('input', function() {
+                $('#invalidLogin').hide(1);
+              })
+            }
+          }
+        });
+      });
+    </script>
 
     <br /><br />
 

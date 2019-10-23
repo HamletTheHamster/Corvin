@@ -1,4 +1,5 @@
-<!--
+<?php
+/*
 This is a Corvin file that is called by index.html to handle user login
 validation and rerouting to the user's home page.
 
@@ -34,9 +35,7 @@ Issues: Searching among all usernames might be able to be optimized
         Column data vs row data might be able to be optimized
 
 Coded by: Joel N. Johnson
--->
-
-<?php
+*/
 
 // Display any errors
 ini_set("display_errors", 1);
@@ -45,6 +44,11 @@ ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
 session_start();
+
+//Check if user is logged in
+if (!isset($_SESSION["loginUser"]) && $_SESSION["loginUser"] != TRUE) {
+  header("Location: login.php");
+}
 
 //MYSQLi server connection
 $conn = mysqli_connect("127.0.0.1", "joel", "Daytona675");
@@ -72,34 +76,32 @@ while ($row = mysqli_fetch_array($columnData)) {
 //Check if username exists in database
 if (in_array($username, $allUsernames)) {
 
-    //Check if password is correct
-    $sql = "SELECT password FROM UserInfo WHERE username = '$username'";
-    $hashedReferencePassword = mysqli_fetch_row(mysqli_query($conn, $sql));
-    if (password_verify($_POST["password"], $hashedReferencePassword[0])) {
+  //Check if password is correct
+  $sql = "SELECT password FROM UserInfo WHERE username = '".$username."';";
+  $hashedReferencePassword = mysqli_fetch_row(mysqli_query($conn, $sql));
+  if (password_verify($_POST['password'], $hashedReferencePassword[0])) {
 
-        //Get user's ID (starts at 1 and autoincrements for each new user)
-        $sql = "SELECT id FROM UserInfo WHERE username = '$username';";
-        $userID = mysqli_fetch_row(mysqli_query($conn, $sql));
+    //Get user's ID (starts at 1 and autoincrements for each new user)
+    $sql = "SELECT id FROM UserInfo WHERE username = '".$username."';";
+    $userID = mysqli_fetch_row(mysqli_query($conn, $sql));
 
-        //Start user's session
-        $_SESSION["loginUser"] = TRUE;
-        $_SESSION["userID"] = $userID[0];
+    //Start user's session
+    $_SESSION["loginUser"] = TRUE;
+    $_SESSION["userID"] = $userID[0];
 
-        //Redirect to the user's main page
-        echo "<meta http-equiv='Refresh' content='0; url = home.php'>";
-    }
-    else {
-        echo "Incorrect password.";
-        // Button to return to login.php, which php-redirects to cor.vin
-        echo "<br /><br /><form method = 'get' action = 'login.php' />";
-        echo "<input type = 'submit' value = 'Return' />";
-        echo "</form>";
-    }
+    $loginUser = "true";
+
+    echo json_encode(array('loginUser' => $loginUser));
+  }
+  else {
+    $loginUser = "false";
+
+    echo json_encode(array('loginUser' => $loginUser));
+  }
 }
 else {
-    echo "Incorrect username.";
-    // Button to return to login.php, which php-redirects to cor.vin
-    echo "<br /><br /><form method = 'get' action = 'login.php' />";
-    echo "<input type = 'submit' value = 'Return' />";
-    echo "</form>";
+  $loginUser = "false";
+
+  echo json_encode(array('loginUser' => $loginUser));
 }
+ ?>
