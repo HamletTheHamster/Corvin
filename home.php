@@ -314,8 +314,12 @@ function accountDropDownMenu() {
     method = "post"
     enctype = "multipart/form-data"
   >
-    <input type = "text" name = "folderName" id = "newFolderNameTextField"
+    <input
+      type = "text"
+      name = "folderName"
+      id = "newFolderNameTextField"
       class = <?php echo "'".$o."NewFolderNameTextBox'";?>
+      spellcheck = "false"
     />
     <input
       type = "button"
@@ -527,8 +531,9 @@ function accountDropDownMenu() {
               onfocus = 'this.select()'
               id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
                 "RenameTextField'
-                class = '".$o."RenameTextField'
-                name = 'newName'
+              class = '".$o."RenameTextField'
+              name = 'newName'
+              spellcheck = 'false'
             />
             <input
               type = 'hidden'
@@ -825,6 +830,7 @@ function accountDropDownMenu() {
                 "RenameTextField'
               class = '".$o."RenameTextField'
               name = 'newName'
+              spellcheck = 'false'
             />
             <input
               type = 'hidden'

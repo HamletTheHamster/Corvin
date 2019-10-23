@@ -273,6 +273,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             value = <?php echo "'" . $user[0] . "'";?>
             placeholder = "First Name"
             required
+            spellcheck = "false"
           />
           <input
             type = "text"
@@ -282,6 +283,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             value = <?php echo "'" . $user[1] . "'";?>
             placeholder = "Last Name"
             required
+            spellcheck = "false"
           />
           <input
             type = "submit"
@@ -380,6 +382,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             value = <?php echo "'" . $email[0] . "'";?>
             placeholder = "Email"
             required
+            spellcheck = "false"
           />
           <input
             type = "submit"
@@ -448,6 +451,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             value = <?php echo "'" . $username[0] . "'";?>
             placeholder = "Username"
             required
+            spellcheck = "false"
           />
           <input
             type = "submit"
