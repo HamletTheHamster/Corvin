@@ -274,6 +274,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             placeholder = "First Name"
             required
             spellcheck = "false"
+            autocomplete = "off"
           />
           <input
             type = "text"
@@ -284,6 +285,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             placeholder = "Last Name"
             required
             spellcheck = "false"
+            autocomplete = "off"
           />
           <input
             type = "submit"
@@ -383,6 +385,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             placeholder = "Email"
             required
             spellcheck = "false"
+            autocomplete = "off"
           />
           <input
             type = "submit"
@@ -452,6 +455,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             placeholder = "Username"
             required
             spellcheck = "false"
+            autocomplete = "off"
           />
           <input
             type = "submit"

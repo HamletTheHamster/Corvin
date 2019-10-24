@@ -320,6 +320,7 @@ function accountDropDownMenu() {
       id = "newFolderNameTextField"
       class = <?php echo "'".$o."NewFolderNameTextBox'";?>
       spellcheck = "false"
+      autocomplete = "off"
     />
     <input
       type = "button"
@@ -534,6 +535,7 @@ function accountDropDownMenu() {
               class = '".$o."RenameTextField'
               name = 'newName'
               spellcheck = 'false'
+              autocomplete = 'off'
             />
             <input
               type = 'hidden'
@@ -831,6 +833,7 @@ function accountDropDownMenu() {
               class = '".$o."RenameTextField'
               name = 'newName'
               spellcheck = 'false'
+              autocomplete = 'off'
             />
             <input
               type = 'hidden'
