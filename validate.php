@@ -94,12 +94,50 @@ if (in_array($username, $allUsernames)) {
     echo json_encode(array('loginUser' => $loginUser));
   }
   else {
+
+    // Problem: there's no ID set if it's an unsuccessful login
+    /*
+    $sql = "SELECT id FROM LoginAttempts;";
+    $columnData = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_array($columnData)) {
+      $allUserIDs[] = $row[0];
+    }
+
+    if (!in_array($userID, $allUserIDs)) {
+      $sql = "INSERT INTO LoginAttempts (id) VALUES ('" . $userID . "')";
+      mysqli_query($conn, $sql);
+    }
+
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $sql = "UPDATE LoginAttempts SET ip1 = '". $ip . "' WHERE id = '" . $userID ."'";
+    mysqli_query($conn, $sql);
+    */
+
     $loginUser = "false";
 
     echo json_encode(array('loginUser' => $loginUser));
   }
 }
 else {
+
+  // Problem: there's no ID set if it's an unsuccessful login
+  /*
+  $sql = "SELECT id FROM LoginAttempts;";
+  $columnData = mysqli_query($conn, $sql);
+  while ($row = mysqli_fetch_array($columnData)) {
+    $allUserIDs[] = $row[0];
+  }
+
+  if (!in_array($userID, $allUserIDs)) {
+    $sql = "INSERT INTO LoginAttempts (id) VALUES ('" . $userID . "')";
+    mysqli_query($conn, $sql);
+  }
+
+  $ip = $_SERVER['REMOTE_ADDR'];
+  $sql = "UPDATE LoginAttempts SET ip1 = '". $ip . "' WHERE id = '" . $userID ."'";
+  mysqli_query($conn, $sql);
+  */
+
   $loginUser = "false";
 
   echo json_encode(array('loginUser' => $loginUser));

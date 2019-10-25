@@ -68,8 +68,6 @@ Coded by: Joel N. Johnson
 <!-- 3 MySQL Database Setup -->
 <?php
 
-session_start();
-
 // MySQL server connection
 $conn = mysqli_connect("127.0.0.1", "joel", "Daytona675");
 
@@ -110,7 +108,6 @@ if (!mysqli_query($conn, $sql)) {
 }
 
 // Create LoginAttempts table if not exists
-/*
 $sql = "CREATE TABLE IF NOT EXISTS LoginAttempts (
   id INT(9) UNSIGNED PRIMARY KEY,
   ip1 VARBINARY(16),
@@ -134,11 +131,11 @@ $sql = "CREATE TABLE IF NOT EXISTS LoginAttempts (
   ip10 VARBINARY(16),
   time10 DATETIME DEFAULT NULL);
 ";
-*/
-/*if (!mysqli_query($conn, $sql)) {
+
+if (!mysqli_query($conn, $sql)) {
   echo "Error creating LoginAttempts table: " . mysqli_error($conn) . "<br /><br />";
 }
-*/
+
 // 4 Register User
 // Read in values entered in registration form
 $firstName = filter_input(INPUT_POST, "firstName", FILTER_SANITIZE_STRING);
@@ -297,11 +294,6 @@ The Corvin Team";
             else {echo "Error: User recycle folder not created.";}
           }
           else {echo "Error: User folder not created.";}
-          }
-          else {
-            echo "You were about to write over someone's data on corvin.";
-            echo "<br /><br />The request was not sent through.";
-          }
 
           echo "Welcome, " . $firstName . "!<br /><br /><br />";
           echo "Your ". $accountTier . " Account has been credited with " .
