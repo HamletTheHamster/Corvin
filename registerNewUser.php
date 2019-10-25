@@ -70,11 +70,6 @@ Coded by: Joel N. Johnson
 
 session_start();
 
-//Check if user is logged in
-if (!isset($_SESSION["loginUser"]) && $_SESSION["loginUser"] != TRUE) {
-  header("Location: login.php");
-}
-
 // MySQL server connection
 $conn = mysqli_connect("127.0.0.1", "joel", "Daytona675");
 
@@ -93,6 +88,7 @@ if (!mysqli_query($conn, $sql)) {
 // Go into Corvin database
 mysqli_query($conn, "USE Corvin;");
 
+// Create UserInfo table if not exists
 $sql = "CREATE TABLE IF NOT EXISTS UserInfo (
   id INT(9) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   firstName VARCHAR(100) NOT NULL,
@@ -110,9 +106,39 @@ $sql = "CREATE TABLE IF NOT EXISTS UserInfo (
 ";
 
 if (!mysqli_query($conn, $sql)) {
-  echo "Error creating table: " . mysqli_error($conn) . "<br /><br />";
+  echo "Error creating UserInfo table: " . mysqli_error($conn) . "<br /><br />";
 }
 
+// Create LoginAttempts table if not exists
+/*
+$sql = "CREATE TABLE IF NOT EXISTS LoginAttempts (
+  id INT(9) UNSIGNED PRIMARY KEY,
+  ip1 VARBINARY(16),
+  time1 DATETIME DEFAULT NULL,
+  ip2 VARBINARY(16),
+  time2 DATETIME DEFAULT NULL,
+  ip3 VARBINARY(16),
+  time3 DATETIME DEFAULT NULL,
+  ip4 VARBINARY(16),
+  time4 DATETIME DEFAULT NULL,
+  ip5 VARBINARY(16),
+  time5 DATETIME DEFAULT NULL,
+  ip6 VARBINARY(16),
+  time6 DATETIME DEFAULT NULL,
+  ip7 VARBINARY(16),
+  time7 DATETIME DEFAULT NULL,
+  ip8 VARBINARY(16),
+  time8 DATETIME DEFAULT NULL,
+  ip9 VARBINARY(16),
+  time9 DATETIME DEFAULT NULL,
+  ip10 VARBINARY(16),
+  time10 DATETIME DEFAULT NULL);
+";
+*/
+/*if (!mysqli_query($conn, $sql)) {
+  echo "Error creating LoginAttempts table: " . mysqli_error($conn) . "<br /><br />";
+}
+*/
 // 4 Register User
 // Read in values entered in registration form
 $firstName = filter_input(INPUT_POST, "firstName", FILTER_SANITIZE_STRING);
