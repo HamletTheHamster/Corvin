@@ -109,7 +109,7 @@ if (!mysqli_query($conn, $sql)) {
 
 // Create LoginAttempts table if not exists
 $sql = "CREATE TABLE IF NOT EXISTS LoginAttempts (
-  id INT(9) UNSIGNED PRIMARY KEY,
+  id INT(9) UNSIGNED,
   ip1 VARBINARY(16),
   time1 DATETIME DEFAULT NULL,
   ip2 VARBINARY(16),

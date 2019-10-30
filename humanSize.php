@@ -21,7 +21,7 @@ if (!isset($_SESSION["loginUser"]) && $_SESSION["loginUser"] != TRUE) {
   header("Location: login.php");
 }
 
-// HumanSize accepts an integer number of bytes as input
+// humanSize accepts an integer number of bytes as input
 function humanSize($bytes) {
   // Assign array containing prefix abbreviations
   $type = array("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB");

@@ -65,24 +65,23 @@ mysqli_query($conn, "USE Corvin;");
 //Assign submitted username
 $username = $_POST["username"];
 
-//Map mysqli column data to array
-$allUsernames = array();
+//Get array of all usernames
 $sql = "SELECT DISTINCT username FROM UserInfo;";
-$columnData = mysqli_query($conn, $sql);
-while ($row = mysqli_fetch_array($columnData)) {
-    $allUsernames[] = $row[0];
+$usernameColumnData = mysqli_query($conn, $sql);
+while ($usernameRow = mysqli_fetch_array($usernameColumnData)) {
+  $allUsernames[] = $usernameRow[0];
 }
 
 //Check if username exists in database
 if (in_array($username, $allUsernames)) {
 
   //Check if password is correct
-  $sql = "SELECT password FROM UserInfo WHERE username = '".$username."';";
+  $sql = "SELECT password FROM UserInfo WHERE username = '" . $username . "';";
   $hashedReferencePassword = mysqli_fetch_row(mysqli_query($conn, $sql));
   if (password_verify($_POST['password'], $hashedReferencePassword[0])) {
 
     //Get user's ID (starts at 1 and autoincrements for each new user)
-    $sql = "SELECT id FROM UserInfo WHERE username = '".$username."';";
+    $sql = "SELECT id FROM UserInfo WHERE username = '" . $username . "';";
     $userID = mysqli_fetch_row(mysqli_query($conn, $sql));
 
     //Start user's session
@@ -90,56 +89,86 @@ if (in_array($username, $allUsernames)) {
     $_SESSION["userID"] = $userID[0];
 
     $loginUser = "true";
-
     echo json_encode(array('loginUser' => $loginUser));
   }
   else {
 
-    // Problem: there's no ID set if it's an unsuccessful login
-    /*
+    // Set ID to ID of username which exists in UserInfo table
+    $sql = "SELECT id FROM UserInfo WHERE username = '" . $username . "';";
+    $userID = mysqli_fetch_row(mysqli_query($conn, $sql));
+
+    // Get array of all IDs which have experienced invalid login attempts
     $sql = "SELECT id FROM LoginAttempts;";
-    $columnData = mysqli_query($conn, $sql);
-    while ($row = mysqli_fetch_array($columnData)) {
-      $allUserIDs[] = $row[0];
+    $userIDColumnData = mysqli_query($conn, $sql);
+
+    if (in_array($userID, mysqli_fetch_array($userIDColumnData))) {
+
+      // Figure out which column to record offense in based on times and current time
+
+      $loginUser = "false";
+      echo json_encode(array('loginUser' => $loginUser));
+    }
+    else {
+            // Add a new row for this ID
+            //$datetime = date('m/d/Y h:i:s a', time());
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            $sql = "INSERT INTO LoginAttempts (id, ip1) VALUES ('" . $userID[0] . "', '" . $ip . "');";
+            mysqli_query($conn, $sql);
+
+            $loginUser = "false";
+            echo json_encode(array('loginUser' => $loginUser));
+
     }
 
-    if (!in_array($userID, $allUserIDs)) {
-      $sql = "INSERT INTO LoginAttempts (id) VALUES ('" . $userID . "')";
-      mysqli_query($conn, $sql);
-    }
-
-    $ip = $_SERVER['REMOTE_ADDR'];
-    $sql = "UPDATE LoginAttempts SET ip1 = '". $ip . "' WHERE id = '" . $userID ."'";
-    mysqli_query($conn, $sql);
-    */
-
-    $loginUser = "false";
-
-    echo json_encode(array('loginUser' => $loginUser));
   }
 }
 else {
-
+/*
   // Problem: there's no ID set if it's an unsuccessful login
-  /*
+  // '-> assign ID=0 to IP addresses that entered invalid username
+  // '-> UPDATE LoginAttempts SET (IP#) = $IP WHERE IP1 = $IP
+
+  $userID = 0;
+
+  // Get allUserIDs
   $sql = "SELECT id FROM LoginAttempts;";
-  $columnData = mysqli_query($conn, $sql);
-  while ($row = mysqli_fetch_array($columnData)) {
-    $allUserIDs[] = $row[0];
+  $idColumnData = mysqli_query($conn, $sql);
+  while ($idRow = mysqli_fetch_array($idColumnData)) {
+    $allUserIDs[] = $idRow[0];
   }
 
+  // If no 0 IDs exist (no invalid login attempts have been made yet)
   if (!in_array($userID, $allUserIDs)) {
+
+    // Insert a row with ID=0
     $sql = "INSERT INTO LoginAttempts (id) VALUES ('" . $userID . "')";
     mysqli_query($conn, $sql);
+
+    // Record offending IP address in ip1
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $sql = "UPDATE LoginAttempts SET ip1 = '". $ip . "' WHERE id = '" . $userID ."'";
+    mysqli_query($conn, $sql);
+
+    // Record time of offense in time1
   }
+  // Else, if this is not the very first invalid login attempt
+  else {
 
-  $ip = $_SERVER['REMOTE_ADDR'];
-  $sql = "UPDATE LoginAttempts SET ip1 = '". $ip . "' WHERE id = '" . $userID ."'";
-  mysqli_query($conn, $sql);
-  */
+    // Get all IPs that tried to login with no valid username (ID=0)
+    $sql = "SELECT ip1 FROM LoginAttempts WHERE id = '". $userID . "';";
+    $ipColumnData = mysqli_query($conn, $sql);
+    while ($ipRow = mysqli_fetch_array($ipColumnData)) {
+      $allIPs[] = $ipRow[0];
+    }
 
+    if (in_array($ip, $allIPs) {
+
+
+    }
+  }
+  }
+*/
   $loginUser = "false";
-
   echo json_encode(array('loginUser' => $loginUser));
 }
  ?>
