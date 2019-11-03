@@ -109,7 +109,7 @@ if (!mysqli_query($conn, $sql)) {
 
 // Create LoginAttempts table if not exists
 $sql = "CREATE TABLE IF NOT EXISTS LoginAttempts (
-  id INT(9) UNSIGNED,
+  id INT(9) UNSIGNED PRIMARY KEY,
   ip1 VARBINARY(16),
   time1 DATETIME DEFAULT NULL,
   ip2 VARBINARY(16),
@@ -134,6 +134,25 @@ $sql = "CREATE TABLE IF NOT EXISTS LoginAttempts (
 
 if (!mysqli_query($conn, $sql)) {
   echo "Error creating LoginAttempts table: " . mysqli_error($conn) . "<br /><br />";
+}
+
+// Create LoginAttemptsNoID table if not exists
+$sql = "CREATE TABLE IF NOT EXISTS LoginAttemptsNoID (
+  ip VARBINARY(16),
+  time1 DATETIME DEFAULT NULL,
+  time2 DATETIME DEFAULT NULL,
+  time3 DATETIME DEFAULT NULL,
+  time4 DATETIME DEFAULT NULL,
+  time5 DATETIME DEFAULT NULL,
+  time6 DATETIME DEFAULT NULL,
+  time7 DATETIME DEFAULT NULL,
+  time8 DATETIME DEFAULT NULL,
+  time9 DATETIME DEFAULT NULL,
+  time10 DATETIME DEFAULT NULL);
+";
+
+if (!mysqli_query($conn, $sql)) {
+  echo "Error creating LoginAttemptsNoID table: " . mysqli_error($conn) . "<br /><br />";
 }
 
 // 4 Register User

@@ -145,6 +145,60 @@ if (in_array($username, $allUsernames)) {
 }
 // Else if username does not exist
 else {
+
+  // Get all IP addresses in LoginAttemptsNoID
+  $sql = "SELECT ip FROM LoginAttemptsNoID;";
+  $allIPsColumn = mysqli_query($conn, $sql);
+  while ($allIPsRow = mysqli_fetch_array($allIPsColumn)) {
+    $allIPs[] = $allIPsRow[0];
+  }
+
+  // If IP from this offense exists in all IP addresses in LoginAttemptsNoID
+  if (in_array($ip, $allIPs)) {
+
+    // Add offense time as appropriate based on prior offenses
+    // Get row array of ip in LoginAttemptsNoID
+    $sql = "SELECT * FROM LoginAttemptsNoID WHERE ip = '$ip';";
+    $loginAttemptsRow = mysqli_fetch_row(mysqli_query($conn, $sql));
+
+    // Figure out which column to record offense in based on entries, times, and current time
+    $logged = FALSE;
+    $recentOffenses = 0;
+    while ($logged == FALSE) {
+
+      // If there has been < 10 invalid login attempts in the last 24 hours
+      if ($recentOffenses < 10) {
+
+        $offenseTimeIndex = $recentOffenses + 1;
+
+        // If time$offense is NULL or not within the last 24 hours (86,400s)
+        if ((empty($loginAttemptsRow[$offenseTimeIndex])) ||
+          (strtotime($loginAttemptsRow[$offenseTimeIndex]) < strtotime($datetime) - 86400)
+        ) {
+
+          // Update ip$offense to $ip and time$offense to $datetime
+          $timeColumn = "time" . ($recentOffenses + 1);
+          $sql = "UPDATE LoginAttemptsNoID SET $timeColumn = '$datetime' WHERE ip = '$ip';";
+          $success = mysqli_query($conn, $sql);
+
+          $logged = TRUE;
+        }
+        else {$recentOffenses++;}
+      }
+      else {
+
+        // Lock account
+        $logged = TRUE;
+      }
+    }
+  }
+  else {
+
+    // Add new row to LoginAttemptsNoID for this new offending IP
+    $sql = "INSERT INTO LoginAttemptsNoID (ip, time1) VALUES ('$ip', '$datetime');";
+    mysqli_query($conn, $sql);
+  }
+
 /*
   // Problem: there's no ID set if it's an unsuccessful login
   // '-> assign ID=0 to IP addresses that entered invalid username
