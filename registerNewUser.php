@@ -264,6 +264,10 @@ The Corvin Team";
 
         if (mysqli_query($conn, $sql)) {
 
+          // Add a new row in LoginAttemts for this ID
+          $sql = "INSERT INTO LoginAttempts (id) VALUES ('$userID[0]')";
+          mysqli_query($conn, $sql);
+
           // Get userID from entry just entered into database
           $sql = "SELECT id FROM UserInfo WHERE username = '" .
             $username . "'";

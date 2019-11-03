@@ -72,10 +72,14 @@ while ($usernameRow = mysqli_fetch_array($usernameColumnData)) {
   $allUsernames[] = $usernameRow[0];
 }
 
-//Check if username exists in database
+// Get current datetime and user's ip address
+$datetime = date("Y-m-d H:i:s");
+$ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+
+// Check if username exists in database
 if (in_array($username, $allUsernames)) {
 
-  //Check if password is correct
+  // Check if password is correct
   $sql = "SELECT password FROM UserInfo WHERE username = '" . $username . "';";
   $hashedReferencePassword = mysqli_fetch_row(mysqli_query($conn, $sql));
   if (password_verify($_POST['password'], $hashedReferencePassword[0])) {
@@ -91,81 +95,108 @@ if (in_array($username, $allUsernames)) {
     $loginUser = "true";
     echo json_encode(array('loginUser' => $loginUser));
   }
+  // Else if username exists but password is incorrect
   else {
 
     // Set ID to ID of username which exists in UserInfo table
     $sql = "SELECT id FROM UserInfo WHERE username = '" . $username . "';";
     $userID = mysqli_fetch_row(mysqli_query($conn, $sql));
 
-    // Get array of all IDs which have experienced invalid login attempts
-    $sql = "SELECT id FROM LoginAttempts;";
-    $userIDColumnData = mysqli_query($conn, $sql);
+    // Get row array of userID in LoginAttempts
+    $sql = "SELECT * FROM LoginAttempts WHERE id = '" . $userID[0] . "';";
+    $loginAttemptsRow = mysqli_fetch_row(mysqli_query($conn, $sql));
 
-    if (in_array($userID, mysqli_fetch_array($userIDColumnData))) {
+    // Figure out which column to record offense in based on entries, times, and current time
+    $logged = FALSE;
+    $recentOffenses = 0;
+    while ($logged == FALSE) {
 
-      // Figure out which column to record offense in based on times and current time
+      // If there has been < 10 invalid login attempts in the last 24 hours
+      if ($recentOffenses < 10) {
 
-      $loginUser = "false";
-      echo json_encode(array('loginUser' => $loginUser));
+        $offenseTimeIndex = ($recentOffenses + 1) * 2;
+
+        // If time$offense is NULL or not within the last 24 hours (86,400s)
+        if ((empty($loginAttemptsRow[$offenseTimeIndex])) ||
+          (strtotime($loginAttemptsRow[$offenseTimeIndex]) < strtotime($datetime) - 86400)
+        ) {
+
+          // Update ip$offense to $ip and time$offense to $datetime
+          $ipColumn = "ip" . ($recentOffenses + 1);
+          $timeColumn = "time" . ($recentOffenses + 1);
+          $sql = "UPDATE LoginAttempts SET $ipColumn = '$ip', $timeColumn = '$datetime' WHERE id = '$userID[0]';";
+          $success = mysqli_query($conn, $sql);
+
+          $logged = TRUE;
+        }
+        else {$recentOffenses++;}
+      }
+      else {
+
+        // Lock account
+        $logged = TRUE;
+      }
+
     }
-    else {
-            // Add a new row for this ID
-            //$datetime = date('m/d/Y h:i:s a', time());
-            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-            $sql = "INSERT INTO LoginAttempts (id, ip1) VALUES ('" . $userID[0] . "', '" . $ip . "');";
-            mysqli_query($conn, $sql);
 
-            $loginUser = "false";
-            echo json_encode(array('loginUser' => $loginUser));
-
-    }
-
+    $loginUser = "false";
+    echo json_encode(array('loginUser' => $loginUser));
   }
 }
+// Else if username does not exist
 else {
 /*
   // Problem: there's no ID set if it's an unsuccessful login
   // '-> assign ID=0 to IP addresses that entered invalid username
   // '-> UPDATE LoginAttempts SET (IP#) = $IP WHERE IP1 = $IP
 
-  $userID = 0;
+  // Get row array of userID in LoginAttempts
+  $sql = "SELECT * FROM LoginAttempts WHERE id = '0';";
+  $loginAttemptsRow = mysqli_fetch_row(mysqli_query($conn, $sql));
 
-  // Get allUserIDs
-  $sql = "SELECT id FROM LoginAttempts;";
-  $idColumnData = mysqli_query($conn, $sql);
-  while ($idRow = mysqli_fetch_array($idColumnData)) {
-    $allUserIDs[] = $idRow[0];
-  }
+  // Figure out which column to record offense in based on entries, times, and current time
+  $logged = FALSE;
+  $recentOffenses = 0;
+  while ($logged == FALSE) {
 
-  // If no 0 IDs exist (no invalid login attempts have been made yet)
-  if (!in_array($userID, $allUserIDs)) {
+    // If there has been < 10 invalid login attempts in the last 24 hours
+    if ($recentOffenses < 10) {
 
-    // Insert a row with ID=0
-    $sql = "INSERT INTO LoginAttempts (id) VALUES ('" . $userID . "')";
-    mysqli_query($conn, $sql);
+      $offenseTimeIndex = ($recentOffenses + 1) * 2;
 
-    // Record offending IP address in ip1
-    $ip = $_SERVER['REMOTE_ADDR'];
-    $sql = "UPDATE LoginAttempts SET ip1 = '". $ip . "' WHERE id = '" . $userID ."'";
-    mysqli_query($conn, $sql);
+      // If time$offense is NULL or not within the last 24 hours (86,400s)
+      if ((empty($loginAttemptsRow[$offenseTimeIndex])) ||
+        (strtotime($loginAttemptsRow[$offenseTimeIndex]) < strtotime($datetime) - 86400)
+      ) {
 
-    // Record time of offense in time1
-  }
-  // Else, if this is not the very first invalid login attempt
-  else {
+        // Update ip$offense to $ip and time$offense to $datetime
+        $ipColumn = "ip" . ($recentOffenses + 1);
+        $timeColumn = "time" . ($recentOffenses + 1);
+        $sql = "UPDATE LoginAttempts SET $ipColumn = '$ip', $timeColumn = '$datetime' WHERE id = '$userID[0]';";
+        $success = mysqli_query($conn, $sql);
 
-    // Get all IPs that tried to login with no valid username (ID=0)
-    $sql = "SELECT ip1 FROM LoginAttempts WHERE id = '". $userID . "';";
-    $ipColumnData = mysqli_query($conn, $sql);
-    while ($ipRow = mysqli_fetch_array($ipColumnData)) {
-      $allIPs[] = $ipRow[0];
+        $logged = TRUE;
+      }
+      else {$recentOffenses++;}
+    }
+    else {
+
+      // Lock account
+      $logged = TRUE;
     }
 
-    if (in_array($ip, $allIPs) {
 
-
-    }
+/*
+  // Get all IPs that tried to login with no valid username (ID=0)
+  $sql = "SELECT ip1 FROM LoginAttempts WHERE id = '". $userID . "';";
+  $ipColumnData = mysqli_query($conn, $sql);
+  while ($ipRow = mysqli_fetch_array($ipColumnData)) {
+    $allIPs[] = $ipRow[0];
   }
+
+  if (in_array($ip, $allIPs) {
+
+
   }
 */
   $loginUser = "false";

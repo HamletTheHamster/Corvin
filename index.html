@@ -146,12 +146,13 @@
 
             var data = eval(data);
             loginUser = data.loginUser;
+            //offense = data.recentOffenses;
 
             if (loginUser === 'true') {
               location.href = "home.php"
             }
             else {
-              $('#invalidLogin').show().text("Invalid credentials");
+              $('#invalidLogin').show().text("Invalid credentials"/*+offense*/);
               $('#username').on('input', function() {
                 $('#invalidLogin').hide(1);
               });
