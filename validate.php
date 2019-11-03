@@ -124,6 +124,8 @@ if (in_array($username, $allUsernames)) {
     // Else if username exists but password is incorrect
     else {
 
+      $loginUser = "false";
+
       // Set ID to ID of username which exists in UserInfo table
       $sql = "SELECT id FROM UserInfo WHERE username = '" . $username . "';";
       $userID = mysqli_fetch_row(mysqli_query($conn, $sql));
@@ -163,80 +165,92 @@ if (in_array($username, $allUsernames)) {
           $sql = "UPDATE LoginAttempts SET locked = '$datetime' WHERE id = '$userID[0]';";
           mysqli_query($conn, $sql);
           $logged = TRUE;
-        }
 
+          $loginUser = "locked";
+        }
       }
 
-      $loginUser = "false";
-      //$message = "locked: " . strtotime($locked[0]) . " < datetime: " . strtotime($datetime) . " - 300";
       echo json_encode(array('loginUser' => $loginUser));
     }
   }
   // Else if account is locked
   else {
     $loginUser = "locked";
-    //$message = strtotime($locked[0]) . " < " . strtotime($datetime) . " - 300";
     echo json_encode(array('loginUser' => $loginUser));
   }
 }
 // Else if username does not exist
 else {
 
-  // Get all IP addresses in LoginAttemptsNoID
-  $sql = "SELECT ip FROM LoginAttemptsNoID;";
-  $allIPsColumn = mysqli_query($conn, $sql);
-  while ($allIPsRow = mysqli_fetch_array($allIPsColumn)) {
-    $allIPs[] = $allIPsRow[0];
-  }
+  //Check if IP is locked
+  $sql = "SELECT locked FROM LoginAttemptsNoID WHERE ip = '$ip';";
+  $locked = mysqli_fetch_row(mysqli_query($conn, $sql));
+  if (($locked[0] == NULL) || (strtotime($locked[0]) < strtotime($datetime) - 300)) {
 
-  // If IP from this offense exists in all IP addresses in LoginAttemptsNoID
-  if (in_array($ip, $allIPs)) {
+    // Get all IP addresses in LoginAttemptsNoID
+    $sql = "SELECT ip FROM LoginAttemptsNoID;";
+    $allIPsColumn = mysqli_query($conn, $sql);
+    while ($allIPsRow = mysqli_fetch_array($allIPsColumn)) {
+      $allIPs[] = $allIPsRow[0];
+    }
 
-    // Get row array of ip in LoginAttemptsNoID
-    $sql = "SELECT * FROM LoginAttemptsNoID WHERE ip = '$ip';";
-    $loginAttemptsRow = mysqli_fetch_row(mysqli_query($conn, $sql));
+    // If IP from this offense exists in all IP addresses in LoginAttemptsNoID
+    if (in_array($ip, $allIPs)) {
 
-    // Figure out which column to record offense in based on entries, times, and current time
-    $logged = FALSE;
-    $recentOffenses = 0;
-    while ($logged == FALSE) {
+      $loginUser = "false";
 
-      // If there has been < 10 invalid login attempts in the last 24 hours
-      if ($recentOffenses < 10) {
+      // Get row array of ip in LoginAttemptsNoID
+      $sql = "SELECT * FROM LoginAttemptsNoID WHERE ip = '$ip';";
+      $loginAttemptsRow = mysqli_fetch_row(mysqli_query($conn, $sql));
 
-        $offenseTimeIndex = $recentOffenses + 1;
+      // Figure out which column to record offense in based on entries, times, and current time
+      $logged = FALSE;
+      $recentOffenses = 0;
+      while ($logged == FALSE) {
 
-        // If time$offense is NULL or not within the last 24 hours (86,400s)
-        if ((empty($loginAttemptsRow[$offenseTimeIndex])) ||
-          (strtotime($loginAttemptsRow[$offenseTimeIndex]) < strtotime($datetime) - 86400)
-        ) {
+        // If there has been < 10 invalid login attempts in the last 24 hours
+        if ($recentOffenses < 9) {
 
-          // Update ip$offense to $ip and time$offense to $datetime
-          $timeColumn = "time" . ($recentOffenses + 1);
-          $sql = "UPDATE LoginAttemptsNoID SET $timeColumn = '$datetime' WHERE ip = '$ip';";
-          $success = mysqli_query($conn, $sql);
+          $offenseTimeIndex = $recentOffenses + 1;
 
-          $logged = TRUE;
+          // If time$offense is NULL or not within the last 24 hours (86,400s)
+          if ((empty($loginAttemptsRow[$offenseTimeIndex])) ||
+            (strtotime($loginAttemptsRow[$offenseTimeIndex]) < strtotime($datetime) - 86400)
+          ) {
+
+            // Update ip$offense to $ip and time$offense to $datetime
+            $timeColumn = "time" . ($recentOffenses + 1);
+            $sql = "UPDATE LoginAttemptsNoID SET $timeColumn = '$datetime' WHERE ip = '$ip';";
+            $success = mysqli_query($conn, $sql);
+
+            $logged = TRUE;
+          }
+          else {$recentOffenses++;}
         }
-        else {$recentOffenses++;}
-      }
-      else {
+        else {
 
-        // Lock account
-        $sql = "UPDATE LoginAttemptsNoID SET locked = '$datetime' WHERE ip = '$ip';";
-        mysqli_query($conn, $sql);
-        $logged = TRUE;
+          // Lock account
+          $sql = "UPDATE LoginAttemptsNoID SET locked = '$datetime' WHERE ip = '$ip';";
+          mysqli_query($conn, $sql);
+          $logged = TRUE;
+
+          $loginUser = "locked";
+        }
       }
     }
+    else {
+
+      // Add new row to LoginAttemptsNoID for this new offending IP
+      $sql = "INSERT INTO LoginAttemptsNoID (ip, time1) VALUES ('$ip', '$datetime');";
+      mysqli_query($conn, $sql);
+    }
+
+    echo json_encode(array('loginUser' => $loginUser));
   }
   else {
 
-    // Add new row to LoginAttemptsNoID for this new offending IP
-    $sql = "INSERT INTO LoginAttemptsNoID (ip, time1) VALUES ('$ip', '$datetime');";
-    mysqli_query($conn, $sql);
+    $loginUser = "locked";
+    echo json_encode(array('loginUser' => $loginUser));
   }
-
-  $loginUser = "false";
-  echo json_encode(array('loginUser' => $loginUser));
 }
  ?>
