@@ -129,7 +129,9 @@ $sql = "CREATE TABLE IF NOT EXISTS LoginAttempts (
   ip9 VARBINARY(16),
   time9 DATETIME DEFAULT NULL,
   ip10 VARBINARY(16),
-  time10 DATETIME DEFAULT NULL);
+  time10 DATETIME DEFAULT NULL,
+  locked DATETIME DEFAULT NULL,
+  botTest BIT DEFAULT 0);
 ";
 
 if (!mysqli_query($conn, $sql)) {
@@ -148,7 +150,9 @@ $sql = "CREATE TABLE IF NOT EXISTS LoginAttemptsNoID (
   time7 DATETIME DEFAULT NULL,
   time8 DATETIME DEFAULT NULL,
   time9 DATETIME DEFAULT NULL,
-  time10 DATETIME DEFAULT NULL);
+  time10 DATETIME DEFAULT NULL,
+  locked DATETIME DEFAULT NULL,
+  botTest BIT DEFAULT 0);
 ";
 
 if (!mysqli_query($conn, $sql)) {
