@@ -111,6 +111,10 @@ p.#{$o}User {
   display: block;
 }
 
+.#{$o}Recaptcha {
+  margin-left: 39px;
+}
+
 .#{$o}LoginButton {
     background-color: rgba(51, 204, 255, 0);
     border-color: rgba(23, 23, 23, 0.25);

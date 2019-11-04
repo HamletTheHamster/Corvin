@@ -109,6 +109,10 @@ p.loginUser {
   display: block;
 }
 
+.loginRecaptcha {
+  margin-left: 39px;
+}
+
 .loginLoginButton {
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
@@ -351,6 +355,12 @@ html.newUser, body.newUser {
   background-color: rgba(0, 130, 140, 0.06);
   color: #00828c;
   cursor: pointer;
+}
+
+.newUserRecaptcha {
+  margin-left: 50%;
+  -ms-transform: translate(-152px, 0);
+  transform: translate(-152px, 0);
 }
 
 .newUserPush {

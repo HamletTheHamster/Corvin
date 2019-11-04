@@ -124,6 +124,12 @@ html.#{$o}, body.#{$o} {
     cursor: pointer;
 }
 
+.#{$o}Recaptcha {
+  margin-left: 50%;
+  -ms-transform: translate(-152px, 0);
+  transform: translate(-152px, 0);
+}
+
 .#{$o}Push {
   height: 3%;
   position: aboslute;

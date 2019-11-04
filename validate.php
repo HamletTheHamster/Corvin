@@ -234,7 +234,7 @@ else {
           mysqli_query($conn, $sql);
           $logged = TRUE;
 
-          $loginUser = "locked";
+          $loginUser = "deviceLocked";
         }
       }
     }
@@ -249,7 +249,7 @@ else {
   }
   else {
 
-    $loginUser = "locked";
+    $loginUser = "deviceLocked";
     echo json_encode(array('loginUser' => $loginUser));
   }
 }

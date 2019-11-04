@@ -55,6 +55,19 @@ Coded By: Joel N. Johnson
   <meta http-equiv = 'refresh' content = '855' />
 
   <meta name = 'google' content = 'notranslate' />
+
+  <script type = "text/javascript" src = "jquery-3.4.1.min.js"></script>
+
+  <script type="text/javascript">
+    var recaptchaID;
+    var onloadCallback = function() {
+      recaptchaID = grecaptcha.render('recaptcha', {
+        'sitekey' : '6LfA2cAUAAAAABJoYq-MsGHj33RWhsXzEsn8bU72',
+        'theme' : 'light',
+        'size' : 'normal'
+      });
+    };
+  </script>
 </head>
 
 <!-- 2 Top Bar -->
@@ -73,7 +86,7 @@ Coded By: Joel N. Johnson
       </div>
     </div>
 
-    <br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br />
 
     <!-- 3 Create new user form -->
     <div class = 'newUserLogin'>
@@ -184,9 +197,9 @@ Coded By: Joel N. Johnson
             name = 'accountTier'
             value = 'Referral'
           />I have a Referral Code
-          <br /><br />
+          <br />
         </label>
-        <br /><br />
+        <br />
         <label>
           <input
             type = 'text'
@@ -198,13 +211,17 @@ Coded By: Joel N. Johnson
             autocomplete = "off"
           />
         </label>
-        <br /><br /><br />
+        <br /><br />
         <input
           type = 'submit'
           value = 'Register'
           class = 'newUserLoginButton'
         />
       </form>
+      <div id = "recaptcha" class = "newUserRecaptcha"></div>
+      <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+      </script>
     </div>
   </div>
   <div class = 'newUserPush'></div>
