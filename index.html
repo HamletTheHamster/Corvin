@@ -145,8 +145,6 @@
       $('#loginForm').submit(function (event) {
 
         var recaptcha = grecaptcha.getResponse(recaptchaID);
-        //var recaptchaResults = eval(recaptcha);
-        //success = recaptchaResults.success;
 
         if (recaptcha === "") {
 
