@@ -363,6 +363,12 @@ html.newUser, body.newUser {
   transform: translate(-152px, 0);
 }
 
+.newUserPleaseCheckTheBox {
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
+  color: rgba(23, 23, 23, 0.85);
+}
+
 .newUserPush {
   height: 3%;
   position: aboslute;

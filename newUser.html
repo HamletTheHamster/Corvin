@@ -59,14 +59,14 @@ Coded By: Joel N. Johnson
   <script type = "text/javascript" src = "jquery-3.4.1.min.js"></script>
 
   <script type="text/javascript">
-    var recaptchaID;
-    var onloadCallback = function() {
-      recaptchaID = grecaptcha.render('recaptcha', {
-        'sitekey' : '6LfA2cAUAAAAABJoYq-MsGHj33RWhsXzEsn8bU72',
-        'theme' : 'light',
-        'size' : 'normal'
-      });
-    };
+  var recaptchaID;
+  var onloadCallback = function() {
+    recaptchaID = grecaptcha.render('recaptcha', {
+      'sitekey' : '6LfA2cAUAAAAABJoYq-MsGHj33RWhsXzEsn8bU72',
+      'theme' : 'light',
+      'size' : 'normal'
+    });
+  };
   </script>
 </head>
 
@@ -92,6 +92,7 @@ Coded By: Joel N. Johnson
     <div class = 'newUserLogin'>
       <form
         action = 'registerNewUser.php'
+        id = 'registernNewUserForm'
         method = 'post'
         enctype = 'multipart/form-data'
       >
@@ -218,9 +219,27 @@ Coded By: Joel N. Johnson
           class = 'newUserLoginButton'
         />
       </form>
+      <div class = "newUserPleaseCheckTheBox">
+        <p id = "pleaseCheckTheBox"></p>
+      </div>
       <div id = "recaptcha" class = "newUserRecaptcha"></div>
       <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
         async defer>
+      </script>
+      <script type = "text/javascript">
+      $('#registerNewUserForm').submit(function (event) {
+
+        var recaptcha = grecaptcha.getResponse(recaptchaID);
+
+        if (recaptcha === "") {
+
+          event.preventDefault();
+          $('#pleaseCheckTheBox').show().text("Please check the box");
+        }
+        else {
+          $('#pleaseCheckTheBox').hide(1);
+        }
+      }
       </script>
     </div>
   </div>

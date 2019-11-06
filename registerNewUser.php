@@ -178,10 +178,12 @@ if ($_POST["password"] == $_POST["password2"]) {
   }
   else {
     echo "Password needs to be at least 8 characters.";
+    exit;
   }
 }
 else {
   echo "Passwords do not match.";
+  exit;
 }
 
 $accountTier = filter_input(INPUT_POST, "accountTier", FILTER_SANITIZE_STRING);

@@ -74,21 +74,23 @@ while ($usernameRow = mysqli_fetch_array($usernameColumnData)) {
 
 // Get current datetime and user's ip address
 $datetime = date("Y-m-d H:i:s");
-$ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+$ip = $_SERVER["REMOTE_ADDR"];
 
-if (isset($_POST["g-recaptcha-response"])) {
-  $captcha = $_POST["g-recaptcha-response"];
-  $captchaSecretKey = "6LfA2cAUAAAAAFSHkup0iMMeaN2G1EqeA9clSSEr";
-  $url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($captchaSecretKey) .  '&response=' . urlencode($captcha);
-  $response = file_get_contents($url);
-  $responseKeys = json_decode($response,true);
-  // should return JSON with success as true
-  if($responseKeys["success"]) {}
-  else {
-    $loginUser = "deviceLocked";
-    echo json_encode(array('loginUser' => $loginUser));
-    exit;
-  }
+// Evaluate recaptcha
+$recaptchaResponse = $_POST["recaptcha"];
+$recaptchaSecretKey = "6LfA2cAUAAAAAFSHkup0iMMeaN2G1EqeA9clSSEr";
+$recaptchaVerify = json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptchaSecretKey}&response={$recaptchaResponse}"));
+if ($recaptchaVerify->success == false) {
+  $loginUser = "recaptchaFail";
+  echo json_encode(array('loginUser' => $loginUser));
+  exit;
+}
+else if ($recaptchaVerify->success == true) {
+}
+else {
+  $loginUser = "noCaptcha";
+  echo json_encode(array('loginUser' => $loginUser));
+  exit;
 }
 
 // Check if username exists in database

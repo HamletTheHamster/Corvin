@@ -132,7 +132,6 @@
     </div>
     <script>
     document.getElementById("invalidLogin").style.height = "50px";
-    document.getElementById("invalidLogin").style.color = "red";
     document.getElementById("invalidLogin").style.fontSize = "16px";
     document.getElementById("invalidLogin").style.fontWeight = "bold";
     document.getElementById("invalidLogin").style.fontFamily = "'Square Market', Helvetica, sans-serif";
@@ -151,13 +150,10 @@
           event.preventDefault();
           $('#invalidLogin').show().text("Please check the box");
         }
-        else if (recaptcha === "false") {
-          $('#invalidLogin').show().text("Invalid credentials");
-        }
         else {
-          $('#invalidLogin').hide(1);
 
           event.preventDefault();
+          $('#invalidLogin').hide(1);
 
           var username = $('#username').val();
           var password = $('#password').val();
@@ -166,7 +162,11 @@
             type: 'POST',
             dataType: 'JSON',
             url: 'validate.php',
-            data: {username: username, password: password},
+            data: {
+              username: username,
+              password: password,
+              recaptcha: recaptcha
+            },
             success: function(data) {
 
               var data = eval(data);
@@ -196,6 +196,24 @@
               }
               else if (loginUser === 'deviceLocked') {
                 $('#invalidLogin').show().text("Device Locked");
+                $('#username').on('input', function() {
+                  $('#invalidLogin').hide(1);
+                });
+                $('#password').on('input', function() {
+                  $('#invalidLogin').hide(1);
+                });
+              }
+              else if (loginUser === 'recaptchaFail') {
+                $('#invalidLogin').show().text("Recaptcha Test Failed");
+                $('#username').on('input', function() {
+                  $('#invalidLogin').hide(1);
+                });
+                $('#password').on('input', function() {
+                  $('#invalidLogin').hide(1);
+                });
+              }
+              else if (loginUser === 'noCaptcha') {
+                $('#invalidLogin').show().text("No recaptcha");
                 $('#username').on('input', function() {
                   $('#invalidLogin').hide(1);
                 });
