@@ -100,7 +100,7 @@ $sql = "CREATE TABLE IF NOT EXISTS UserInfo (
   storageSpaceInMegabytes INT(255) SIGNED,
   accountTier VARCHAR(100),
   active BIT DEFAULT 0,
-  darkmode BIT DEFAULT 0);
+  darkmode BIT DEFAULT 1);
 ";
 
 if (!mysqli_query($conn, $sql)) {
