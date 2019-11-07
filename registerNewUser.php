@@ -250,7 +250,8 @@ if (!in_array($username, $allUsernames)) {
           email,
           verifyEmailHash,
           storageSpaceInMegabytes,
-          accountTier)
+          accountTier,
+          darkmode)
           VALUES (
           '$firstName',
           '$lastName',
@@ -259,7 +260,8 @@ if (!in_array($username, $allUsernames)) {
           '$email',
           '$verifyEmailHash',
           '$storageSpaceInMegabytes',
-          '$accountTier')
+          '$accountTier',
+          1)
         ";
 
         /*
@@ -289,14 +291,14 @@ The Corvin Team";
 
         if (mysqli_query($conn, $sql)) {
 
-          // Add a new row in LoginAttemts for this ID
-          $sql = "INSERT INTO LoginAttempts (id) VALUES ('$userID[0]')";
-          mysqli_query($conn, $sql);
-
           // Get userID from entry just entered into database
           $sql = "SELECT id FROM UserInfo WHERE username = '" .
             $username . "'";
           $userID = mysqli_fetch_row(mysqli_query($conn, $sql));
+
+          // Add a new row in LoginAttemts for this ID
+          $sql = "INSERT INTO LoginAttempts (id) VALUES ('$userID[0]')";
+          mysqli_query($conn, $sql);
 
           // Get first and last name from database
           $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '" .
