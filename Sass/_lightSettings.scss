@@ -293,7 +293,7 @@ p.#{$light}Header {
 }
 
 .#{$light}NamePasswordVerifyTextBox {
-  margin-left: 16px;
+  margin-left: 0px;
 }
 
 .#{$light}FirstNameChangeTextBox {
@@ -307,7 +307,7 @@ p.#{$light}Header {
 .#{$light}FirstNameChangeTextBox,
 .#{$light}LastNameChangeTextBox,
 .#{$light}NamePasswordVerifyTextBox {
-  width: 238px;
+  width: 244px;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
   border-radius: 4px;
@@ -318,6 +318,10 @@ p.#{$light}Header {
   padding-bottom: 6px;
   background-color: rgba(0, 130, 140, 0.06);
   color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$light}NamePasswordVerifyTextBox {
+  width: 246px;
 }
 
 .#{$light}FirstNameChangeTextBox:focus,
@@ -378,7 +382,7 @@ p.#{$light}Header {
   border-radius: 4px;
   float: left;
   font-size: 18px;
-  margin-left: 257px;
+  margin-left: 260px;
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
@@ -424,7 +428,7 @@ p.#{$light}Header {
   border-radius: 4px;
   float: left;
   font-size: 18px;
-  margin-left: 257px;
+  margin-left: 260px;
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
@@ -511,7 +515,7 @@ p.#{$light}PasswordRequirement {
 }
 
 .#{$light}PasswordOldPasswordVerifyTextBox {
-  margin-left: 16px;
+  margin-left: 0px;
 }
 
 .#{$light}PasswordChangeTextBox {
@@ -520,7 +524,7 @@ p.#{$light}PasswordRequirement {
 
 .#{$light}PasswordChangeTextBox,
 .#{$light}PasswordOldPasswordVerifyTextBox {
-  width: 238px;
+  width: 244px;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
   border-radius: 4px;
@@ -530,6 +534,10 @@ p.#{$light}PasswordRequirement {
   padding-top: 6px;
   padding-bottom: 6px;
   background-color: rgba(0, 130, 140, 0.06);
+}
+
+.#{$light}PasswordOldPasswordVerifyTextBox {
+  width: 246px;
 }
 
 .#{$light}PasswordChangeTextBox:focus,

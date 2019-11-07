@@ -197,6 +197,30 @@ if (isset($_POST["submittedPassword"])) {
           $sql = "UPDATE UserInfo SET password = '$hashedPassword' WHERE id = '$userID'";
           mysqli_query($conn, $sql);
 
+          /*
+          // Send security email alerting user of password change
+          $sql = "SELECT email FROM UserInfo WHERE id = '$userID'";
+          $to = mysqli_fetch_row(mysqli_query($conn, $sql));
+          $sql = "SELECT firstName FROM UserInfo WHERE id = '$userID'";
+          $firstName = mysqli_fetch_row(mysqli_query($conn, $sql));
+
+          $subject = "Your password has been updated";
+          $message = "
+            Hi " . $firstName[0] . ",\r\n\r\n
+
+            Your password has been successfully updated.\r\n\r\n
+
+            If you did not request a password change or you believe you are
+            recieving this email in error, please contact joel@cor.vin.\r\n\r\n
+
+            Sincerely,\r\n\r\n
+
+            The Corvin Team
+          ";
+          $message = wordwrap($message, 70, "\r\n");
+          mail("joel.johnson675@gmail.com", "Hi from Corvin", "Hi");
+          */
+
           echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
         }
         else {
