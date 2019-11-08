@@ -15,7 +15,8 @@ Coded By: Joel N. Johnson
 -->
 
 <!-- 1 Header -->
-<html class = "newUser">
+<!DOCTYPE html>
+<html lang = "en" class = "newUser">
 <head class = "newUser">
   <title>Register | Corvin</title>
   <link href = 'one.css' type = 'text/css' rel = 'stylesheet' />
@@ -58,7 +59,7 @@ Coded By: Joel N. Johnson
 
   <script type = "text/javascript" src = "jquery-3.4.1.min.js"></script>
 
-  <script type="text/javascript">
+  <script type = "text/javascript">
   var recaptchaID;
   var onloadCallback = function() {
     recaptchaID = grecaptcha.render('recaptcha', {
@@ -89,18 +90,19 @@ Coded By: Joel N. Johnson
     <br /><br /><br /><br /><br /><br />
 
     <!-- 3 Create new user form -->
+    <!-- action = 'registerNewUser.php'
+    method = 'post'
+    enctype = 'multipart/form-data' -->
     <div class = 'newUserLogin'>
       <form
-        action = 'registerNewUser.php'
-        id = 'registernNewUserForm'
-        method = 'post'
-        enctype = 'multipart/form-data'
+        id = 'registerNewUserForm'
       >
         <label>
           <input
             type = 'text'
             class = 'newUserTextBox'
             name = 'firstName'
+            id = 'firstName'
             style = 'width: 300px'
             placeholder = 'First Name'
             autofocus
@@ -115,6 +117,7 @@ Coded By: Joel N. Johnson
             type = 'text'
             class = 'newUserTextBox'
             name = 'lastName'
+            id = 'lastName'
             style = 'width: 300px'
             placeholder = 'Last Name'
             required
@@ -128,6 +131,7 @@ Coded By: Joel N. Johnson
             type = 'email'
             class = 'newUserTextBox'
             name = 'email'
+            id = 'email'
             style = 'width: 300px'
             placeholder = 'Email'
             required
@@ -141,6 +145,7 @@ Coded By: Joel N. Johnson
             type = 'text'
             class = 'newUserTextBox'
             name = 'username'
+            id = 'username'
             style = 'width: 300px'
             placeholder = 'User Name'
             required
@@ -154,6 +159,7 @@ Coded By: Joel N. Johnson
             type = 'password'
             class = 'newUserTextBox'
             name = 'password'
+            id = 'password'
             style = 'width: 300px'
             placeholder = 'Password (at least 8 characters)'
             required
@@ -165,6 +171,7 @@ Coded By: Joel N. Johnson
             type = 'password'
             class = 'newUserTextBox'
             name = 'password2'
+            id = 'password2'
             style = 'width: 300px'
             placeholder = 'Re-enter Password'
             required
@@ -177,6 +184,7 @@ Coded By: Joel N. Johnson
           <input
             type = 'radio'
             name = 'accountTier'
+            id = 'accountTierFree'
             value = 'Free'
             checked
           />Free (250 MB)
@@ -184,18 +192,21 @@ Coded By: Joel N. Johnson
           <input
             type = 'radio'
             name = 'accountTier'
+            id = 'accountTierPlus'
             value = 'Plus'
           />Plus (100GB)
           <br /><br />
           <input
             type = 'radio'
             name = 'accountTier'
+            id = 'accountTierPro'
             value = 'Pro'
           />Pro (500GB)
           <br /><br />
           <input
             type = 'radio'
             name = 'accountTier'
+            id = 'accountTierReferral'
             value = 'Referral'
           />I have a Referral Code
           <br />
@@ -206,6 +217,7 @@ Coded By: Joel N. Johnson
             type = 'text'
             class = 'newUserTextBox'
             name = 'referralCode'
+            id = 'referralCode'
             style = 'width: 300px'
             placeholder = 'Referral Code'
             spellcheck = "false"
@@ -213,33 +225,78 @@ Coded By: Joel N. Johnson
           />
         </label>
         <br /><br />
-        <input
-          type = 'submit'
-          value = 'Register'
-          class = 'newUserLoginButton'
-        />
+        <button id = 'registerButton' class = "newUserLoginButton">
+          Register
+        </button>
       </form>
       <div class = "newUserPleaseCheckTheBox">
-        <p id = "pleaseCheckTheBox"></p>
+        <p id = "message"></p>
       </div>
       <div id = "recaptcha" class = "newUserRecaptcha"></div>
-      <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+      <script src = "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
         async defer>
       </script>
       <script type = "text/javascript">
       $('#registerNewUserForm').submit(function (event) {
 
+        event.preventDefault();
+
         var recaptcha = grecaptcha.getResponse(recaptchaID);
 
         if (recaptcha === "") {
 
-          event.preventDefault();
-          $('#pleaseCheckTheBox').show().text("Please check the box");
+          $('#message').show().text("Please check the box");
         }
         else {
-          $('#pleaseCheckTheBox').hide(1);
+
+          $('#message').hide(1);
+
+          var firstName = $('#firstName').val();
+          var lastName = $('#lastName').val();
+          var email = $('#email').val();
+          var username = $('#username').val();
+          var password = $('#password').val();
+          var password2 = $('#password2').val();
+
+          $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            url: 'registerNewUser.php',
+            data: {
+              firstName: firstName,
+              lastName: lastName,
+              email: email,
+              username: username,
+              password: password,
+              password2: password2,
+              recaptcha: recaptcha
+            },
+            success: function(data) {
+
+              var data = eval(data);
+              registerUser = data.registerUser;
+
+              if (registerUser === 'true') {
+
+                $('#corvin').css('color', 'rgb(0, 130, 140)');
+                location.href = "welcome.php";
+              }
+              else if (registerUser === 'recaptchaFail') {
+
+                $('#message').show().text("Recaptcha Test Failed");
+              }
+              else if (registerUser === 'passwordLength') {
+
+                $('#message').show().text("Passwords must be at least 8 characters");
+              }
+              else if (registerUser === 'passwordMismatch') {
+
+                $('#message').show().text("Passwords do not match");
+              }
+            }
+          });
         }
-      }
+      });
       </script>
     </div>
   </div>

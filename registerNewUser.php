@@ -177,12 +177,14 @@ if ($_POST["password"] == $_POST["password2"]) {
     $hashedPassword = password_hash($_POST["password"], PASSWORD_DEFAULT);
   }
   else {
-    echo "Password needs to be at least 8 characters.";
+    $registerUser = "passwordLength";
+    echo json_encode(array('registerUser' => $registerUser));
     exit;
   }
 }
 else {
-  echo "Passwords do not match.";
+  $registerUser = "passwordMismatch";
+  echo json_encode(array('registerUser' => $registerUser));
   exit;
 }
 
@@ -326,6 +328,9 @@ The Corvin Team";
           }
           else {echo "Error: User folder not created.";}
 
+          $registerUser = "true";
+          echo json_encode(array('registerUser' => $registerUser));
+          exit;
           echo "Welcome, " . $firstName . "!<br /><br /><br />";
           echo "Your ". $accountTier . " Account has been credited with " .
             $storageSpaceInHuman . " storage space.";
