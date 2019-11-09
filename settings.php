@@ -263,6 +263,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             id = "namePasswordCheck"
             class = <?php echo "'".$o."NamePasswordVerifyTextBox'";?>
             placeholder = "Password"
+            autocomplete = "current-password"
             required
           >
           <input
@@ -374,6 +375,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             id = "emailPasswordCheck"
             class = <?php echo "'".$o."EmailPasswordVerifyTextBox'";?>
             placeholder = "Password"
+            autocomplete = "current-password"
             required
           >
           <input
@@ -385,7 +387,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             placeholder = "Email"
             required
             spellcheck = "false"
-            autocomplete = "off"
+            autocomplete = "email"
           />
           <input
             type = "submit"
@@ -444,6 +446,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             id = "usernamePasswordCheck"
             class = <?php echo "'".$o."UsernamePasswordVerifyTextBox'";?>
             placeholder = "Password"
+            autocomplete = "current-password"
             required
           >
           <input
@@ -516,6 +519,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
               id = "oldPassword"
               class = <?php echo "'".$o."PasswordOldPasswordVerifyTextBox'";?>
               placeholder = "Current Password"
+              autocomplete = "current-password"
               required
             >
             <input
@@ -524,6 +528,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
               id = "newPasswordTextBox"
               class = <?php echo "'".$o."PasswordChangeTextBox'";?>
               placeholder = "New Password"
+              autocomplete = "new-password"
               required
             />
             <input
@@ -532,6 +537,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
               id = "newPassword2TextBox"
               class = <?php echo "'".$o."PasswordChangeTextBox'";?>
               placeholder = "Re-enter New Password"
+              autocomplete = "new-password"
               required
             />
             <input

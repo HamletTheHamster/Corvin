@@ -1,4 +1,5 @@
-<!--
+<?php
+/*
 This file fully automatically registers a new user on corvin. The file
 interacts with the MySQL database, ensures proper info has been collected from
 the user, inputs the user's data into a new row in the database, and creates
@@ -8,79 +9,27 @@ Issues: copyright Corvin, Inc. displays on the top of the page and some content
         displays off of the page with certain screen sizes
 
 Coded by: Joel N. Johnson
--->
+*/
 
-<!-- 1 Header -->
-<head>
-  <title>Home | Corvin</title>
-
-  <link href = "one.css" type = "text/css" rel = "stylesheet"/>
-
-  <link rel = "apple-touch-icon" sizes = "57x57"
-    href = "Art/Favicon/apple-icon-57x57.png" />
-  <link rel = "apple-touch-icon" sizes = "60x60"
-    href = "Art/Favicon/apple-icon-60x60.png" />
-  <link rel = "apple-touch-icon" sizes = "72x72"
-    href = "Art/Favicon/apple-icon-72x72.png" />
-  <link rel = "apple-touch-icon" sizes = "76x76"
-    href = "Art/Favicon/apple-icon-76x76.png" />
-  <link rel = "apple-touch-icon" sizes = "114x114"
-    href = "Art/Favicon/apple-icon-114x114.png" />
-  <link rel = "apple-touch-icon" sizes = "120x120"
-    href = "Art/Favicon/apple-icon-120x120.png" />
-  <link rel = "apple-touch-icon" sizes = "144x144"
-    href = "Art/Favicon/apple-icon-144x144.png" />
-  <link rel = "apple-touch-icon" sizes = "152x152"
-    href = "Art/Favicon/apple-icon-152x152.png" />
-  <link rel = "apple-touch-icon" sizes = "180x180"
-    href = "Art/Favicon/apple-icon-180x180.png" />
-  <link rel = "icon" type = "image/png" sizes = "192x192"
-    href = "Art/Favicon/android-icon-192x192.png" />
-  <link rel = "icon" type = "image/png" sizes = "32x32"
-    href = "Art/Favicon/favicon-32x32.png" />
-  <link rel = "icon" type = "image/png" sizes = "96x96"
-    href = "Art/Favicon/favicon-96x96.png" />
-  <link rel = "icon" type = "image/png" sizes = "16x16"
-    href = "Art/Favicon/favicon-16x16.png" />
-  <link rel = "manifest" href = "/manifest.json" />
-
-  <meta name = "msapplication-TileColor" content = "#ffffff"/>
-  <meta name = "msapplication-TileImage" content = "/ms-icon-144x144.png"/>
-  <meta name = "theme-color" content = "#ffffff"/>
-
-  <meta http-equiv = "refresh" content = "855"/>
-
-  <meta name = "google" content = "notranslate"/>
-</head>
-
-<!-- 2 Top Bar -->
-<body class = "registerNewUser">
-<div class = 'registerNewUserContainer'>
-    <div class = 'registerNewUserCenter'>
-        <div class = 'registerNewUserTopBar'>
-            <div class = 'registerNewUserCorvin'>
-                Corvin
-            </div>
-        </div>
-
-<br /><br /><br /><br /><br /><br /><br /><br />
-
-<!-- 3 MySQL Database Setup -->
-<?php
 
 // MySQL server connection
 $conn = mysqli_connect("127.0.0.1", "joel", "Daytona675");
 
 // Check if connected to MYSQLI server
 if (!$conn) {
-  echo("Failed to connect to database: " . mysqli_connect_error()) .
-    "<br /><br />";
+
+  $registerUser = "Failed to connect to database: " . mysqli_connect_error();
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
 }
 
 // Create Corvin database if not already created
 $sql = "CREATE DATABASE IF NOT EXISTS Corvin;";
 if (!mysqli_query($conn, $sql)) {
-  echo "Error creating database Corvin.<br /><br />";
+
+  $registerUser = "Error creating database Corvin";
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
 }
 
 // Go into Corvin database
@@ -104,7 +53,10 @@ $sql = "CREATE TABLE IF NOT EXISTS UserInfo (
 ";
 
 if (!mysqli_query($conn, $sql)) {
-  echo "Error creating UserInfo table: " . mysqli_error($conn) . "<br /><br />";
+
+  $registerUser = "Error creating UserInfo table: " . mysqli_error($conn);
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
 }
 
 // Create LoginAttempts table if not exists
@@ -135,7 +87,10 @@ $sql = "CREATE TABLE IF NOT EXISTS LoginAttempts (
 ";
 
 if (!mysqli_query($conn, $sql)) {
-  echo "Error creating LoginAttempts table: " . mysqli_error($conn) . "<br /><br />";
+
+  $registerUser = "Error creating LoginAttempts table: " . mysqli_error($conn);
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
 }
 
 // Create LoginAttemptsNoID table if not exists
@@ -156,7 +111,27 @@ $sql = "CREATE TABLE IF NOT EXISTS LoginAttemptsNoID (
 ";
 
 if (!mysqli_query($conn, $sql)) {
-  echo "Error creating LoginAttemptsNoID table: " . mysqli_error($conn) . "<br /><br />";
+
+  $registerUser = "Error creating LoginAttemptsNoID table: " . mysqli_error($conn);
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
+}
+
+// Evaluate recaptcha
+$recaptchaResponse = $_POST["recaptcha"];
+$recaptchaSecretKey = "6LfA2cAUAAAAAFSHkup0iMMeaN2G1EqeA9clSSEr";
+$recaptchaVerify = json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptchaSecretKey}&response={$recaptchaResponse}"));
+if ($recaptchaVerify->success == false) {
+  $registerUser = "Recaptcha Test Fail";
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
+}
+else if ($recaptchaVerify->success == true) {
+}
+else {
+  $registerUser = "No Captcha Submitted";
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
 }
 
 // 4 Register User
@@ -177,13 +152,13 @@ if ($_POST["password"] == $_POST["password2"]) {
     $hashedPassword = password_hash($_POST["password"], PASSWORD_DEFAULT);
   }
   else {
-    $registerUser = "passwordLength";
+    $registerUser = "Passwords must be at least 8 characters";
     echo json_encode(array('registerUser' => $registerUser));
     exit;
   }
 }
 else {
-  $registerUser = "passwordMismatch";
+  $registerUser = "Passwords do not match";
   echo json_encode(array('registerUser' => $registerUser));
   exit;
 }
@@ -331,74 +306,35 @@ The Corvin Team";
           $registerUser = "true";
           echo json_encode(array('registerUser' => $registerUser));
           exit;
-          echo "Welcome, " . $firstName . "!<br /><br /><br />";
-          echo "Your ". $accountTier . " Account has been credited with " .
-            $storageSpaceInHuman . " storage space.";
-          echo "<br /><br /><br />Sincerely,<br /><br />";
-          echo "The Corvin Team<br />";
-          echo "joel@cor.vin";
-
-          echo "<br /><br /><br /><br />";
-
-          echo "
-          <form action = 'login.php'>
-            <input class = 'registerNewUserLoginButton' type = 'submit'
-              value = 'Login'>
-          </form>";
         }
         else {
-          echo "Error: " . $sql . "<br /><br />" . mysqli_error($conn) .
-            "<br /><br />";
+          $registerUser = "Error: " . $sql . " " . mysqli_error($conn);
+          echo json_encode(array('registerUser' => $registerUser));
+          exit;
         }
       }
       else {
-        echo "Incorrect referral code.";
-        echo "<br /><br />";
-        echo "
-          <button class = 'registerNewUserLoginButton'
-            onclick = 'window.history.back()'>
-            Go back
-          </button>";
+        $registerUser = "Incorrect referral code";
+        echo json_encode(array('registerUser' => $registerUser));
+        exit;
       }
     }
     else {
-      echo "Email already associated with another account.";
-      echo "<br /><br />";
-      echo "
-      <button class = 'registerNewUserLoginButton'
-        onclick = 'window.history.back()'>
-        Go back
-      </button>";
+      $registerUser = "Email already associated with another account";
+      echo json_encode(array('registerUser' => $registerUser));
+      exit;
     }
   }
   else {
-    echo "Invalid email address.";
-    echo "<br /><br />";
-    echo "
-    <button class = 'registerNewUserLoginButton'
-      onclick = 'window.history.back()'>
-      Go back
-    </button>";
+    $registerUser = "Invalid email address";
+    echo json_encode(array('registerUser' => $registerUser));
+    exit;
   }
 }
 else {
-  echo "Username already taken.";
-  echo "<br /><br />";
-  echo "
-  <button class = 'registerNewUserLoginButton'
-    onclick = 'window.history.back()'>
-    Go back
-  </button>";
+  $registerUser = "Username already taken";
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
 }
 mysqli_close($conn);
 ?>
-
-<br /><br />
-
-</div>
-<div class = 'registerNewUserPush'></div>
-</div>
-
-<!-- 5 Footer -->
-<div class = 'registerNewUserFooter'>&copy; Corvin, Inc.</div>
-</body>

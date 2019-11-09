@@ -1,18 +1,4 @@
-<!--This is the Corvin page where new users can register their information
-to creat an account. This page routes to registerNewUser.php upon submitting
-the form.
-
-Hierarchy
-
-  1 Header
-  2 Top Bar
-  3 Create New User Form
-  4 Footer
-
-Issues: content displays off screen for certain screen sizes
-
-Coded By: Joel N. Johnson
--->
+<!-- Coded By: Joel N. Johnson -->
 
 <!-- 1 Header -->
 <!DOCTYPE html>
@@ -107,8 +93,8 @@ Coded By: Joel N. Johnson
             placeholder = 'First Name'
             autofocus
             required
-            spellcheck = "false"
-            autocomplete = "off"
+            spellcheck = 'false'
+            autocomplete = 'given-name'
           />
         </label>
         <br /><br />
@@ -121,8 +107,8 @@ Coded By: Joel N. Johnson
             style = 'width: 300px'
             placeholder = 'Last Name'
             required
-            spellcheck = "false"
-            autocomplete = "off"
+            spellcheck = 'false'
+            autocomplete = 'family-name'
           />
         </label>
         <br /><br />
@@ -135,8 +121,8 @@ Coded By: Joel N. Johnson
             style = 'width: 300px'
             placeholder = 'Email'
             required
-            spellcheck = "false"
-            autocomplete = "off"
+            spellcheck = 'false'
+            autocomplete = 'email'
           />
         </label>
         <br /><br />
@@ -149,8 +135,8 @@ Coded By: Joel N. Johnson
             style = 'width: 300px'
             placeholder = 'User Name'
             required
-            spellcheck = "false"
-            autocomplete = "off"
+            spellcheck = 'false'
+            autocomplete = 'username'
           />
         </label>
         <br /><br />
@@ -162,6 +148,7 @@ Coded By: Joel N. Johnson
             id = 'password'
             style = 'width: 300px'
             placeholder = 'Password (at least 8 characters)'
+            autocomplete = 'new-password'
             required
           />
         </label>
@@ -174,6 +161,7 @@ Coded By: Joel N. Johnson
             id = 'password2'
             style = 'width: 300px'
             placeholder = 'Re-enter Password'
+            autocomplete = 'new-password'
             required
           />
         </label>
@@ -257,19 +245,26 @@ Coded By: Joel N. Johnson
           var username = $('#username').val();
           var password = $('#password').val();
           var password2 = $('#password2').val();
+          var accountTier = $("input[name='accountTier']:checked").val();
+          var referralCode = $('#referralCode').val();
 
           $.ajax({
+            error:function(jqXHR,textStatus,errorThrown ){
+              alert('Exception:'+errorThrown );
+            },
             type: 'POST',
             dataType: 'JSON',
             url: 'registerNewUser.php',
             data: {
+              recaptcha: recaptcha,
               firstName: firstName,
               lastName: lastName,
               email: email,
               username: username,
               password: password,
               password2: password2,
-              recaptcha: recaptcha
+              accountTier: accountTier,
+              referralCode: referralCode
             },
             success: function(data) {
 
@@ -281,17 +276,10 @@ Coded By: Joel N. Johnson
                 $('#corvin').css('color', 'rgb(0, 130, 140)');
                 location.href = "welcome.php";
               }
-              else if (registerUser === 'recaptchaFail') {
+              else {
 
-                $('#message').show().text("Recaptcha Test Failed");
-              }
-              else if (registerUser === 'passwordLength') {
-
-                $('#message').show().text("Passwords must be at least 8 characters");
-              }
-              else if (registerUser === 'passwordMismatch') {
-
-                $('#message').show().text("Passwords do not match");
+                alert(registerUser);
+                $('#message').show().text(registerUser);
               }
             }
           });
