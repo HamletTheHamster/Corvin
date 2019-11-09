@@ -82,6 +82,9 @@
     <div class = 'newUserLogin'>
       <form
         id = 'registerNewUserForm'
+        action = 'welcome.php'
+        method = 'post'
+        enctype = 'multipart/form-data'
       >
         <label>
           <input
@@ -269,18 +272,17 @@
             success: function(data) {
 
               var data = eval(data);
-              registerUser = data.registerUser;
 
-              if (registerUser === 'true') {
+              if (data.registerUser !=== 'true') {
 
-                $('#corvin').css('color', 'rgb(0, 130, 140)');
-                location.href = "welcome.php";
+                $('#message').show().text(data.registerUser);
               }
-              else {
+            }
+          }).then(function(data) {
+            if (data.registerUser === 'true') {
 
-                alert(registerUser);
-                $('#message').show().text(registerUser);
-              }
+              $('#corvin').css('color', 'rgb(0, 130, 140)');
+              $('#registerNewUserForm').submit();
             }
           });
         }
