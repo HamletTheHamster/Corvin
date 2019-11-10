@@ -123,8 +123,7 @@
       </form>
       <div class = "loginInvalidLogin">
         <p id = "invalidLogin"></p>
-      </div>
-      <br /><br /><br />
+      </div><br />
       <div id = "recaptcha" class = "loginRecaptcha"></div>
       <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
         async defer>
@@ -136,8 +135,6 @@
     document.getElementById("invalidLogin").style.fontWeight = "bold";
     document.getElementById("invalidLogin").style.fontFamily = "'Square Market', Helvetica, sans-serif";
     document.getElementById("invalidLogin").style.color = "rgba(23, 23, 23, 0.85)";
-    document.getElementById("invalidLogin").style.textAlign = "center";
-    document.getElementById("invalidLogin").style.position = "absolute";
     </script>
     <script type = "text/javascript">
 
@@ -181,6 +178,7 @@
               else if (loginUser === 'false') {
 
                 $('#invalidLogin').show().text("Invalid credentials");
+                grecaptcha.reset();
                 $('#username').on('input', function() {
 
                   $('#invalidLogin').hide(1);

@@ -214,7 +214,7 @@
         </button>
       </form>
       <div class = "newUserPleaseCheckTheBox">
-        <p id = "message"></p>
+        <p class = "newUserMessageText" id = "message"></p>
       </div>
       <div id = "recaptcha" class = "newUserRecaptcha"></div>
       <script src = "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
@@ -269,6 +269,7 @@
               if (data.registerUser != 'true') {
 
                 $('#message').show().text(data.registerUser);
+                grecaptcha.reset();
               }
               else {
 
@@ -296,19 +297,6 @@
           });
         }
       });
-      /*
-      .then(function(data) {
-        if (data.registerUser === 'true') {
-
-          $('#corvin').css('color', 'rgb(0, 130, 140)');
-          $('#registerNewUserForm').action = 'welcome.php';
-          $('#registerNewUserForm').method = 'POST';
-          $('#registerNewUserForm').submit();
-        }
-      }, function(jqXHR, textStatus, errorThrown) {
-        $("#message").text(textStatus || errorThrown);
-      });
-      */
       </script>
     </div>
   </div>

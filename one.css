@@ -105,12 +105,12 @@ p.loginUser {
 }
 
 .loginInvalidLogin {
-  padding-left: 121px;
-  display: block;
+  height: 50px;
+  display: inline-block;
 }
 
 .loginRecaptcha {
-  margin-left: 39px;
+  display: inline-block;
 }
 
 .loginLoginButton {
@@ -365,6 +365,8 @@ html.newUser, body.newUser {
 
 .newUserPleaseCheckTheBox {
   height: 40px;
+  font-weight: bold;
+  display: inline-block;
   font-size: 16px;
   font-family: "Square Market", Helvetica, sans-serif;
   color: rgba(23, 23, 23, 0.85);
