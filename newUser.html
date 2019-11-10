@@ -82,9 +82,6 @@
     <div class = 'newUserLogin'>
       <form
         id = 'registerNewUserForm'
-        action = 'welcome.php'
-        method = 'post'
-        enctype = 'multipart/form-data'
       >
         <label>
           <input
@@ -175,7 +172,6 @@
           <input
             type = 'radio'
             name = 'accountTier'
-            id = 'accountTierFree'
             value = 'Free'
             checked
           />Free (250 MB)
@@ -183,21 +179,18 @@
           <input
             type = 'radio'
             name = 'accountTier'
-            id = 'accountTierPlus'
             value = 'Plus'
           />Plus (100GB)
           <br /><br />
           <input
             type = 'radio'
             name = 'accountTier'
-            id = 'accountTierPro'
             value = 'Pro'
           />Pro (500GB)
           <br /><br />
           <input
             type = 'radio'
             name = 'accountTier'
-            id = 'accountTierReferral'
             value = 'Referral'
           />I have a Referral Code
           <br />
@@ -273,20 +266,49 @@
 
               var data = eval(data);
 
-              if (data.registerUser !=== 'true') {
+              if (data.registerUser != 'true') {
 
                 $('#message').show().text(data.registerUser);
               }
-            }
-          }).then(function(data) {
-            if (data.registerUser === 'true') {
+              else {
 
-              $('#corvin').css('color', 'rgb(0, 130, 140)');
-              $('#registerNewUserForm').submit();
+                $('#corvin').css('color', 'rgb(0, 130, 140)');
+
+                var welcomeData = {
+                  firstName: firstName,
+                  accountTier: accountTier,
+                  referralCode: referralCode
+                }
+                var form = document.createElement('form');
+                document.body.appendChild(form);
+                form.method = 'post';
+                form.action = 'welcome.php';
+                for (var name in welcomeData) {
+                  var input = document.createElement('input');
+                  input.type = 'hidden';
+                  input.name = name;
+                  input.value = welcomeData[name];
+                  form.appendChild(input);
+                }
+                form.submit();
+              }
             }
           });
         }
       });
+      /*
+      .then(function(data) {
+        if (data.registerUser === 'true') {
+
+          $('#corvin').css('color', 'rgb(0, 130, 140)');
+          $('#registerNewUserForm').action = 'welcome.php';
+          $('#registerNewUserForm').method = 'POST';
+          $('#registerNewUserForm').submit();
+        }
+      }, function(jqXHR, textStatus, errorThrown) {
+        $("#message").text(textStatus || errorThrown);
+      });
+      */
       </script>
     </div>
   </div>

@@ -57,7 +57,31 @@
 
 $firstName = $_POST['firstName'];
 $accountTier = $_POST['accountTier'];
-$storageSpaceInHuman = $_POST['$storageSpaceInHuman'];
+$referralCode = $_POST['referralCode'];
+
+switch ($accountTier) {
+  case "Free":
+    $storageSpaceInHuman = "250MB of";
+    break;
+  case "Plus":
+    $storageSpaceInHuman = "100GB of";
+    break;
+  case "Pro":
+    $storageSpaceInHuman = "500GB of";
+    break;
+  case "Referral":
+    switch ($referralCode) {
+      case "1TERABYTEQVHERD6496":
+        $storageSpaceInHuman = "1TB of";
+        break;
+      case "2TERABYTESFBMKGE7594":
+        $storageSpaceInHuman = "2TB of";
+        break;
+      case "UNRESTRICTEDDHMH6583":
+        $storageSpaceInHuman = "unlimited";
+        break;
+    }
+}
 
 echo "Welcome, " . $firstName . "!<br /><br /><br />";
 echo "Your ". $accountTier . " Account has been credited with " .

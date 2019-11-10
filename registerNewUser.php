@@ -299,9 +299,17 @@ The Corvin Team";
             if (mkdir($userRecycleFolderFullPath, 0777, true)) {
               chmod($userRecycleFolderFullPath, 0777);
             }
-            else {echo "Error: User recycle folder not created.";}
+            else {
+              $registerUser = "Error: User recycle folder not created";
+              echo json_encode(array('registerUser' => $registerUser));
+              exit;
+            }
           }
-          else {echo "Error: User folder not created.";}
+          else {
+            $registerUser = "Error: User folder not created";
+            echo json_encode(array('registerUser' => $registerUser));
+            exit;
+          }
 
           $registerUser = "true";
           echo json_encode(array('registerUser' => $registerUser));
