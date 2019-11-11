@@ -169,13 +169,8 @@ elseif (time() - $_SESSION['Created'] > 1200) {
       <h class = <?php echo "'".$o."CorvinHeader'";?>>C</h>
     </a>
   </div>
-  <!--
-  <div class = <?php //echo "'".$o."WorkspacesDropDown'";?>>
-    <p onclick = "workspacesDropDownMenu()" class = <?php //echo "'".$o."WorkspacesButton'";?>>Workspaces</p>
-  </div>
--->
   <div class = <?php echo "'".$o."AccountMenuDropDown'";?>>
-    <p onclick = "accountDropDownMenu()" class = <?php echo "'".$o."AccountButton'";?>>Account</p>
+    <p onclick = "accountDropDownMenu()" class = <?php echo "'".$o."AccountButton'";?> id = "accountButton">Account</p>
     <div id = "accountMenuContent" class = <?php echo "'".$o."AccountMenuContent'";?>>
       <div class = <?php echo "'".$o."TopAccountMenuContent'";?>>
         <?php
@@ -206,7 +201,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
         }
         ?>
       </div><!--TopAccountMenuContent-->
-      <br><div class = <?php echo "'".$o."MenuHeath'";?>><br></div>
+      <br><div class = <?php echo "'".$o."AccountMenuHeath'";?>><br></div>
       <div class = <?php echo "'".$o."BottomAccountMenuContent'";?>>
         <a class = <?php echo "'".$o."GetMoreSpaceMenuItem'";?> href = "getMoreSpace.php">
           Get More Space</a>
@@ -216,21 +211,55 @@ elseif (time() - $_SESSION['Created'] > 1200) {
       </div>
     </div>
   </div>
+  <div class = <?php echo "'".$o."WorkspacesMenuDropDown'";?>>
+    <p onclick = "workspacesDropDownMenu()" class = <?php echo "'".$o."WorkspacesButton'";?> id = "workspacesButton">Workspaces</p>
+    <div id = "workspacesMenuContent" class = <?php echo "'".$o."WorkspacesMenuContent'";?>>
+      <a class = <?php echo "'".$o."CreateANewWorkspaceMenuItem'";?> href = "newWorkspace.php">
+          Create A New Workspace</a>
+      <div class = <?php echo "'".$o."WorkspacesMenuHeath'";?>></div>
+      <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">HairyJ Music</a>
+      <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Gibbs Lab</a>
+      <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">APMS Lab Instructors</a>
+    </div>
+  </div>
 </div>
 
 <script>
 function workspacesDropDownMenu() {
+  if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {
+    document.getElementById("workspacesButton").style.color = "rgb(0, 130, 140)";
+  }
+  else {
+    document.getElementById("workspacesButton").style.color = "rgba(255, 255, 255, 0.85)";
+    document.getElementById("accountMenuContent").classList.remove(o+"Show");
+    document.getElementById("accountButton").style.color = "rgb(0, 130, 140)";
+  }
   document.getElementById("workspacesMenuContent").classList.toggle(o+"Show");
 }
 
 function accountDropDownMenu() {
+  if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
+    document.getElementById("accountButton").style.color = "rgb(0, 130, 140)";
+  }
+  else {
+    document.getElementById("accountButton").style.color = "rgba(255, 255, 255, 0.85)";
+    document.getElementById("workspacesMenuContent").classList.remove(o+"Show");
+    document.getElementById("workspacesButton").style.color = "rgb(0, 130, 140)";
+  }
   document.getElementById("accountMenuContent").classList.toggle(o+"Show");
 }
 
 window.onclick = function(event) {
-  if (!event.target.matches("."+o+"AccountButton")) {
-    if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
+  if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
+    if (!event.target.matches("."+o+"AccountButton")) {
       document.getElementById("accountMenuContent").classList.remove(o+"Show");
+      document.getElementById("accountButton").style.color = "rgb(0, 130, 140)";
+    }
+  }
+  else if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {
+    if (!event.target.matches("."+o+"WorkspacesButton")) {
+      document.getElementById("workspacesMenuContent").classList.remove(o+"Show");
+      document.getElementById("workspacesButton").style.color = "rgb(0, 130, 140)";
     }
   }
 }

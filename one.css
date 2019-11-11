@@ -1070,7 +1070,7 @@ html.darkHome, body.darkHome {
   line-height: 0.5em;
   font-weight: 600;
   font-size: 50px;
-  display: inline-block;
+  position: absolute;
 }
 
 .darkHomeCorvinHeader:hover {
@@ -1088,20 +1088,16 @@ html.darkHome, body.darkHome {
 }
 
 .darkHomeWorkspacesMenuDropDown {
-  position: absolute;
-  display: inline-block;
-  float: left;
+  position: relative;
+  float: right;
 }
 
 p.darkHomeWorkspacesButton {
   color: #00828c;
-  text-align: right;
-  margin-right: 35px;
   margin-top: 35px;
+  margin-right: 50px;
   font-size: 18px;
   font-weight: 700;
-  float: left;
-  display: inline-block;
 }
 
 p.darkHomeWorkspacesButton:hover {
@@ -1109,21 +1105,54 @@ p.darkHomeWorkspacesButton:hover {
   cursor: pointer;
 }
 
-.darkHomeAccountMenuDropDown {
+.darkHomeWorkspacesMenuContent {
+  display: none;
   position: absolute;
-  display: inline-block;
+  right: 20px;
+  margin-top: 60px;
+  background-color: #353638;
+  min-width: 260px;
+  border-radius: 6px;
+  border-width: thin;
+  border-color: rgba(23, 23, 23, 0.25);
+  box-shadow: 0 2px 4px 0 rgba(255, 255, 255, 0);
+  z-index: 2;
+}
+
+a.darkHomeCreateANewWorkspaceMenuItem {
+  color: #009aa4;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block;
+}
+
+a.darkHomeCreateANewWorkspaceMenuItem:hover {
+  color: #009aa4;
+  background-color: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.darkHomeWorkspacesMenuHeath {
+  background-color: #121315;
+  border-radius: 4px;
+  height: 3px;
+  margin: 10px 10px;
+}
+
+.darkHomeAccountMenuDropDown {
+  position: relative;
   float: right;
 }
 
 p.darkHomeAccountButton {
   color: #00828c;
-  text-align: right;
-  margin-right: 35px;
+  margin-right: 75px;
   margin-top: 35px;
   font-size: 18px;
   font-weight: 700;
-  float: right;
-  display: inline-block;
 }
 
 p.darkHomeAccountButton:hover {
@@ -1189,7 +1218,7 @@ a.darkHomeAccountMenuContent:hover {
   font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.darkHomeMenuHeath {
+.darkHomeAccountMenuHeath {
   background-color: #121315;
   border-radius: 4px;
   height: 3px;
@@ -1209,6 +1238,7 @@ a.darkHomeGetMoreSpaceMenuItem:hover {
   color: #009aa4;
   background-color: rgba(255, 255, 255, 0.15);
   cursor: pointer;
+  border-radius: 4px;
 }
 
 a.darkHomeMenuItem {
