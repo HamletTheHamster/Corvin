@@ -196,15 +196,14 @@ elseif (time() - $_SESSION['Created'] > 1200)
   function accountDropDownMenu() {
     document.getElementById('accountMenuContent').classList.toggle(o+"Show");
   }
-  /*
+
   window.onclick = function(event) {
-    if (!document.getElementById("AccountMenuContent").contains(event.target)) {
-      if (document.getElementById("AccountMenuContent").classList.contains("show") {
-        document.getElementById("AccountMenuContent").classList.remove("show");
+    if (!event.target.matches("."+o+"AccountButton")) {
+      if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
+        document.getElementById("accountMenuContent").classList.remove(o+"Show");
       }
     }
   }
-  */
   </script>
 
   <!-- 5 Main Content -->

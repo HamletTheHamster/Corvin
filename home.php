@@ -165,10 +165,15 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 <!-- 2 Top Bar -->
 <div class = <?php echo "'".$o."TopBar'";?>>
   <div class = <?php echo "'".$o."Corvin'";?>>
-    <?php
-    echo "<a href = 'home.php'>" . "<h class = '".$o."CorvinHeader'>C</h>" . "</a>";
-    ?>
+    <a href = "home.php">
+      <h class = <?php echo "'".$o."CorvinHeader'";?>>C</h>
+    </a>
   </div>
+  <!--
+  <div class = <?php //echo "'".$o."WorkspacesDropDown'";?>>
+    <p onclick = "workspacesDropDownMenu()" class = <?php //echo "'".$o."WorkspacesButton'";?>>Workspaces</p>
+  </div>
+-->
   <div class = <?php echo "'".$o."AccountMenuDropDown'";?>>
     <p onclick = "accountDropDownMenu()" class = <?php echo "'".$o."AccountButton'";?>>Account</p>
     <div id = "accountMenuContent" class = <?php echo "'".$o."AccountMenuContent'";?>>
@@ -215,18 +220,21 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 </div>
 
 <script>
+function workspacesDropDownMenu() {
+  document.getElementById("workspacesMenuContent").classList.toggle(o+"Show");
+}
+
 function accountDropDownMenu() {
   document.getElementById("accountMenuContent").classList.toggle(o+"Show");
 }
-/*
-  window.onclick = function(event) {
-    if (!document.getElementById("AccountMenuContent").contains(event.target)) {
-      if (document.getElementById("AccountMenuContent").classList.contains("show") {
-        document.getElementById("AccountMenuContent").classList.remove("show");
-      }
+
+window.onclick = function(event) {
+  if (!event.target.matches("."+o+"AccountButton")) {
+    if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
+      document.getElementById("accountMenuContent").classList.remove(o+"Show");
     }
   }
-*/
+}
 </script>
 
 <!-- 3 Main Content -->
@@ -937,6 +945,7 @@ function accountDropDownMenu() {
 <!-- 4 Footer -->
 <div class = <?php echo "'".$o."Push'";?>></div>
 </div> <!-- Wrapper -->
+
 
 <div class = <?php echo "'".$o."Footer'";?>>&copy; Corvin, Inc.</div>
 
