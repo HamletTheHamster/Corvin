@@ -1081,6 +1081,28 @@ html.darkHome, body.darkHome {
   text-shadow: none;
 }
 
+.darkHomeWorkspacesMenuDropDown {
+  position: absolute;
+  display: inline-block;
+  float: left;
+}
+
+p.darkHomeWorkspacesButton {
+  color: #00828c;
+  text-align: right;
+  margin-right: 35px;
+  margin-top: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  float: left;
+  display: inline-block;
+}
+
+p.darkHomeWorkspacesButton:hover {
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+
 .darkHomeAccountMenuDropDown {
   position: absolute;
   display: inline-block;
@@ -1143,13 +1165,19 @@ a.darkHomeAccountMenuContent:hover {
   font-size: 18px;
 }
 
-.darkHomeDiskSpace {
+.darkHomeDiskSpaceUnlimited {
   text-align: right;
   padding-right: 20px;
   margin-top: 50px;
+  color: white;
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
 }
 
-p.darkHomeDiskSpace {
+.darkHomeDiskSpace {
+  float: right;
+  padding-right: 20px;
+  margin-top: 50px;
   color: white;
   font-size: 16px;
   font-family: "Square Market", Helvetica, sans-serif;

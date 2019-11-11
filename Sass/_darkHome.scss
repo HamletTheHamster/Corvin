@@ -51,6 +51,28 @@ html.#{$dark}, body.#{$dark} {
     text-shadow: none;
 }
 
+.#{$dark}WorkspacesMenuDropDown {
+    position: absolute;
+    display: inline-block;
+    float: left;
+}
+
+p.#{$dark}WorkspacesButton {
+    color: rgb(0, 130, 140);
+    text-align: right;
+    margin-right: 35px;
+    margin-top: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    float: left;
+    display: inline-block;
+}
+
+p.#{$dark}WorkspacesButton:hover {
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+}
+
 .#{$dark}AccountMenuDropDown {
     position: absolute;
     display: inline-block;
@@ -113,16 +135,22 @@ a.#{$dark}AccountMenuContent:hover {
     font-size: 18px;
 }
 
-.#{$dark}DiskSpace {
-    text-align: right;
-    padding-right: 20px;
-    margin-top: 50px;
+.#{$dark}DiskSpaceUnlimited {
+  text-align: right;
+  padding-right: 20px;
+  margin-top: 50px;
+  color: rgba(255, 255, 255);
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
 }
 
-p.#{$dark}DiskSpace {
-    color: rgba(255, 255, 255);
-    font-size: 16px;
-    font-family: "Square Market", Helvetica, sans-serif;
+.#{$dark}DiskSpace {
+  float: right;
+  padding-right: 20px;
+  margin-top: 50px;
+  color: rgba(255, 255, 255);
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
 }
 
 .#{$dark}MenuHeath {

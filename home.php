@@ -192,10 +192,9 @@ elseif (time() - $_SESSION['Created'] > 1200) {
         $storageSpaceInMegabytes = mysqli_fetch_row(mysqli_query($conn, $sql));
 
         if ($storageSpaceInMegabytes[0] == "-1") {
-          $totalBytes = disk_total_space("../../../../mnt/Raid1Array/Corvin");
           $freeBytes = disk_free_space("../../../../mnt/Raid1Array/Corvin");
 
-          echo "<p class = '".$o."DiskSpace'>" . humanSize($usedBytes) .  " used of " .
+          echo "<p class = '".$o."DiskSpaceUnlimited'>" . humanSize($usedBytes) .  " used of " .
             humanSize($freeBytes) . " (Unlimited)</p>";
         }
         else {
