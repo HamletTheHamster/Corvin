@@ -113,16 +113,22 @@ a.#{$light}AccountMenuContent:hover {
     font-size: 18px;
 }
 
-.#{$light}DiskSpace {
-    text-align: right;
-    padding-right: 20px;
-    margin-top: 50px;
+.#{$light}DiskSpaceUnlimited {
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: right;
+  padding-right: 20px;
+  margin-top: 50px;
 }
 
-p.#{$light}DiskSpace {
-    color: rgba(23, 23, 23, 0.85);
-    font-size: 16px;
-    font-family: "Square Market", Helvetica, sans-serif;
+.#{$light}DiskSpace {
+  float: right;
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
+  padding-right: 20px;
+  margin-top: 50px;
 }
 
 .#{$light}MenuHeath {
