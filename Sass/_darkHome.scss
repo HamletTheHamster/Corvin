@@ -2,6 +2,15 @@
 
 $dark: darkHome;
 
+@mixin noSelect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 html.#{$dark}, body.#{$dark} {
     background-color: rgb(28, 29, 31);
     height: 100%;
@@ -35,6 +44,7 @@ html.#{$dark}, body.#{$dark} {
     font-weight: 600;
     font-size: 50px;
     position: absolute;
+    @include noSelect;
 }
 
 .#{$dark}CorvinHeader:hover {
@@ -51,20 +61,40 @@ html.#{$dark}, body.#{$dark} {
     text-shadow: none;
 }
 
+.#{$dark}Home {
+    position: relative;
+    float: right;
+}
+
+.#{$dark}HomeButton {
+    color: rgb(0, 130, 140);
+    margin-top: 35px;
+    margin-right: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    @include noSelect;
+}
+
+.#{$dark}HomeButton:hover {
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+}
+
 .#{$dark}WorkspacesMenuDropDown {
     position: relative;
     float: right;
 }
 
-p.#{$dark}WorkspacesButton {
+.#{$dark}WorkspacesButton {
     color: rgb(0, 130, 140);
     margin-top: 35px;
-    margin-right: 50px;
+    margin-right: 35px;
     font-size: 18px;
     font-weight: 700;
+    @include noSelect;
 }
 
-p.#{$dark}WorkspacesButton:hover {
+.#{$dark}WorkspacesButton:hover {
     color: rgba(255, 255, 255, 0.85);
     cursor: pointer;
 }
@@ -111,15 +141,16 @@ a.#{$dark}CreateANewWorkspaceMenuItem:hover {
     float: right;
 }
 
-p.#{$dark}AccountButton {
+.#{$dark}AccountButton {
     color: rgb(0, 130, 140);
     margin-right: 75px;
     margin-top: 35px;
     font-size: 18px;
     font-weight: 700;
+    @include noSelect;
 }
 
-p.#{$dark}AccountButton:hover {
+.#{$dark}AccountButton:hover {
     color: rgba(255, 255, 255, 0.85);
     cursor: pointer;
 }

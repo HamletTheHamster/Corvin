@@ -222,9 +222,16 @@ elseif (time() - $_SESSION['Created'] > 1200) {
       <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">APMS Lab Instructors</a>
     </div>
   </div>
+  <div class = <?php echo "'".$o."Home'";?>>
+    <p onclick = "home()" class = <?php echo "'".$o."HomeButton'";?>>Home</p>
+  </div>
 </div>
 
 <script>
+function home() {
+  window.location.href = "home.php";
+}
+
 function workspacesDropDownMenu() {
   if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {
     document.getElementById("workspacesButton").style.color = "rgb(0, 130, 140)";
