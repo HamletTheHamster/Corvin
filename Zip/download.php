@@ -107,10 +107,10 @@ $fileToDownload = filter_input(
   FILTER_SANITIZE_STRING
 );
 
-// Concatonate path and file name
+// Concatonate path and file name urlencode()
 $fullPath = $downloadDirectory . $fileToDownload;
 $realPath = realpath($fullPath);
-$zipfilename = $downloadDirectory . urlencode(basename($fileToDownload)) .
+$zipfilename = $downloadDirectory . basename($fileToDownload) .
   ".zip";
 
 if (is_readable($fullPath)) {
@@ -126,19 +126,23 @@ if (is_readable($fullPath)) {
       RecursiveIteratorIterator::LEAVES_ONLY
     );
 
+    //ob_start();
+
   foreach ($files as $name => $file) {
     // Skip directories (they would be added automatically)
     if (!$file->isDir()) {
       // Get real and relative path for current file
       $filePath = $file->getrealPath();
-      echo "filePath: " . $filePath . "<br>";
+      //echo "filePath: " . $filePath . "<br>";
       $relativePath = substr($filePath, strlen($realPath) + 1);
-      echo "relativePath: " . $relativePath . "<br>";
+      //echo "relativePath: " . $relativePath . "<br>";
 
       // Add current file to archive
       $zip->addFile($filePath, $relativePath);
     }
   }
+
+  $zip->close();
 
   //IDEAS TO FIX ZIP GARBAGE DUMP ON LARGE ZIP FOLDERS
   //increase script execution time, other php.ini settings
@@ -150,7 +154,7 @@ if (is_readable($fullPath)) {
 
   // State headers
   header("Content-Description: File Transfer");
-  header("Content-Type: application/octet-stream");
+  header("Content-Type: application/zip");
   header("Content-Disposition: attachment; filename = " .
     basename($zipfilename));
   header('Content-Transfer-Encoding: binary');
@@ -190,4 +194,3 @@ else {
   echo "Download failed because the file does not exist in the current " .
   "directory.";
 }
-?>
