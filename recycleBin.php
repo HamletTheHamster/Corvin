@@ -323,7 +323,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
                 <input
                   type = 'image'
                   src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow " .
-                    "Icon @ 36 ppi.png'
+                    "Icon Width 15px.png'
                   class = 'recycleBinDownloadButton'
                   value = 'Download'
                   name = 'submit'

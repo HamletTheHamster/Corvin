@@ -527,7 +527,7 @@ window.onclick = function(event) {
             <input
               type = 'image'
               src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow " .
-                "Icon @ 36 ppi.png'
+                "Icon Width 15px.png'
                 class = '".$o."DownloadButton'
                 value = 'Download'
                 name = 'submit'
@@ -548,8 +548,7 @@ window.onclick = function(event) {
         <div class = '".$o."RenameButtonForm'>
           <input
             type = 'image'
-            src = 'Art/4 - Rename Cursor Icon/NanoLab Rename Cursor Icon @ " .
-              "36 ppi.png'
+            src = 'Art/4 - Rename Cursor Icon/NanoLab Rename Cursor Icon Width 15px.png'
             id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
               "CursorButton'
             class = '".$o."RenameButton'
@@ -644,7 +643,7 @@ window.onclick = function(event) {
             <input
               type = 'image'
               src = 'Art/3 - Delete Trash Can Icon/NanoLab Delete Trash Can " .
-                "Select @ 36 ppi.png'
+                "Select Width 25px.png'
               class = '".$o."RecycleButton'
               id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
                 "RecycleButton'
