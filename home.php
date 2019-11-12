@@ -214,12 +214,13 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   <div class = <?php echo "'".$o."WorkspacesMenuDropDown'";?>>
     <p onclick = "workspacesDropDownMenu()" class = <?php echo "'".$o."WorkspacesButton'";?> id = "workspacesButton">Workspaces</p>
     <div id = "workspacesMenuContent" class = <?php echo "'".$o."WorkspacesMenuContent'";?>>
-      <a class = <?php echo "'".$o."CreateANewWorkspaceMenuItem'";?> href = "newWorkspace.php">
-          Create A New Workspace</a>
-      <div class = <?php echo "'".$o."WorkspacesMenuHeath'";?>></div>
       <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 1</a>
       <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 2</a>
       <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 3</a>
+      <div class = <?php echo "'".$o."WorkspacesMenuHeath'";?>></div>
+      <a class = <?php echo "'".$o."CreateANewWorkspaceMenuItem'";?> href = "newWorkspace.php">
+          Create A New Workspace</a>
+      <a class = <?php echo "'".$o."CreateANewWorkspaceMenuItem'";?> href = "">Join A Workspace</a>
     </div>
   </div>
   <div class = <?php echo "'".$o."Home'";?>>
