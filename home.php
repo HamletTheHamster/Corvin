@@ -503,7 +503,7 @@ window.onclick = function(event) {
           <a
             href = '" . $URL . "'
             class = '".$o."Folders'
-            id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
+            id = '" . addslashes($Directory[$i]) .
             "DirectoryName'
           >" .
             $Directory[$i] .
@@ -531,7 +531,7 @@ window.onclick = function(event) {
                 class = '".$o."DownloadButton'
                 value = 'Download'
                 name = 'submit'
-                id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
+                id = '" . addslashes($Directory[$i]) .
                   "DownloadButton'
             />
             <input
@@ -549,7 +549,7 @@ window.onclick = function(event) {
           <input
             type = 'image'
             src = 'Art/4 - Rename Cursor Icon/NanoLab Rename Cursor Icon Width 15px.png'
-            id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
+            id = '" . addslashes($Directory[$i]) .
               "CursorButton'
             class = '".$o."RenameButton'
           />
@@ -561,15 +561,15 @@ window.onclick = function(event) {
           >
             <input
               type = 'hidden'
-              value = '" . $Directory[$i] . "'
+              value = '" . addslashes($Directory[$i]) . "'
               name = 'oldName'
             />
             <input
               type = 'text'
-              value = '" . $Directory[$i] . "'
+              value = '" . addslashes($Directory[$i]) . "'
               size = '" . strlen($Directory[$i]) . "'
               onfocus = 'this.select()'
-              id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
+              id = '" . addslashes($Directory[$i]) .
                 "RenameTextField'
               class = '".$o."RenameTextField'
               name = 'newName'
@@ -591,16 +591,11 @@ window.onclick = function(event) {
           var recycleButton = (typeof recycleButton != 'undefined' && recycleButton instanceof Array) ? recycleButton : [];
           var i = (typeof i != 'undefined') ? i : 0;
 
-          directoryName.push(document.getElementById('" . preg_replace(
-            '/\s+/', '', $Directory[$i]) . "DirectoryName'));
-          downloadButton.push(document.getElementById('" . preg_replace(
-            '/\s+/', '', $Directory[$i]) . "DownloadButton'));
-          cursorButton.push(document.getElementById('" . preg_replace(
-            '/\s+/', '', $Directory[$i]) . "CursorButton'));
-          renameTextField.push(document.getElementById('" . preg_replace(
-            '/\s+/', '', $Directory[$i]) . "RenameTextField'));
-          recycleButton.push(document.getElementById('" . preg_replace(
-            '/\s+/', '', $Directory[$i]) . "RecycleButton'));
+          directoryName.push(document.getElementById('" . addslashes($Directory[$i]) . "DirectoryName'));
+          downloadButton.push(document.getElementById('" . addslashes($Directory[$i]) . "DownloadButton'));
+          cursorButton.push(document.getElementById('" . addslashes($Directory[$i]) . "CursorButton'));
+          renameTextField.push(document.getElementById('" . addslashes($Directory[$i]) . "RenameTextField'));
+          recycleButton.push(document.getElementById('" . addslashes($Directory[$i]) . "RecycleButton'));
 
           cursorButton[i].addEventListener('click', showTextBox, false);
 
@@ -645,7 +640,7 @@ window.onclick = function(event) {
               src = 'Art/3 - Delete Trash Can Icon/NanoLab Delete Trash Can " .
                 "Select Width 25px.png'
               class = '".$o."RecycleButton'
-              id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
+              id = '" . addslashes($Directory[$i]) .
                 "RecycleButton'
             />
             <input
