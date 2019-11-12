@@ -2,15 +2,6 @@
 
 $dark: darkHome;
 
-@mixin noSelect {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
 html.#{$dark}, body.#{$dark} {
     background-color: rgb(28, 29, 31);
     height: 100%;
@@ -52,13 +43,8 @@ html.#{$dark}, body.#{$dark} {
     cursor: pointer;
 }
 
-.#{$dark}CorvinHeader:active {
-    /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/
-}
-
 .#{$dark}CorvinHeader:focus {
     outline: none;
-    text-shadow: none;
 }
 
 .#{$dark}Home {
@@ -257,6 +243,10 @@ a.#{$dark}MenuItem:hover {
 
 .#{$dark}Show {
     display: block;
+}
+
+.#{$dark}Active {
+  color: rgba(255, 255, 255, .85);
 }
 
 .#{$dark}MainContent {

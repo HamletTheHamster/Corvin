@@ -518,7 +518,13 @@ html.lightHome, body.lightHome {
   line-height: 0.5em;
   font-weight: 600;
   font-size: 50px;
-  display: inline-block;
+  position: absolute;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .lightHomeCorvinHeader:hover {
@@ -526,33 +532,115 @@ html.lightHome, body.lightHome {
   cursor: pointer;
 }
 
-.lightHomeCorvinHeader:active {
-  /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/
-}
-
 .lightHomeCorvinHeader:focus {
   outline: none;
-  text-shadow: none;
+}
+
+.lightHomeHome {
+  position: relative;
+  float: right;
+}
+
+.lightHomeHomeButton {
+  color: rgba(23, 23, 23, 0.85);
+  margin-top: 35px;
+  margin-right: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.lightHomeHomeButton:hover {
+  color: #00828c;
+  cursor: pointer;
+}
+
+.lightHomeWorkspacesMenuDropDown {
+  position: relative;
+  float: right;
+}
+
+.lightHomeWorkspacesButton {
+  color: rgba(23, 23, 23, 0.85);
+  margin-top: 35px;
+  margin-right: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.lightHomeWorkspacesButton:hover {
+  color: #00828c;
+  cursor: pointer;
+}
+
+.lightHomeWorkspacesMenuContent {
+  display: none;
+  position: absolute;
+  right: 20px;
+  margin-top: 60px;
+  background-color: #fefefe;
+  min-width: 260px;
+  border-radius: 6px;
+  border-width: thin;
+  border-color: rgba(23, 23, 23, 0.25);
+  box-shadow: 0 2px 4px 0 rgba(23, 23, 23, 0.1);
+  z-index: 2;
+}
+
+a.lightHomeCreateANewWorkspaceMenuItem {
+  color: #009aa4;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block;
+}
+
+a.lightHomeCreateANewWorkspaceMenuItem:hover {
+  color: #009aa4;
+  background-color: rgba(0, 130, 140, 0.06);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.lightHomeWorkspacesMenuHeath {
+  background-color: rgba(18, 19, 21, 0.25);
+  border-radius: 4px;
+  height: 3px;
+  margin: 10px 10px;
 }
 
 .lightHomeAccountMenuDropDown {
-  position: absolute;
-  display: inline-block;
+  position: relative;
   float: right;
 }
 
-p.lightHomeAccountButton {
+.lightHomeAccountButton {
   color: rgba(23, 23, 23, 0.85);
-  text-align: right;
-  margin-right: 35px;
+  margin-right: 75px;
   margin-top: 35px;
   font-size: 18px;
   font-weight: 700;
-  float: right;
-  display: inline-block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-p.lightHomeAccountButton:hover {
+.lightHomeAccountButton:hover {
   color: #00828c;
   cursor: pointer;
 }
@@ -598,24 +686,24 @@ a.lightHomeAccountMenuContent:hover {
 }
 
 .lightHomeDiskSpaceUnlimited {
-  color: rgba(23, 23, 23, 0.85);
-  font-size: 16px;
-  font-family: "Square Market", Helvetica, sans-serif;
   text-align: right;
   padding-right: 20px;
   margin-top: 50px;
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
 }
 
 .lightHomeDiskSpace {
   float: right;
+  padding-right: 20px;
+  margin-top: 50px;
   color: rgba(23, 23, 23, 0.85);
   font-size: 16px;
   font-family: "Square Market", Helvetica, sans-serif;
-  padding-right: 20px;
-  margin-top: 50px;
 }
 
-.lightHomeMenuHeath {
+.lightHomeAccountMenuHeath {
   background-color: rgba(18, 19, 21, 0.25);
   border-radius: 4px;
   height: 3px;
@@ -655,6 +743,10 @@ a.lightHomeMenuItem:hover {
 
 .lightHomeShow {
   display: block;
+}
+
+.lightHomeActive {
+  color: #00828c;
 }
 
 .lightHomeMainContent {
@@ -1084,13 +1176,8 @@ html.darkHome, body.darkHome {
   cursor: pointer;
 }
 
-.darkHomeCorvinHeader:active {
-  /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/
-}
-
 .darkHomeCorvinHeader:focus {
   outline: none;
-  text-shadow: none;
 }
 
 .darkHomeHome {
@@ -1301,6 +1388,10 @@ a.darkHomeMenuItem:hover {
 
 .darkHomeShow {
   display: block;
+}
+
+.darkHomeActive {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .darkHomeMainContent {

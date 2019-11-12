@@ -234,24 +234,24 @@ function home() {
 
 function workspacesDropDownMenu() {
   if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {
-    document.getElementById("workspacesButton").style.color = "rgb(0, 130, 140)";
+    document.getElementById("workspacesButton").classList.remove(o+"Active");
   }
   else {
-    document.getElementById("workspacesButton").style.color = "rgba(255, 255, 255, 0.85)";
+    document.getElementById("workspacesButton").classList.add(o+"Active");
     document.getElementById("accountMenuContent").classList.remove(o+"Show");
-    document.getElementById("accountButton").style.color = "rgb(0, 130, 140)";
+    document.getElementById("accountButton").classList.remove(o+"Active");
   }
   document.getElementById("workspacesMenuContent").classList.toggle(o+"Show");
 }
 
 function accountDropDownMenu() {
   if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
-    document.getElementById("accountButton").style.color = "rgb(0, 130, 140)";
+    document.getElementById("accountButton").classList.remove(o+"Active");
   }
   else {
-    document.getElementById("accountButton").style.color = "rgba(255, 255, 255, 0.85)";
+    document.getElementById("accountButton").classList.add(o+"Active");
     document.getElementById("workspacesMenuContent").classList.remove(o+"Show");
-    document.getElementById("workspacesButton").style.color = "rgb(0, 130, 140)";
+    document.getElementById("workspacesButton").classList.remove(o+"Active");
   }
   document.getElementById("accountMenuContent").classList.toggle(o+"Show");
 }
@@ -260,13 +260,13 @@ window.onclick = function(event) {
   if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
     if (!event.target.matches("."+o+"AccountButton")) {
       document.getElementById("accountMenuContent").classList.remove(o+"Show");
-      document.getElementById("accountButton").style.color = "rgb(0, 130, 140)";
+      document.getElementById("accountButton").classList.remove(o+"Active");
     }
   }
   else if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {
     if (!event.target.matches("."+o+"WorkspacesButton")) {
       document.getElementById("workspacesMenuContent").classList.remove(o+"Show");
-      document.getElementById("workspacesButton").style.color = "rgb(0, 130, 140)";
+      document.getElementById("workspacesButton").classList.remove(o+"Active");
     }
   }
 }
