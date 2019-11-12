@@ -165,7 +165,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 <!-- 2 Top Bar -->
 <div class = <?php echo "'".$o."TopBar'";?>>
   <div class = <?php echo "'".$o."Corvin'";?>>
-    <a href = "home.php">
+    <a>
       <h class = <?php echo "'".$o."CorvinHeader'";?>>C</h>
     </a>
   </div>
@@ -223,7 +223,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
     </div>
   </div>
   <div class = <?php echo "'".$o."Home'";?>>
-    <p onclick = "home()" class = <?php echo "'".$o."HomeButton'";?>>Home</p>
+    <p class = <?php echo "'".$o."HomeButton'";?>>Home</p>
   </div>
 </div>
 
