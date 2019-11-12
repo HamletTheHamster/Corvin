@@ -34,7 +34,8 @@ html.#{$dark}, body.#{$dark} {
     line-height: .5em;
     font-weight: 600;
     font-size: 50px;
-    display: inline-block;
+    position: absolute;
+    @include noSelect;
 }
 
 .#{$dark}CorvinHeader:hover {
@@ -42,33 +43,100 @@ html.#{$dark}, body.#{$dark} {
     cursor: pointer;
 }
 
-.#{$dark}CorvinHeader:active {
-    /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/
-}
-
 .#{$dark}CorvinHeader:focus {
     outline: none;
-    text-shadow: none;
+}
+
+.#{$dark}Home {
+    position: relative;
+    float: right;
+}
+
+.#{$dark}HomeButton {
+    color: rgb(0, 130, 140);
+    margin-top: 35px;
+    margin-right: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    @include noSelect;
+}
+
+.#{$dark}HomeButton:hover {
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+}
+
+.#{$dark}WorkspacesMenuDropDown {
+    position: relative;
+    float: right;
+}
+
+.#{$dark}WorkspacesButton {
+    color: rgb(0, 130, 140);
+    margin-top: 35px;
+    margin-right: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    @include noSelect;
+}
+
+.#{$dark}WorkspacesButton:hover {
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+}
+
+.#{$dark}WorkspacesMenuContent {
+    display: none;
+    position: absolute;
+    right: 20px;
+    margin-top: 60px;
+    background-color: rgb(53, 54, 56);
+    min-width: 260px;
+    border-radius: 6px;
+    border-width: thin;
+    border-color: rgba(23, 23, 23, 0.25);
+    box-shadow: 0 2px 4px 0 rgba(255, 255, 255, 0);
+    z-index: 2;
+}
+
+a.#{$dark}CreateANewWorkspaceMenuItem {
+    color: rgb(0, 154, 164);
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    display: block;
+}
+
+a.#{$dark}CreateANewWorkspaceMenuItem:hover {
+    color: rgb(0, 154, 164);
+    background-color: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.#{$dark}WorkspacesMenuHeath {
+    background-color: rgb(18, 19, 21);
+    border-radius: 4px;
+    height: 3px;
+    margin: 10px 10px;
 }
 
 .#{$dark}AccountMenuDropDown {
-    position: absolute;
-    display: inline-block;
+    position: relative;
     float: right;
 }
 
-p.#{$dark}AccountButton {
-    color: rgba(0, 130, 140);
-    text-align: right;
-    margin-right: 35px;
+.#{$dark}AccountButton {
+    color: rgb(0, 130, 140);
+    margin-right: 75px;
     margin-top: 35px;
     font-size: 18px;
     font-weight: 700;
-    float: right;
-    display: inline-block;
+    @include noSelect;
 }
 
-p.#{$dark}AccountButton:hover {
+.#{$dark}AccountButton:hover {
     color: rgba(255, 255, 255, 0.85);
     cursor: pointer;
 }
@@ -106,26 +174,32 @@ a.#{$dark}AccountMenuContent:hover {
 }
 
 .#{$dark}AccountMenuName {
-    color: rgba(255, 255, 255);
+    color: rgb(255, 255, 255);
     float: right;
     padding-right: 20px;
     text-align: right;
     font-size: 18px;
 }
 
+.#{$dark}DiskSpaceUnlimited {
+  text-align: right;
+  padding-right: 20px;
+  margin-top: 50px;
+  color: rgba(255, 255, 255);
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
+}
+
 .#{$dark}DiskSpace {
-    text-align: right;
-    padding-right: 20px;
-    margin-top: 50px;
+  float: right;
+  padding-right: 20px;
+  margin-top: 50px;
+  color: rgba(255, 255, 255);
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
 }
 
-p.#{$dark}DiskSpace {
-    color: rgba(255, 255, 255);
-    font-size: 16px;
-    font-family: "Square Market", Helvetica, sans-serif;
-}
-
-.#{$dark}MenuHeath {
+.#{$dark}AccountMenuHeath {
     background-color: rgb(18, 19, 21);
     border-radius: 4px;
     height: 3px;
@@ -147,12 +221,12 @@ a.#{$dark}GetMoreSpaceMenuItem {
 a.#{$dark}GetMoreSpaceMenuItem:hover {
     color: rgb(0, 154, 164);
     background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 4px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 a.#{$dark}MenuItem {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(225, 225, 225, 0.85);
     padding-left: 20px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -169,6 +243,10 @@ a.#{$dark}MenuItem:hover {
 
 .#{$dark}Show {
     display: block;
+}
+
+.#{$dark}Active {
+  color: rgba(255, 255, 255, .85);
 }
 
 .#{$dark}MainContent {

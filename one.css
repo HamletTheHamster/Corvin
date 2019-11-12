@@ -2124,7 +2124,13 @@ html.lightSettings, body.lightSettings {
   line-height: 0.5em;
   font-weight: 600;
   font-size: 50px;
-  display: inline-block;
+  position: absolute;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .lightSettingsCorvinHeader:hover {
@@ -2132,33 +2138,115 @@ html.lightSettings, body.lightSettings {
   cursor: pointer;
 }
 
-.lightSettingsCorvinHeader:active {
-  /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/
-}
-
 .lightSettingsCorvinHeader:focus {
   outline: none;
-  text-shadow: none;
+}
+
+.lightSettingsHome {
+  position: relative;
+  float: right;
+}
+
+.lightSettingsHomeButton {
+  color: rgba(23, 23, 23, 0.85);
+  margin-top: 35px;
+  margin-right: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.lightSettingsHomeButton:hover {
+  color: #00828c;
+  cursor: pointer;
+}
+
+.lightSettingsWorkspacesMenuDropDown {
+  position: relative;
+  float: right;
+}
+
+.lightSettingsWorkspacesButton {
+  color: rgba(23, 23, 23, 0.85);
+  margin-top: 35px;
+  margin-right: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.lightSettingsWorkspacesButton:hover {
+  color: #00828c;
+  cursor: pointer;
+}
+
+.lightSettingsWorkspacesMenuContent {
+  display: none;
+  position: absolute;
+  right: 20px;
+  margin-top: 60px;
+  background-color: #fefefe;
+  min-width: 260px;
+  border-radius: 6px;
+  border-width: thin;
+  border-color: rgba(23, 23, 23, 0.25);
+  box-shadow: 0 2px 4px 0 rgba(23, 23, 23, 0.1);
+  z-index: 2;
+}
+
+a.lightSettingsCreateANewWorkspaceMenuItem {
+  color: #009aa4;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block;
+}
+
+a.lightSettingsCreateANewWorkspaceMenuItem:hover {
+  color: #009aa4;
+  background-color: rgba(0, 130, 140, 0.06);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.lightSettingsWorkspacesMenuHeath {
+  background-color: rgba(18, 19, 21, 0.25);
+  border-radius: 4px;
+  height: 3px;
+  margin: 10px 10px;
 }
 
 .lightSettingsAccountMenuDropDown {
-  position: absolute;
-  display: inline-block;
+  position: relative;
   float: right;
 }
 
-p.lightSettingsAccountButton {
+.lightSettingsAccountButton {
   color: rgba(23, 23, 23, 0.85);
-  text-align: right;
-  margin-right: 35px;
+  margin-right: 75px;
   margin-top: 35px;
   font-size: 18px;
   font-weight: 700;
-  float: right;
-  display: inline-block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-p.lightSettingsAccountButton:hover {
+.lightSettingsAccountButton:hover {
   color: #00828c;
   cursor: pointer;
 }
@@ -2203,19 +2291,25 @@ a.lightSettingsAccountMenuContent:hover {
   font-size: 18px;
 }
 
-.lightSettingsDiskSpace {
+.lightSettingsDiskSpaceUnlimited {
   text-align: right;
   padding-right: 20px;
   margin-top: 50px;
-}
-
-p.lightSettingsDiskSpace {
   color: rgba(23, 23, 23, 0.85);
   font-size: 16px;
   font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.lightSettingsMenuHeath {
+.lightSettingsDiskSpace {
+  float: right;
+  padding-right: 20px;
+  margin-top: 50px;
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
+}
+
+.lightSettingsAccountMenuHeath {
   background-color: rgba(18, 19, 21, 0.25);
   border-radius: 4px;
   height: 3px;
@@ -2249,11 +2343,16 @@ a.lightSettingsMenuItem {
 a.lightSettingsMenuItem:hover {
   color: #009aa4;
   background-color: rgba(0, 130, 140, 0.06);
+  border-radius: 4px;
   cursor: pointer;
 }
 
 .lightSettingsShow {
   display: block;
+}
+
+.lightSettingsActive {
+  color: #00828c;
 }
 
 .lightSettingsMainContent {
@@ -2844,7 +2943,13 @@ html.darkSettings, body.darkSettings {
   line-height: 0.5em;
   font-weight: 600;
   font-size: 50px;
-  display: inline-block;
+  position: absolute;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .darkSettingsCorvinHeader:hover {
@@ -2852,33 +2957,115 @@ html.darkSettings, body.darkSettings {
   cursor: pointer;
 }
 
-.darkSettingsCorvinHeader:active {
-  /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/
-}
-
 .darkSettingsCorvinHeader:focus {
   outline: none;
-  text-shadow: none;
+}
+
+.darkSettingsHome {
+  position: relative;
+  float: right;
+}
+
+.darkSettingsHomeButton {
+  color: #00828c;
+  margin-top: 35px;
+  margin-right: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.darkSettingsHomeButton:hover {
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+
+.darkSettingsWorkspacesMenuDropDown {
+  position: relative;
+  float: right;
+}
+
+.darkSettingsWorkspacesButton {
+  color: #00828c;
+  margin-top: 35px;
+  margin-right: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.darkSettingsWorkspacesButton:hover {
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+
+.darkSettingsWorkspacesMenuContent {
+  display: none;
+  position: absolute;
+  right: 20px;
+  margin-top: 60px;
+  background-color: #353638;
+  min-width: 260px;
+  border-radius: 6px;
+  border-width: thin;
+  border-color: rgba(23, 23, 23, 0.25);
+  box-shadow: 0 2px 4px 0 rgba(255, 255, 255, 0);
+  z-index: 2;
+}
+
+a.darkSettingsCreateANewWorkspaceMenuItem {
+  color: #009aa4;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block;
+}
+
+a.darkSettingsCreateANewWorkspaceMenuItem:hover {
+  color: #009aa4;
+  background-color: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.darkSettingsWorkspacesMenuHeath {
+  background-color: #121315;
+  border-radius: 4px;
+  height: 3px;
+  margin: 10px 10px;
 }
 
 .darkSettingsAccountMenuDropDown {
-  position: absolute;
-  display: inline-block;
+  position: relative;
   float: right;
 }
 
-p.darkSettingsAccountButton {
+.darkSettingsAccountButton {
   color: #00828c;
-  text-align: right;
-  margin-right: 35px;
+  margin-right: 75px;
   margin-top: 35px;
   font-size: 18px;
   font-weight: 700;
-  float: right;
-  display: inline-block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-p.darkSettingsAccountButton:hover {
+.darkSettingsAccountButton:hover {
   color: rgba(255, 255, 255, 0.85);
   cursor: pointer;
 }
@@ -2923,19 +3110,25 @@ a.darkSettingsAccountMenuContent:hover {
   font-size: 18px;
 }
 
-.darkSettingsDiskSpace {
+.darkSettingsDiskSpaceUnlimited {
   text-align: right;
   padding-right: 20px;
   margin-top: 50px;
-}
-
-p.darkSettingsDiskSpace {
   color: white;
   font-size: 16px;
   font-family: "Square Market", Helvetica, sans-serif;
 }
 
-.darkSettingsMenuHeath {
+.darkSettingsDiskSpace {
+  float: right;
+  padding-right: 20px;
+  margin-top: 50px;
+  color: white;
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
+}
+
+.darkSettingsAccountMenuHeath {
   background-color: #121315;
   border-radius: 4px;
   height: 3px;
@@ -2954,12 +3147,12 @@ a.darkSettingsGetMoreSpaceMenuItem {
 a.darkSettingsGetMoreSpaceMenuItem:hover {
   color: #009aa4;
   background-color: rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 a.darkSettingsMenuItem {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(225, 225, 225, 0.85);
   padding-left: 20px;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -2976,6 +3169,10 @@ a.darkSettingsMenuItem:hover {
 
 .darkSettingsShow {
   display: block;
+}
+
+.darkSettingsActive {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .darkSettingsMainContent {

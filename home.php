@@ -217,9 +217,9 @@ elseif (time() - $_SESSION['Created'] > 1200) {
       <a class = <?php echo "'".$o."CreateANewWorkspaceMenuItem'";?> href = "newWorkspace.php">
           Create A New Workspace</a>
       <div class = <?php echo "'".$o."WorkspacesMenuHeath'";?>></div>
-      <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">HairyJ Music</a>
-      <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Gibbs Lab</a>
-      <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">APMS Lab Instructors</a>
+      <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 1</a>
+      <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 2</a>
+      <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 3</a>
     </div>
   </div>
   <div class = <?php echo "'".$o."Home'";?>>
@@ -228,10 +228,6 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 </div>
 
 <script>
-function home() {
-  window.location.href = "home.php";
-}
-
 function workspacesDropDownMenu() {
   if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {
     document.getElementById("workspacesButton").classList.remove(o+"Active");

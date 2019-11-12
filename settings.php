@@ -142,15 +142,15 @@ elseif (time() - $_SESSION['Created'] > 1200)
   <div class = <?php echo "'".$o."TopBar'";?>>
     <div class = <?php echo "'".$o."Corvin'";?>>
       <a href = "home.php">
-        <h id = "corvinHeader" class = <?php echo "'".$o."CorvinHeader'";?>>C</h>
+        <h class = <?php echo "'".$o."CorvinHeader'";?>>C</h>
       </a>
     </div>
     <div class = <?php echo "'".$o."AccountMenuDropDown'";?>>
-      <p onclick = 'accountDropDownMenu()' id = "accountButton" class = <?php echo "'".$o."AccountButton'";?>>Account</p>
-      <div id = 'accountMenuContent' class = <?php echo "'".$o."AccountMenuContent'";?>>
+      <p onclick = "accountDropDownMenu()" class = <?php echo "'".$o."AccountButton'";?> id = "accountButton">Account</p>
+      <div id = "accountMenuContent" class = <?php echo "'".$o."AccountMenuContent'";?>>
         <div class = <?php echo "'".$o."TopAccountMenuContent'";?>>
           <?php
-          echo "<p id = 'accountMenuName' class = '".$o."AccountMenuName'>" . $user[0] . " " . $user[1] . "</p>";
+          echo "<p class = '".$o."AccountMenuName'>" . $user[0] . " " . $user[1] . "</p>";
 
           include "humanSize.php";
           include "folderSize.php";
@@ -160,47 +160,89 @@ elseif (time() - $_SESSION['Created'] > 1200)
 
           $sql = "SELECT storageSpaceInMegabytes FROM UserInfo WHERE id = '" .
             $userID . "'";
-          $storageSpaceInMegabytes = mysqli_fetch_row(mysqli_query(
-            $conn, $sql));
+          $storageSpaceInMegabytes = mysqli_fetch_row(mysqli_query($conn, $sql));
 
           if ($storageSpaceInMegabytes[0] == "-1") {
-            $totalBytes = disk_total_space(
-              "../../../../mnt/Raid1Array/Corvin");
             $freeBytes = disk_free_space("../../../../mnt/Raid1Array/Corvin");
 
-            echo "<p id = 'diskSpace' class = '".$o."DiskSpace'>" . humanSize($usedBytes) . " used of " .
+            echo "<p class = '".$o."DiskSpaceUnlimited'>" . humanSize($usedBytes) .  " used of " .
               humanSize($freeBytes) . " (Unlimited)</p>";
           }
           else {
             $totalBytes = $storageSpaceInMegabytes[0] * 1000000;
             $freeBytes = $totalBytes - $usedBytes;
 
-            echo "<p id = 'diskSpace' class = '".$o."DiskSpace'>" . humanSize($usedBytes) .
+            echo "<p class = '".$o."DiskSpace'>" . humanSize($usedBytes) .
               " used of " . humanSize($totalBytes) . "</p>";
           }
           ?>
-        </div>
-        <br><div id = "menuHeath" class = <?php echo "'".$o."MenuHeath'";?>><br></div>
+        </div><!--TopAccountMenuContent-->
+        <br><div class = <?php echo "'".$o."AccountMenuHeath'";?>><br></div>
         <div class = <?php echo "'".$o."BottomAccountMenuContent'";?>>
-          <a class = <?php echo "'".$o."GetMoreSpaceMenuItem'";?> href = 'getMoreSpace.php'>
+          <a class = <?php echo "'".$o."GetMoreSpaceMenuItem'";?> href = "getMoreSpace.php">
             Get More Space</a>
-          <a id = 'home' class = <?php echo "'".$o."MenuItem'";?>>Settings</a>
-          <a id = 'help' class = <?php echo "'".$o."MenuItem'";?> href = 'help.php'>Help</a>
-          <a id = 'logout' class = <?php echo "'".$o."MenuItem'";?> href = 'logout.php'>Log Out</a>
+          <a class = <?php echo "'".$o."MenuItem'";?>>Settings</a>
+          <a class = <?php echo "'".$o."MenuItem'";?> href = "help.php">Help</a>
+          <a class = <?php echo "'".$o."MenuItem'";?> href = "logout.php">Log Out</a>
         </div>
       </div>
+    </div>
+    <div class = <?php echo "'".$o."WorkspacesMenuDropDown'";?>>
+      <p onclick = "workspacesDropDownMenu()" class = <?php echo "'".$o."WorkspacesButton'";?> id = "workspacesButton">Workspaces</p>
+      <div id = "workspacesMenuContent" class = <?php echo "'".$o."WorkspacesMenuContent'";?>>
+        <a class = <?php echo "'".$o."CreateANewWorkspaceMenuItem'";?> href = "newWorkspace.php">
+            Create A New Workspace</a>
+        <div class = <?php echo "'".$o."WorkspacesMenuHeath'";?>></div>
+        <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 1</a>
+        <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 2</a>
+        <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 3</a>
+      </div>
+    </div>
+    <div class = <?php echo "'".$o."Home'";?>>
+      <p onclick = "home()" class = <?php echo "'".$o."HomeButton'";?>>Home</p>
     </div>
   </div>
 
   <script>
+  function home() {
+    window.location.href = "home.php";
+  }
+
+  function workspacesDropDownMenu() {
+    if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {
+      document.getElementById("workspacesButton").classList.remove(o+"Active");
+    }
+    else {
+      document.getElementById("workspacesButton").classList.add(o+"Active");
+      document.getElementById("accountMenuContent").classList.remove(o+"Show");
+      document.getElementById("accountButton").classList.remove(o+"Active");
+    }
+    document.getElementById("workspacesMenuContent").classList.toggle(o+"Show");
+  }
+
   function accountDropDownMenu() {
-    document.getElementById('accountMenuContent').classList.toggle(o+"Show");
+    if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
+      document.getElementById("accountButton").classList.remove(o+"Active");
+    }
+    else {
+      document.getElementById("accountButton").classList.add(o+"Active");
+      document.getElementById("workspacesMenuContent").classList.remove(o+"Show");
+      document.getElementById("workspacesButton").classList.remove(o+"Active");
+    }
+    document.getElementById("accountMenuContent").classList.toggle(o+"Show");
   }
 
   window.onclick = function(event) {
-    if (!event.target.matches("."+o+"AccountButton")) {
-      if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
+    if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
+      if (!event.target.matches("."+o+"AccountButton")) {
         document.getElementById("accountMenuContent").classList.remove(o+"Show");
+        document.getElementById("accountButton").classList.remove(o+"Active");
+      }
+    }
+    else if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {
+      if (!event.target.matches("."+o+"WorkspacesButton")) {
+        document.getElementById("workspacesMenuContent").classList.remove(o+"Show");
+        document.getElementById("workspacesButton").classList.remove(o+"Active");
       }
     }
   }

@@ -34,7 +34,8 @@ html.#{$light}, body.#{$light} {
     line-height: .5em;
     font-weight: 600;
     font-size: 50px;
-    display: inline-block;
+    position: absolute;
+    @include noSelect;
 }
 
 .#{$light}CorvinHeader:hover {
@@ -42,33 +43,100 @@ html.#{$light}, body.#{$light} {
     cursor: pointer;
 }
 
-.#{$light}CorvinHeader:active {
-    /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/
-}
-
 .#{$light}CorvinHeader:focus {
     outline: none;
-    text-shadow: none;
+}
+
+.#{$light}Home {
+    position: relative;
+    float: right;
+}
+
+.#{$light}HomeButton {
+    color: rgba(23, 23, 23, .85);
+    margin-top: 35px;
+    margin-right: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    @include noSelect;
+}
+
+.#{$light}HomeButton:hover {
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$light}WorkspacesMenuDropDown {
+    position: relative;
+    float: right;
+}
+
+.#{$light}WorkspacesButton {
+    color: rgba(23, 23, 23, .85);
+    margin-top: 35px;
+    margin-right: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    @include noSelect;
+}
+
+.#{$light}WorkspacesButton:hover {
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$light}WorkspacesMenuContent {
+    display: none;
+    position: absolute;
+    right: 20px;
+    margin-top: 60px;
+    background-color: rgb(254, 254, 254);
+    min-width: 260px;
+    border-radius: 6px;
+    border-width: thin;
+    border-color: rgba(23, 23, 23, 0.25);
+    box-shadow: 0 2px 4px 0 rgba(23, 23, 23, .1);
+    z-index: 2;
+}
+
+a.#{$light}CreateANewWorkspaceMenuItem {
+    color: rgb(0, 154, 164);
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    display: block;
+}
+
+a.#{$light}CreateANewWorkspaceMenuItem:hover {
+    color: rgb(0, 154, 164);
+    background-color: rgba(0, 130, 140, 0.06);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.#{$light}WorkspacesMenuHeath {
+    background-color: rgb(18, 19, 21, .25);
+    border-radius: 4px;
+    height: 3px;
+    margin: 10px 10px;
 }
 
 .#{$light}AccountMenuDropDown {
-    position: absolute;
-    display: inline-block;
+    position: relative;
     float: right;
 }
 
-p.#{$light}AccountButton {
+.#{$light}AccountButton {
     color: rgba(23, 23, 23, 0.85);
-    text-align: right;
-    margin-right: 35px;
+    margin-right: 75px;
     margin-top: 35px;
     font-size: 18px;
     font-weight: 700;
-    float: right;
-    display: inline-block;
+    @include noSelect;
 }
 
-p.#{$light}AccountButton:hover {
+.#{$light}AccountButton:hover {
     color: rgb(0, 130, 140);
     cursor: pointer;
 }
@@ -83,7 +151,7 @@ p.#{$light}AccountButton:hover {
     border-radius: 6px;
     border-width: thin;
     border-color: rgba(23, 23, 23, 0.25);
-    box-shadow: 0 2px 4px 0 rgba(23, 23, 23, 0.1);
+    box-shadow: 0 2px 4px 0 rgba(23, 23, 23, .1);
     z-index: 2;
 }
 
@@ -113,19 +181,25 @@ a.#{$light}AccountMenuContent:hover {
     font-size: 18px;
 }
 
+.#{$light}DiskSpaceUnlimited {
+  text-align: right;
+  padding-right: 20px;
+  margin-top: 50px;
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
+}
+
 .#{$light}DiskSpace {
-    text-align: right;
-    padding-right: 20px;
-    margin-top: 50px;
+  float: right;
+  padding-right: 20px;
+  margin-top: 50px;
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
 }
 
-p.#{$light}DiskSpace {
-    color: rgba(23, 23, 23, 0.85);
-    font-size: 16px;
-    font-family: "Square Market", Helvetica, sans-serif;
-}
-
-.#{$light}MenuHeath {
+.#{$light}AccountMenuHeath {
     background-color: rgba(18, 19, 21, 0.25);
     border-radius: 4px;
     height: 3px;
@@ -162,11 +236,16 @@ a.#{$light}MenuItem {
 a.#{$light}MenuItem:hover {
     color: rgb(0, 154, 164);
     background-color: rgba(0, 130, 140, 0.06);
+    border-radius: 4px;
     cursor: pointer;
 }
 
 .#{$light}Show {
     display: block;
+}
+
+.#{$light}Active {
+  color: rgb(0, 130, 140);
 }
 
 .#{$light}MainContent {
