@@ -112,7 +112,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 ?>
 
 <!DOCTYPE html>
-<html lang = "en" class = <?php echo "'".$o."'";?>>
+<html lang = 'en' class = '<?php echo $o;?>'>
 
 <!-- 1 Header -->
 <head>
@@ -156,23 +156,23 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 
   <meta name = "google" content = "notranslate"/>
 
-  <script>var o = <?php echo json_encode($o); ?>;</script>
+  <script>var o = <?php echo json_encode($o);?></script>
 </head>
 
-<body class = <?php echo "'".$o."'";?>>
-<div class = <?php echo "'".$o."Wrapper'";?>>
+<body class = '<?php echo $o;?>'>
+<div class = '<?php echo $o;?>Wrapper'>
 
 <!-- 2 Top Bar -->
-<div class = <?php echo "'".$o."TopBar'";?>>
-  <div class = <?php echo "'".$o."Corvin'";?>>
+<div class = '<?php echo $o;?>TopBar'>
+  <div class = '<?php echo $o;?>Corvin'>
     <a>
-      <h class = <?php echo "'".$o."CorvinHeader'";?>>C</h>
+      <h class = '<?php echo $o;?>CorvinHeader'>C</h>
     </a>
   </div>
-  <div class = <?php echo "'".$o."AccountMenuDropDown'";?>>
-    <p onclick = "accountDropDownMenu()" class = <?php echo "'".$o."AccountButton'";?> id = "accountButton">Account</p>
-    <div id = "accountMenuContent" class = <?php echo "'".$o."AccountMenuContent'";?>>
-      <div class = <?php echo "'".$o."TopAccountMenuContent'";?>>
+  <div class = '<?php echo $o;?>AccountMenuDropDown'>
+    <p onclick = "accountDropDownMenu()" class = '<?php echo $o;?>AccountButton' id = "accountButton">Account</p>
+    <div id = "accountMenuContent" class = '<?php echo $o;?>AccountMenuContent'>
+      <div class = '<?php echo $o;?>TopAccountMenuContent'>
         <?php
         echo "<p class = '".$o."AccountMenuName'>" . $user[0] . " " . $user[1] . "</p>";
 
@@ -201,30 +201,29 @@ elseif (time() - $_SESSION['Created'] > 1200) {
         }
         ?>
       </div><!--TopAccountMenuContent-->
-      <br><div class = <?php echo "'".$o."AccountMenuHeath'";?>><br></div>
-      <div class = <?php echo "'".$o."BottomAccountMenuContent'";?>>
-        <a class = <?php echo "'".$o."GetMoreSpaceMenuItem'";?> href = "getMoreSpace.php">
-          Get More Space</a>
-        <a class = <?php echo "'".$o."MenuItem'";?> href = "settings.php">Settings</a>
-        <a class = <?php echo "'".$o."MenuItem'";?> href = "help.php">Help</a>
-        <a class = <?php echo "'".$o."MenuItem'";?> href = "logout.php">Log Out</a>
+      <br><div class = '<?php echo $o;?>AccountMenuHeath'><br></div>
+      <div class = '<?php echo $o;?>BottomAccountMenuContent'>
+        <a class = '<?php echo $o;?>GetMoreSpaceMenuItem' href = "getMoreSpace.php">Get More Space</a>
+        <a class = '<?php echo $o;?>MenuItem' href = "settings.php">Settings</a>
+        <a class = '<?php echo $o;?>MenuItem' href = "help.php">Help</a>
+        <a class = '<?php echo $o;?>MenuItem' href = "logout.php">Log Out</a>
       </div>
     </div>
   </div>
-  <div class = <?php echo "'".$o."WorkspacesMenuDropDown'";?>>
-    <p onclick = "workspacesDropDownMenu()" class = <?php echo "'".$o."WorkspacesButton'";?> id = "workspacesButton">Workspaces</p>
-    <div id = "workspacesMenuContent" class = <?php echo "'".$o."WorkspacesMenuContent'";?>>
-      <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 1</a>
-      <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 2</a>
-      <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 3</a>
-      <div class = <?php echo "'".$o."WorkspacesMenuHeath'";?>></div>
-      <a class = <?php echo "'".$o."CreateANewWorkspaceMenuItem'";?> href = "newWorkspace.php">
+  <div class = '<?php echo $o;?>WorkspacesMenuDropDown'>
+    <p onclick = "workspacesDropDownMenu()" class = '<?php echo $o;?>WorkspacesButton' id = "workspacesButton">Workspaces</p>
+    <div id = "workspacesMenuContent" class = '<?php echo $o;?>WorkspacesMenuContent'>
+      <a class = '<?php echo $o;?>MenuItem' href = "workspace.php">Example Workspace 1</a>
+      <a class = '<?php echo $o;?>MenuItem' href = "workspace.php">Example Workspace 2</a>
+      <a class = '<?php echo $o;?>MenuItem' href = "workspace.php">Example Workspace 3</a>
+      <div class = '<?php echo $o;?>WorkspacesMenuHeath'></div>
+      <a class = '<?php echo $o;?>CreateANewWorkspaceMenuItem' href = "newWorkspace.php">
           Create A New Workspace</a>
-      <a class = <?php echo "'".$o."CreateANewWorkspaceMenuItem'";?> href = "">Join A Workspace</a>
+      <a class = '<?php echo $o;?>CreateANewWorkspaceMenuItem' href = "">Join A Workspace</a>
     </div>
   </div>
-  <div class = <?php echo "'".$o."Home'";?>>
-    <p class = <?php echo "'".$o."HomeButton'";?>>Home</p>
+  <div class = '<?php echo $o;?>Home'>
+    <p class = '<?php echo $o;?>HomeButton'>Home</p>
   </div>
 </div>
 
@@ -270,12 +269,12 @@ window.onclick = function(event) {
 </script>
 
 <!-- 3 Main Content -->
-<div class = <?php echo "'".$o."MainContent'";?>>
+<div class = '<?php echo $o;?>MainContent'>
 
   <!-- 3.1 Upload File -->
   <form action = "upload.php" method = "post" enctype = "multipart/form-data">
     <span id = "hideWhenFilesSelected">
-      <button type = 'button' class = <?php echo "'".$o."CustomFileUpload'";?>>
+      <button type = 'button' class = '<?php echo $o;?>CustomFileUpload'>
         <label for = "filesToUpload">Upload Files</label>
       </button>
       <input
@@ -288,7 +287,7 @@ window.onclick = function(event) {
     </span>
     <input
       type = "submit"
-      class = <?php echo "'".$o."UploadButton'";?>
+      class = '<?php echo $o;?>UploadButton'
       id = "uploadButton"
       value = "Upload"
       name = "submit"
@@ -296,15 +295,14 @@ window.onclick = function(event) {
     <?php
     parse_str($_SERVER['QUERY_STRING'], $CurrentPath);
     $CurrentPathString = implode("/", $CurrentPath) . "/";
+    ?>
 
-    echo "
     <input
       type = 'hidden'
-      value = '" . $CurrentPathString . "'
+      value = '<?php echo $CurrentPathString;?>'
       name = 'currentPathString'
     />
-    <input type = 'hidden' value = '" . $freeBytes . "' name = 'freeBytes'/>";
-    ?>
+    <input type = 'hidden' value = '<?php echo $freeBytes;?>' name = 'freeBytes'/>
     <div id = "fileList"></div>
   </form>
 
@@ -358,25 +356,22 @@ window.onclick = function(event) {
       type = "text"
       name = "folderName"
       id = "newFolderNameTextField"
-      class = <?php echo "'".$o."NewFolderNameTextBox'";?>
+      class = '<?php echo $o;?>NewFolderNameTextBox'
       spellcheck = "false"
       autocomplete = "off"
     />
     <input
       type = "button"
-      class = <?php echo "'".$o."CreateFolderButton'";?>
+      class = '<?php echo $o;?>CreateFolderButton'
       id = "createFolderButton"
       value = "Create Folder"
       name = "submit"
     />
-    <?php
-    echo "
     <input
       type = 'hidden'
-      value = '" . $CurrentPathString . "'
+      value = '<?php echo $CurrentPathString;?>'
       name = 'currentPathString'
-    />";
-    ?>
+    />
   </form>
 
 
@@ -389,7 +384,7 @@ window.onclick = function(event) {
   >
     <input
       type = "submit"
-      class = <?php echo "'".$o."RecentlyDeletedItems'";?>
+      class = '<?php echo $o;?>RecentlyDeletedItems'
       id = "recentlyDeletedItems"
       value = "Recently Deleted Items"
       name = "submit"
@@ -433,15 +428,13 @@ window.onclick = function(event) {
   <br /><br />
 
   <!-- 3.4 Current Directory Navigation Banner -->
-  <div class = <?php echo "'".$o."DirectoryPath'";?>>
+  <div class = '<?php echo $o;?>DirectoryPath'>
+    <?php include "generateURL.php";?>
+
+    <a class = '<?php echo $o;?>DirectoryPath' href = 'home.php'>
+      <p class = '<?php echo $o;?>DirectoryPath'>Home</p>
+    </a>
     <?php
-    include "generateURL.php";
-
-    echo "
-    <a class = '".$o."DirectoryPath' href = 'home.php'>
-      <p class = '".$o."DirectoryPath'>Home</p>
-    </a>";
-
     parse_str($_SERVER['QUERY_STRING'], $CurrentPath);
 
     foreach ($CurrentPath as $Key => $Value) {
@@ -474,10 +467,9 @@ window.onclick = function(event) {
   <br /><br /><br /><br />
 
   <!-- 3.5 Files in directory -->
-  <div class = <?php echo "'".$o."Directory'";?>>
+  <div class = '<?php echo $o;?>Directory'>
   <?php
-  $ReturnPathString = filter_input(
-    INPUT_POST, "ReturnPathString", FILTER_SANITIZE_STRING);
+  $ReturnPathString = filter_input(INPUT_POST, "ReturnPathString", FILTER_SANITIZE_STRING);
 
   if ($ReturnPathString == null) {
     $DirectoryPath = "../../../../mnt/Raid1Array/Corvin/" . $userID . " - " .
@@ -496,89 +488,82 @@ window.onclick = function(event) {
   // 3.5.1.1 List Folder Name
   for ($i = 2; $i < $NumItems; $i++) {
     if (is_dir($DirectoryPath . "/" . $Directory[$i])) {
-      echo "<div class = '".$o."FileNames'>";
-        echo "<div class = '".$o."Folders'>";
-          $URL = generateURL("home.php?", $CurrentPath, $Directory[$i]);
-          echo "
+  ?>
+      <div class = '<?php echo $o;?>FileNames'>
+        <div class = '<?php echo $o;?>Folders'>
+          <?php $URL = generateURL("home.php?", $CurrentPath, $Directory[$i]);?>
           <a
-            href = '" . $URL . "'
-            class = '".$o."Folders'
-            id = '" . addslashes($Directory[$i]) .
-            "DirectoryName'
-          >" .
-            $Directory[$i] .
-          "</a>";
-        echo "</div>";
+            href = '<?php echo $URL;?>'
+            class = '<?php echo $o;?>Folders'
+            id = '<?php echo addslashes($Directory[$i]);?>DirectoryName'
+          >
+            <?php echo $Directory[$i];?>
+          </a>
+        </div>
 
-        // 3.5.1.2 Download Folder
-        echo "
-        <div class = '".$o."DownloadButtonForm'>
+        <!-- 3.5.1.2 Download Folder -->
+        <div class = '<?php echo $o;?>DownloadButtonForm'>
           <form
             action = 'Zip/download.php'
-            class = '".$o."DownloadButtonForm'
+            class = '<?php echo $o;?>DownloadButtonForm'
             method = 'post'
             enctype = 'multipart/form-data'
           >
             <input
               type = 'hidden'
-              value = '" . $Directory[$i] . "'
+              value = '<?php echo $Directory[$i];?>'
               name = 'fileToDownload'
             />
             <input
               type = 'image'
-              src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow " .
-                "Icon Width 15px.png'
-                class = '".$o."DownloadButton'
+              src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow Icon Width 15px.png'
+                class = '<?php echo $o;?>DownloadButton'
                 value = 'Download'
                 name = 'submit'
-                id = '" . addslashes($Directory[$i]) .
-                  "DownloadButton'
+                id = '<?php echo addslashes($Directory[$i]);?>DownloadButton'
             />
             <input
               type = 'hidden'
-              value = '" . $CurrentPathString . "'
+              value = '<?php echo $CurrentPathString;?>'
               name = 'currentPathString'
             />
             <input type = 'hidden' value = '' name = 'recycleBin'/>
           </form>
-        </div>";
+        </div>
 
-        // 3.5.1.3 Rename Folder
-        echo "
-        <div class = '".$o."RenameButtonForm'>
+        <!-- 3.5.1.3 Rename Folder -->
+        <div class = '<?php echo $o;?>RenameButtonForm'>
           <input
             type = 'image'
             src = 'Art/4 - Rename Cursor Icon/NanoLab Rename Cursor Icon Width 15px.png'
-            id = '" . addslashes($Directory[$i]) .
-              "CursorButton'
-            class = '".$o."RenameButton'
+            id = '<?php echo addslashes($Directory[$i]);?>CursorButton'
+            class = '<?php echo $o;?>RenameButton'
           />
           <form
             action = 'rename.php'
-            class = '".$o."RenameButtonForm'
+            class = '<?php echo $o;?>RenameButtonForm'
             method = 'post'
             enctype = 'multipart/form-data'
           >
             <input
               type = 'hidden'
-              value = '" . addslashes($Directory[$i]) . "'
+              value = '<?php echo addslashes($Directory[$i]);?>'
               name = 'oldName'
             />
             <input
               type = 'text'
-              value = '" . addslashes($Directory[$i]) . "'
-              size = '" . strlen($Directory[$i]) . "'
+              value = '<?php echo addslashes($Directory[$i]);?>'
+              size = '<?php echo strlen($Directory[$i]);?>'
               onfocus = 'this.select()'
-              id = '" . addslashes($Directory[$i]) .
-                "RenameTextField'
-              class = '".$o."RenameTextField'
+              id = '<?php echo addslashes($Directory[$i]);?>RenameTextField'
+              class = '<?php echo $o;?>RenameTextField'
               name = 'newName'
               spellcheck = 'false'
               autocomplete = 'off'
             />
             <input
               type = 'hidden'
-              value = '" . $CurrentPathString . "'
+              value = '<?php echo $CurrentPathString;?>'
               name = 'currentPathString'
             />
           </form>
@@ -591,11 +576,11 @@ window.onclick = function(event) {
           var recycleButton = (typeof recycleButton != 'undefined' && recycleButton instanceof Array) ? recycleButton : [];
           var i = (typeof i != 'undefined') ? i : 0;
 
-          directoryName.push(document.getElementById('" . addslashes($Directory[$i]) . "DirectoryName'));
-          downloadButton.push(document.getElementById('" . addslashes($Directory[$i]) . "DownloadButton'));
-          cursorButton.push(document.getElementById('" . addslashes($Directory[$i]) . "CursorButton'));
-          renameTextField.push(document.getElementById('" . addslashes($Directory[$i]) . "RenameTextField'));
-          recycleButton.push(document.getElementById('" . addslashes($Directory[$i]) . "RecycleButton'));
+          directoryName.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>DirectoryName'));
+          downloadButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>DownloadButton'));
+          cursorButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>CursorButton'));
+          renameTextField.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RenameTextField'));
+          recycleButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RecycleButton'));
 
           cursorButton[i].addEventListener('click', showTextBox, false);
 
@@ -619,78 +604,77 @@ window.onclick = function(event) {
 
           i++;
           </script>
-        </div>";
+        </div>
 
-        // 3.5.1.4 Recycle Folder
-        echo "
-        <div class = '".$o."RecycleButtonForm'>
+        <!-- 3.5.1.4 Recycle Folder -->
+        <div class = '<?php echo $o;?>RecycleButtonForm'>
           <form
             action = 'recycle.php'
-            class = '".$o."RecycleButtonForm'
+            class = '<?php echo $o;?>RecycleButtonForm'
             method = 'post'
             enctype = 'multipart/form-data'
           >
             <input
               type = 'hidden'
-              value = '" . $Directory[$i] . "'
+              value = '<?php echo $Directory[$i];?>'
               name = 'fileToRecycle'
             />
             <input
               type = 'image'
-              src = 'Art/3 - Delete Trash Can Icon/NanoLab Delete Trash Can " .
-                "Select Width 25px.png'
-              class = '".$o."RecycleButton'
-              id = '" . addslashes($Directory[$i]) .
-                "RecycleButton'
+              src = 'Art/3 - Delete Trash Can Icon/NanoLab Delete Trash Can Select Width 25px.png'
+              class = '<?php echo $o;?>RecycleButton'
+              id = '<?php echo addslashes($Directory[$i]);?>RecycleButton'
             />
             <input
               type = 'hidden'
-              value = '" . $CurrentPathString . "'
+              value = '<?php echo $CurrentPathString;?>'
               name = 'currentPathString'
             />
           </form>
-        </div>";
+        </div>
 
-      echo "</div>";
+      </div>
 
-      // 3.5.1.5 File Sizes
-      echo "<div class = '".$o."FileSizes'>";
-      echo humanSize(folderSize($DirectoryPath . "/" . $Directory[$i]));
-      echo "</div>";
+      <!-- 3.5.1.5 File Sizes -->
+      <div class = '<?php echo $o;?>FileSizes'>
+        <?php echo humanSize(folderSize($DirectoryPath . "/" . $Directory[$i]));?>
+      </div>
 
-      // 3.5.1.6 Heath
-      echo "<br><div class = '".$o."Heath'><br></div>";
+      <!-- 3.5.1.6 Heath -->
+      <br><div class = '<?php echo $o;?>Heath'><br></div>
+  <?php
     }
   }
-
-  // 3.5.2 List Files and File Sizes
-  // 3.5.2.1 File Name
+  ?>
+  <!-- 3.5.2 List Files and File Sizes -->
+  <!-- 3.5.2.1 File Name -->
+  <?php
   function supportedFileTypes($suffix, $directoryi, $directoryPath, $oo) {
     $needstxt = ["csv", "php", "html", "cu", "c", "go"];
 
     if ($_GET) {
-      echo "
+  ?>
       <a
-        href = '" . $_SERVER['REQUEST_URI'] . "&" . $suffix . "=" .
-          rawurlencode($directoryi) . "'
+        href = '<?php echo $_SERVER['REQUEST_URI'] . "&" . $suffix . "=" . rawurlencode($directoryi);?>'
         target = '_blank'
-        class = '".$oo."Files'
-        id = '" . preg_replace('/\s+/', '', $directoryi) . "FileName'
-      >" .
-        $directoryi .
-      "</a>";
+        class = '<?php echo $oo;?>Files'
+        id = '<?php echo addslashes($directoryi);?>FileName'
+      >
+        <?php echo $directoryi;?>
+      </a>
+    <?php
     }
     else {
-      echo "
+    ?>
       <a
-        href = '" . $_SERVER['REQUEST_URI'] . "?" . $suffix . "=" .
-          rawurlencode($directoryi) . "'
+        href = '<?php echo $_SERVER['REQUEST_URI'] . "?" . $suffix . "=" . rawurlencode($directoryi);?>'
         target = '_blank'
-        class = '".$oo."Files'
-        id = '" . preg_replace('/\s+/', '', $directoryi) . "FileName'
-      >" .
-        $directoryi .
-      "</a>";
+        class = '<?php echo $oo;?>Files'
+        id = '<?php echo addslashes($directoryi);?>FileName'
+      >
+        <?php echo $directoryi;?>
+      </a>
+    <?php
     }
 
     if (isset($_GET[$suffix])) {
@@ -799,79 +783,73 @@ window.onclick = function(event) {
               $Directory[$i], -1)), $Directory[$i], $DirectoryPath, $o);
           }
           else {
-            echo "" . $Directory[$i];
+            echo $Directory[$i];
           }
-        echo "</div>";
+    ?>
+        </div>
 
-        // 3.5.2.2 Download File
-        echo "
-        <div class = '".$o."DownloadButtonForm'>
+        <!-- 3.5.2.2 Download File -->
+        <div class = '<?php echo $o;?>DownloadButtonForm'>
           <form
             action = 'Zip/download.php'
-            class = '".$o."DownloadButtonForm'
+            class = '<?php echo $o;?>DownloadButtonForm'
             method = 'post'
             enctype = 'multipart/form-data'
           >
             <input
               type = 'hidden'
-              value = '" . $Directory[$i] . "'
+              value = '<?php echo $Directory[$i];?>'
               name = 'fileToDownload'
             />
             <input
               type = 'image'
-              src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow " .
-                "Icon @ 36 ppi.png'
-              class = '".$o."DownloadButton'
+              src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow Icon @ 36 ppi.png'
+              class = '<?php echo $o;?>DownloadButton'
               value = 'Download'
               name = 'submit'
-              id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
-                "DownloadButton'
+              id = '<?php echo addslashes($Directory[$i]);?>DownloadButton'
             />
             <input
               type = 'hidden'
-              value = '" . $CurrentPathString . "'
+              value = '<?php echo $CurrentPathString;?>'
               name = 'currentPathString'
             />
             <input type = 'hidden' value = '' name = 'recycleBin'/>
           </form>
-        </div>";
+        </div>
 
-        //3.5.2.3 Rename File
-        echo "
-        <div class = '".$o."RenameButtonForm'>
+        <!-- 3.5.2.3 Rename File -->
+        <div class = '<?php echo $o;?>RenameButtonForm'>
           <input
             type = 'image'
-            src = 'Art/4 - Rename Cursor Icon/NanoLab Rename Cursor Icon " .
-              "@ 36 ppi.png'
-            id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
-              "CursorButton'
-            class = '".$o."RenameButton'
+            src = 'Art/4 - Rename Cursor Icon/NanoLab Rename Cursor Icon @ 36 ppi.png'
+            id = '<?php echo addslashes($Directory[$i]);?>CursorButton'
+            class = '<?php echo $o;?>RenameButton'
           />
           <form
             action = 'rename.php'
-            class = '".$o."RenameButtonForm'
+            class = '<?php echo $o;?>RenameButtonForm'
             method = 'post'
             enctype = 'multipart/form-data'
           >
             <input
               type = 'hidden'
-              value = '" . $Directory[$i] . "'
+              value = '<?php echo $Directory[$i];?>'
               name = 'oldName'
             />
             <input
               type = 'text'
-              value = '" . $Directory[$i] . "'
-              size = '" . strlen($Directory[$i]) . "'
-              id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
-                "RenameTextField'
-              class = '".$o."RenameTextField'
+              value = '<?php echo $Directory[$i];?>'
+              size = '<?php echo strlen($Directory[$i]);?>'
+              id = '<?php echo addslashes($Directory[$i]);?>RenameTextField'
+              class = '<?php echo $o;?>RenameTextField'
               name = 'newName'
               spellcheck = 'false'
               autocomplete = 'off'
             />
             <input
               type = 'hidden'
-              value = '" . $CurrentPathString . "'
+              value = '<?php echo $CurrentPathString;?>'
               name = 'currentPathString'
             />
           </form>
@@ -885,16 +863,11 @@ window.onclick = function(event) {
 
           var i = (typeof i != 'undefined') ? i : 0;
 
-          fileName.push(document.getElementById('" . preg_replace(
-            '/\s+/', '', $Directory[$i]) . "FileName'));
-          downloadButton.push(document.getElementById('" . preg_replace(
-            '/\s+/', '', $Directory[$i]) . "DownloadButton'));
-          cursorButton.push(document.getElementById('" . preg_replace(
-            '/\s+/', '', $Directory[$i]) . "CursorButton'));
-          renameTextField.push(document.getElementById('" . preg_replace(
-            '/\s+/', '', $Directory[$i]) . "RenameTextField'));
-          recycleButton.push(document.getElementById('" . preg_replace(
-            '/\s+/', '', $Directory[$i]) . "RecycleButton'));
+          fileName.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>FileName'));
+          downloadButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>DownloadButton'));
+          cursorButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>CursorButton'));
+          renameTextField.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RenameTextField'));
+          recycleButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RecycleButton'));
 
           cursorButton[i].addEventListener('click', showFileTextBox, false);
 
@@ -905,8 +878,7 @@ window.onclick = function(event) {
             document.getElementById(event.target.id.replace('CursorButton', 'RecycleButton')).style.display = 'none';
             document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).style.display = 'block';
             document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).focus();
-            document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).setSelectionRange(0, " .
-              strlen(pathinfo($Directory[$i], PATHINFO_FILENAME)) . ");
+            document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).setSelectionRange(0, <?php echo strlen(pathinfo($Directory[$i], PATHINFO_FILENAME));?>);
             document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).addEventListener('focusout', hideRenameFileTextField, false);
           }
 
@@ -920,48 +892,48 @@ window.onclick = function(event) {
 
           i++;
           </script>
-        </div>";
+        </div>
 
-        // 3.5.2.4 Recycle File
-        echo "
-        <div class = '".$o."RecycleButtonForm'>
+        <!-- 3.5.2.4 Recycle File -->
+        <div class = '<?php echo $o;?>RecycleButtonForm'>
           <form
             action = 'recycle.php'
-            class = '".$o."RecycleButtonForm'
+            class = '<?php echo $o;?>RecycleButtonForm'
             method = 'post'
             enctype = 'multipart/form-data'
           >
             <input
               type = 'hidden'
-              value = '" . $Directory[$i] . "'
+              value = '<?php echo $Directory[$i];?>'
               name = 'fileToRecycle'
             />
             <input
               type = 'image'
-              src = 'Art/3 - Delete Trash Can Icon/NanoLab Delete Trash Can " .
-                "Select @ 36 ppi.png'
-              class = '".$o."RecycleButton'
-              id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
-                "RecycleButton'
+              src = 'Art/3 - Delete Trash Can Icon/NanoLab Delete Trash Can Select @ 36 ppi.png'
+              class = '<?php echo $o;?>RecycleButton'
+              id = '<?php echo addslashes($Directory[$i]);?>RecycleButton'
             />
             <input
               type = 'hidden'
-              value = '" . $CurrentPathString . "'
+              value = '<?php echo $CurrentPathString;?>'
               name = 'currentPathString'
             />
           </form>
-        </div>";
+        </div>
 
-      echo "</div>";
+      </div>
 
-      // 3.5.2.5 File Size
-      echo "<div class = '".$o."FileSizes'>";
-      $FileSize = filesize($DirectoryPath . "/" . $Directory[$i]);
-      echo "" . HumanSize($FileSize);
-      echo "</div>";
+      <!-- 3.5.2.5 File Size -->
+      <div class = '<?php echo $o;?>FileSizes'>
+        <?php
+        $FileSize = filesize($DirectoryPath . "/" . $Directory[$i]);
+        echo HumanSize($FileSize);
+        ?>
+      </div>
 
-      // 3.5.2.6 Heath
-      echo "<br><div class = '".$o."Heath'><br></div>";
+      <!-- 3.5.2.6 Heath -->
+      <br><div class = '<?php echo $o;?>Heath'><br></div>
+  <?php
     }
   }
   ?>
@@ -969,11 +941,11 @@ window.onclick = function(event) {
 </div> <!-- Main Content -->
 
 <!-- 4 Footer -->
-<div class = <?php echo "'".$o."Push'";?>></div>
+<div class = '<?php echo $o;?>Push'></div>
 </div> <!-- Wrapper -->
 
 
-<div class = <?php echo "'".$o."Footer'";?>>&copy; Corvin, Inc.</div>
+<div class = '<?php echo $o;?>Footer'>&copy; Corvin, Inc.</div>
 
 </body>
 </html>
