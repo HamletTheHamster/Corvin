@@ -65,7 +65,7 @@ $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
 $user = mysqli_fetch_array(mysqli_query($conn, $sql));
 
 // Set Darkmode/Lightmode
-$sql = "SELECT darkmode FROM UserInfo WHERE id = '$userID'";
+$sql = "SELECT darkmode FROM Preferences WHERE id = '$userID'";
 $darkmodeSetting = mysqli_fetch_array(mysqli_query($conn, $sql));
 
 if ($darkmodeSetting[0] == 1) {

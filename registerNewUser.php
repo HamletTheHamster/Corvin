@@ -48,8 +48,7 @@ $sql = "CREATE TABLE IF NOT EXISTS UserInfo (
   lastActive DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   storageSpaceInMegabytes INT(255) SIGNED,
   accountTier VARCHAR(100),
-  active BIT DEFAULT 0,
-  darkmode BIT DEFAULT 1);
+  active BIT DEFAULT 0);
 ";
 
 if (!mysqli_query($conn, $sql)) {
@@ -113,6 +112,19 @@ $sql = "CREATE TABLE IF NOT EXISTS LoginAttemptsNoID (
 if (!mysqli_query($conn, $sql)) {
 
   $registerUser = "Error creating LoginAttemptsNoID table: " . mysqli_error($conn);
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
+}
+
+// Create Preferences table if not exists
+$sql = "CREATE TABLE IF NOT EXISTS Preferences (
+  id INT(9) UNSIGNED PRIMARY KEY,
+  darkmode TINYINT DEFAULT 1);
+";
+
+if (!mysqli_query($conn, $sql)) {
+
+  $registerUser = "Error creating Preferences table: " . mysqli_error($conn);
   echo json_encode(array('registerUser' => $registerUser));
   exit;
 }
@@ -227,8 +239,7 @@ if (!in_array($username, $allUsernames)) {
           email,
           verifyEmailHash,
           storageSpaceInMegabytes,
-          accountTier,
-          darkmode)
+          accountTier)
           VALUES (
           '$firstName',
           '$lastName',
@@ -237,8 +248,7 @@ if (!in_array($username, $allUsernames)) {
           '$email',
           '$verifyEmailHash',
           '$storageSpaceInMegabytes',
-          '$accountTier',
-          1)
+          '$accountTier')
         ";
 
         /*
@@ -272,6 +282,10 @@ The Corvin Team";
           $sql = "SELECT id FROM UserInfo WHERE username = '" .
             $username . "'";
           $userID = mysqli_fetch_row(mysqli_query($conn, $sql));
+
+          // Add a new row in Preferences for this ID
+          $sql = "INSERT INTO Preferences (id) VALUES ('$userID[0]')";
+          mysqli_query($conn, $sql);
 
           // Add a new row in LoginAttemts for this ID
           $sql = "INSERT INTO LoginAttempts (id) VALUES ('$userID[0]')";

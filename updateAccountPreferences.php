@@ -27,39 +27,13 @@ $darkmode = $_POST['darkmode'];
 if ($darkmode == 'true')
 {
 
-  $sql = "UPDATE UserInfo SET darkmode = '1' WHERE id = '$userID'";
-  if (mysqli_query($conn, $sql) === TRUE) {
-
-    /*
-    $sql = "SELECT firstName FROM UserInfo WHERE id = '$userID'";
-    $firstName = mysqli_fetch_row(mysqli_query($conn, $sql));
-
-    $sql = "SELECT darkmode FROM UserInfo WHERE id = '$userID'";
-    $darkmodeSetting = mysqli_fetch_row(mysqli_query($conn, $sql));
-
-    $message = 'Darkmode for ' . $firstName[0] . ' is set to ' . $darkmodeSetting[0] . ' & _POST[darkmode] ' . $isset;
-    $success = 'Enabled';
-    echo json_encode(array('message'=>$message,'success'=>$success));
-    */
-  }
+  $sql = "UPDATE Preferences SET darkmode = '1' WHERE id = '$userID'";
+  mysqli_query($conn, $sql);
 }
 
 else if ($darkmode == 'false')  //mode is false when button is disabled
 {
-  $sql = "UPDATE UserInfo SET darkmode = '0' WHERE id = '$userID'";
-  if (mysqli_query($conn, $sql) === TRUE) {
-
-    /*
-    $sql = "SELECT firstName FROM UserInfo WHERE id = '$userID'";
-    $firstName = mysqli_fetch_row(mysqli_query($conn, $sql));
-
-    $sql = "SELECT darkmode FROM UserInfo WHERE id = '$userID'";
-    $darkmodeSetting = mysqli_fetch_row(mysqli_query($conn, $sql));
-
-    $message = 'Darkmode for ' . $firstName[0] . ' is set to ' . $darkmodeSetting[0];
-    $success = 'Disabled';
-    echo json_encode(array('message'=>$message,'success'=>$success));
-    */
-  }
+  $sql = "UPDATE Preferences SET darkmode = '0' WHERE id = '$userID'";
+  mysqli_query($conn, $sql);
 }
- ?>
+?>
