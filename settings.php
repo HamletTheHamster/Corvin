@@ -142,7 +142,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
   <div class = <?php echo "'".$o."TopBar'";?>>
     <div class = <?php echo "'".$o."Corvin'";?>>
       <a href = "home.php">
-        <h class = <?php echo "'".$o."CorvinHeader'";?>>C</h>
+        <h class = <?php echo "'".$o."CorvinHeader'";?> id = "corvinHeader">C</h>
       </a>
     </div>
     <div class = <?php echo "'".$o."AccountMenuDropDown'";?>>
@@ -150,7 +150,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <div id = "accountMenuContent" class = <?php echo "'".$o."AccountMenuContent'";?>>
         <div class = <?php echo "'".$o."TopAccountMenuContent'";?>>
           <?php
-          echo "<p class = '".$o."AccountMenuName'>" . $user[0] . " " . $user[1] . "</p>";
+          echo "<p id = 'accountMenuName' class = '".$o."AccountMenuName'>" . $user[0] . " " . $user[1] . "</p>";
 
           include "humanSize.php";
           include "folderSize.php";
@@ -165,25 +165,25 @@ elseif (time() - $_SESSION['Created'] > 1200)
           if ($storageSpaceInMegabytes[0] == "-1") {
             $freeBytes = disk_free_space("../../../../mnt/Raid1Array/Corvin");
 
-            echo "<p class = '".$o."DiskSpaceUnlimited'>" . humanSize($usedBytes) .  " used of " .
+            echo "<p id = 'diskSpace' class = '".$o."DiskSpaceUnlimited'>" . humanSize($usedBytes) .  " used of " .
               humanSize($freeBytes) . " (Unlimited)</p>";
           }
           else {
             $totalBytes = $storageSpaceInMegabytes[0] * 1000000;
             $freeBytes = $totalBytes - $usedBytes;
 
-            echo "<p class = '".$o."DiskSpace'>" . humanSize($usedBytes) .
+            echo "<p id = 'diskSpace' class = '".$o."DiskSpace'>" . humanSize($usedBytes) .
               " used of " . humanSize($totalBytes) . "</p>";
           }
           ?>
-        </div><!--TopAccountMenuContent-->
-        <br><div class = <?php echo "'".$o."AccountMenuHeath'";?>><br></div>
+        </div>
+        <br><div id = 'accountMenuHeath' class = <?php echo "'".$o."AccountMenuHeath'";?>><br></div>
         <div class = <?php echo "'".$o."BottomAccountMenuContent'";?>>
           <a class = <?php echo "'".$o."GetMoreSpaceMenuItem'";?> href = "getMoreSpace.php">
             Get More Space</a>
-          <a class = <?php echo "'".$o."MenuItem'";?>>Settings</a>
-          <a class = <?php echo "'".$o."MenuItem'";?> href = "help.php">Help</a>
-          <a class = <?php echo "'".$o."MenuItem'";?> href = "logout.php">Log Out</a>
+          <a id = 'settings' class = <?php echo "'".$o."MenuItem'";?>>Settings</a>
+          <a id = 'help' class = <?php echo "'".$o."MenuItem'";?> href = "help.php">Help</a>
+          <a id = 'logout' class = <?php echo "'".$o."MenuItem'";?> href = "logout.php">Log Out</a>
         </div>
       </div>
     </div>
@@ -192,14 +192,14 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <div id = "workspacesMenuContent" class = <?php echo "'".$o."WorkspacesMenuContent'";?>>
         <a class = <?php echo "'".$o."CreateANewWorkspaceMenuItem'";?> href = "newWorkspace.php">
             Create A New Workspace</a>
-        <div class = <?php echo "'".$o."WorkspacesMenuHeath'";?>></div>
+        <div id = 'workspacesMenuHeath' class = <?php echo "'".$o."WorkspacesMenuHeath'";?>></div>
         <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 1</a>
         <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 2</a>
         <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 3</a>
       </div>
     </div>
     <div class = <?php echo "'".$o."Home'";?>>
-      <p onclick = "home()" class = <?php echo "'".$o."HomeButton'";?>>Home</p>
+      <p onclick = "home()" class = <?php echo "'".$o."HomeButton'";?> id = "homeButton">Home</p>
     </div>
   </div>
 
@@ -673,14 +673,29 @@ elseif (time() - $_SESSION['Created'] > 1200)
 
           // Corvin C & Account Menu
           document.getElementById("corvinHeader").style.color = "rgb(0, 130, 140)";
+          document.getElementById("homeButton").style.color = "rgb(0, 130, 140)";
+
+          // Workspaces Menu
+          document.getElementById("workspacesButton").style.color = "rgb(0, 130, 140)";
+          document.getElementById("workspacesMenuContent").style.backgroundColor = "rgb(53, 54, 56)";
+          document.getElementById("workspacesMenuContent").style.borderColor = "rgba(255, 255, 255, 0.25)";
+          document.getElementById("workspacesMenuContent").style.boxShadow = "0 2px 4px 0 rgba(255, 255, 255, 0)";
+          /*
+          for each $workspace {
+            document.getElementById('<?php //echo $workspace[0];?>Workspace').style.color = "rgba(255, 255, 255, 0.85)";
+          }
+          */
+          document.getElementById("workspacesMenuHeath").style.backgroundColor = "rgb(18, 19, 21)";
+
+          // Account Menu
           document.getElementById("accountButton").style.color = "rgb(0, 130, 140)";
           document.getElementById("accountMenuContent").style.backgroundColor = "rgb(53, 54, 56)";
           document.getElementById("accountMenuContent").style.borderColor = "rgba(255, 255, 255, 0.25)";
           document.getElementById("accountMenuContent").style.boxShadow = "0 2px 4px 0 rgba(255, 255, 255, 0)";
           document.getElementById("accountMenuName").style.color = "rgba(255, 255, 255, 0.85)";
           document.getElementById("diskSpace").style.color = "rgba(255, 255, 255, 0.85)";
-          document.getElementById("menuHeath").style.backgroundColor = "rgb(18, 19, 21)";
-          document.getElementById("home").style.color = "rgba(255, 255, 255, 0.85)";
+          document.getElementById("accountMenuHeath").style.backgroundColor = "rgb(18, 19, 21)";
+          document.getElementById("settings").style.color = "rgba(255, 255, 255, 0.85)";
           document.getElementById("help").style.color = "rgba(255, 255, 255, 0.85)";
           document.getElementById("logout").style.color = "rgba(255, 255, 255, 0.85)";
 
@@ -774,16 +789,31 @@ elseif (time() - $_SESSION['Created'] > 1200)
           document.getElementById("footer").style.backgroundColor = "rgb(254, 254, 254)";
           document.body.style.color = "rgba(23, 23, 23, 0.85)";
 
-          // Corvin C & Account Menu
+          // Corvin C & Home Button
           document.getElementById("corvinHeader").style.color = "rgba(23, 23, 23, 0.85)";
+          document.getElementById("homeButton").style.color = "rgba(23, 23, 23, 0.85)";
+
+          // Workspaces Menu
+          document.getElementById("workspacesButton").style.color = "rgba(23, 23, 23, 0.85)";
+          document.getElementById("workspacesMenuContent").style.backgroundColor = "rgb(254, 254, 254)";
+          document.getElementById("workspacesMenuContent").style.borderColor = "rgba(23, 23, 23, 0.25)";
+          document.getElementById("workspacesMenuContent").style.boxShadow = "0 2px 4px 0 rgba(23, 23, 23, 0.25)";
+          /*
+          for each $workspace {
+            document.getElementById('<?php //echo $workspace[0];?>Workspace').style.color = "rgba(23, 23, 23, 0.85)";
+          }
+          */
+          document.getElementById("workspacesMenuHeath").style.backgroundColor = "rgba(18, 19, 21, 0.25)";
+
+          // Account Menu
           document.getElementById("accountButton").style.color = "rgba(23, 23, 23, 0.85)";
           document.getElementById("accountMenuContent").style.backgroundColor = "rgb(254, 254, 254)";
           document.getElementById("accountMenuContent").style.borderColor = "rgba(23, 23, 23, 0.25)";
           document.getElementById("accountMenuContent").style.boxShadow = "0 2px 4px 0 rgba(23, 23, 23, 0.25)";
           document.getElementById("accountMenuName").style.color = "rgba(23, 23, 23, 0.85)";
           document.getElementById("diskSpace").style.color = "rgba(23, 23, 23, 0.85)";
-          document.getElementById("menuHeath").style.backgroundColor = "rgba(18, 19, 21, 0.25)";
-          document.getElementById("home").style.color = "rgba(23, 23, 23, 0.85)";
+          document.getElementById("accountMenuHeath").style.backgroundColor = "rgba(18, 19, 21, 0.25)";
+          document.getElementById("settings").style.color = "rgba(23, 23, 23, 0.85)";
           document.getElementById("help").style.color = "rgba(23, 23, 23, 0.85)";
           document.getElementById("logout").style.color = "rgba(23, 23, 23, 0.85)";
 
