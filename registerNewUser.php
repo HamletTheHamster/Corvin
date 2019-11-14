@@ -129,6 +129,19 @@ if (!mysqli_query($conn, $sql)) {
   exit;
 }
 
+// Creat Workspaces table if not exists
+$sql = "CREATE TABLE IF NOT EXISTS Workspaces (
+  id INT(9) UNSIGNED PRIMARY KEY,
+  workspace1 VARCHAR(100));
+";
+
+if (!mysqli_query($conn, $sql)) {
+
+  $registerUser = "Error creating Workspaces table: " . mysqli_error($conn);
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
+}
+
 // Evaluate recaptcha
 $recaptchaResponse = $_POST["recaptcha"];
 $recaptchaSecretKey = "6LfA2cAUAAAAAFSHkup0iMMeaN2G1EqeA9clSSEr";
@@ -285,6 +298,10 @@ The Corvin Team";
 
           // Add a new row in Preferences for this ID
           $sql = "INSERT INTO Preferences (id) VALUES ('$userID[0]')";
+          mysqli_query($conn, $sql);
+
+          // Add a new row in Workspaces for this ID
+          $sql = "INSERT INTO Workspaces (id) VALUES ('$userID[0]')";
           mysqli_query($conn, $sql);
 
           // Add a new row in LoginAttemts for this ID

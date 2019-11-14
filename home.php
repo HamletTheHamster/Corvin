@@ -213,13 +213,30 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   <div class = '<?php echo $o;?>WorkspacesMenuDropDown'>
     <p onclick = "workspacesDropDownMenu()" class = '<?php echo $o;?>WorkspacesButton' id = "workspacesButton">Workspaces</p>
     <div id = "workspacesMenuContent" class = '<?php echo $o;?>WorkspacesMenuContent'>
-      <a class = '<?php echo $o;?>MenuItem' href = "workspace.php">Example Workspace 1</a>
-      <a class = '<?php echo $o;?>MenuItem' href = "workspace.php">Example Workspace 2</a>
-      <a class = '<?php echo $o;?>MenuItem' href = "workspace.php">Example Workspace 3</a>
-      <div class = '<?php echo $o;?>WorkspacesMenuHeath'></div>
-      <a class = '<?php echo $o;?>CreateANewWorkspaceMenuItem' href = "newWorkspace.php">
-          Create A New Workspace</a>
-      <a class = '<?php echo $o;?>CreateANewWorkspaceMenuItem' href = "">Join A Workspace</a>
+      <?php
+      // Get user's row from Workspaces as an array
+      $sql = "SELECT * FROM Workspaces WHERE id = '$userID[0]';";
+      $workspaces = mysqli_fetch_row(mysqli_query($conn, $sql));
+
+      if ($workspaces[1] != NULL) {
+
+        // For each element in $workspaces
+        foreach ($workspaces as $key => $value) {
+
+          if ($value != NULL && $key > 0) { ?>
+
+            <a class = '<?php echo $o;?>MenuItem' href = "workspace.php"><?php echo $value;?></a>
+        <?php
+          }
+        }
+        ?>
+        <div class = '<?php echo $o;?>WorkspacesMenuHeath'></div>
+      <?php
+      }
+      ?>
+      <a class = '<?php echo $o;?>CreateAWorkspaceMenuItem' href = "newWorkspace.php">
+          Create A Workspace</a>
+      <a class = '<?php echo $o;?>CreateAWorkspaceMenuItem' href = "">Join A Workspace</a>
     </div>
   </div>
   <div class = '<?php echo $o;?>Home'>

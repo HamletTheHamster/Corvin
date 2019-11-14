@@ -99,7 +99,7 @@ html.#{$dark}, body.#{$dark} {
     z-index: 2;
 }
 
-a.#{$dark}CreateANewWorkspaceMenuItem {
+a.#{$dark}CreateAWorkspaceMenuItem {
     color: rgb(0, 154, 164);
     padding-left: 20px;
     padding-top: 15px;
@@ -108,7 +108,7 @@ a.#{$dark}CreateANewWorkspaceMenuItem {
     display: block;
 }
 
-a.#{$dark}CreateANewWorkspaceMenuItem:hover {
+a.#{$dark}CreateAWorkspaceMenuItem:hover {
     color: rgb(0, 154, 164);
     background-color: rgba(255, 255, 255, 0.15);
     cursor: pointer;
