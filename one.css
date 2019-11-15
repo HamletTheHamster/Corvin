@@ -1241,6 +1241,26 @@ html.darkHome, body.darkHome {
   z-index: 2;
 }
 
+.darkHomeWorkspace {
+  color: rgba(225, 225, 225, 0.85);
+  background-color: #353638;
+  border: none;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  width: 100%;
+  text-align: left;
+  display: block;
+}
+
+.darkHomeWorkspace:hover {
+  color: #009aa4;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 a.darkHomeNewWorkspaceMenuItem {
   color: #009aa4;
   padding-left: 20px;
@@ -1359,8 +1379,9 @@ p.darkHomeCreateWorkspaceMessage {
   background-color: #1c1d1f;
   border-color: rgba(255, 255, 255, 0);
   float: right;
-  margin-top: 450px;
-  margin-right: 100px;
+  position: fixed;
+  bottom: 30vh;
+  margin-left: 65%;
   border-width: thin;
   color: #009aa4;
   font-family: "Square Market", Helvetica, sans-serif;

@@ -98,6 +98,26 @@ html.#{$dark}, body.#{$dark} {
     z-index: 2;
 }
 
+.#{$dark}Workspace {
+    color: rgba(225, 225, 225, 0.85);
+    background-color: rgb(53, 54, 56);
+    border: none;
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    width: 100%;
+    text-align: left;
+    display: block;
+}
+
+.#{$dark}Workspace:hover {
+    color: rgb(0, 154, 164);
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 a.#{$dark}NewWorkspaceMenuItem {
     color: rgb(0, 154, 164);
     padding-left: 20px;
@@ -216,8 +236,9 @@ p.#{$dark}CreateWorkspaceMessage {
   background-color: rgb(28, 29, 31);
   border-color: rgba(255, 255, 255, 0);
   float: right;
-  margin-top: 450px;
-  margin-right: 100px;
+  position: fixed;
+  bottom: 30vh;
+  margin-left: 65%;
   border-width: thin;
   color: rgb(0, 154, 164);
   font-family: "Square Market", Helvetica, sans-serif;

@@ -286,8 +286,15 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 
           if ($value != NULL && $key > 0) {
 
-            $value = ltrim($value, '0123456789'); ?>
-            <a class = '<?php echo $o;?>MenuItem' href = "workspace.php"><?php echo $value;?></a>
+            $workspaceName = ltrim($value, '0123456789'); ?>
+            <form action = 'workspace.php' method = 'post' enctype = 'multipart/form-data'>
+              <input type = 'hidden' name = 'workspace' value = '<?php echo $value;?>' />
+              <input
+                type = 'submit'
+                value = '<?php echo $workspaceName;?>'
+                class = '<?php echo $o;?>Workspace'
+              />
+            </form>
         <?php
           }
         }
@@ -307,6 +314,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 </div>
 
 <script>
+// Workspaces
 function workspacesDropDownMenu() {
   if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {
     document.getElementById("workspacesButton").classList.remove(o+"Active");
@@ -328,6 +336,7 @@ function cancelCreateWorkspace() {
   document.getElementById("createWorkspacePopup").classList.toggle(o+"Show");
 }
 
+// Account
 function accountDropDownMenu() {
   if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
     document.getElementById("accountButton").classList.remove(o+"Active");
@@ -340,6 +349,7 @@ function accountDropDownMenu() {
   document.getElementById("accountMenuContent").classList.toggle(o+"Show");
 }
 
+// Click Off
 window.onclick = function(event) {
   if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
     if (!event.target.matches("."+o+"AccountButton")) {

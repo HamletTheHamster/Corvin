@@ -24,6 +24,31 @@ if (isset($_POST["newWorkspaceName"])) {
 
     $newWorkspaceName = $userID . $_POST["newWorkspaceName"];
 
+    // Create workspace folder and recycle folder
+    $workspaceFolderFullPath = "../../../mnt/Raid1Array/Corvin/000 - Workspaces/" .
+      $newWorkspaceName;
+    $workspaceRecycleFolderFullPath = "../../../mnt/Raid1Array/Corvin/000 - Workspaces/0 - WorkspacesRecycle/" .
+      $newWorkspaceName;
+
+    if (mkdir($workspaceFolderFullPath, 0777, true)) {
+      chmod($workspaceFolderFullPath, 0777);
+
+      if (mkdir($workspaceRecycleFolderFullPath, 0777, true)) {
+        chmod($workspaceRecycleFolderFullPath, 0777);
+      }
+      else {
+        $createWorkspace = "Error creating workspace recycle folder";
+        echo json_encode(array('message' => $createWorkspace));
+        exit;
+      }
+    }
+    else {
+      $createWorkspace = "Error creating workspace folder";
+      echo json_encode(array('message' => $createWorkspace));
+      exit;
+    }
+
+    // Add workspace to mysql Workspaces table
     $sql = "SELECT * FROM Workspaces WHERE id = '$userID';";
     $workspaces = mysqli_fetch_row(mysqli_query($conn, $sql));
 
