@@ -95,11 +95,10 @@ html.#{$dark}, body.#{$dark} {
     border-radius: 6px;
     border-width: thin;
     border-color: rgba(23, 23, 23, 0.25);
-    box-shadow: 0 2px 4px 0 rgba(255, 255, 255, 0);
     z-index: 2;
 }
 
-a.#{$dark}CreateAWorkspaceMenuItem {
+a.#{$dark}NewWorkspaceMenuItem {
     color: rgb(0, 154, 164);
     padding-left: 20px;
     padding-top: 15px;
@@ -108,7 +107,7 @@ a.#{$dark}CreateAWorkspaceMenuItem {
     display: block;
 }
 
-a.#{$dark}CreateAWorkspaceMenuItem:hover {
+a.#{$dark}NewWorkspaceMenuItem:hover {
     color: rgb(0, 154, 164);
     background-color: rgba(255, 255, 255, 0.15);
     cursor: pointer;
@@ -120,6 +119,21 @@ a.#{$dark}CreateAWorkspaceMenuItem:hover {
     border-radius: 4px;
     height: 3px;
     margin: 10px 10px;
+}
+
+.#{$dark}CreateWorkspacePopup {
+  display: none;
+  position: absolute;
+  background-color: rgb(53, 54, 56);
+  width: 75%;
+  height: 75vh;
+  margin-left: 12.5%;
+  margin-top: 12.5vh;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.15);
+  z-index: 3;
 }
 
 .#{$dark}AccountMenuDropDown {
@@ -151,7 +165,6 @@ a.#{$dark}CreateAWorkspaceMenuItem:hover {
     border-radius: 6px;
     border-width: thin;
     border-color: rgba(23, 23, 23, 0.25);
-    box-shadow: 0 2px 4px 0 rgba(255, 255, 255, 0);
     z-index: 2;
 }
 

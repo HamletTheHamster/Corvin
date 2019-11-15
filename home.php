@@ -156,11 +156,56 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 
   <meta name = "google" content = "notranslate"/>
 
+  <script type = "text/javascript" src = "jquery-3.4.1.min.js"></script>
+
   <script>var o = <?php echo json_encode($o);?></script>
 </head>
 
 <body class = '<?php echo $o;?>'>
 <div class = '<?php echo $o;?>Wrapper'>
+
+  <!-- Create New Workspace -->
+  <div id = 'createWorkspacePopup' class = '<?php echo $o;?>CreateWorkspacePopup'>
+    <form id = 'createNewWorkspaceForm'>
+      <label>
+      <input
+        type = 'text'
+        name = 'newWorkspaceName'
+        id = 'newWorkspaceName'
+        class = 'newWorkspaceName'
+        placeholder = 'Name of New Workspace'
+        autocomplete = 'off'
+        required
+      />
+      </label>
+      <button id = 'createWorkspaceSubmitButton' class = '<?php echo $o;?>CreateWorkspaceSubmitButton'>
+        Create
+      </button>
+    </form>
+  </div>
+  <script type = 'text/javascript'>
+  $('#createNewWorkspaceForm').submit(function (event) {
+
+    event.preventDefault();
+    var newWorkspaceName = $('#newWorkspaceName').val();
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'JSON',
+      url: 'newWorkspace.php',
+      data: {
+        newWorkspaceName: newWorkspaceName
+      },
+      success: function(data) {
+
+        var data = eval(data);
+        createWorkspace = data.createWorkspace;
+
+        location.reload();
+      }
+    });
+  });
+  </script>
 
 <!-- 2 Top Bar -->
 <div class = '<?php echo $o;?>TopBar'>
@@ -215,7 +260,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
     <div id = "workspacesMenuContent" class = '<?php echo $o;?>WorkspacesMenuContent'>
       <?php
       // Get user's row from Workspaces as an array
-      $sql = "SELECT * FROM Workspaces WHERE id = '$userID[0]';";
+      $sql = "SELECT * FROM Workspaces WHERE id = '$userID';";
       $workspaces = mysqli_fetch_row(mysqli_query($conn, $sql));
 
       if ($workspaces[1] != NULL) {
@@ -234,9 +279,9 @@ elseif (time() - $_SESSION['Created'] > 1200) {
       <?php
       }
       ?>
-      <a class = '<?php echo $o;?>CreateAWorkspaceMenuItem' href = "newWorkspace.php">
+      <a onclick = 'createWorkspacePopup()' class = '<?php echo $o;?>NewWorkspaceMenuItem'>
           Create A Workspace</a>
-      <a class = '<?php echo $o;?>CreateAWorkspaceMenuItem' href = "">Join A Workspace</a>
+      <a class = '<?php echo $o;?>NewWorkspaceMenuItem' href = "">Join A Workspace</a>
     </div>
   </div>
   <div class = '<?php echo $o;?>Home'>
@@ -255,6 +300,11 @@ function workspacesDropDownMenu() {
     document.getElementById("accountButton").classList.remove(o+"Active");
   }
   document.getElementById("workspacesMenuContent").classList.toggle(o+"Show");
+}
+
+function createWorkspacePopup() {
+  document.getElementById("createWorkspacePopup").classList.toggle(o+"Show");
+  document.getElementById("newWorkspaceName").focus();
 }
 
 function accountDropDownMenu() {
@@ -280,6 +330,11 @@ window.onclick = function(event) {
     if (!event.target.matches("."+o+"WorkspacesButton")) {
       document.getElementById("workspacesMenuContent").classList.remove(o+"Show");
       document.getElementById("workspacesButton").classList.remove(o+"Active");
+    }
+  }
+  else if (document.getElementById("createWorkspacePopup").classList.contains(o+"Show")) {
+    if (!event.target.matches("."+o+"CreateWorkspacePopup")) {
+      document.getElementById("createWorkspacePopup").classList.remove(o+"Show");
     }
   }
 }
