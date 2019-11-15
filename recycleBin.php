@@ -337,7 +337,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
                 />
                 <input
                   type = 'hidden'
-                  value = '0 - Recycle'
+                  value = '0 - Recycle/'
                   name = 'recycleBin'
                 />
               </form>

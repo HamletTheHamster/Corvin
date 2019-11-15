@@ -56,17 +56,47 @@ Coded by: Joel N. Johnson
 -->
 
 <?php
-// Display any errors
-ini_set("display_errors", 1);
-
-// And be verbose about it
-error_reporting(E_ALL);
 
 session_start();
 
 //Check if user is logged in
 if (!isset($_SESSION["loginUser"]) && $_SESSION["loginUser"] != TRUE) {
   header("Location: ../login.php");
+}
+
+// Session Timeout after 854 seconds (14.2 minutes)
+// If last request was more than 854 seconds ago (14.2 minutes)
+if (
+  isset($_SESSION['LastActivity']) &&
+  (time() - $_SESSION['LastActivity'] > 854)
+) {
+  // Then unset $_SESSION variable for the run-time
+  session_unset();
+
+  // Destroy session data in storage
+  session_destroy();
+
+  // And kick the user back to the login screen
+  header("Location: login.php");
+}
+
+// Update last activity time stamp
+$_SESSION['LastActivity'] = time();
+
+// Regenerate Session ID every 20 Minutes
+// If session started timestamp is not set
+if (!isset($_SESSION['Created'])) {
+  // Then set the session start time to now
+  $_SESSION['Created'] = time();
+}
+// If session started more than 20 minutes ago
+elseif (time() - $_SESSION['Created'] > 1200) {
+  // Then change session ID for the current session and invalidate old session
+  // ID
+  session_regenerate_id(true);
+
+  // Update creation time
+  $_SESSION['Created'] = time();
 }
 
 // MYSQLi server connection
@@ -81,116 +111,232 @@ if (!$conn) {
 // Go into Corvin database
 mysqli_query($conn, "USE Corvin;");
 
-// Assign user's ID, set in validate.php
-$userID = $_SESSION["userID"];
+// Check if workspace
+if (isset($_SESSION["currentWorkspace"])) {
 
-$sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
-$user = mysqli_fetch_array(mysqli_query($conn, $sql));
+  // Assign workspace
+  $workspace = $_SESSION["currentWorkspace"];
 
-$currentPathString = filter_input(
-  INPUT_POST,
-  "currentPathString",
-  FILTER_SANITIZE_STRING
-);
+  $currentPathString = filter_input(
+    INPUT_POST,
+    "currentPathString",
+    FILTER_SANITIZE_STRING
+  );
 
-// Used to handle requests from the user's recycle bin
-$recycleBin = $_POST["recycleBin"];
+  // Used to handle requests from the user's recycle bin
+  $workspacesRecycleBin = $_POST["workspacesRecycleBin"];
 
-// Assign path of directory holding file
-$downloadDirectory = "/../../../mnt/Raid1Array/Corvin/" . $recycleBin . "/" .
-  $userID . " - " . $user[0] . $user[1] . "/" . $currentPathString;
+  // Assign path of directory holding file
+  $downloadDirectory = "/../../../mnt/Raid1Array/Corvin/000 - Workspaces/" .
+    $workspacesRecycleBin . $workspace . "/" . $currentPathString;
 
-// Assign name of file from input
-$fileToDownload = filter_input(
-  INPUT_POST,
-  "fileToDownload",
-  FILTER_SANITIZE_STRING
-);
+  // Assign name of file from input
+  $fileToDownload = filter_input(
+    INPUT_POST,
+    "fileToDownload",
+    FILTER_SANITIZE_STRING
+  );
 
-// Concatonate path and file name urlencode()
-$fullPath = $downloadDirectory . $fileToDownload;
-$realPath = realpath($fullPath);
-$zipfilename = $downloadDirectory . basename($fileToDownload) .
-  ".zip";
+  // Concatonate path and file name urlencode()
+  $fullPath = $downloadDirectory . $fileToDownload;
+  $realPath = realpath($fullPath);
+  $zipfilename = $downloadDirectory . basename($fileToDownload) .
+    ".zip";
 
-if (is_readable($fullPath)) {
-  if (is_dir($fullPath)) {
+  if (is_readable($fullPath)) {
+    if (is_dir($fullPath)) {
 
-  // Initialize ZipArchive object
-  $zip = new ZipArchive();
-  $zip->open($zipfilename, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+    // Initialize ZipArchive object
+    $zip = new ZipArchive();
+    $zip->open($zipfilename, ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
-  // Create recursive directory iterator
-  $files = new RecursiveIteratorIterator(
-  new RecursiveDirectoryIterator($realPath),
-      RecursiveIteratorIterator::LEAVES_ONLY
-    );
+    // Create recursive directory iterator
+    $files = new RecursiveIteratorIterator(
+    new RecursiveDirectoryIterator($realPath),
+        RecursiveIteratorIterator::LEAVES_ONLY
+      );
 
-    //ob_start();
+      //ob_start();
 
-  foreach ($files as $name => $file) {
-    // Skip directories (they would be added automatically)
-    if (!$file->isDir()) {
-      // Get real and relative path for current file
-      $filePath = $file->getrealPath();
-      //echo "filePath: " . $filePath . "<br>";
-      $relativePath = substr($filePath, strlen($realPath) + 1);
-      //echo "relativePath: " . $relativePath . "<br>";
+    foreach ($files as $name => $file) {
+      // Skip directories (they would be added automatically)
+      if (!$file->isDir()) {
+        // Get real and relative path for current file
+        $filePath = $file->getrealPath();
+        //echo "filePath: " . $filePath . "<br>";
+        $relativePath = substr($filePath, strlen($realPath) + 1);
+        //echo "relativePath: " . $relativePath . "<br>";
 
-      // Add current file to archive
-      $zip->addFile($filePath, $relativePath);
+        // Add current file to archive
+        $zip->addFile($filePath, $relativePath);
+      }
+    }
+
+    $zip->close();
+
+    //IDEAS TO FIX ZIP GARBAGE DUMP ON LARGE ZIP FOLDERS
+    //increase script execution time, other php.ini settings
+    //close and reopen ZipArchive after n files added (only so many might be
+    // allowed open at once, closing and reopening forces the thus far added filesize
+    // to be compressed and added before adding more)
+    //cap the maximum file size or number of files allowed in a single zip file
+    // and move on to the next zip file for the rest.
+
+    // State headers
+    header("Content-Description: File Transfer");
+    header("Content-Type: application/zip");
+    header('Content-Disposition: attachment; filename = "' .
+      basename($zipfilename) . '"');
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($zipfilename));
+    ob_clean();
+    flush();
+
+    // Force download of zip folder
+    readfile($zipfilename);
+
+    unlink($zipfilename);
+    exit;
+    }
+    else {
+    // State headers
+    header("Content-Description: File Transfer");
+    header("Content-Type: application/octet-stream");
+    header('Content-Disposition: attachment; filename = "' .
+    basename($fullPath) . '"');
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, ' . 'post-check=0, pre-check=0');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($fullPath));
+    ob_clean();
+    flush();
+
+    // Force download of file
+    readfile($fullPath);
+    exit;
     }
   }
-
-  $zip->close();
-
-  //IDEAS TO FIX ZIP GARBAGE DUMP ON LARGE ZIP FOLDERS
-  //increase script execution time, other php.ini settings
-  //close and reopen ZipArchive after n files added (only so many might be
-  // allowed open at once, closing and reopening forces the thus far added filesize
-  // to be compressed and added before adding more)
-  //cap the maximum file size or number of files allowed in a single zip file
-  // and move on to the next zip file for the rest.
-
-  // State headers
-  header("Content-Description: File Transfer");
-  header("Content-Type: application/zip");
-  header('Content-Disposition: attachment; filename = "' .
-    basename($zipfilename) . '"');
-  header('Content-Transfer-Encoding: binary');
-  header('Expires: 0');
-  header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-  header('Pragma: public');
-  header('Content-Length: ' . filesize($zipfilename));
-  ob_clean();
-  flush();
-
-  // Force download of zip folder
-  readfile($zipfilename);
-
-  unlink($zipfilename);
-  exit;
-  }
   else {
-  // State headers
-  header("Content-Description: File Transfer");
-  header("Content-Type: application/octet-stream");
-  header('Content-Disposition: attachment; filename = "' .
-  basename($fullPath) . '"');
-  header('Content-Transfer-Encoding: binary');
-  header('Expires: 0');
-  header('Cache-Control: must-revalidate, ' . 'post-check=0, pre-check=0');
-  header('Pragma: public');
-  header('Content-Length: ' . filesize($fullPath));
-  ob_clean();
-  flush();
-
-  // Force download of file
-  readfile($fullPath);
-  exit;
+    echo "Download failed because the file does not exist in the current directory.";
   }
 }
 else {
-  echo "Download failed because the file does not exist in the current " .
-  "directory.";
+
+  // Assign user's ID, set in validate.php
+  $userID = $_SESSION["userID"];
+
+  $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
+  $user = mysqli_fetch_array(mysqli_query($conn, $sql));
+
+  $currentPathString = filter_input(
+    INPUT_POST,
+    "currentPathString",
+    FILTER_SANITIZE_STRING
+  );
+
+  // Used to handle requests from the user's recycle bin
+  $recycleBin = $_POST["recycleBin"];
+
+  // Assign path of directory holding file
+  $downloadDirectory = "/../../../mnt/Raid1Array/Corvin/" . $recycleBin .
+    $userID . " - " . $user[0] . $user[1] . "/" . $currentPathString;
+
+  // Assign name of file from input
+  $fileToDownload = filter_input(
+    INPUT_POST,
+    "fileToDownload",
+    FILTER_SANITIZE_STRING
+  );
+
+  // Concatonate path and file name urlencode()
+  $fullPath = $downloadDirectory . $fileToDownload;
+  $realPath = realpath($fullPath);
+  $zipfilename = $downloadDirectory . basename($fileToDownload) .
+    ".zip";
+
+  if (is_readable($fullPath)) {
+    if (is_dir($fullPath)) {
+
+    // Initialize ZipArchive object
+    $zip = new ZipArchive();
+    $zip->open($zipfilename, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+
+    // Create recursive directory iterator
+    $files = new RecursiveIteratorIterator(
+    new RecursiveDirectoryIterator($realPath),
+        RecursiveIteratorIterator::LEAVES_ONLY
+      );
+
+      //ob_start();
+
+    foreach ($files as $name => $file) {
+      // Skip directories (they would be added automatically)
+      if (!$file->isDir()) {
+        // Get real and relative path for current file
+        $filePath = $file->getrealPath();
+        //echo "filePath: " . $filePath . "<br>";
+        $relativePath = substr($filePath, strlen($realPath) + 1);
+        //echo "relativePath: " . $relativePath . "<br>";
+
+        // Add current file to archive
+        $zip->addFile($filePath, $relativePath);
+      }
+    }
+
+    $zip->close();
+
+    //IDEAS TO FIX ZIP GARBAGE DUMP ON LARGE ZIP FOLDERS
+    //increase script execution time, other php.ini settings
+    //close and reopen ZipArchive after n files added (only so many might be
+    // allowed open at once, closing and reopening forces the thus far added filesize
+    // to be compressed and added before adding more)
+    //cap the maximum file size or number of files allowed in a single zip file
+    // and move on to the next zip file for the rest.
+
+    // State headers
+    header("Content-Description: File Transfer");
+    header("Content-Type: application/zip");
+    header('Content-Disposition: attachment; filename = "' .
+      basename($zipfilename) . '"');
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($zipfilename));
+    ob_clean();
+    flush();
+
+    // Force download of zip folder
+    readfile($zipfilename);
+
+    unlink($zipfilename);
+    exit;
+    }
+    else {
+    // State headers
+    header("Content-Description: File Transfer");
+    header("Content-Type: application/octet-stream");
+    header('Content-Disposition: attachment; filename = "' .
+    basename($fullPath) . '"');
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, ' . 'post-check=0, pre-check=0');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($fullPath));
+    ob_clean();
+    flush();
+
+    // Force download of file
+    readfile($fullPath);
+    exit;
+    }
+  }
+  else {
+    echo "Download failed because the file does not exist in the current " .
+    "directory.";
+  }
 }

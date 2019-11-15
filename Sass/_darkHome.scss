@@ -118,6 +118,10 @@ html.#{$dark}, body.#{$dark} {
     cursor: pointer;
 }
 
+.#{$dark}Workspace:active {
+  outline: none;
+}
+
 a.#{$dark}NewWorkspaceMenuItem {
     color: rgb(0, 154, 164);
     padding-left: 20px;

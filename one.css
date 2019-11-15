@@ -1261,6 +1261,10 @@ html.darkHome, body.darkHome {
   cursor: pointer;
 }
 
+.darkHomeWorkspace:active {
+  outline: none;
+}
+
 a.darkHomeNewWorkspaceMenuItem {
   color: #009aa4;
   padding-left: 20px;
