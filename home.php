@@ -166,28 +166,37 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 
   <!-- Create New Workspace -->
   <div id = 'createWorkspacePopup' class = '<?php echo $o;?>CreateWorkspacePopup'>
+    <div class = '<?php echo $o;?>CreateWorkspaceHeader'>
+      <h>Create A Workspace</h>
+    </div>
+    <div class = '<?php echo $o;?>CreateWorkspaceMessage'>
+      <p id = 'createWorkspaceMessage' class = '<?php echo $o;?>CreateWorkspaceMessage'></p>
+    </div>
     <form id = 'createNewWorkspaceForm'>
-      <label>
       <input
         type = 'text'
         name = 'newWorkspaceName'
-        id = 'newWorkspaceName'
-        class = 'newWorkspaceName'
+        id = 'newWorkspaceNameTextField'
+        class = '<?php echo $o;?>NewWorkspaceNameTextField'
         placeholder = 'Name of New Workspace'
         autocomplete = 'off'
         required
       />
-      </label>
       <button id = 'createWorkspaceSubmitButton' class = '<?php echo $o;?>CreateWorkspaceSubmitButton'>
         Create
       </button>
     </form>
+    <div>
+      <button onclick = 'cancelCreateWorkspace()' class = '<?php echo $o;?>CancelCreateWorkspaceButton'>
+        Cancel
+      </button>
+    </div>
   </div>
   <script type = 'text/javascript'>
   $('#createNewWorkspaceForm').submit(function (event) {
 
     event.preventDefault();
-    var newWorkspaceName = $('#newWorkspaceName').val();
+    var newWorkspaceName = $('#newWorkspaceNameTextField').val();
 
     $.ajax({
       type: 'POST',
@@ -199,9 +208,16 @@ elseif (time() - $_SESSION['Created'] > 1200) {
       success: function(data) {
 
         var data = eval(data);
-        createWorkspace = data.createWorkspace;
+        message = data.message;
 
-        location.reload();
+        if (message == 'true') {
+
+          location.reload();
+        }
+        else {
+
+          $('#createWorkspaceMessage').show().text("Workspaces cannot start with a number");
+        }
       }
     });
   });
@@ -268,8 +284,9 @@ elseif (time() - $_SESSION['Created'] > 1200) {
         // For each element in $workspaces
         foreach ($workspaces as $key => $value) {
 
-          if ($value != NULL && $key > 0) { ?>
+          if ($value != NULL && $key > 0) {
 
+            $value = ltrim($value, '0123456789'); ?>
             <a class = '<?php echo $o;?>MenuItem' href = "workspace.php"><?php echo $value;?></a>
         <?php
           }
@@ -304,7 +321,11 @@ function workspacesDropDownMenu() {
 
 function createWorkspacePopup() {
   document.getElementById("createWorkspacePopup").classList.toggle(o+"Show");
-  document.getElementById("newWorkspaceName").focus();
+  document.getElementById("newWorkspaceNameTextField").focus();
+}
+
+function cancelCreateWorkspace() {
+  document.getElementById("createWorkspacePopup").classList.toggle(o+"Show");
 }
 
 function accountDropDownMenu() {
@@ -330,11 +351,6 @@ window.onclick = function(event) {
     if (!event.target.matches("."+o+"WorkspacesButton")) {
       document.getElementById("workspacesMenuContent").classList.remove(o+"Show");
       document.getElementById("workspacesButton").classList.remove(o+"Active");
-    }
-  }
-  else if (document.getElementById("createWorkspacePopup").classList.contains(o+"Show")) {
-    if (!event.target.matches("."+o+"CreateWorkspacePopup")) {
-      document.getElementById("createWorkspacePopup").classList.remove(o+"Show");
     }
   }
 }

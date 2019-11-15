@@ -1279,6 +1279,117 @@ a.darkHomeNewWorkspaceMenuItem:hover {
   z-index: 3;
 }
 
+.darkHomeCreateWorkspaceHeader {
+  height: 100px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 30px;
+  margin-left: 100px;
+  padding-top: 100px;
+}
+
+.darkHomeCreateWorkspaceMessage {
+  display: inline-block;
+}
+
+p.darkHomeCreateWorkspaceMessage {
+  margin-left: 150px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 18px;
+}
+
+.darkHomeNewWorkspaceNameTextField {
+  margin-left: 150px;
+  padding: 5px 5px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.darkHomeNewWorkspaceNameTextField::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.darkHomeNewWorkspaceNameTextField:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.darkHomeNewWorkspaceNameTextField::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
+.darkHomeCreateWorkspaceSubmitButton {
+  background-color: #1c1d1f;
+  border-color: rgba(255, 255, 255, 0);
+  margin-left: 15px;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.darkHomeCreateWorkspaceSubmitButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.darkHomeCreateWorkspaceSubmitButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.darkHomeCreateWorkspaceSubmitButton:focus {
+  outline: none;
+}
+
+.darkHomeCancelCreateWorkspaceButton {
+  background-color: #1c1d1f;
+  border-color: rgba(255, 255, 255, 0);
+  float: right;
+  margin-top: 450px;
+  margin-right: 100px;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.darkHomeCancelCreateWorkspaceButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.darkHomeCancelCreateWorkspaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.darkHomeCancelCreateWorkspaceButton:focus {
+  outline: none;
+}
+
 .darkHomeAccountMenuDropDown {
   position: relative;
   float: right;

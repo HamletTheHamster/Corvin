@@ -20,34 +20,44 @@ $userID = $_SESSION["userID"];
 
 if (isset($_POST["newWorkspaceName"])) {
 
-  $newWorkspaceName = $_POST["newWorkspaceName"];
+  if (!is_numeric(substr($_POST["newWorkspaceName"], 0, 1))) {
 
-  $sql = "SELECT * FROM Workspaces WHERE id = '$userID';";
-  $workspaces = mysqli_fetch_row(mysqli_query($conn, $sql));
+    $newWorkspaceName = $userID . $_POST["newWorkspaceName"];
 
-  foreach ($workspaces as $key => $value) {
+    $sql = "SELECT * FROM Workspaces WHERE id = '$userID';";
+    $workspaces = mysqli_fetch_row(mysqli_query($conn, $sql));
 
-    if ($value === NULL && $key > 0) {
+    foreach ($workspaces as $key => $value) {
 
-      $workspaceNumber = "workspace" . $key;
-      $sql = "UPDATE Workspaces SET $workspaceNumber = '$newWorkspaceName' WHERE id = '$userID';";
-      $createWorkspace = mysqli_query($conn, $sql);
+      if ($value === NULL && $key > 0) {
 
-      echo json_encode(array('createWorkspace' => $createWorkspace));
-      exit;
+        $workspaceNumber = "workspace" . $key;
+        $sql = "UPDATE Workspaces SET $workspaceNumber = '$newWorkspaceName' WHERE id = '$userID';";
+        mysqli_query($conn, $sql);
+        $createWorkspace = "true";
+
+        echo json_encode(array('message' => $createWorkspace));
+        exit;
+      }
     }
-    $totalWorkspaces++;
+
+    $workspaceNumber = "workspace" . count($workspaces);
+    $sql = "ALTER TABLE Workspaces ADD $workspaceNumber VARCHAR(100);";
+    mysqli_query($conn, $sql);
+
+    $sql = "UPDATE Workspaces SET $workspaceNumber = '$newWorkspaceName' WHERE id = '$userID';";
+    mysqli_query($conn, $sql);
+    $createWorkspace = "true";
+
+    echo json_encode(array('message' => $createWorkspace));
+    exit;
   }
+  else {
 
-  $workspaceNumber = "workspace" . count($workspaces);
-  $sql = "ALTER TABLE Workspaces ADD $workspaceNumber VARCHAR(100);";
-  mysqli_query($conn, $sql);
-
-  $sql = "UPDATE Workspaces SET $workspaceNumber = '$newWorkspaceName' WHERE id = '$userID';";
-  $createWorkspace = mysqli_query($conn, $sql);
-
-  echo json_encode(array('createWorkspace' => $createWorkspace));
-  exit;
+    $message = "Workspace names cannot start with a number";
+    echo json_encode(array('message' => $message));
+    exit;
+  }
 }
 else if (isset($_POST["joinWorkspace"])) {
 
@@ -56,6 +66,6 @@ else if (isset($_POST["joinWorkspace"])) {
 else {
 
   $message = "no Post Set";
-  echo json_encode(array('createWorkspace' => $message));
+  echo json_encode(array('message' => $message));
   exit;
 }
