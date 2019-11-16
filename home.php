@@ -368,11 +368,15 @@ elseif (time() - $_SESSION['Created'] > 1200) {
       ?>
       <a onclick = 'createWorkspacePopup()' class = '<?php echo $o;?>NewWorkspaceMenuItem'>
           Create A Workspace</a>
-      <a onclick = 'joinWorkspacePopup()' class = '<?php echo $o;?>NewWorkspaceMenuItem'>Join A Workspace</a>
+      <a onclick = 'joinWorkspacePopup()' class = '<?php echo $o;?>NewWorkspaceMenuItem'>
+        Join A Workspace
+      </a>
     </div>
   </div>
   <div class = '<?php echo $o;?>Home'>
-    <p onclick = "window.location.href = 'home.php';" class = '<?php echo $o;?>HomeButton'>Home</p>
+    <p onclick = "window.location.href = 'home.php';" class = '<?php echo $o;?>HomeButton'>
+      Home
+    </p>
   </div>
 </div>
 

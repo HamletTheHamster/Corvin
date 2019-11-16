@@ -110,7 +110,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   $_SESSION['Created'] = time();
 }
 
-if (!isset($_SESSION["currentWorkspace"]) || $_SESSION["currentWorkspace"] != $_POST["workspace"]) {
+if (isset($_POST["workspace"])) {
 
   $thisWorkspace = $_POST["workspace"];
   $thisWorkspaceName = ltrim($thisWorkspace, '0123456789');
@@ -259,6 +259,65 @@ else {
   });
   </script>
 
+  <!-- Join A Workspace -->
+  <div id = 'joinWorkspacePopup' class = '<?php echo $o;?>JoinWorkspacePopup'>
+    <div class = '<?php echo $o;?>JoinWorkspaceHeader'>
+      <h>Join A Workspace</h>
+    </div>
+    <div class = '<?php echo $o;?>JoinWorkspaceMessage'>
+      <p id = 'joinWorkspaceMessage' class = '<?php echo $o;?>JoinWorkspaceMessage'></p>
+    </div>
+    <form id = 'joinWorkspaceForm'>
+      <input
+        type = 'text'
+        name = 'joinWorkspaceName'
+        id = 'joinWorkspaceCodeTextField'
+        class = '<?php echo $o;?>JoinWorkspaceCodeTextField'
+        placeholder = 'Paste Workspace Code Here'
+        autocomplete = 'off'
+        required
+      />
+      <button id = 'joinWorkspaceSubmitButton' class = '<?php echo $o;?>JoinWorkspaceSubmitButton'>
+        Join
+      </button>
+    </form>
+    <div>
+      <button onclick = 'cancelJoinWorkspace()' class = '<?php echo $o;?>CancelJoinWorkspaceButton'>
+        Cancel
+      </button>
+    </div>
+  </div>
+  <script type = 'text/javascript'>
+  $('#joinWorkspaceForm').submit(function (event) {
+
+    event.preventDefault();
+    var joinWorkspaceName = $('#joinWorkspaceCodeTextField').val();
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'JSON',
+      url: 'joinWorkspace.php',
+      data: {
+        joinWorkspaceName: joinWorkspaceName
+      },
+      success: function(data) {
+
+        var data = eval(data);
+        message = data.message;
+
+        if (message == 'true') {
+
+          location.href = 'workspace.php';
+        }
+        else {
+
+          $('#joinWorkspaceMessage').show().text("Invalid Workspace Code");
+        }
+      }
+    });
+  });
+  </script>
+
 <!-- 2 Top Bar -->
 <div class = '<?php echo $o;?>TopBar'>
   <div class = '<?php echo $o;?>Corvin'>
@@ -342,7 +401,7 @@ else {
       <a onclick = 'createWorkspacePopup()' class = '<?php echo $o;?>NewWorkspaceMenuItem'>
           Create A Workspace
       </a>
-      <a class = '<?php echo $o;?>NewWorkspaceMenuItem' href = "">
+      <a onclick = 'joinWorkspacePopup()' class = '<?php echo $o;?>NewWorkspaceMenuItem'>
         Join A Workspace
       </a>
     </div>
@@ -418,6 +477,15 @@ function createWorkspacePopup() {
 
 function cancelCreateWorkspace() {
   document.getElementById("createWorkspacePopup").classList.toggle(o+"Show");
+}
+
+function joinWorkspacePopup() {
+    document.getElementById("joinWorkspacePopup").classList.toggle(o+"Show");
+    document.getElementById("joinWorkspaceCodeTextField").focus();
+}
+
+function cancelJoinWorkspace() {
+  document.getElementById("joinWorkspacePopup").classList.toggle(o+"Show");
 }
 
 // Account
