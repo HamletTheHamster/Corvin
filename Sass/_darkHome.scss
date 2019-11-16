@@ -47,6 +47,135 @@ html.#{$dark}, body.#{$dark} {
     outline: none;
 }
 
+.#{$dark}WorkspaceSettings {
+  position: relative;
+  float: right;
+}
+
+.#{$dark}WorkspaceSettingsMenuDropDown {
+    position: relative;
+    float: right;
+}
+
+.#{$dark}WorkspaceSettingsButton {
+    color: rgb(0, 130, 140);
+    margin-top: 35px;
+    margin-right: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    @include noSelect;
+}
+
+.#{$dark}WorkspaceSettingsButton:hover {
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+}
+
+.#{$dark}WorkspaceSettingsMenuContent {
+    display: none;
+    position: absolute;
+    right: 20px;
+    margin-top: 60px;
+    background-color: rgb(53, 54, 56);
+    min-width: 260px;
+    border-radius: 6px;
+    border-width: thin;
+    border-color: rgba(23, 23, 23, 0.25);
+    z-index: 2;
+}
+
+a.#{$dark}WorkspaceSettingsItem {
+    color: rgb(0, 154, 164);
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    display: block;
+}
+
+a.#{$dark}WorkspaceSettingsItem:hover {
+    color: rgb(0, 154, 164);
+    background-color: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.#{$dark}InviteToWorkspacePopup {
+  display: none;
+  position: absolute;
+  background-color: rgb(53, 54, 56);
+  width: 50%;
+  height: 50vh;
+  margin-left: 25%;
+  margin-top: 25vh;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.15);
+  z-index: 3;
+}
+
+.#{$dark}InviteToWorkspaceHeader {
+  height: 100px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 30px;
+  margin-left: 100px;
+  padding-top: 100px;
+}
+
+.#{$dark}InviteToWorkspaceMessage {
+  display: inline-block;
+}
+
+p.#{$dark}InviteToWorkspaceMessage {
+  margin-left: 150px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 18px;
+}
+
+p.#{$dark}InviteToWorkspaceCode {
+  display: block;
+  margin-left: 150px;
+  padding: 50px 50px;
+  color: rgba(0, 130, 140, 0.85);
+  font-size: 18px;
+}
+
+.#{$dark}DoneInviteToWorkspaceButton {
+  background-color: rgb(28, 29, 31);
+  border-color: rgba(255, 255, 255, 0);
+  float: right;
+  position: fixed;
+  bottom: 30vh;
+  border-width: thin;
+  color: rgb(0, 154, 164);
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.#{$dark}DoneInviteToWorkspaceButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: rgb(0, 130, 140);
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.#{$dark}DoneInviteToWorkspaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: rgb(0, 130, 140);
+  outline: none;
+}
+
+.#{$dark}DoneInviteToWorkspaceButton:focus {
+  outline: none;
+}
+
 .#{$dark}Home {
     position: relative;
     float: right;

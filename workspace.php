@@ -176,6 +176,30 @@ else {
 <body class = '<?php echo $o;?>'>
 <div class = '<?php echo $o;?>Wrapper'>
 
+  <!-- Invite To Workspace -->
+  <div id = 'inviteToWorkspacePopup' class = '<?php echo $o;?>InviteToWorkspacePopup'>
+    <div class = '<?php echo $o;?>InviteToWorkspaceHeader'>
+      <h>Invite People To This Workspace</h>
+    </div>
+    <div class = '<?php echo $o;?>InviteToWorkspace'>
+      <p class = '<?php echo $o;?>InviteToWorkspaceMessage'>
+        Here's the code to join this workspace:
+      </p>
+    </div>
+    <br /><br /><br /><br />
+    <div>
+      <p class = '<?php echo $o;?>InviteToWorkspaceCode'>
+        <?php echo $thisWorkspace;?>
+      </p>
+    </div>
+    <br /><br />
+    <div>
+      <button onclick = 'doneInviteToWorkspace()' class = '<?php echo $o;?>DoneInviteToWorkspaceButton'>
+        Done
+      </button>
+    </div>
+  </div>
+
   <!-- Create New Workspace -->
   <div id = 'createWorkspacePopup' class = '<?php echo $o;?>CreateWorkspacePopup'>
     <div class = '<?php echo $o;?>CreateWorkspaceHeader'>
@@ -316,16 +340,62 @@ else {
       }
       ?>
       <a onclick = 'createWorkspacePopup()' class = '<?php echo $o;?>NewWorkspaceMenuItem'>
-          Create A Workspace</a>
-      <a class = '<?php echo $o;?>NewWorkspaceMenuItem' href = "">Join A Workspace</a>
+          Create A Workspace
+      </a>
+      <a class = '<?php echo $o;?>NewWorkspaceMenuItem' href = "">
+        Join A Workspace
+      </a>
     </div>
   </div>
   <div class = '<?php echo $o;?>Home'>
-    <p onclick = "window.location.href = 'home.php';" class = '<?php echo $o;?>HomeButton'>Home</p>
+    <p onclick = "window.location.href = 'home.php';" class = '<?php echo $o;?>HomeButton'>
+      Home
+    </p>
+  </div>
+  <div class = '<?php echo $o;?>WorkspaceSettings'>
+    <p
+      onclick = "workspaceSettingsDropDownMenu()"
+      class = '<?php echo $o;?>WorkspaceSettingsButton'
+      id = "workspaceSettingsButton"
+    >
+    <?php echo $thisWorkspaceName;?> Settings
+    </p>
+    <div id = "workspaceSettingsMenuContent" class = '<?php echo $o;?>WorkspaceSettingsMenuContent'>
+      <a onclick = 'inviteToWorkspacePopup()' class = '<?php echo $o;?>WorkspaceSettingsItem'>
+        Invite To This Workspace
+      </a>
+      <a class = '<?php echo $o;?>WorkspaceSettingsItem'>
+        Workspace Settings
+      </a>
+    </div>
   </div>
 </div>
 
 <script>
+// Workspace Settings
+function workspaceSettingsDropDownMenu() {
+  if (document.getElementById("workspaceSettingsMenuContent").classList.contains(o+"Show")) {
+    document.getElementById("workspaceSettingsButton").classList.remove(o+"Active");
+  }
+  else {
+    document.getElementById("workspaceSettingsButton").classList.add(o+"Active");
+    document.getElementById("workspacesMenuContent").classList.remove(o+"Show");
+    document.getElementById("workspacesButton").classList.remove(o+"Active");
+    document.getElementById("accountMenuContent").classList.remove(o+"Show");
+    document.getElementById("accountButton").classList.remove(o+"Active");
+
+  }
+  document.getElementById("workspaceSettingsMenuContent").classList.toggle(o+"Show");
+}
+
+function inviteToWorkspacePopup() {
+  document.getElementById("inviteToWorkspacePopup").classList.toggle(o+"Show");
+}
+
+function doneInviteToWorkspace() {
+  document.getElementById("inviteToWorkspacePopup").classList.toggle(o+"Show");
+}
+
 // Workspaces
 function workspacesDropDownMenu() {
   if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {
@@ -333,6 +403,8 @@ function workspacesDropDownMenu() {
   }
   else {
     document.getElementById("workspacesButton").classList.add(o+"Active");
+    document.getElementById("workspaceSettingsMenuContent").classList.remove(o+"Show");
+    document.getElementById("workspaceSettingsButton").classList.remove(o+"Active");
     document.getElementById("accountMenuContent").classList.remove(o+"Show");
     document.getElementById("accountButton").classList.remove(o+"Active");
   }
@@ -355,6 +427,8 @@ function accountDropDownMenu() {
   }
   else {
     document.getElementById("accountButton").classList.add(o+"Active");
+    document.getElementById("workspaceSettingsMenuContent").classList.remove(o+"Show");
+    document.getElementById("workspaceSettingsButton").classList.remove(o+"Active");
     document.getElementById("workspacesMenuContent").classList.remove(o+"Show");
     document.getElementById("workspacesButton").classList.remove(o+"Active");
   }
@@ -373,6 +447,12 @@ window.onclick = function(event) {
     if (!event.target.matches("."+o+"WorkspacesButton")) {
       document.getElementById("workspacesMenuContent").classList.remove(o+"Show");
       document.getElementById("workspacesButton").classList.remove(o+"Active");
+    }
+  }
+  else if (document.getElementById("workspaceSettingsMenuContent").classList.contains(o+"Show")) {
+    if (!event.target.matches("."+o+"WorkspaceSettingsButton")) {
+      document.getElementById("workspaceSettingsMenuContent").classList.remove(o+"Show");
+      document.getElementById("workspaceSettingsButton").classList.remove(o+"Active");
     }
   }
 }

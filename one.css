@@ -1180,6 +1180,140 @@ html.darkHome, body.darkHome {
   outline: none;
 }
 
+.darkHomeWorkspaceSettings {
+  position: relative;
+  float: right;
+}
+
+.darkHomeWorkspaceSettingsMenuDropDown {
+  position: relative;
+  float: right;
+}
+
+.darkHomeWorkspaceSettingsButton {
+  color: #00828c;
+  margin-top: 35px;
+  margin-right: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.darkHomeWorkspaceSettingsButton:hover {
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+
+.darkHomeWorkspaceSettingsMenuContent {
+  display: none;
+  position: absolute;
+  right: 20px;
+  margin-top: 60px;
+  background-color: #353638;
+  min-width: 260px;
+  border-radius: 6px;
+  border-width: thin;
+  border-color: rgba(23, 23, 23, 0.25);
+  z-index: 2;
+}
+
+a.darkHomeWorkspaceSettingsItem {
+  color: #009aa4;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block;
+}
+
+a.darkHomeWorkspaceSettingsItem:hover {
+  color: #009aa4;
+  background-color: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.darkHomeInviteToWorkspacePopup {
+  display: none;
+  position: absolute;
+  background-color: #353638;
+  width: 50%;
+  height: 50vh;
+  margin-left: 25%;
+  margin-top: 25vh;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.15);
+  z-index: 3;
+}
+
+.darkHomeInviteToWorkspaceHeader {
+  height: 100px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 30px;
+  margin-left: 100px;
+  padding-top: 100px;
+}
+
+.darkHomeInviteToWorkspaceMessage {
+  display: inline-block;
+}
+
+p.darkHomeInviteToWorkspaceMessage {
+  margin-left: 150px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 18px;
+}
+
+p.darkHomeInviteToWorkspaceCode {
+  display: block;
+  margin-left: 150px;
+  padding: 50px 50px;
+  color: rgba(0, 130, 140, 0.85);
+  font-size: 18px;
+}
+
+.darkHomeDoneInviteToWorkspaceButton {
+  background-color: #1c1d1f;
+  border-color: rgba(255, 255, 255, 0);
+  float: right;
+  position: fixed;
+  bottom: 30vh;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.darkHomeDoneInviteToWorkspaceButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.darkHomeDoneInviteToWorkspaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.darkHomeDoneInviteToWorkspaceButton:focus {
+  outline: none;
+}
+
 .darkHomeHome {
   position: relative;
   float: right;
@@ -1929,316 +2063,6 @@ a.darkHomeFileNames {
 a {
   text-decoration: none;
   color: #000000;
-}
-
-/* _recycleBin Coded by: Joel N. Johnson */
-html.recycleBin, body.recycleBin {
-  background-color: #fefefe;
-  height: 100%;
-  margin: 0;
-  font-family: "Square Market", Helvetica, sans-serif;
-  color: rgba(23, 23, 23, 0.85);
-}
-
-.recycleBinWrapper {
-  min-height: calc(100% - 20px);
-  height: auto;
-}
-
-.recycleBinTopBar {
-  margin-bottom: 200px;
-  width: 100%;
-  height: 85px;
-}
-
-.recycleBinCorvin {
-  float: left;
-  width: 94%;
-}
-
-.recycleBinCorvinHeader {
-  color: rgba(23, 23, 23, 0.85);
-  font-family: "Square Market", Helvetica, sans-serif;
-  margin-top: 30px;
-  margin-left: 35px;
-  line-height: 0.5em;
-  font-weight: 600;
-  font-size: 50px;
-  display: inline-block;
-}
-
-.recycleBinCorvinHeader:hover {
-  color: #00828c;
-  cursor: pointer;
-}
-
-.recycleBinCorvinHeader:active {
-  /*text-shadow: 1px 1px 4px rgba(0,0,0,0.4);*/
-}
-
-.recycleBinCorvinHeader:focus {
-  outline: none;
-  text-shadow: none;
-}
-
-.recycleBinAccountMenuDropDown {
-  position: absolute;
-  display: inline-block;
-  float: right;
-}
-
-p.recycleBinAccountButton {
-  color: rgba(23, 23, 23, 0.85);
-  text-align: right;
-  margin-right: 35px;
-  margin-top: 35px;
-  font-size: 18px;
-  font-weight: 700;
-  float: right;
-  display: inline-block;
-}
-
-p.recycleBinAccountButton:hover {
-  color: #00828c;
-  cursor: pointer;
-}
-
-.recycleBinAccountMenuContent {
-  display: none;
-  position: absolute;
-  right: 20px;
-  margin-top: 60px;
-  background-color: #fefefe;
-  min-width: 260px;
-  border-radius: 6px;
-  border-width: thin;
-  border-color: rgba(23, 23, 23, 0.25);
-  box-shadow: 0 2px 4px 0 rgba(23, 23, 23, 0.1);
-  z-index: 2;
-}
-
-a.recycleBinAccountMenuContent {
-  color: rgba(23, 23, 23, 0.85);
-  margin-right: 35px;
-  font-size: 18px;
-  font-weight: 700;
-  display: block;
-}
-
-a.recycleBinAccountMenuContent:hover {
-  color: #00828c;
-  background-color: rgba(0, 130, 140, 0.06);
-  cursor: pointer;
-}
-
-.recycleBinTopAccountMenuContent {
-  height: 150px;
-}
-
-.recycleBinAccountMenuName {
-  color: rgba(23, 23, 23, 0.85);
-  float: right;
-  padding-right: 20px;
-  text-align: right;
-  font-size: 18px;
-}
-
-.recycleBinDiskSpace {
-  text-align: right;
-  padding-right: 20px;
-  margin-top: 50px;
-}
-
-p.recycleBinDiskSpace {
-  font-size: 16px;
-  font-family: "Square Market", Helvetica, sans-serif;
-}
-
-.recycleBinMenuLine {
-  margin: 35px 10px;
-}
-
-hr.recycleBinMenuLine {
-  color: rgba(23, 23, 23, 0.25);
-}
-
-a.recycleBinGetMoreSpaceMenuItem {
-  color: #009aa4;
-  padding-left: 20px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  font-size: 18px;
-  display: block;
-}
-
-a.recycleBinGetMoreSpaceMenuItem:hover {
-  color: #009aa4;
-  background-color: rgba(0, 130, 140, 0.06);
-  cursor: pointer;
-}
-
-a.recycleBinMenuItem {
-  color: rgba(23, 23, 23, 0.85);
-  padding-left: 20px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  font-size: 18px;
-  display: block;
-}
-
-a.recycleBinMenuItem:hover {
-  color: #009aa4;
-  background-color: rgba(0, 130, 140, 0.06);
-  cursor: pointer;
-}
-
-.recycleBinShow {
-  display: block;
-}
-
-.recycleBinMainContent {
-  padding-left: 12.5%;
-  padding-right: 12.5%;
-  z-index: 1;
-}
-
-.recycleBinRecentlyDeletedItems {
-  background-color: rgba(51, 204, 255, 0);
-  border-color: rgba(23, 23, 23, 0.25);
-  border-width: thin;
-  color: #009aa4;
-  font-family: "Square Market", Helvetica, sans-serif;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 18px;
-  float: left;
-  padding: 6px 12px;
-  border-radius: 4px;
-  margin-right: 5px;
-  vertical-align: middle;
-  position: relative;
-}
-
-.recycleBinRecentlyDeletedItems:hover {
-  background-color: rgba(0, 130, 140, 0.06);
-  color: #00828c;
-  cursor: pointer;
-}
-
-.recycleBinRecentlyDeletedItems:active {
-  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
-  border-color: #00828c;
-  transition: 250ms;
-}
-
-.recycleBinRecentlyDeletedItems:focus {
-  outline: none;
-}
-
-.recycleBinDirectoryPath {
-  font-size: 30px;
-}
-
-p, a.recycleBinDirectoryPath {
-  float: left;
-  color: rgba(23, 23, 23, 0.85);
-}
-
-.recycleBinDirectory {
-  width: 90%;
-  margin-left: 5%;
-  border-radius: 10px;
-}
-
-.recycleBinFileNames {
-  max-width: 85%;
-  float: left;
-  font-size: 20px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.recycleBinFolders {
-  float: left;
-}
-
-a.recycleBinFileNames {
-  text-decoration: none;
-  color: #000000;
-}
-
-.recycleBinDownloadButtonForm {
-  float: left;
-  margin-left: 5px;
-  position: relative;
-}
-
-.recycleBinRenameButtonForm {
-  position: relative;
-  margin-left: 3px;
-  float: left;
-}
-
-.recycleBinDownloadButton {
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  width: 14px;
-  border: none;
-  display: inline-block;
-  padding: 1px 1px;
-  background: transparent;
-  border-radius: 4px;
-  margin-bottom: 2px;
-  margin-right: 5px;
-  vertical-align: middle;
-  position: relative;
-}
-
-.recycleBinDownloadButton:hover {
-  -webkit-filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.4));
-  cursor: pointer;
-}
-
-.recycleBinDownloadButton:focus {
-  box-shadow: none;
-  outline: none;
-}
-
-.recycleBinDownloadButton:active {
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-  outline: none;
-}
-
-.recycleBinFileNames:hover .recycleBinDownloadButton {
-  opacity: 1;
-}
-
-.recycleBinFileSizes {
-  float: right;
-  font-size: 20px;
-}
-
-.recycleBinHeath {
-  background-color: rgba(240, 240, 240, 0.5);
-  border-radius: 2px;
-  font-size: 20px;
-  margin-top: 5px;
-}
-
-.recycleBinFiles {
-  float: left;
-}
-
-.recycleBinFooter, .recycleBinPush {
-  height: 20px;
-}
-
-.recycleBinFooter {
-  font-family: "Square Market", Helvetica, sans-serif;
-  font-size: 15px;
-  text-align: center;
 }
 
 /* _lightSettings Coded by: Joel N. Johnson */
