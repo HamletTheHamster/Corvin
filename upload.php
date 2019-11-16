@@ -136,7 +136,7 @@ if (isset($_SESSION["currentWorkspace"])) {
 
   // 2 Upload Function
 
-  $freeBytes = $_POST["freeBytes"];
+  $workspaceFreeBytes = $_POST["workspaceFreeBytes"];
 
   $destination = "../../../../mnt/Raid1Array/Corvin/000 - Workspaces/" . $workspace .
     "/" . $currentPathString;
@@ -161,7 +161,7 @@ if (isset($_SESSION["currentWorkspace"])) {
         // Find size of file to upload
         $fileToUploadBytes = $_FILES["filesToUpload"]["size"][$key];
 
-        if ($fileToUploadBytes < $freeBytes) {
+        if ($fileToUploadBytes < $workspaceFreeBytes) {
           $zip = new ZipArchive;
           if (
             substr($name, -4) != "docx" &&
@@ -246,28 +246,6 @@ else {
   $userPage = "home.php";
   $queryArray = explode("/", substr($currentPathString, 0, -1));
   $returnURL = $userPage . "?" . http_build_query($queryArray, '');
-
-  // 2 Upload Function
-  function returnButton($returnURLParam) {
-    echo "<br /><br />";
-    $returnPage = "home.php?" . http_build_query($returnURLParam);
-    echo "
-    <form method = 'get' action = '" . $returnPage . "' />
-      <button type = 'submit'>Return</button>
-    </form>";
-  }
-
-  // This outputs the maximum uploadable file size. To change, edit php.ini file.
-  /*
-  echo ini_get('upload_max_filesize') . '<br />' .
-          ini_get('post_max_size') . '<br />';
-  */
-
-  // Display any errors
-  ini_set('display_errors', 1);
-
-  // And be verbose about it
-  error_reporting(E_ALL);
 
   $freeBytes = $_POST["freeBytes"];
 

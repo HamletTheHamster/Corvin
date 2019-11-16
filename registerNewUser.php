@@ -129,7 +129,7 @@ if (!mysqli_query($conn, $sql)) {
   exit;
 }
 
-// Creat Workspaces table if not exists
+// Create Workspaces table if not exists
 $sql = "CREATE TABLE IF NOT EXISTS Workspaces (
   id INT(9) UNSIGNED PRIMARY KEY,
   workspace1 VARCHAR(100));
@@ -138,6 +138,18 @@ $sql = "CREATE TABLE IF NOT EXISTS Workspaces (
 if (!mysqli_query($conn, $sql)) {
 
   $registerUser = "Error creating Workspaces table: " . mysqli_error($conn);
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
+}
+
+// Create WorkspaceSettings table if not exists
+$sql = "CREATE TABLE IF NOT EXISTS WorkspaceSettings (
+  workspace VARCHAR(100),
+  storageSpaceInMegabytes INT(255) UNSIGNED);
+";
+
+if (!mysqli_query($conn, $sql)) {
+  $registerUser = "Error creating WorkspaceSettings table: " . mysqli_error($conn);
   echo json_encode(array('registerUser' => $registerUser));
   exit;
 }

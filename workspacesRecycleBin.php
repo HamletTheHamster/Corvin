@@ -239,7 +239,7 @@ elseif ($darkmodeSetting[0] == 0) {
 
         if (message == 'true') {
 
-          location.reload();
+          location.href = "workspace.php";
         }
         else {
 

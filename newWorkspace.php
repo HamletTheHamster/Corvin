@@ -23,6 +23,7 @@ if (isset($_POST["newWorkspaceName"])) {
   if (!is_numeric(substr($_POST["newWorkspaceName"], 0, 1))) {
 
     $newWorkspaceName = $userID . $_POST["newWorkspaceName"];
+    $_SESSION["currentWorkspace"] = $newWorkspaceName;
 
     // Create workspace folder and recycle folder
     $workspaceFolderFullPath = "../../../mnt/Raid1Array/Corvin/000 - Workspaces/" .
@@ -48,7 +49,18 @@ if (isset($_POST["newWorkspaceName"])) {
       exit;
     }
 
-    // Add workspace to mysql Workspaces table
+    // Add workspace to WorkspaceSettings table
+    $storageSpaceInMegabytes = 250;
+    $sql = "INSERT INTO WorkspaceSettings (
+      workspace,
+      storageSpaceInMegabytes)
+      VALUES (
+      '$newWorkspaceName',
+      '$storageSpaceInMegabytes');
+    ";
+    mysqli_query($conn, $sql);
+
+    // Add workspace to Workspaces table
     $sql = "SELECT * FROM Workspaces WHERE id = '$userID';";
     $workspaces = mysqli_fetch_row(mysqli_query($conn, $sql));
 
@@ -59,6 +71,7 @@ if (isset($_POST["newWorkspaceName"])) {
         $workspaceNumber = "workspace" . $key;
         $sql = "UPDATE Workspaces SET $workspaceNumber = '$newWorkspaceName' WHERE id = '$userID';";
         mysqli_query($conn, $sql);
+
         $createWorkspace = "true";
 
         echo json_encode(array('message' => $createWorkspace));
