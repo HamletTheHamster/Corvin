@@ -138,112 +138,275 @@ elseif (time() - $_SESSION['Created'] > 1200)
 <body class = <?php echo "'".$o."'";?>>
 <div id = 'wrapper' class = <?php echo "'".$o."Wrapper'";?>>
 
-  <!-- 2 Top Bar -->
-  <div class = <?php echo "'".$o."TopBar'";?>>
-    <div class = <?php echo "'".$o."Corvin'";?>>
-      <a href = "home.php">
-        <h class = <?php echo "'".$o."CorvinHeader'";?> id = "corvinHeader">C</h>
-      </a>
+  <!-- Create New Workspace -->
+  <div id = 'createWorkspacePopup' class = '<?php echo $o;?>CreateWorkspacePopup'>
+    <div class = '<?php echo $o;?>CreateWorkspaceHeader'>
+      <h>Create A Workspace</h>
     </div>
-    <div class = <?php echo "'".$o."AccountMenuDropDown'";?>>
-      <p onclick = "accountDropDownMenu()" class = <?php echo "'".$o."AccountButton'";?> id = "accountButton">Account</p>
-      <div id = "accountMenuContent" class = <?php echo "'".$o."AccountMenuContent'";?>>
-        <div class = <?php echo "'".$o."TopAccountMenuContent'";?>>
-          <?php
-          echo "<p id = 'accountMenuName' class = '".$o."AccountMenuName'>" . $user[0] . " " . $user[1] . "</p>";
-
-          include "humanSize.php";
-          include "folderSize.php";
-
-          $usedBytes = folderSize("../../../../mnt/Raid1Array/Corvin/" .
-            $userID . " - " . $user[0] . $user[1]);
-
-          $sql = "SELECT storageSpaceInMegabytes FROM UserInfo WHERE id = '" .
-            $userID . "'";
-          $storageSpaceInMegabytes = mysqli_fetch_row(mysqli_query($conn, $sql));
-
-          if ($storageSpaceInMegabytes[0] == "-1") {
-            $freeBytes = disk_free_space("../../../../mnt/Raid1Array/Corvin");
-
-            echo "<p id = 'diskSpace' class = '".$o."DiskSpaceUnlimited'>" . humanSize($usedBytes) .  " used of " .
-              humanSize($freeBytes) . " (Unlimited)</p>";
-          }
-          else {
-            $totalBytes = $storageSpaceInMegabytes[0] * 1000000;
-            $freeBytes = $totalBytes - $usedBytes;
-
-            echo "<p id = 'diskSpace' class = '".$o."DiskSpace'>" . humanSize($usedBytes) .
-              " used of " . humanSize($totalBytes) . "</p>";
-          }
-          ?>
-        </div>
-        <br><div id = 'accountMenuHeath' class = <?php echo "'".$o."AccountMenuHeath'";?>><br></div>
-        <div class = <?php echo "'".$o."BottomAccountMenuContent'";?>>
-          <a class = <?php echo "'".$o."GetMoreSpaceMenuItem'";?> href = "getMoreSpace.php">
-            Get More Space</a>
-          <a id = 'settings' class = <?php echo "'".$o."MenuItem'";?>>Settings</a>
-          <a id = 'help' class = <?php echo "'".$o."MenuItem'";?> href = "help.php">Help</a>
-          <a id = 'logout' class = <?php echo "'".$o."MenuItem'";?> href = "logout.php">Log Out</a>
-        </div>
-      </div>
+    <div class = '<?php echo $o;?>CreateWorkspaceMessage'>
+      <p id = 'createWorkspaceMessage' class = '<?php echo $o;?>CreateWorkspaceMessage'></p>
     </div>
-    <div class = <?php echo "'".$o."WorkspacesMenuDropDown'";?>>
-      <p onclick = "workspacesDropDownMenu()" class = <?php echo "'".$o."WorkspacesButton'";?> id = "workspacesButton">Workspaces</p>
-      <div id = "workspacesMenuContent" class = <?php echo "'".$o."WorkspacesMenuContent'";?>>
-        <a class = <?php echo "'".$o."CreateANewWorkspaceMenuItem'";?> href = "newWorkspace.php">
-            Create A New Workspace</a>
-        <div id = 'workspacesMenuHeath' class = <?php echo "'".$o."WorkspacesMenuHeath'";?>></div>
-        <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 1</a>
-        <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 2</a>
-        <a class = <?php echo "'".$o."MenuItem'";?> href = "workspace.php">Example Workspace 3</a>
-      </div>
-    </div>
-    <div class = <?php echo "'".$o."Home'";?>>
-      <p onclick = "window.location.href = 'home.php';" class = <?php echo "'".$o."HomeButton'";?> id = "homeButton">Home</p>
+    <form id = 'createNewWorkspaceForm'>
+      <input
+        type = 'text'
+        name = 'newWorkspaceName'
+        id = 'newWorkspaceNameTextField'
+        class = '<?php echo $o;?>NewWorkspaceNameTextField'
+        placeholder = 'Name of New Workspace'
+        autocomplete = 'off'
+        required
+      />
+      <button id = 'createWorkspaceSubmitButton' class = '<?php echo $o;?>CreateWorkspaceSubmitButton'>
+        Create
+      </button>
+    </form>
+    <div>
+      <button onclick = 'cancelCreateWorkspace()' class = '<?php echo $o;?>CancelCreateWorkspaceButton'>
+        Cancel
+      </button>
     </div>
   </div>
+  <script type = 'text/javascript'>
+  $('#createNewWorkspaceForm').submit(function (event) {
 
-  <script>
+    event.preventDefault();
+    var newWorkspaceName = $('#newWorkspaceNameTextField').val();
 
-  function workspacesDropDownMenu() {
-    if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {
-      document.getElementById("workspacesButton").classList.remove(o+"Active");
-    }
-    else {
-      document.getElementById("workspacesButton").classList.add(o+"Active");
+    $.ajax({
+      type: 'POST',
+      dataType: 'JSON',
+      url: 'newWorkspace.php',
+      data: {
+        newWorkspaceName: newWorkspaceName
+      },
+      success: function(data) {
+
+        var data = eval(data);
+        message = data.message;
+
+        if (message == 'true') {
+
+          location.reload();
+        }
+        else {
+
+          $('#createWorkspaceMessage').show().text("Workspaces cannot start with a number");
+        }
+      }
+    });
+  });
+  </script>
+
+  <!-- Join A Workspace -->
+  <div id = 'joinWorkspacePopup' class = '<?php echo $o;?>JoinWorkspacePopup'>
+    <div class = '<?php echo $o;?>JoinWorkspaceHeader'>
+      <h>Join A Workspace</h>
+    </div>
+    <div class = '<?php echo $o;?>JoinWorkspaceMessage'>
+      <p id = 'joinWorkspaceMessage' class = '<?php echo $o;?>JoinWorkspaceMessage'></p>
+    </div>
+    <form id = 'joinWorkspaceForm'>
+      <input
+        type = 'text'
+        name = 'joinWorkspaceName'
+        id = 'joinWorkspaceCodeTextField'
+        class = '<?php echo $o;?>JoinWorkspaceCodeTextField'
+        placeholder = 'Paste Workspace Code Here'
+        autocomplete = 'off'
+        required
+      />
+      <button id = 'joinWorkspaceSubmitButton' class = '<?php echo $o;?>JoinWorkspaceSubmitButton'>
+        Join
+      </button>
+    </form>
+    <div>
+      <button onclick = 'cancelJoinWorkspace()' class = '<?php echo $o;?>CancelJoinWorkspaceButton'>
+        Cancel
+      </button>
+    </div>
+  </div>
+  <script type = 'text/javascript'>
+  $('#joinWorkspaceForm').submit(function (event) {
+
+    event.preventDefault();
+    var joinWorkspaceName = $('#joinWorkspaceCodeTextField').val();
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'JSON',
+      url: 'joinWorkspace.php',
+      data: {
+        joinWorkspaceName: joinWorkspaceName
+      },
+      success: function(data) {
+
+        var data = eval(data);
+        message = data.message;
+
+        if (message == 'true') {
+
+          location.href = 'workspace.php';
+        }
+        else {
+
+          $('#joinWorkspaceMessage').show().text("Invalid Workspace Code");
+        }
+      }
+    });
+  });
+  </script>
+
+<!-- 2 Top Bar -->
+<div class = '<?php echo $o;?>TopBar'>
+  <div class = '<?php echo $o;?>Corvin'>
+    <a href = 'home.php'>
+      <h class = '<?php echo $o;?>CorvinHeader'>C</h>
+    </a>
+  </div>
+  <div class = '<?php echo $o;?>AccountMenuDropDown'>
+    <p onclick = "accountDropDownMenu()" class = '<?php echo $o;?>AccountButton' id = "accountButton">Account</p>
+    <div id = "accountMenuContent" class = '<?php echo $o;?>AccountMenuContent'>
+      <div class = '<?php echo $o;?>TopAccountMenuContent'>
+        <?php
+        echo "<p class = '".$o."AccountMenuName'>" . $user[0] . " " . $user[1] . "</p>";
+
+        include "humanSize.php";
+        include "folderSize.php";
+
+        $usedBytes = folderSize("../../../../mnt/Raid1Array/Corvin/" .
+          $userID . " - " . $user[0] . $user[1]);
+
+        $sql = "SELECT storageSpaceInMegabytes FROM UserInfo WHERE id = '" .
+          $userID . "'";
+        $storageSpaceInMegabytes = mysqli_fetch_row(mysqli_query($conn, $sql));
+
+        if ($storageSpaceInMegabytes[0] == "-1") {
+          $freeBytes = disk_free_space("../../../../mnt/Raid1Array/Corvin");
+
+          echo "<p class = '".$o."DiskSpaceUnlimited'>" . humanSize($usedBytes) .  " used of " .
+            humanSize($freeBytes) . " (Unlimited)</p>";
+        }
+        else {
+          $totalBytes = $storageSpaceInMegabytes[0] * 1000000;
+          $freeBytes = $totalBytes - $usedBytes;
+
+          echo "<p class = '".$o."DiskSpace'>" . humanSize($usedBytes) .
+            " used of " . humanSize($totalBytes) . "</p>";
+        }
+        ?>
+      </div><!--TopAccountMenuContent-->
+      <br><div class = '<?php echo $o;?>AccountMenuHeath'><br></div>
+      <div class = '<?php echo $o;?>BottomAccountMenuContent'>
+        <a class = '<?php echo $o;?>GetMoreSpaceMenuItem' href = "getMoreSpace.php">Get More Space</a>
+        <a class = '<?php echo $o;?>MenuItem' href = "settings.php">Settings</a>
+        <a class = '<?php echo $o;?>MenuItem' href = "help.php">Help</a>
+        <a class = '<?php echo $o;?>MenuItem' href = "logout.php">Log Out</a>
+      </div>
+    </div>
+  </div>
+  <div class = '<?php echo $o;?>WorkspacesMenuDropDown'>
+    <p onclick = "workspacesDropDownMenu()" class = '<?php echo $o;?>WorkspacesButton' id = "workspacesButton">Workspaces</p>
+    <div id = "workspacesMenuContent" class = '<?php echo $o;?>WorkspacesMenuContent'>
+      <?php
+      // Get user's row from Workspaces as an array
+      $sql = "SELECT * FROM Workspaces WHERE id = '$userID';";
+      $workspaces = mysqli_fetch_row(mysqli_query($conn, $sql));
+
+      if ($workspaces[1] != NULL) {
+
+        // For each element in $workspaces
+        foreach ($workspaces as $key => $value) {
+
+          if ($value != NULL && $key > 0) {
+
+            $workspaceName = ltrim($value, '0123456789'); ?>
+            <form action = 'workspace.php' method = 'post' enctype = 'multipart/form-data'>
+              <input type = 'hidden' name = 'workspace' value = '<?php echo $value;?>' />
+              <input
+                type = 'submit'
+                value = '<?php echo $workspaceName;?>'
+                class = '<?php echo $o;?>Workspace'
+              />
+            </form>
+        <?php
+          }
+        }
+        ?>
+        <div class = '<?php echo $o;?>WorkspacesMenuHeath'></div>
+      <?php
+      }
+      ?>
+      <a onclick = 'createWorkspacePopup()' class = '<?php echo $o;?>NewWorkspaceMenuItem'>
+          Create A Workspace</a>
+      <a onclick = 'joinWorkspacePopup()' class = '<?php echo $o;?>NewWorkspaceMenuItem'>Join A Workspace</a>
+    </div>
+  </div>
+  <div class = '<?php echo $o;?>Home'>
+    <p onclick = "window.location.href = 'home.php';" class = '<?php echo $o;?>HomeButton'>Home</p>
+  </div>
+</div>
+
+<script>
+// Workspaces
+function workspacesDropDownMenu() {
+  if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {
+    document.getElementById("workspacesButton").classList.remove(o+"Active");
+  }
+  else {
+    document.getElementById("workspacesButton").classList.add(o+"Active");
+    document.getElementById("accountMenuContent").classList.remove(o+"Show");
+    document.getElementById("accountButton").classList.remove(o+"Active");
+  }
+  document.getElementById("workspacesMenuContent").classList.toggle(o+"Show");
+}
+
+function createWorkspacePopup() {
+  document.getElementById("createWorkspacePopup").classList.toggle(o+"Show");
+  document.getElementById("newWorkspaceNameTextField").focus();
+}
+
+function cancelCreateWorkspace() {
+  document.getElementById("createWorkspacePopup").classList.toggle(o+"Show");
+}
+
+function joinWorkspacePopup() {
+    document.getElementById("joinWorkspacePopup").classList.toggle(o+"Show");
+    document.getElementById("joinWorkspaceCodeTextField").focus();
+}
+
+function cancelJoinWorkspace() {
+  document.getElementById("joinWorkspacePopup").classList.toggle(o+"Show");
+}
+
+// Account
+function accountDropDownMenu() {
+  if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
+    document.getElementById("accountButton").classList.remove(o+"Active");
+  }
+  else {
+    document.getElementById("accountButton").classList.add(o+"Active");
+    document.getElementById("workspacesMenuContent").classList.remove(o+"Show");
+    document.getElementById("workspacesButton").classList.remove(o+"Active");
+  }
+  document.getElementById("accountMenuContent").classList.toggle(o+"Show");
+}
+
+// Click Off
+window.onclick = function(event) {
+  if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
+    if (!event.target.matches("."+o+"AccountButton")) {
       document.getElementById("accountMenuContent").classList.remove(o+"Show");
       document.getElementById("accountButton").classList.remove(o+"Active");
     }
-    document.getElementById("workspacesMenuContent").classList.toggle(o+"Show");
   }
-
-  function accountDropDownMenu() {
-    if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
-      document.getElementById("accountButton").classList.remove(o+"Active");
-    }
-    else {
-      document.getElementById("accountButton").classList.add(o+"Active");
+  else if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {
+    if (!event.target.matches("."+o+"WorkspacesButton")) {
       document.getElementById("workspacesMenuContent").classList.remove(o+"Show");
       document.getElementById("workspacesButton").classList.remove(o+"Active");
     }
-    document.getElementById("accountMenuContent").classList.toggle(o+"Show");
   }
-
-  window.onclick = function(event) {
-    if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
-      if (!event.target.matches("."+o+"AccountButton")) {
-        document.getElementById("accountMenuContent").classList.remove(o+"Show");
-        document.getElementById("accountButton").classList.remove(o+"Active");
-      }
-    }
-    else if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {
-      if (!event.target.matches("."+o+"WorkspacesButton")) {
-        document.getElementById("workspacesMenuContent").classList.remove(o+"Show");
-        document.getElementById("workspacesButton").classList.remove(o+"Active");
-      }
-    }
-  }
-  </script>
+}
+</script>
 
   <!-- 5 Main Content -->
   <div  id = 'mainContent' class = <?php echo "'".$o."MainContent'";?>>
