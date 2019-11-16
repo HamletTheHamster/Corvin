@@ -402,6 +402,134 @@ p.#{$dark}CreateWorkspaceMessage {
   outline: none;
 }
 
+.#{$dark}JoinWorkspacePopup {
+  display: none;
+  position: absolute;
+  background-color: rgb(53, 54, 56);
+  width: 75%;
+  height: 75vh;
+  margin-left: 12.5%;
+  margin-top: 12.5vh;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.15);
+  z-index: 3;
+}
+
+.#{$dark}JoinWorkspaceHeader {
+  height: 100px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 30px;
+  margin-left: 100px;
+  padding-top: 100px;
+}
+
+.#{$dark}JoinWorkspaceMessage {
+  display: inline-block;
+}
+
+p.#{$dark}JoinWorkspaceMessage {
+  margin-left: 150px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 18px;
+}
+
+.#{$dark}JoinWorkspaceCodeTextField {
+  margin-left: 150px;
+  padding: 5px 5px;
+  width: 350px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.#{$dark}JoinWorkspaceCodeTextField::placeholder {
+  color: rgba(255, 255, 255, .5);
+}
+
+.#{$dark}JoinWorkspaceCodeTextField:focus {
+    outline: none;
+    border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$dark}JoinWorkspaceCodeTextField::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
+.#{$dark}JoinWorkspaceSubmitButton {
+  background-color: rgb(28, 29, 31);
+  border-color: rgba(255, 255, 255, 0);
+  margin-left: 15px;
+  border-width: thin;
+  color: rgb(0, 154, 164);
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.#{$dark}JoinWorkspaceSubmitButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: rgb(0, 130, 140);
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.#{$dark}JoinWorkspaceSubmitButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: rgb(0, 130, 140);
+  outline: none;
+}
+
+.#{$dark}JoinWorkspaceSubmitButton:focus {
+  outline: none;
+}
+
+.#{$dark}CancelJoinWorkspaceButton {
+  background-color: rgb(28, 29, 31);
+  border-color: rgba(255, 255, 255, 0);
+  float: right;
+  position: fixed;
+  bottom: 30vh;
+  margin-left: 65%;
+  border-width: thin;
+  color: rgb(0, 154, 164);
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.#{$dark}CancelJoinWorkspaceButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: rgb(0, 130, 140);
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.#{$dark}CancelJoinWorkspaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: rgb(0, 130, 140);
+  outline: none;
+}
+
+.#{$dark}CancelJoinWorkspaceButton:focus {
+  outline: none;
+}
+
 .#{$dark}AccountMenuDropDown {
     position: relative;
     float: right;

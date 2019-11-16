@@ -1550,6 +1550,134 @@ p.darkHomeCreateWorkspaceMessage {
   outline: none;
 }
 
+.darkHomeJoinWorkspacePopup {
+  display: none;
+  position: absolute;
+  background-color: #353638;
+  width: 75%;
+  height: 75vh;
+  margin-left: 12.5%;
+  margin-top: 12.5vh;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.15);
+  z-index: 3;
+}
+
+.darkHomeJoinWorkspaceHeader {
+  height: 100px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 30px;
+  margin-left: 100px;
+  padding-top: 100px;
+}
+
+.darkHomeJoinWorkspaceMessage {
+  display: inline-block;
+}
+
+p.darkHomeJoinWorkspaceMessage {
+  margin-left: 150px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 18px;
+}
+
+.darkHomeJoinWorkspaceCodeTextField {
+  margin-left: 150px;
+  padding: 5px 5px;
+  width: 350px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.darkHomeJoinWorkspaceCodeTextField::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.darkHomeJoinWorkspaceCodeTextField:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.darkHomeJoinWorkspaceCodeTextField::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
+.darkHomeJoinWorkspaceSubmitButton {
+  background-color: #1c1d1f;
+  border-color: rgba(255, 255, 255, 0);
+  margin-left: 15px;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.darkHomeJoinWorkspaceSubmitButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.darkHomeJoinWorkspaceSubmitButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.darkHomeJoinWorkspaceSubmitButton:focus {
+  outline: none;
+}
+
+.darkHomeCancelJoinWorkspaceButton {
+  background-color: #1c1d1f;
+  border-color: rgba(255, 255, 255, 0);
+  float: right;
+  position: fixed;
+  bottom: 30vh;
+  margin-left: 65%;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.darkHomeCancelJoinWorkspaceButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.darkHomeCancelJoinWorkspaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.darkHomeCancelJoinWorkspaceButton:focus {
+  outline: none;
+}
+
 .darkHomeAccountMenuDropDown {
   position: relative;
   float: right;

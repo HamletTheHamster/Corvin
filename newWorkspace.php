@@ -84,10 +84,6 @@ if (isset($_POST["newWorkspaceName"])) {
     exit;
   }
 }
-else if (isset($_POST["joinWorkspace"])) {
-
-  $joinWorkspace = $_POST["joinWorkspace"];
-}
 else {
 
   $message = "no Post Set";
