@@ -1,5 +1,5 @@
 <!--
-This is the user's recycle bin for Corvin.
+This is the user's main page for Corvin.
 
 Hierarchy
 
@@ -7,22 +7,26 @@ Hierarchy
   1 Header
   2 Top Bar
   3 Main Content
-    3.1 Current Directory Banner
-    3.2 Items in Directory
-      3.2.1 List Folders and Folder Sizes
-        3.2.1.1 Folder Name
-        3.2.1.2 Download Folder
-        3.2.1.3 Folder Size
-        3.2.1.4 Heath
-      3.2.2 List Files and File Sizes
-        3.2.2.1 File Name
-        3.2.2.2 Download File
-        3.2.2.3 File Size
-        3.2.2.4 Heath
-  4 Footer
-
-Issues: Want items to be arranged in the order they were deleted, with the most
-        recent at the top
+    3.1 Upload File [OR FOLDER]
+    3.2 Create New Folder
+    3.3 Recently Deleted Items
+    3.4 Current Directory Navigation Banner
+    3.5 Files in Directory
+      3.5.1 List Folders and Folder Sizes
+        3.5.1.1 Folder Name
+        3.5.1.2 Download Folder
+        3.5.1.3 Rename Folder
+        3.5.1.4 Recycle Folder
+        3.5.1.5 Folder Size
+        3.5.1.6 Heath
+      3.5.2 List Files and File Sizes
+        3.5.2.1 File Name
+        3.5.2.2 Download File
+        3.5.2.3 Rename File
+        3.5.2.4 Recycle File
+        3.5.2.5 File Size
+        3.5.2.6 Heath
+    4 Footer
 
 Coded by: Joel N. Johnson
  -->
@@ -45,20 +49,35 @@ error_reporting(E_ALL);
 // MySQL server connection
 $conn = mysqli_connect("127.0.0.1", "joel", "Daytona675");
 
-// Check if connected to MYSQLI server
+// Check if connected to MySQL server
 if (!$conn) {
-  echo("Failed to connect to database: " .   mysqli_connect_error()) .
+  echo("Failed to connect to database: " . mysqli_connect_error()) .
     "<br /><br />";
 }
 
 // Go into Corvin database
 mysqli_query($conn, "USE Corvin;");
 
+if (isset($_SESSION["currentWorkspace"])) {
+  unset($_SESSION["currentWorkspace"]);
+}
+
 // Assign user's ID, set in validate.php
 $userID = $_SESSION["userID"];
 
 $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
 $user = mysqli_fetch_array(mysqli_query($conn, $sql));
+
+// Set Darkmode/Lightmode
+$sql = "SELECT darkmode FROM Preferences WHERE id = '$userID'";
+$darkmodeSetting = mysqli_fetch_array(mysqli_query($conn, $sql));
+
+if ($darkmodeSetting[0] == 1) {
+  $o = "darkHome";
+}
+elseif ($darkmodeSetting[0] == 0) {
+  $o = "lightHome";
+}
 
 // Session Timeout after 854 seconds (14.2 minutes)
 // If last request was more than 854 seconds ago (14.2 minutes)
@@ -97,11 +116,11 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 ?>
 
 <!DOCTYPE html>
-<html lang = "en" class = "recycleBin">
+<html lang = 'en' class = '<?php echo $o;?>'>
 
 <!-- 1 Header -->
 <head>
-  <title>Home | Corvin</title>
+  <title>Recycle | Corvin</title>
 
   <link href = "one.css" type = "text/css" rel = "stylesheet"/>
 
@@ -140,415 +159,553 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   <meta http-equiv = "refresh" content = "855"/>
 
   <meta name = "google" content = "notranslate"/>
+
+  <script type = "text/javascript" src = "jquery-3.4.1.min.js"></script>
+
+  <script>var o = <?php echo json_encode($o);?></script>
 </head>
 
-<body class = "recycleBin">
-<div class = "recycleBinWrapper">
+<body class = '<?php echo $o;?>'>
+<div class = '<?php echo $o;?>Wrapper'>
 
-  <!-- 2 Top Bar -->
-  <div class = "recycleBinTopBar">
-    <div class = "recycleBinCorvin">
-      <?php
-      echo "
-      <a href = 'home.php'>
-        <h class = 'recycleBinCorvinHeader'>C</h>
-      </a>";
-      ?>
+  <!-- Create New Workspace -->
+  <div id = 'createWorkspacePopup' class = '<?php echo $o;?>CreateWorkspacePopup'>
+    <div class = '<?php echo $o;?>CreateWorkspaceHeader'>
+      <h>Create A Workspace</h>
     </div>
-    <div class = "recycleBinAccountMenuDropDown">
-      <p onclick = "accountDropDownMenu()" class = "recycleBinAccountButton">Account</p>
-      <div id = "AccountMenuContent" class = "recycleBinAccountMenuContent">
-        <div class = "recycleBinTopAccountMenuContent">
-          <?php
-          echo "<p class = 'recycleBinAccountMenuName'>" . $user[0] . " " . $user[1] .
-            "</p>";
+    <div class = '<?php echo $o;?>CreateWorkspaceMessage'>
+      <p id = 'createWorkspaceMessage' class = '<?php echo $o;?>CreateWorkspaceMessage'></p>
+    </div>
+    <form id = 'createNewWorkspaceForm'>
+      <input
+        type = 'text'
+        name = 'newWorkspaceName'
+        id = 'newWorkspaceNameTextField'
+        class = '<?php echo $o;?>NewWorkspaceNameTextField'
+        placeholder = 'Name of New Workspace'
+        autocomplete = 'off'
+        required
+      />
+      <button id = 'createWorkspaceSubmitButton' class = '<?php echo $o;?>CreateWorkspaceSubmitButton'>
+        Create
+      </button>
+    </form>
+    <div>
+      <button onclick = 'cancelCreateWorkspace()' class = '<?php echo $o;?>CancelCreateWorkspaceButton'>
+        Cancel
+      </button>
+    </div>
+  </div>
+  <script type = 'text/javascript'>
+  $('#createNewWorkspaceForm').submit(function (event) {
 
-          include "humanSize.php";
-          include "folderSize.php";
+    event.preventDefault();
+    var newWorkspaceName = $('#newWorkspaceNameTextField').val();
 
-          $usedBytes = folderSize("../../../../mnt/Raid1Array/Corvin/" .
-            $userID . " - " . $user[0] . $user[1]);
+    $.ajax({
+      type: 'POST',
+      dataType: 'JSON',
+      url: 'newWorkspace.php',
+      data: {
+        newWorkspaceName: newWorkspaceName
+      },
+      success: function(data) {
 
-          $sql = "SELECT storageSpaceInMegabytes FROM UserInfo WHERE id = '" .
-            $userID . "'";
-          $storageSpaceInMegabytes = mysqli_fetch_row(mysqli_query(
-            $conn, $sql));
+        var data = eval(data);
+        message = data.message;
 
-          if ($storageSpaceInMegabytes[0] == "-1") {
-            $totalBytes = disk_total_space(
-              "../../../../mnt/Raid1Array/Corvin");
-            $freeBytes = disk_free_space("../../../../mnt/Raid1Array/Corvin");
+        if (message == 'true') {
 
-            echo "<p class = 'recycleBinDiskSpace'>" . humanSize($usedBytes) .
-              " used of " . humanSize($freeBytes) . " (Unlimited)</p>";
-          }
-          else {
-            $totalBytes = $storageSpaceInMegabytes[0] * 1000000;
-            $freeBytes = $totalBytes - $usedBytes;
+          location.reload();
+        }
+        else {
 
-            echo "<p class = 'recycleBinDiskSpace'>" . humanSize($usedBytes) .
-              " used of " . humanSize($totalBytes) . "</p>";
-          }
-          ?>
-        </div>
-        <div class = "recycleBinMenuLine">
-          <hr class = "recycleBinMenuLine"/>
-        </div>
-        <div class = "recycleBinBottomAccountMenuContent">
-          <a class = "recycleBinGetMoreSpaceMenuItem" href = "getMoreSpace.php">
-            Get More Space
-          </a>
-          <a class = "recycleBinMenuItem" href = "settings.php">Settings</a>
-          <a class = "recycleBinMenuItem" href = "help.php">Help</a>
-          <a class = "recycleBinMenuItem" href = "logout.php">Log Out</a>
-        </div>
+          $('#createWorkspaceMessage').show().text("Workspaces cannot start with a number");
+        }
+      }
+    });
+  });
+  </script>
+
+<!-- 2 Top Bar -->
+<div class = '<?php echo $o;?>TopBar'>
+  <div class = '<?php echo $o;?>Corvin'>
+    <a href = 'home.php'>
+      <h class = '<?php echo $o;?>CorvinHeader'>C</h>
+    </a>
+  </div>
+  <div class = '<?php echo $o;?>AccountMenuDropDown'>
+    <p onclick = "accountDropDownMenu()" class = '<?php echo $o;?>AccountButton' id = "accountButton">Account</p>
+    <div id = "accountMenuContent" class = '<?php echo $o;?>AccountMenuContent'>
+      <div class = '<?php echo $o;?>TopAccountMenuContent'>
+        <?php
+        echo "<p class = '".$o."AccountMenuName'>" . $user[0] . " " . $user[1] . "</p>";
+
+        include "humanSize.php";
+        include "folderSize.php";
+
+        $usedBytes = folderSize("../../../../mnt/Raid1Array/Corvin/" .
+          $userID . " - " . $user[0] . $user[1]);
+
+        $sql = "SELECT storageSpaceInMegabytes FROM UserInfo WHERE id = '" .
+          $userID . "'";
+        $storageSpaceInMegabytes = mysqli_fetch_row(mysqli_query($conn, $sql));
+
+        if ($storageSpaceInMegabytes[0] == "-1") {
+          $freeBytes = disk_free_space("../../../../mnt/Raid1Array/Corvin");
+
+          echo "<p class = '".$o."DiskSpaceUnlimited'>" . humanSize($usedBytes) .  " used of " .
+            humanSize($freeBytes) . " (Unlimited)</p>";
+        }
+        else {
+          $totalBytes = $storageSpaceInMegabytes[0] * 1000000;
+          $freeBytes = $totalBytes - $usedBytes;
+
+          echo "<p class = '".$o."DiskSpace'>" . humanSize($usedBytes) .
+            " used of " . humanSize($totalBytes) . "</p>";
+        }
+        ?>
+      </div><!--TopAccountMenuContent-->
+      <br><div class = '<?php echo $o;?>AccountMenuHeath'><br></div>
+      <div class = '<?php echo $o;?>BottomAccountMenuContent'>
+        <a class = '<?php echo $o;?>GetMoreSpaceMenuItem' href = "getMoreSpace.php">Get More Space</a>
+        <a class = '<?php echo $o;?>MenuItem' href = "settings.php">Settings</a>
+        <a class = '<?php echo $o;?>MenuItem' href = "help.php">Help</a>
+        <a class = '<?php echo $o;?>MenuItem' href = "logout.php">Log Out</a>
       </div>
     </div>
   </div>
+  <div class = '<?php echo $o;?>WorkspacesMenuDropDown'>
+    <p onclick = "workspacesDropDownMenu()" class = '<?php echo $o;?>WorkspacesButton' id = "workspacesButton">Workspaces</p>
+    <div id = "workspacesMenuContent" class = '<?php echo $o;?>WorkspacesMenuContent'>
+      <?php
+      // Get user's row from Workspaces as an array
+      $sql = "SELECT * FROM Workspaces WHERE id = '$userID';";
+      $workspaces = mysqli_fetch_row(mysqli_query($conn, $sql));
 
-  <script>
-  function accountDropDownMenu() {
-    document.getElementById("AccountMenuContent").classList.toggle("recycleBinShow");
+      if ($workspaces[1] != NULL) {
+
+        // For each element in $workspaces
+        foreach ($workspaces as $key => $value) {
+
+          if ($value != NULL && $key > 0) {
+
+            $workspaceName = ltrim($value, '0123456789'); ?>
+            <form action = 'workspace.php' method = 'post' enctype = 'multipart/form-data'>
+              <input type = 'hidden' name = 'workspace' value = '<?php echo $value;?>' />
+              <input
+                type = 'submit'
+                value = '<?php echo $workspaceName;?>'
+                class = '<?php echo $o;?>Workspace'
+              />
+            </form>
+        <?php
+          }
+        }
+        ?>
+        <div class = '<?php echo $o;?>WorkspacesMenuHeath'></div>
+      <?php
+      }
+      ?>
+      <a onclick = 'createWorkspacePopup()' class = '<?php echo $o;?>NewWorkspaceMenuItem'>
+          Create A Workspace</a>
+      <a class = '<?php echo $o;?>NewWorkspaceMenuItem' href = "">Join A Workspace</a>
+    </div>
+  </div>
+  <div class = '<?php echo $o;?>Home'>
+    <p onclick = "window.location.href = 'home.php';" class = '<?php echo $o;?>HomeButton'>Home</p>
+  </div>
+</div>
+
+<script>
+// Workspaces
+function workspacesDropDownMenu() {
+  if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {
+    document.getElementById("workspacesButton").classList.remove(o+"Active");
   }
-  /*
-  window.onclick = function(event) {
-    if (!document.getElementById("AccountMenuContent").contains(event.target)) {
-      if (document.getElementById("AccountMenuContent").classList.contains("show") {
-        document.getElementById("AccountMenuContent").classList.remove("show");
+  else {
+    document.getElementById("workspacesButton").classList.add(o+"Active");
+    document.getElementById("accountMenuContent").classList.remove(o+"Show");
+    document.getElementById("accountButton").classList.remove(o+"Active");
+  }
+  document.getElementById("workspacesMenuContent").classList.toggle(o+"Show");
+}
+
+function createWorkspacePopup() {
+  document.getElementById("createWorkspacePopup").classList.toggle(o+"Show");
+  document.getElementById("newWorkspaceNameTextField").focus();
+}
+
+function cancelCreateWorkspace() {
+  document.getElementById("createWorkspacePopup").classList.toggle(o+"Show");
+}
+
+// Account
+function accountDropDownMenu() {
+  if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
+    document.getElementById("accountButton").classList.remove(o+"Active");
+  }
+  else {
+    document.getElementById("accountButton").classList.add(o+"Active");
+    document.getElementById("workspacesMenuContent").classList.remove(o+"Show");
+    document.getElementById("workspacesButton").classList.remove(o+"Active");
+  }
+  document.getElementById("accountMenuContent").classList.toggle(o+"Show");
+}
+
+// Click Off
+window.onclick = function(event) {
+  if (document.getElementById("accountMenuContent").classList.contains(o+"Show")) {
+    if (!event.target.matches("."+o+"AccountButton")) {
+      document.getElementById("accountMenuContent").classList.remove(o+"Show");
+      document.getElementById("accountButton").classList.remove(o+"Active");
+    }
+  }
+  else if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {
+    if (!event.target.matches("."+o+"WorkspacesButton")) {
+      document.getElementById("workspacesMenuContent").classList.remove(o+"Show");
+      document.getElementById("workspacesButton").classList.remove(o+"Active");
+    }
+  }
+}
+</script>
+
+<!-- 3 Main Content -->
+<div class = '<?php echo $o;?>MainContent'>
+
+  <?php
+  parse_str($_SERVER['QUERY_STRING'], $CurrentPath);
+  $CurrentPathString = implode("/", $CurrentPath) . "/";
+  ?>
+
+  <!-- 3.3 Home -->
+  <form
+    action = "home.php"
+    method = "post"
+    enctype = "multipart/form-data"
+  >
+    <input
+      type = "submit"
+      class = '<?php echo $o;?>RecentlyDeletedItems'
+      value = "Home"
+      name = "submit"
+    />
+  </form>
+
+  <br /><br />
+
+  <!-- 3.4 Current Directory Navigation Banner -->
+  <div class = '<?php echo $o;?>DirectoryPath'>
+    <?php include "generateURL.php";?>
+
+    <a class = '<?php echo $o;?>DirectoryPath' href = 'recycleBin.php'>
+      <p class = '<?php echo $o;?>DirectoryPath'>Recycle</p>
+    </a>
+    <?php
+    parse_str($_SERVER['QUERY_STRING'], $CurrentPath);
+
+    foreach ($CurrentPath as $Key => $Value) {
+      if (!is_int($Key)) {
+        unset($CurrentPath[$Key]);
+      }
+    }
+
+    $DirectoryPath = array("");
+    $i = 0;
+    foreach ($CurrentPath as $Key => $DirectoryPathFolder) {
+      if ($DirectoryPathFolder != "") {
+        $DirectoryPathFolderURL = generateURL(
+          "recycleBin.php?", $DirectoryPath, $DirectoryPathFolder);
+        array_push($DirectoryPath, $DirectoryPathFolder);
+        $i++;
+        echo "
+        <p class = '".$o."DirectoryPath'>/</p>
+        <a class = '".$o."DirectoryPath' href = '" . $DirectoryPathFolderURL . "'>
+          <p class = '".$o."DirectoryPath'>" . $DirectoryPathFolder . "</p>
+        </a>";
+      }
+    }
+    ?>
+
+    <br /><br />
+
+  </div>
+
+  <br /><br /><br /><br />
+
+  <!-- 3.5 Files in directory -->
+  <div class = '<?php echo $o;?>Directory'>
+  <?php
+  $ReturnPathString = filter_input(INPUT_POST, "ReturnPathString", FILTER_SANITIZE_STRING);
+
+  if ($ReturnPathString == null) {
+    $DirectoryPath = "../../../../mnt/Raid1Array/Corvin/0 - Recycle/" . $userID . " - " .
+      $user[0] . $user[1] . "/" . implode("/", $CurrentPath);
+  }
+  else {
+    $DirectoryPath = "../../../../mnt/Raid1Array/Corvin/0 - Recycle/" . $userID . " - " .
+      $user[0] . $user[1] . "/" . $ReturnPathString;
+  }
+
+  $Directory = scandir($DirectoryPath);
+  usort($Directory, "strnatcmp");
+  $NumItems = count($Directory);
+
+  // 3.5.1 List Folders and Folder Sizes
+  // 3.5.1.1 List Folder Name
+  for ($i = 2; $i < $NumItems; $i++) {
+    if (is_dir($DirectoryPath . "/" . $Directory[$i])) {
+  ?>
+      <div class = '<?php echo $o;?>FileNames'>
+        <div class = '<?php echo $o;?>Folders'>
+          <?php $URL = generateURL("recycleBin.php?", $CurrentPath, $Directory[$i]);?>
+          <a
+            href = '<?php echo $URL;?>'
+            class = '<?php echo $o;?>Folders'
+            id = '<?php echo addslashes($Directory[$i]);?>DirectoryName'
+          >
+            <?php echo $Directory[$i];?>
+          </a>
+        </div>
+
+        <!-- 3.5.1.2 Download Folder -->
+        <div class = '<?php echo $o;?>DownloadButtonForm'>
+          <form
+            action = 'Zip/download.php'
+            class = '<?php echo $o;?>DownloadButtonForm'
+            method = 'post'
+            enctype = 'multipart/form-data'
+          >
+            <input
+              type = 'hidden'
+              value = '<?php echo $Directory[$i];?>'
+              name = 'fileToDownload'
+            />
+            <input
+              type = 'image'
+              src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow Icon Width 15px.png'
+                class = '<?php echo $o;?>DownloadButton'
+                value = 'Download'
+                name = 'submit'
+                id = '<?php echo addslashes($Directory[$i]);?>DownloadButton'
+            />
+            <input
+              type = 'hidden'
+              value = '<?php echo $CurrentPathString;?>'
+              name = 'currentPathString'
+            />
+            <input type = 'hidden' value = '0 - Recycle/' name = 'recycleBin'/>
+          </form>
+        </div>
+      </div>
+
+      <!-- 3.5.1.5 File Sizes -->
+      <div class = '<?php echo $o;?>FileSizes'>
+        <?php echo humanSize(folderSize($DirectoryPath . "/" . $Directory[$i]));?>
+      </div>
+
+      <!-- 3.5.1.6 Heath -->
+      <br><div class = '<?php echo $o;?>Heath'><br></div>
+  <?php
+    }
+  }
+  ?>
+  <!-- 3.5.2 List Files and File Sizes -->
+  <!-- 3.5.2.1 File Name -->
+  <?php
+  function supportedFileTypes($suffix, $directoryi, $directoryPath, $oo) {
+    $needstxt = ["csv", "php", "html", "cu", "c", "go"];
+
+    if ($_GET) {
+  ?>
+      <a
+        href = '<?php echo $_SERVER['REQUEST_URI'] . "&" . $suffix . "=" . rawurlencode($directoryi);?>'
+        target = '_blank'
+        class = '<?php echo $oo;?>Files'
+        id = '<?php echo addslashes($directoryi);?>FileName'
+      >
+        <?php echo $directoryi;?>
+      </a>
+    <?php
+    }
+    else {
+    ?>
+      <a
+        href = '<?php echo $_SERVER['REQUEST_URI'] . "?" . $suffix . "=" . rawurlencode($directoryi);?>'
+        target = '_blank'
+        class = '<?php echo $oo;?>Files'
+        id = '<?php echo addslashes($directoryi);?>FileName'
+      >
+        <?php echo $directoryi;?>
+      </a>
+    <?php
+    }
+
+    if (isset($_GET[$suffix])) {
+      $fileToView = rawurldecode($_REQUEST[$suffix]);
+
+      echo $fileToView;
+
+      if (in_array($suffix, $needstxt)) {
+        if (copy(
+          $directoryPath . "/" . $fileToView,
+          "../../../../../../../../../var/www/html/ViewInBrowser/" . $suffix .
+          ".txt")
+        ) {
+          echo "copy successful";
+          echo "
+          <meta http-equiv = 'refresh' content = '0; url=ViewInBrowser/" .
+            $suffix . ".txt'>";
+        }
+        else {
+          echo "copy unsuccessful";
+          echo "<meta http-equiv = 'refresh' content = '2'>";
+        }
+      }
+      else {
+        if (copy(
+          $directoryPath . "/" . $fileToView,
+          "../../../../../../../../var/www/html/ViewInBrowser/" . $suffix .
+          "." . $suffix)
+        ) {
+          echo "copy successful";
+          echo "
+            <meta http-equiv = 'refresh' content = '0; url=ViewInBrowser/" .
+              $suffix . "." . $suffix . "'>";
+        }
+        else {
+          echo "copy unsuccessful";
+          echo "<meta http-equiv = 'refresh' content = '2'>";
+        }
       }
     }
   }
-  */
-  </script>
 
-  <!-- 3 Main Content -->
-  <div class = "recycleBinMainContent">
+  for ($i = 2; $i < $NumItems; $i++) {
+    if (is_file($DirectoryPath . "/" . $Directory[$i])) {
+      $SupportedFileTypes = [
+        "pdf",
+        "txt",
+        "csv",
+        "bmp",
+        "gif",
+        "jpg",
+        "jpeg",
+        "png",
+        "webp",
+        "3gp",
+        "avi",
+        "mov",
+        "mp4",
+        "m4v",
+        "m4a",
+        "mp3",
+        "mkv",
+        "ogv",
+        "ogm",
+        "ogg",
+        "oga",
+        "webm",
+        "wav",
+        "tex",
+        "bib",
+        "php",
+        "html",
+        "css",
+        "json",
+        "cu",
+        "c",
+        "go",
+      ];
 
-    <!-- 3.1 Back to Home -->
-    <form action = "home.php" method = "post" enctype = "multipart/form-data">
-      <input type = "submit" class = "recycleBinRecentlyDeletedItems"
-        value = "Back To Home" name = "submit" />
-    </form>
+      echo "<div class = '".$o."FileNames'>";
+        echo "<div class = '".$o."Files'>";
 
-    <br /><br />
-
-    <!-- 3.2 Current directory -->
-    <div class = "recycleBinDirectoryPath">
-      <?php
-      include "generateURL.php";
-
-      parse_str($_SERVER['QUERY_STRING'], $CurrentPath);
-      $CurrentPathString = implode("/", $CurrentPath) . "/";
-
-      echo "
-      <a class = 'recycleBinDirectoryPath' href = 'recycleBin.php'>
-        <p class = 'recycleBinDirectoryPath'>Recycle</p>
-      </a>";
-
-      parse_str($_SERVER['QUERY_STRING'], $CurrentPath);
-
-      foreach ($CurrentPath as $Key => $Value) {
-        if (!is_int($Key)) {
-          unset($CurrentPath[$Key]);
-        }
-      }
-
-      $DirectoryPath = array("");
-      $i = 0;
-      foreach ($CurrentPath as $Key => $DirectoryPathFolder) {
-        if ($DirectoryPathFolder != "") {
-          $DirectoryPathFolderURL = generateURL(
-            "recycleBin.php?", $DirectoryPath, $DirectoryPathFolder);
-          array_push($DirectoryPath, $DirectoryPathFolder);
-          $i++;
-          echo "
-          <p class = 'recycleBinDirectoryPath'>/</p>
-          <a class = 'recycleBinDirectoryPath' href = '" . $DirectoryPathFolderURL . "'>
-            <p class = 'recycleBinDirectoryPath'>" . $DirectoryPathFolder . "</p>
-          </a>";
-        }
-      }
-      ?>
-      <br /><br />
-    </div>
-
-    <br /><br />
-
-    <!-- 3.3 Items in directory -->
-    <div class = "recycleBinDirectory">
-      <?php
-      $ReturnPathString = filter_input(
-        INPUT_POST, "ReturnPathString", FILTER_SANITIZE_STRING);
-
-      if ($ReturnPathString == null) {
-        $DirectoryPath = "../../../../mnt/Raid1Array/Corvin/0 - Recycle/" .
-          $userID . " - " . $user[0] . $user[1] . "/" .
-          implode("/", $CurrentPath);
-      }
-      else {
-        $DirectoryPath = "../../../../mnt/Raid1Array/Corvin/0 - Recycle/" .
-          $userID . " - " . $user[0] . $user[1] . "/" . $ReturnPathString;
-      }
-
-      $Directory = scandir($DirectoryPath);
-      usort($Directory, "strnatcmp");
-      $NumItems = count($Directory);
-
-      // 3.3.1 List Folders and Folder Sizes
-      // 3.3.1.1 Folder Name
-      for ($i = 2; $i < $NumItems; $i++) {
-        if (is_dir($DirectoryPath . "/" . $Directory[$i])) {
-          echo "<div class = 'recycleBinFileNames'>";
-            echo "<div class = 'recycleBinFolders'>";
-              $URL = generateURL(
-                "recycleBin.php?", $CurrentPath, $Directory[$i]);
-              echo "
-              <a href = '" . $URL . "' id = '" . preg_replace(
-                '/\s+/', '', $Directory[$i]) . "DirectoryName'>" .
-                  $Directory[$i] .
-              "</a>";
-            echo "</div>";
-
-            // 3.3.1.2 Download Folder
-            echo "
-            <div class = 'recycleBinDownloadButtonForm'>
-              <form
-                action = 'Zip/download.php'
-                class = 'recycleBinDownloadButtonForm'
-                method = 'post'
-                enctype = 'multipart/form-data'
-              >
-                <input type = 'hidden' value = '" . $Directory[$i] . "'
-                  name = 'fileToDownload' />
-                <input
-                  type = 'image'
-                  src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow " .
-                    "Icon Width 15px.png'
-                  class = 'recycleBinDownloadButton'
-                  value = 'Download'
-                  name = 'submit'
-                  id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
-                    "DownloadButton'
-                />
-                <input
-                  type = 'hidden'
-                  value = '" . $CurrentPathString . "'
-                  name = 'currentPathString'
-                />
-                <input
-                  type = 'hidden'
-                  value = '0 - Recycle/'
-                  name = 'recycleBin'
-                />
-              </form>
-            </div>";
-
-          echo "</div>";
-
-          // 3.3.1.3 Folder Sizes
-          echo "<div class = 'recycleBinFileSizes'>";
-            echo humanSize(folderSize($DirectoryPath . "/" . $Directory[$i]));
-          echo "</div>";
-          echo "<br><div class = 'recycleBinHeath'><br></div>";
-        }
-      }
-
-      // 3.3.2 List Files and File Sizes
-      // 3.3.2.1 File Name
-      function supportedFileTypes($suffix, $directoryi, $directoryPath) {
-        $needstxt = ["csv", "php", "html", "cu", "c", "go"];
-        if ($_GET) {
-          echo "
-          <a
-            href = '" . $_SERVER['REQUEST_URI'] . "&" . $suffix . "=" .
-              rawurlencode($directoryi) . "'
-            target = '_blank'
-            id = '" . preg_replace('/\s+/', '', $directoryi) . "FileName'
-          >" .
-            $directoryi .
-          "</a>";
-        }
-        else {
-          echo "
-          <a
-            href = '" . $_SERVER['REQUEST_URI'] . "?" . $suffix . "=" .
-              rawurlencode($directoryi) . "'
-            target = '_blank'
-            id = '" . preg_replace('/\s+/', '', $directoryi) . "FileName'
-          >" .
-            $directoryi .
-          "</a>";
-        }
-        if (isset($_GET[$suffix])) {
-          $fileToView = rawurldecode($_REQUEST[$suffix]);
-
-          echo $fileToView;
-
-          if (in_array($suffix, $needstxt)) {
-            if (copy(
-              $directoryPath . "/" . $fileToView,
-              "../../../../../../../../../var/www/html/ViewInBrowser/" .
-              $suffix . ".txt")
-            ) {
-              echo "copy successful";
-              echo "
-              <meta
-                http-equiv = 'refresh'
-                content = '0; url=ViewInBrowser/" . $suffix . ".txt'
-              >";
-            }
-            else {
-              echo "copy unsuccessful";
-              echo "<meta http-equiv = 'refresh' content = '2' >";
-            }
+          // If the file can be viewed directly in the browser
+          if (in_array(
+            strtolower(substr($Directory[$i], -4)), $SupportedFileTypes)
+          ) {
+            supportedFileTypes(strtolower(substr(
+              $Directory[$i], -4)), $Directory[$i], $DirectoryPath, $o);
+          }
+          else if (in_array(
+            strtolower(substr($Directory[$i], -3)), $SupportedFileTypes)
+          ) {
+            supportedFileTypes(strtolower(substr(
+              $Directory[$i], -3)), $Directory[$i], $DirectoryPath, $o);
+          }
+          else if (in_array(
+            strtolower(substr($Directory[$i], -2)), $SupportedFileTypes)
+          ) {
+            supportedFileTypes(strtolower(substr(
+              $Directory[$i], -2)), $Directory[$i], $DirectoryPath, $o);
+          }
+          else if (in_array(
+            strtolower(substr($Directory[$i], -1)), $SupportedFileTypes)
+          ) {
+            supportedFileTypes(strtolower(substr(
+              $Directory[$i], -1)), $Directory[$i], $DirectoryPath, $o);
           }
           else {
-            if (copy(
-              $directoryPath . "/" . $fileToView,
-              "../../../../../../../../var/www/html/ViewInBrowser/" .
-              $suffix . "." . $suffix)
-            ) {
-              echo "copy successful";
-              echo "
-              <meta
-                http-equiv = 'refresh'
-                content = '0; url=ViewInBrowser/" . $suffix . "." . $suffix .
-              "'>";
-            }
-            else {
-              echo "copy unsuccessful";
-              echo "<meta http-equiv = 'refresh' content = '2'>";
-            }
+            echo $Directory[$i];
           }
-        }
-      }
+    ?>
+        </div>
 
-      for ($i = 2; $i < $NumItems; $i++) {
-        if (is_file($DirectoryPath . "/" . $Directory[$i])) {
-          $SupportedFileTypes = [
-            "pdf",
-            "txt",
-            "csv",
-            "bmp",
-            "gif",
-            "jpg",
-            "jpeg",
-            "png",
-            "webp",
-            "3gp",
-            "avi",
-            "mov",
-            "mp4",
-            "m4v",
-            "m4a",
-            "mp3",
-            "mkv",
-            "ogv",
-            "ogm",
-            "ogg",
-            "oga",
-            "webm",
-            "wav",
-            "tex",
-            "bib",
-            "php",
-            "html",
-            "css",
-            "json",
-            "cu",
-            "c",
-            "go",
-          ];
+        <!-- 3.5.2.2 Download File -->
+        <div class = '<?php echo $o;?>DownloadButtonForm'>
+          <form
+            action = 'Zip/download.php'
+            class = '<?php echo $o;?>DownloadButtonForm'
+            method = 'post'
+            enctype = 'multipart/form-data'
+          >
+            <input
+              type = 'hidden'
+              value = '<?php echo $Directory[$i];?>'
+              name = 'fileToDownload'
+            />
+            <input
+              type = 'image'
+              src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow Icon @ 36 ppi.png'
+              class = '<?php echo $o;?>DownloadButton'
+              value = 'Download'
+              name = 'submit'
+              id = '<?php echo addslashes($Directory[$i]);?>DownloadButton'
+            />
+            <input
+              type = 'hidden'
+              value = '<?php echo $CurrentPathString;?>'
+              name = 'currentPathString'
+            />
+            <input type = 'hidden' value = '0 - Recycle/' name = 'recycleBin'/>
+          </form>
+        </div>
+      </div>
 
-          echo "<div class = 'recycleBinFileNames'>";
-            echo "<div class = 'recycleBinFiles'>";
+      <!-- 3.5.2.5 File Size -->
+      <div class = '<?php echo $o;?>FileSizes'>
+        <?php
+        $FileSize = filesize($DirectoryPath . "/" . $Directory[$i]);
+        echo HumanSize($FileSize);
+        ?>
+      </div>
 
-              //if the file can be viewed directly in the browser
-              if (in_array(
-                strtolower(substr($Directory[$i], -4)), $SupportedFileTypes)
-              ) {
-                supportedFileTypes(strtolower(substr(
-                  $Directory[$i], -4)), $Directory[$i], $DirectoryPath);
-              }
-              else if (in_array(
-                strtolower(substr($Directory[$i], -3)), $SupportedFileTypes)
-              ) {
-                supportedFileTypes(strtolower(substr(
-                  $Directory[$i], -3)), $Directory[$i], $DirectoryPath);
-              }
-              else if (in_array(
-                strtolower(substr($Directory[$i], -2)), $SupportedFileTypes)
-              ) {
-                supportedFileTypes(strtolower(substr($Directory[$i], -2)), $Directory[$i], $DirectoryPath);
-              }
-              else if (in_array(
-                strtolower(substr($Directory[$i], -1)), $SupportedFileTypes)
-              ) {
-                supportedFileTypes(strtolower(substr($Directory[$i], -1)), $Directory[$i], $DirectoryPath);
-              }
-              else {
-                echo "" . $Directory[$i];
-              }
-            echo "</div>";
-
-            // 3.3.2.2 Download File
-            echo "
-            <div class = 'recycleBinDownloadButtonForm'>
-              <form
-                action = 'Zip/download.php'
-                class = 'recycleBinDownloadButtonForm'
-                method = 'post'
-                enctype = 'multipart/form-data'
-              >
-                <input
-                  type = 'hidden'
-                  value = '" . $Directory[$i] . "'
-                  name = 'fileToDownload'
-                />
-                <input
-                  type = 'image'
-                  src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow " .
-                    "Icon @ 36 ppi.png'
-                  class = 'recycleBinDownloadButton'
-                  value = 'Download'
-                  name = 'submit'
-                  id = '" . preg_replace('/\s+/', '', $Directory[$i]) .
-                    "DownloadButton'
-                />
-                <input
-                  type = 'hidden'
-                  value = '" . $CurrentPathString . "'
-                  name = 'currentPathString'
-                />
-                <input
-                  type = 'hidden'
-                  value = '0 - Recycle'
-                  name = 'recycleBin'
-                />
-              </form>
-            </div>";
-
-          echo "</div>";
-
-          // 3.3.2.3 File Size
-          echo "<div class = 'recycleBinFileSizes'>";
-          $FileSize = filesize($DirectoryPath . "/" . $Directory[$i]);
-          echo "" . HumanSize($FileSize);
-          echo "</div>";
-
-          // 3.3.2.4 Heath
-          echo "<br><div class = 'recycleBinHeath'><br></div>";
-        }
-      }
-      ?>
-    </div>
-  </div>
-
-  <div class = "recycleBinPush"></div>
-</div>
+      <!-- 3.5.2.6 Heath -->
+      <br><div class = '<?php echo $o;?>Heath'><br></div>
+  <?php
+    }
+  }
+  ?>
+  </div> <!-- Directory -->
+</div> <!-- Main Content -->
 
 <!-- 4 Footer -->
-<div class = "recycleBinFooter">&copy; Corvin, Inc.</div>
+<div class = '<?php echo $o;?>Push'></div>
+</div> <!-- Wrapper -->
+
+
+<div class = '<?php echo $o;?>Footer'>&copy; Corvin, Inc.</div>
 
 </body>
 </html>

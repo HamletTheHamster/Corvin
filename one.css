@@ -1249,6 +1249,7 @@ html.darkHome, body.darkHome {
   padding-top: 15px;
   padding-bottom: 15px;
   font-size: 18px;
+  border-radius: 6px;
   width: 100%;
   text-align: left;
   display: block;
@@ -1257,7 +1258,7 @@ html.darkHome, body.darkHome {
 .darkHomeWorkspace:hover {
   color: #009aa4;
   background-color: rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
@@ -1278,7 +1279,7 @@ a.darkHomeNewWorkspaceMenuItem:hover {
   color: #009aa4;
   background-color: rgba(255, 255, 255, 0.15);
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .darkHomeWorkspacesMenuHeath {
