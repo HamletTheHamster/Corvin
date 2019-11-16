@@ -359,9 +359,9 @@ else {
       </div><!--TopAccountMenuContent-->
       <br><div class = '<?php echo $o;?>AccountMenuHeath'><br></div>
       <div class = '<?php echo $o;?>BottomAccountMenuContent'>
-        <a class = '<?php echo $o;?>GetMoreSpaceMenuItem' href = "getMoreSpace.php">Get More Space</a>
+        <a class = '<?php echo $o;?>GetMoreSpaceMenuItem'>Get More Space</a>
         <a class = '<?php echo $o;?>MenuItem' href = "settings.php">Settings</a>
-        <a class = '<?php echo $o;?>MenuItem' href = "help.php">Help</a>
+        <a class = '<?php echo $o;?>MenuItem'>Help</a>
         <a class = '<?php echo $o;?>MenuItem' href = "logout.php">Log Out</a>
       </div>
     </div>

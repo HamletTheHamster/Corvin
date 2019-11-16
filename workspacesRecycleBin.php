@@ -350,9 +350,9 @@ elseif ($darkmodeSetting[0] == 0) {
       </div><!--TopAccountMenuContent-->
       <br><div class = '<?php echo $o;?>AccountMenuHeath'><br></div>
       <div class = '<?php echo $o;?>BottomAccountMenuContent'>
-        <a class = '<?php echo $o;?>GetMoreSpaceMenuItem' href = "getMoreSpace.php">Get More Space</a>
+        <a class = '<?php echo $o;?>GetMoreSpaceMenuItem'>Get More Space</a>
         <a class = '<?php echo $o;?>MenuItem' href = "settings.php">Settings</a>
-        <a class = '<?php echo $o;?>MenuItem' href = "help.php">Help</a>
+        <a class = '<?php echo $o;?>MenuItem'>Help</a>
         <a class = '<?php echo $o;?>MenuItem' href = "logout.php">Log Out</a>
       </div>
     </div>
@@ -411,10 +411,39 @@ elseif ($darkmodeSetting[0] == 0) {
     <?php echo $thisWorkspaceName;?> Settings
     </p>
     <div id = "workspaceSettingsMenuContent" class = '<?php echo $o;?>WorkspaceSettingsMenuContent'>
-      <a onclick = 'inviteToWorkspacePopup()' class = '<?php echo $o;?>WorkspaceSettingsItem'>
+      <div class = '<?php echo $o;?>TopAccountMenuContent'>
+        <p class = '<?php echo $o;?>AccountMenuName'><?php echo $thisWorkspaceName;?></p>
+
+        <?php
+        $workspaceUsedBytes = folderSize("../../../../mnt/Raid1Array/Corvin/000 - Workspaces/" .
+          $thisWorkspace);
+
+        $sql = "SELECT storageSpaceInMegabytes FROM WorkspaceSettings WHERE workspace = '$thisWorkspace'";
+        $workspaceStorageSpaceInMegabytes = mysqli_fetch_row(mysqli_query($conn, $sql));
+
+        if ($workspaceStorageSpaceInMegabytes[0] == "-1") {
+          $workspaceFreeBytes = disk_free_space("../../../../mnt/Raid1Array/Corvin");
+
+          echo "<p class = '".$o."DiskSpaceUnlimited'>" . humanSize($workspaceUsedBytes) .  " used of " .
+            humanSize($workspaceFreeBytes) . " (Unlimited)</p>";
+        }
+        else {
+          $workspaceTotalBytes = $workspaceStorageSpaceInMegabytes[0] * 1000000;
+          $workspaceFreeBytes = $workspaceTotalBytes - $workspaceUsedBytes;
+
+          echo "<p class = '".$o."DiskSpace'>" . humanSize($workspaceUsedBytes) .
+            " used of " . humanSize($workspaceTotalBytes) . "</p>";
+        }
+        ?>
+      </div>
+      <br><div class = '<?php echo $o;?>AccountMenuHeath'><br></div>
+      <a class = '<?php echo $o;?>WorkspaceSettingsItem'>
+        Get More Space
+      </a>
+      <a onclick = 'inviteToWorkspacePopup()' class = '<?php echo $o;?>MenuItem'>
         Invite To This Workspace
       </a>
-      <a class = '<?php echo $o;?>WorkspaceSettingsItem'>
+      <a class = '<?php echo $o;?>MenuItem'>
         Workspace Settings
       </a>
     </div>
