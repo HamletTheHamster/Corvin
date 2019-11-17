@@ -177,7 +177,7 @@ if (isset($_SESSION["currentWorkspace"])) {
 
           // Try to move the file to specific directory.
           elseif (move_uploaded_file($temporaryName, $destinationFullPath)) {
-            $freeBytes -= $fileToUploadBytes;
+            $workspaceFreeBytes -= $fileToUploadBytes;
             echo "<meta http-equiv = 'refresh' content = '0; " .
               $returnURL  . "'>";
           }

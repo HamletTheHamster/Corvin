@@ -459,7 +459,7 @@ else {
       }
       $sql = "SELECT membersCanInvite FROM WorkspaceSettings WHERE workspace = '$thisWorkspace';";
       $membersCanInvite = mysqli_fetch_row(mysqli_query($conn, $sql));
-      if ($membersCanInvite[0] == 1) {
+      if (($membersCanInvite[0] == 1) || ($userID . $thisWorkspaceName == $thisWorkspace)) {
       ?>
         <a onclick = 'inviteToWorkspacePopup()' class = '<?php echo $o;?>MenuItem'>
           Invite To Workspace
