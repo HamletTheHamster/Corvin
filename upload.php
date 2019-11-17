@@ -183,47 +183,38 @@ if (isset($_SESSION["currentWorkspace"])) {
           }
           else {
             echo "There was an error filing your uploaded file.";
-            returnButton($queryArray);
           }
         }
         else {
           echo "File is larger than your remaining available space.";
-          returnButton($queryArray);
         }
       }
       elseif ($error == UPLOAD_ERR_FORM_SIZE) {
         echo "The uploaded file exceeds the MAX_FILE_SIZE directive that was " .
           "specified in the HTML form.";
-        returnButton($returnURL);
       }
       elseif ($error == UPLOAD_ERR_PARTIAL) {
         echo "The uploaded file was only partially uploaded.";
-        returnButton($returnURL);
       }
       elseif ($error == UPLOAD_ERR_NO_FILE) {
         echo "The file upload was unsuccessful because no file was uploaded.";
-        returnButton($returnURL);
       }
       elseif ($error == UPLOAD_ERR_NO_TMP_DIR) {
         echo "The file upload was unsuccessful because there was no temporary " .
           "folder to use.";
-        returnButton($returnURL);
       }
       elseif ($error == UPLOAD_ERR_CANT_WRITE) {
         echo "The file upload was unsuccessful because there was a failure in " .
           "writing to the disk.";
-        returnButton($returnURL);
       }
       elseif ($error == UPLOAD_ERR_EXTENSION) {
         echo "The file upload was unsuccessful because a PHP extension " .
           "stopped the file upload. PHP does not provide a way to ascertain " .
           "which extension caused the file upload to stop; examining the list " .
           "of loaded extensions with phpinfo() may help.";
-        returnButton($returnURL);
       }
       else {
         echo "There was an unknown error uploading your file<br /><br />";
-        returnButton($returnURL);
       }
     }
   }

@@ -444,28 +444,28 @@ elseif ($darkmodeSetting[0] == 0) {
       if ($userID . $thisWorkspaceName == $thisWorkspace) {
       ?>
         <a class = '<?php echo $o;?>MenuItem'>
-          Workspace Settings
+          <?php echo $thisWorkspaceName;?> Settings
         </a>
       <?php
       }
       $sql = "SELECT membersCanInvite FROM WorkspaceSettings WHERE workspace = '$thisWorkspace';";
       $membersCanInvite = mysqli_fetch_row(mysqli_query($conn, $sql));
-      if ($membersCanInvite[0] == 1) {
+      if (($membersCanInvite[0] == 1) || ($userID . $thisWorkspaceName == $thisWorkspace)) {
       ?>
         <a onclick = 'inviteToWorkspacePopup()' class = '<?php echo $o;?>MenuItem'>
-          Invite To Workspace
+          Invite To <?php echo $thisWorkspaceName;?>
         </a>
       <?php
       }
       ?>
       <a class = '<?php echo $o;?>MenuItem'>
-        Workspace Notifications
+        <?php echo $thisWorkspaceName;?> Notifications
       </a>
       <a class = '<?php echo $o;?>MenuItem'>
         Help
       </a>
       <a class = '<?php echo $o;?>MenuItem'>
-        Leave Workspace
+        Leave <?php echo $thisWorkspaceName;?>
       </a>
     </div>
   </div>
