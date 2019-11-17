@@ -145,7 +145,8 @@ if (!mysqli_query($conn, $sql)) {
 // Create WorkspaceSettings table if not exists
 $sql = "CREATE TABLE IF NOT EXISTS WorkspaceSettings (
   workspace VARCHAR(100),
-  storageSpaceInMegabytes INT(255) SIGNED);
+  storageSpaceInMegabytes INT(255) SIGNED,
+  membersCanInvite TINYINT DEFAULT 0);
 ";
 
 if (!mysqli_query($conn, $sql)) {

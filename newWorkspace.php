@@ -51,12 +51,15 @@ if (isset($_POST["newWorkspaceName"])) {
 
     // Add workspace to WorkspaceSettings table
     $storageSpaceInMegabytes = 250;
+    $membersCanInvite = 0;
     $sql = "INSERT INTO WorkspaceSettings (
       workspace,
-      storageSpaceInMegabytes)
+      storageSpaceInMegabytes
+      membersCanInvite)
       VALUES (
       '$newWorkspaceName',
-      '$storageSpaceInMegabytes');
+      '$storageSpaceInMegabytes'
+      '$membersCanInvite');
     ";
     mysqli_query($conn, $sql);
 

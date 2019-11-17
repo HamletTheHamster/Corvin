@@ -351,7 +351,7 @@ elseif ($darkmodeSetting[0] == 0) {
       <br><div class = '<?php echo $o;?>AccountMenuHeath'><br></div>
       <div class = '<?php echo $o;?>BottomAccountMenuContent'>
         <a class = '<?php echo $o;?>GetMoreSpaceMenuItem'>Get More Space</a>
-        <a class = '<?php echo $o;?>MenuItem' href = "settings.php">Settings</a>
+        <a class = '<?php echo $o;?>MenuItem' href = "settings.php">Account Settings</a>
         <a class = '<?php echo $o;?>MenuItem'>Help</a>
         <a class = '<?php echo $o;?>MenuItem' href = "logout.php">Log Out</a>
       </div>
@@ -440,11 +440,32 @@ elseif ($darkmodeSetting[0] == 0) {
       <a class = '<?php echo $o;?>WorkspaceSettingsItem'>
         Get More Space
       </a>
-      <a onclick = 'inviteToWorkspacePopup()' class = '<?php echo $o;?>MenuItem'>
-        Invite To This Workspace
+      <?php
+      if ($userID . $thisWorkspaceName == $thisWorkspace) {
+      ?>
+        <a class = '<?php echo $o;?>MenuItem'>
+          Workspace Settings
+        </a>
+      <?php
+      }
+      $sql = "SELECT membersCanInvite FROM WorkspaceSettings WHERE workspace = '$thisWorkspace';";
+      $membersCanInvite = mysqli_fetch_row(mysqli_query($conn, $sql));
+      if ($membersCanInvite[0] == 1) {
+      ?>
+        <a onclick = 'inviteToWorkspacePopup()' class = '<?php echo $o;?>MenuItem'>
+          Invite To Workspace
+        </a>
+      <?php
+      }
+      ?>
+      <a class = '<?php echo $o;?>MenuItem'>
+        Workspace Notifications
       </a>
       <a class = '<?php echo $o;?>MenuItem'>
-        Workspace Settings
+        Help
+      </a>
+      <a class = '<?php echo $o;?>MenuItem'>
+        Leave Workspace
       </a>
     </div>
   </div>
