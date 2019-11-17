@@ -536,6 +536,140 @@ html.lightHome, body.lightHome {
   outline: none;
 }
 
+.lightHomeWorkspaceSettings {
+  position: relative;
+  float: right;
+}
+
+.lightHomeWorkspaceSettingsMenuDropDown {
+  position: relative;
+  float: right;
+}
+
+.lightHomeWorkspaceSettingsButton {
+  color: rgba(23, 23, 23, 0.85);
+  margin-top: 35px;
+  margin-right: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.lightHomeWorkspaceSettingsButton:hover {
+  color: rgba(0, 130, 140, 0.85);
+  cursor: pointer;
+}
+
+.lightHomeWorkspaceSettingsMenuContent {
+  display: none;
+  position: absolute;
+  right: 20px;
+  margin-top: 60px;
+  background-color: #fefefe;
+  min-width: 260px;
+  border-radius: 6px;
+  border-width: thin;
+  border-color: rgba(23, 23, 23, 0.25);
+  box-shadow: 0 2px 4px 0 rgba(23, 23, 23, 0.1);
+  z-index: 2;
+}
+
+a.lightHomeWorkspaceSettingsItem {
+  color: #00828c;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block;
+}
+
+a.lightHomeWorkspaceSettingsItem:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.lightHomeInviteToWorkspacePopup {
+  display: none;
+  position: absolute;
+  background-color: #fefefe;
+  width: 50%;
+  height: 50vh;
+  margin-left: 25%;
+  margin-top: 25vh;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(23, 23, 23, 0.15);
+  z-index: 3;
+}
+
+.lightHomeInviteToWorkspaceHeader {
+  height: 100px;
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 30px;
+  margin-left: 100px;
+  padding-top: 100px;
+}
+
+.lightHomeInviteToWorkspaceMessage {
+  display: inline-block;
+}
+
+p.lightHomeInviteToWorkspaceMessage {
+  margin-left: 150px;
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 18px;
+}
+
+p.lightHomeInviteToWorkspaceCode {
+  display: block;
+  margin-left: 150px;
+  padding: 50px 50px;
+  color: rgba(0, 130, 140, 0.85);
+  font-size: 18px;
+}
+
+.lightHomeDoneInviteToWorkspaceButton {
+  background-color: rgba(51, 204, 255, 0);
+  border-color: rgba(23, 23, 23, 0.25);
+  float: right;
+  position: fixed;
+  bottom: 30vh;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.lightHomeDoneInviteToWorkspaceButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.lightHomeDoneInviteToWorkspaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.lightHomeDoneInviteToWorkspaceButton:focus {
+  outline: none;
+}
+
 .lightHomeHome {
   position: relative;
   float: right;
@@ -566,7 +700,7 @@ html.lightHome, body.lightHome {
 }
 
 .lightHomeWorkspacesButton {
-  color: rgba(23, 23, 23, 0.85);
+  color: #171717;
   margin-top: 35px;
   margin-right: 35px;
   font-size: 18px;
@@ -598,6 +732,31 @@ html.lightHome, body.lightHome {
   z-index: 2;
 }
 
+.lightHomeWorkspace {
+  color: rgba(23, 23, 23, 0.85);
+  background-color: #fefefe;
+  border: none;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  border-radius: 6px;
+  width: 100%;
+  text-align: left;
+  display: block;
+}
+
+.lightHomeWorkspace:hover {
+  color: #009aa4;
+  background-color: rgba(0, 130, 140, 0.06);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.lightHomeWorkspace:active {
+  outline: none;
+}
+
 a.lightHomeNewWorkspaceMenuItem {
   color: #009aa4;
   padding-left: 20px;
@@ -611,7 +770,7 @@ a.lightHomeNewWorkspaceMenuItem:hover {
   color: #009aa4;
   background-color: rgba(0, 130, 140, 0.06);
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .lightHomeWorkspacesMenuHeath {
@@ -619,6 +778,261 @@ a.lightHomeNewWorkspaceMenuItem:hover {
   border-radius: 4px;
   height: 3px;
   margin: 10px 10px;
+}
+
+.lightHomeCreateWorkspacePopup {
+  display: none;
+  position: absolute;
+  background-color: #fefefe;
+  width: 75%;
+  height: 75vh;
+  margin-left: 12.5%;
+  margin-top: 12.5vh;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(23, 23, 23, 0.15);
+  z-index: 3;
+}
+
+.lightHomeCreateWorkspaceHeader {
+  height: 100px;
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 30px;
+  margin-left: 100px;
+  padding-top: 100px;
+}
+
+.lightHomeCreateWorkspaceMessage {
+  display: inline-block;
+}
+
+p.lightHomeCreateWorkspaceMessage {
+  margin-left: 150px;
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 18px;
+}
+
+.lightHomeNewWorkspaceNameTextField {
+  margin-left: 150px;
+  padding: 5px 5px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: rgba(0, 130, 140, 0.06);
+  color: rgba(23, 23, 23, 0.85);
+}
+
+.lightHomeNewWorkspaceNameTextField::placeholder {
+  color: rgba(23, 23, 23, 0.5);
+}
+
+.lightHomeNewWorkspaceNameTextField:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.lightHomeNewWorkspaceNameTextField::selection {
+  background: rgba(0, 130, 140, 0.25);
+}
+
+.lightHomeCreateWorkspaceSubmitButton {
+  background-color: #fefefe;
+  border-color: rgba(23, 23, 23, 0.25);
+  margin-left: 15px;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.lightHomeCreateWorkspaceSubmitButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.lightHomeCreateWorkspaceSubmitButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.lightHomeCreateWorkspaceSubmitButton:focus {
+  outline: none;
+}
+
+.lightHomeCancelCreateWorkspaceButton {
+  background-color: #fefefe;
+  border-color: rgba(23, 23, 23, 0.25);
+  float: right;
+  position: fixed;
+  bottom: 30vh;
+  margin-left: 65%;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.lightHomeCancelCreateWorkspaceButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.lightHomeCancelCreateWorkspaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.lightHomeCancelCreateWorkspaceButton:focus {
+  outline: none;
+}
+
+.lightHomeJoinWorkspacePopup {
+  display: none;
+  position: absolute;
+  background-color: #fefefe;
+  width: 75%;
+  height: 75vh;
+  margin-left: 12.5%;
+  margin-top: 12.5vh;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(23, 23, 23, 0.15);
+  z-index: 3;
+}
+
+.lightHomeJoinWorkspaceHeader {
+  height: 100px;
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 30px;
+  margin-left: 100px;
+  padding-top: 100px;
+}
+
+.lightHomeJoinWorkspaceMessage {
+  display: inline-block;
+}
+
+p.lightHomeJoinWorkspaceMessage {
+  margin-left: 150px;
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 18px;
+}
+
+.lightHomeJoinWorkspaceCodeTextField {
+  margin-left: 150px;
+  padding: 5px 5px;
+  width: 350px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: rgba(0, 130, 140, 0.06);
+  color: rgba(23, 23, 23, 0.85);
+}
+
+.lightHomeJoinWorkspaceCodeTextField::placeholder {
+  color: rgba(0, 130, 140, 0.5);
+}
+
+.lightHomeJoinWorkspaceCodeTextField:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.lightHomeJoinWorkspaceCodeTextField::selection {
+  background: rgba(0, 130, 140, 0.25);
+}
+
+.lightHomeJoinWorkspaceSubmitButton {
+  background-color: #fefefe;
+  border-color: rgba(23, 23, 23, 0.25);
+  margin-left: 15px;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.lightHomeJoinWorkspaceSubmitButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.lightHomeJoinWorkspaceSubmitButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.lightHomeJoinWorkspaceSubmitButton:focus {
+  outline: none;
+}
+
+.lightHomeCancelJoinWorkspaceButton {
+  background-color: #fefefe;
+  border-color: rgba(23, 23, 23, 0.25);
+  float: right;
+  position: fixed;
+  bottom: 30vh;
+  margin-left: 65%;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.lightHomeCancelJoinWorkspaceButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.lightHomeCancelJoinWorkspaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.lightHomeCancelJoinWorkspaceButton:focus {
+  outline: none;
 }
 
 .lightHomeAccountMenuDropDown {
@@ -2274,7 +2688,7 @@ html.lightSettings, body.lightSettings {
 }
 
 .lightSettingsWorkspacesButton {
-  color: rgba(23, 23, 23, 0.85);
+  color: #171717;
   margin-top: 35px;
   margin-right: 35px;
   font-size: 18px;
@@ -2306,7 +2720,32 @@ html.lightSettings, body.lightSettings {
   z-index: 2;
 }
 
-a.lightSettingsCreateANewWorkspaceMenuItem {
+.lightSettingsWorkspace {
+  color: rgba(23, 23, 23, 0.85);
+  background-color: #fefefe;
+  border: none;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  border-radius: 6px;
+  width: 100%;
+  text-align: left;
+  display: block;
+}
+
+.lightSettingsWorkspace:hover {
+  color: #009aa4;
+  background-color: rgba(0, 130, 140, 0.06);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.lightSettingsWorkspace:active {
+  outline: none;
+}
+
+a.lightSettingsNewWorkspaceMenuItem {
   color: #009aa4;
   padding-left: 20px;
   padding-top: 15px;
@@ -2315,11 +2754,11 @@ a.lightSettingsCreateANewWorkspaceMenuItem {
   display: block;
 }
 
-a.lightSettingsCreateANewWorkspaceMenuItem:hover {
+a.lightSettingsNewWorkspaceMenuItem:hover {
   color: #009aa4;
   background-color: rgba(0, 130, 140, 0.06);
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .lightSettingsWorkspacesMenuHeath {
@@ -2327,6 +2766,261 @@ a.lightSettingsCreateANewWorkspaceMenuItem:hover {
   border-radius: 4px;
   height: 3px;
   margin: 10px 10px;
+}
+
+.lightSettingsCreateWorkspacePopup {
+  display: none;
+  position: absolute;
+  background-color: #fefefe;
+  width: 75%;
+  height: 75vh;
+  margin-left: 12.5%;
+  margin-top: 12.5vh;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(23, 23, 23, 0.15);
+  z-index: 3;
+}
+
+.lightSettingsCreateWorkspaceHeader {
+  height: 100px;
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 30px;
+  margin-left: 100px;
+  padding-top: 100px;
+}
+
+.lightSettingsCreateWorkspaceMessage {
+  display: inline-block;
+}
+
+p.lightSettingsCreateWorkspaceMessage {
+  margin-left: 150px;
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 18px;
+}
+
+.lightSettingsNewWorkspaceNameTextField {
+  margin-left: 150px;
+  padding: 5px 5px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: rgba(0, 130, 140, 0.06);
+  color: rgba(23, 23, 23, 0.85);
+}
+
+.lightSettingsNewWorkspaceNameTextField::placeholder {
+  color: rgba(23, 23, 23, 0.5);
+}
+
+.lightSettingsNewWorkspaceNameTextField:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.lightSettingsNewWorkspaceNameTextField::selection {
+  background: rgba(0, 130, 140, 0.25);
+}
+
+.lightSettingsCreateWorkspaceSubmitButton {
+  background-color: #fefefe;
+  border-color: rgba(23, 23, 23, 0.25);
+  margin-left: 15px;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.lightSettingsCreateWorkspaceSubmitButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.lightSettingsCreateWorkspaceSubmitButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.lightSettingsCreateWorkspaceSubmitButton:focus {
+  outline: none;
+}
+
+.lightSettingsCancelCreateWorkspaceButton {
+  background-color: #fefefe;
+  border-color: rgba(23, 23, 23, 0.25);
+  float: right;
+  position: fixed;
+  bottom: 30vh;
+  margin-left: 65%;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.lightSettingsCancelCreateWorkspaceButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.lightSettingsCancelCreateWorkspaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.lightSettingsCancelCreateWorkspaceButton:focus {
+  outline: none;
+}
+
+.lightSettingsJoinWorkspacePopup {
+  display: none;
+  position: absolute;
+  background-color: #fefefe;
+  width: 75%;
+  height: 75vh;
+  margin-left: 12.5%;
+  margin-top: 12.5vh;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(23, 23, 23, 0.15);
+  z-index: 3;
+}
+
+.lightSettingsJoinWorkspaceHeader {
+  height: 100px;
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 30px;
+  margin-left: 100px;
+  padding-top: 100px;
+}
+
+.lightSettingsJoinWorkspaceMessage {
+  display: inline-block;
+}
+
+p.lightSettingsJoinWorkspaceMessage {
+  margin-left: 150px;
+  color: rgba(23, 23, 23, 0.85);
+  font-size: 18px;
+}
+
+.lightSettingsJoinWorkspaceCodeTextField {
+  margin-left: 150px;
+  padding: 5px 5px;
+  width: 350px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: rgba(0, 130, 140, 0.06);
+  color: rgba(23, 23, 23, 0.85);
+}
+
+.lightSettingsJoinWorkspaceCodeTextField::placeholder {
+  color: rgba(0, 130, 140, 0.5);
+}
+
+.lightSettingsJoinWorkspaceCodeTextField:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.lightSettingsJoinWorkspaceCodeTextField::selection {
+  background: rgba(0, 130, 140, 0.25);
+}
+
+.lightSettingsJoinWorkspaceSubmitButton {
+  background-color: #fefefe;
+  border-color: rgba(23, 23, 23, 0.25);
+  margin-left: 15px;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.lightSettingsJoinWorkspaceSubmitButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.lightSettingsJoinWorkspaceSubmitButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.lightSettingsJoinWorkspaceSubmitButton:focus {
+  outline: none;
+}
+
+.lightSettingsCancelJoinWorkspaceButton {
+  background-color: #fefefe;
+  border-color: rgba(23, 23, 23, 0.25);
+  float: right;
+  position: fixed;
+  bottom: 30vh;
+  margin-left: 65%;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.lightSettingsCancelJoinWorkspaceButton:hover {
+  background-color: rgba(0, 130, 140, 0.06);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.lightSettingsCancelJoinWorkspaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.lightSettingsCancelJoinWorkspaceButton:focus {
+  outline: none;
 }
 
 .lightSettingsAccountMenuDropDown {
