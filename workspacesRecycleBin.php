@@ -575,6 +575,20 @@ window.onclick = function(event) {
   $CurrentPathString = implode("/", $CurrentPath) . "/";
   ?>
 
+  <!-- 3.3 Home -->
+  <form
+    action = "workspace.php"
+    method = "post"
+    enctype = "multipart/form-data"
+  >
+    <input
+      type = "submit"
+      class = '<?php echo $o;?>RecentlyDeletedItems'
+      value = '<?php echo $thisWorkspaceName;?>'
+      name = "submit"
+    />
+  </form>
+
   <br /><br />
 
   <!-- 3.4 Current Directory Navigation Banner -->
