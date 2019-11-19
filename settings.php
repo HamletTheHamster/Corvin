@@ -260,7 +260,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
 <div class = '<?php echo $o;?>TopBar'>
   <div class = '<?php echo $o;?>Corvin'>
     <a href = 'home.php'>
-      <h class = '<?php echo $o;?>CorvinHeader'>C</h>
+      <h id = 'corvinHeader' class = '<?php echo $o;?>CorvinHeader'>C</h>
     </a>
   </div>
   <div class = '<?php echo $o;?>AccountMenuDropDown'>
@@ -268,7 +268,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
     <div id = "accountMenuContent" class = '<?php echo $o;?>AccountMenuContent'>
       <div class = '<?php echo $o;?>TopAccountMenuContent'>
         <?php
-        echo "<p class = '".$o."AccountMenuName'>" . $user[0] . " " . $user[1] . "</p>";
+        echo "<p id = 'accountMenuName' class = '".$o."AccountMenuName'>" . $user[0] . " " . $user[1] . "</p>";
 
         include "humanSize.php";
         include "folderSize.php";
@@ -283,24 +283,24 @@ elseif (time() - $_SESSION['Created'] > 1200)
         if ($storageSpaceInMegabytes[0] == "-1") {
           $freeBytes = disk_free_space("../../../../mnt/Raid1Array/Corvin");
 
-          echo "<p class = '".$o."DiskSpaceUnlimited'>" . humanSize($usedBytes) .  " used of " .
+          echo "<p id = 'diskSpace' class = '".$o."DiskSpaceUnlimited'>" . humanSize($usedBytes) .  " used of " .
             humanSize($freeBytes) . " (Unlimited)</p>";
         }
         else {
           $totalBytes = $storageSpaceInMegabytes[0] * 1000000;
           $freeBytes = $totalBytes - $usedBytes;
 
-          echo "<p class = '".$o."DiskSpace'>" . humanSize($usedBytes) .
+          echo "<p id = 'diskSpace' class = '".$o."DiskSpace'>" . humanSize($usedBytes) .
             " used of " . humanSize($totalBytes) . "</p>";
         }
         ?>
       </div><!--TopAccountMenuContent-->
-      <br><div class = '<?php echo $o;?>AccountMenuHeath'><br></div>
+      <br><div id = 'accountMenuHeath' class = '<?php echo $o;?>AccountMenuHeath'><br></div>
       <div class = '<?php echo $o;?>BottomAccountMenuContent'>
-        <a class = '<?php echo $o;?>GetMoreSpaceMenuItem' href = "getMoreSpace.php">Get More Space</a>
-        <a class = '<?php echo $o;?>MenuItem' href = "settings.php">Account Settings</a>
-        <a class = '<?php echo $o;?>MenuItem' href = "help.php">Help</a>
-        <a class = '<?php echo $o;?>MenuItem' href = "logout.php">Log Out</a>
+        <a id = 'getMoreSpace' class = '<?php echo $o;?>GetMoreSpaceMenuItem' href = "getMoreSpace.php">Get More Space</a>
+        <a id = 'accountSettings' class = '<?php echo $o;?>MenuItem' href = "settings.php">Account Settings</a>
+        <a id = 'help' class = '<?php echo $o;?>MenuItem' href = "help.php">Help</a>
+        <a id = 'logout' class = '<?php echo $o;?>MenuItem' href = "logout.php">Log Out</a>
       </div>
     </div>
   </div>
@@ -326,13 +326,14 @@ elseif (time() - $_SESSION['Created'] > 1200)
                 type = 'submit'
                 value = '<?php echo $workspaceName;?>'
                 class = '<?php echo $o;?>Workspace'
+                id = '<?php echo $value;?>Workspace'
               />
             </form>
         <?php
           }
         }
         ?>
-        <div class = '<?php echo $o;?>WorkspacesMenuHeath'></div>
+        <div id = 'workspacesMenuHeath' class = '<?php echo $o;?>WorkspacesMenuHeath'></div>
       <?php
       }
       ?>
@@ -342,7 +343,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
     </div>
   </div>
   <div class = '<?php echo $o;?>Home'>
-    <p onclick = "window.location.href = 'home.php';" class = '<?php echo $o;?>HomeButton'>Home</p>
+    <p id = 'homeButton' onclick = "window.location.href = 'home.php';" class = '<?php echo $o;?>HomeButton'>Home</p>
   </div>
 </div>
 
@@ -831,7 +832,7 @@ window.onclick = function(event) {
           document.getElementById("footer").style.backgroundColor = "rgb(28, 29, 31)";
           document.body.style.color = "rgba(255, 255, 255, 0.85)";
 
-          // Corvin C & Account Menu
+          // Corvin C & Home Button
           document.getElementById("corvinHeader").style.color = "rgb(0, 130, 140)";
           document.getElementById("homeButton").style.color = "rgb(0, 130, 140)";
 
@@ -840,11 +841,16 @@ window.onclick = function(event) {
           document.getElementById("workspacesMenuContent").style.backgroundColor = "rgb(53, 54, 56)";
           document.getElementById("workspacesMenuContent").style.borderColor = "rgba(255, 255, 255, 0.25)";
           document.getElementById("workspacesMenuContent").style.boxShadow = "0 2px 4px 0 rgba(255, 255, 255, 0)";
-          /*
-          for each $workspace {
-            document.getElementById('<?php //echo $workspace[0];?>Workspace').style.color = "rgba(255, 255, 255, 0.85)";
+          <?php
+          foreach ($workspaces as $key => $value) {
+            if ($key > 0) {
+          ?>
+              document.getElementById('<?php echo $value;?>Workspace').style.backgroundColor = "rgb(53, 54, 56)";
+              document.getElementById('<?php echo $value;?>Workspace').style.color = "rgba(255, 255, 255, 0.85)";
+          <?php
+            }
           }
-          */
+          ?>
           document.getElementById("workspacesMenuHeath").style.backgroundColor = "rgb(18, 19, 21)";
 
           // Account Menu
@@ -855,7 +861,7 @@ window.onclick = function(event) {
           document.getElementById("accountMenuName").style.color = "rgba(255, 255, 255, 0.85)";
           document.getElementById("diskSpace").style.color = "rgba(255, 255, 255, 0.85)";
           document.getElementById("accountMenuHeath").style.backgroundColor = "rgb(18, 19, 21)";
-          document.getElementById("settings").style.color = "rgba(255, 255, 255, 0.85)";
+          document.getElementById("accountSettings").style.color = "rgba(255, 255, 255, 0.85)";
           document.getElementById("help").style.color = "rgba(255, 255, 255, 0.85)";
           document.getElementById("logout").style.color = "rgba(255, 255, 255, 0.85)";
 
@@ -958,11 +964,16 @@ window.onclick = function(event) {
           document.getElementById("workspacesMenuContent").style.backgroundColor = "rgb(254, 254, 254)";
           document.getElementById("workspacesMenuContent").style.borderColor = "rgba(23, 23, 23, 0.25)";
           document.getElementById("workspacesMenuContent").style.boxShadow = "0 2px 4px 0 rgba(23, 23, 23, 0.25)";
-          /*
-          for each $workspace {
-            document.getElementById('<?php //echo $workspace[0];?>Workspace').style.color = "rgba(23, 23, 23, 0.85)";
+          <?php
+          foreach ($workspaces as $key => $value) {
+            if ($key > 0) {
+          ?>
+              document.getElementById('<?php echo $value;?>Workspace').style.backgroundColor = "rgb(254, 254, 254)";
+              document.getElementById('<?php echo $value;?>Workspace').style.color = "rgba(23, 23, 23, 0.85)";
+          <?php
+            }
           }
-          */
+          ?>
           document.getElementById("workspacesMenuHeath").style.backgroundColor = "rgba(18, 19, 21, 0.25)";
 
           // Account Menu
@@ -973,7 +984,7 @@ window.onclick = function(event) {
           document.getElementById("accountMenuName").style.color = "rgba(23, 23, 23, 0.85)";
           document.getElementById("diskSpace").style.color = "rgba(23, 23, 23, 0.85)";
           document.getElementById("accountMenuHeath").style.backgroundColor = "rgba(18, 19, 21, 0.25)";
-          document.getElementById("settings").style.color = "rgba(23, 23, 23, 0.85)";
+          document.getElementById("accountSettings").style.color = "rgba(23, 23, 23, 0.85)";
           document.getElementById("help").style.color = "rgba(23, 23, 23, 0.85)";
           document.getElementById("logout").style.color = "rgba(23, 23, 23, 0.85)";
 
