@@ -346,8 +346,8 @@ elseif (time() - $_SESSION['Created'] > 1200)
     <p id = 'homeButton' onclick = "window.location.href = 'home.php';" class = '<?php echo $o;?>HomeButton'>Home</p>
   </div>
 </div>
-
-<script src = 'topBar.js'></script>
+<script type = 'text/javascript'>var workspaces = <?php echo json_encode($workspaces);?>;</script>
+<script type = 'text/javascript' src = 'topBar.js'></script>
 
   <!-- 5 Main Content -->
   <div  id = 'mainContent' class = <?php echo "'".$o."MainContent'";?>>

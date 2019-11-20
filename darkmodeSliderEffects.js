@@ -39,16 +39,16 @@ function manualModeSwitch() {
     document.getElementById("workspacesMenuContent").style.backgroundColor = "rgb(53, 54, 56)";
     document.getElementById("workspacesMenuContent").style.borderColor = "rgba(255, 255, 255, 0.25)";
     document.getElementById("workspacesMenuContent").style.boxShadow = "0 2px 4px 0 rgba(255, 255, 255, 0)";
-    /*<?php
-    foreach ($workspaces as $key => $value) {
-      if ($key > 0) {
-    ?>
-        document.getElementById('<?php echo $value;?>Workspace').style.backgroundColor = "rgb(53, 54, 56)";
-        document.getElementById('<?php echo $value;?>Workspace').style.color = "rgba(255, 255, 255, 0.85)";
-    <?php
+
+    workspaces.forEach(workspaceListStyle);
+
+    function workspaceListStyle(value, key) {
+      if (key > 0) {
+        document.getElementById(value+'Workspace').style.backgroundColor = "rgb(53, 54, 56)";
+        document.getElementById(value+'Workspace').style.color = "rgba(255, 255, 255, 0.85)";
       }
     }
-    ?>*/
+
     document.getElementById("workspacesMenuHeath").style.backgroundColor = "rgb(18, 19, 21)";
 
     // Account Menu
@@ -162,16 +162,16 @@ function manualModeSwitch() {
     document.getElementById("workspacesMenuContent").style.backgroundColor = "rgb(254, 254, 254)";
     document.getElementById("workspacesMenuContent").style.borderColor = "rgba(23, 23, 23, 0.25)";
     document.getElementById("workspacesMenuContent").style.boxShadow = "0 2px 4px 0 rgba(23, 23, 23, 0.25)";
-    /*<?php
-    foreach ($workspaces as $key => $value) {
-      if ($key > 0) {
-    ?>
-        document.getElementById('<?php echo $value;?>Workspace').style.backgroundColor = "rgb(254, 254, 254)";
-        document.getElementById('<?php echo $value;?>Workspace').style.color = "rgba(23, 23, 23, 0.85)";
-    <?php
+
+    workspaces.forEach(workspaceListStyle);
+
+    function workspaceListStyle(value, key) {
+      if (key > 0) {
+        document.getElementById(value+'Workspace').style.backgroundColor = "rgb(254, 254, 254)";
+        document.getElementById(value+'Workspace').style.color = "rgba(23, 23, 23, 0.85)";
       }
     }
-    ?>*/
+
     document.getElementById("workspacesMenuHeath").style.backgroundColor = "rgba(18, 19, 21, 0.25)";
 
     // Account Menu
