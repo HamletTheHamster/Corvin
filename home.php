@@ -387,7 +387,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   ?>
       <div class = '<?php echo $o;?>Home'>
         <p onclick = "window.location.href = 'liveCorvinFiles.php';" class = '<?php echo $o;?>HomeButton'>
-          Live Corvin Files
+          Live
         </p>
       </div>
   <?php
