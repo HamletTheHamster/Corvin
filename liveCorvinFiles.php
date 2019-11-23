@@ -62,12 +62,14 @@ if (isset($_SESSION["currentWorkspace"])) {
   unset($_SESSION["currentWorkspace"]);
 }
 
-if (isset($_SESSION["liveCorvinFiles"])) {
-  unset($_SESSION["liveCorvinFiles"]);
-}
-
 // Assign user's ID, set in validate.php
 $userID = $_SESSION["userID"];
+
+// Live Corvin Files
+if ($userID != 1) {
+  header("Location: login.php");
+}
+$_SESSION['liveCorvinFiles'] = TRUE;
 
 $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
 $user = mysqli_fetch_array(mysqli_query($conn, $sql));
@@ -124,7 +126,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 
 <!-- 1 Header -->
 <head>
-  <title>Home | Corvin</title>
+  <title>Live Corvin Files | Corvin</title>
 
   <link href = "one.css" type = "text/css" rel = "stylesheet"/>
 
@@ -386,7 +388,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   if ($userID == 1) {
   ?>
       <div class = '<?php echo $o;?>Home'>
-        <p onclick = "window.location.href = 'liveCorvinFiles.php';" class = '<?php echo $o;?>HomeButton'>
+        <p onclick = 'window.location.href' = 'liveCorvinFiles.php' class = '<?php echo $o;?>HomeButton'>
           Live Corvin Files
         </p>
       </div>
@@ -560,8 +562,8 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   <div class = '<?php echo $o;?>DirectoryPath'>
     <?php include "generateURL.php";?>
 
-    <a class = '<?php echo $o;?>DirectoryPath' href = 'home.php'>
-      <p class = '<?php echo $o;?>DirectoryPath'>Home</p>
+    <a class = '<?php echo $o;?>DirectoryPath' href = 'liveCorvinFiles.php'>
+      <p class = '<?php echo $o;?>DirectoryPath'>Live Corvin Files</p>
     </a>
     <?php
     parse_str($_SERVER['QUERY_STRING'], $CurrentPath);
@@ -577,7 +579,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
     foreach ($CurrentPath as $Key => $DirectoryPathFolder) {
       if ($DirectoryPathFolder != "") {
         $DirectoryPathFolderURL = generateURL(
-          "home.php?", $DirectoryPath, $DirectoryPathFolder);
+          "liveCorvinFiles.php?", $DirectoryPath, $DirectoryPathFolder);
         array_push($DirectoryPath, $DirectoryPathFolder);
         $i++;
         echo "
@@ -601,12 +603,10 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   $ReturnPathString = filter_input(INPUT_POST, "ReturnPathString", FILTER_SANITIZE_STRING);
 
   if ($ReturnPathString == null) {
-    $DirectoryPath = "../../../../mnt/Raid1Array/Corvin/" . $userID . " - " .
-      $user[0] . $user[1] . "/" . implode("/", $CurrentPath);
+    $DirectoryPath = "../../../../var/www/html/" . implode("/", $CurrentPath);
   }
   else {
-    $DirectoryPath = "../../../../mnt/Raid1Array/Corvin/" . $userID . " - " .
-      $user[0] . $user[1] . "/" . $ReturnPathString;
+    $DirectoryPath = "../../../../var/www/html/" . $ReturnPathString;
   }
 
   $Directory = scandir($DirectoryPath);
@@ -620,7 +620,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   ?>
       <div class = '<?php echo $o;?>FileNames'>
         <div class = '<?php echo $o;?>Folders'>
-          <?php $URL = generateURL("home.php?", $CurrentPath, $Directory[$i]);?>
+          <?php $URL = generateURL("liveCorvinFiles.php?", $CurrentPath, $Directory[$i]);?>
           <a
             href = '<?php echo $URL;?>'
             class = '<?php echo $o;?>Folders'

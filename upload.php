@@ -223,6 +223,89 @@ if (isset($_SESSION["currentWorkspace"])) {
     print_r($_FILES);
   }
 }
+else if (isset($_SESSION["liveCorvinFiles"])) {
+
+  $currentPathString = filter_input(INPUT_POST, "currentPathString", FILTER_SANITIZE_STRING);
+  $queryArray = explode("/", substr($currentPathString, 0, -1));
+  $returnURL =  "liveCorvinFiles.php?" . http_build_query($queryArray, '');
+
+  // 2 Upload Function
+
+  $destination = "../../../../var/www/html/" . $currentPathString;
+
+  if (isset($_FILES["filesToUpload"])) {
+    // For each item in _FILES, with the current loop's index value referencing
+    // the error dimension of _FILES
+    foreach ($_FILES["filesToUpload"]["error"] as $key => $error) {
+      // If there are no errors
+      if ($error == UPLOAD_ERR_OK) {
+        // Assign the temporary file name given by the server when it stored it
+        // in memory to the variable tmp_name
+        $temporaryName = $_FILES["filesToUpload"]["tmp_name"][$key];
+
+        // Assign the file name without full path to the variable name
+        $name = str_replace("'", "", basename(
+          $_FILES["filesToUpload"]["name"][$key]));
+
+        // Assign the full destination path and name
+        $destinationFullPath = $destination . $name;
+
+        // Find size of file to upload
+        $fileToUploadBytes = $_FILES["filesToUpload"]["size"][$key];
+
+        $zip = new ZipArchive;
+        if (
+          substr($name, -4) != "docx" &&
+          substr($name, -4) != "xlsx" &&
+          substr($name, -4) != "pptx" &&
+          $zip->open($temporaryName) === true
+        ) {
+          $zip->extractTo($destination);
+          $zip->close();
+          echo "<meta http-equiv = 'refresh' content = '0; " . $returnURL  . "'>";
+        }
+        // Try to move the file to specific directory.
+        elseif (move_uploaded_file($temporaryName, $destinationFullPath)) {
+          echo "<meta http-equiv = 'refresh' content = '0; " . $returnURL  . "'>";
+        }
+        else {
+          echo "There was an error filing your uploaded file.";
+        }
+      }
+      elseif ($error == UPLOAD_ERR_FORM_SIZE) {
+        echo "The uploaded file exceeds the MAX_FILE_SIZE directive that was " .
+          "specified in the HTML form.";
+      }
+      elseif ($error == UPLOAD_ERR_PARTIAL) {
+        echo "The uploaded file was only partially uploaded.";
+      }
+      elseif ($error == UPLOAD_ERR_NO_FILE) {
+        echo "The file upload was unsuccessful because no file was uploaded.";
+      }
+      elseif ($error == UPLOAD_ERR_NO_TMP_DIR) {
+        echo "The file upload was unsuccessful because there was no temporary " .
+          "folder to use.";
+      }
+      elseif ($error == UPLOAD_ERR_CANT_WRITE) {
+        echo "The file upload was unsuccessful because there was a failure in " .
+          "writing to the disk.";
+      }
+      elseif ($error == UPLOAD_ERR_EXTENSION) {
+        echo "The file upload was unsuccessful because a PHP extension " .
+          "stopped the file upload. PHP does not provide a way to ascertain " .
+          "which extension caused the file upload to stop; examining the list " .
+          "of loaded extensions with phpinfo() may help.";
+      }
+      else {
+        echo "There was an unknown error uploading your file<br /><br />";
+      }
+    }
+  }
+  else {
+    print_r($_POST);
+    print_r($_FILES);
+  }
+}
 else {
 
   // Assign user's ID passed from validate.php

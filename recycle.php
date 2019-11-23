@@ -174,13 +174,76 @@ if (isset($_SESSION["currentWorkspace"])) {
     else {
       echo "There was a problem sending " . $fileToRecycle .
         " to your recycle folder.";
-      returnButton($returnURL);
     }
   }
   else {
     echo "There was a problem reading " . $fileToRecycle .
       "'s name or location.";
-    returnButton($returnURL);
+  }
+}
+else if (isset($_SESSION["liveCorvinFiles"])) {
+
+  $currentPathString = filter_input(
+    INPUT_POST, "currentPathString", FILTER_SANITIZE_STRING);
+
+  $queryArray = explode("/", substr($currentPathString, 0, -1));
+  $returnURL = "liveCorvinFiles.php?" . http_build_query($queryArray, '');
+
+  $currentDirectory = "../../../var/www/html/" . $currentPathString;
+
+  // Assign file name to recycle to variable
+  $fileToRecycle = filter_input(
+    INPUT_POST, "fileToRecycle", FILTER_SANITIZE_STRING);
+
+  // Assign user's recycle folder path
+  $userRecycleDirectory = "/../../../mnt/Raid1Array/Corvin/0 - Recycle/1 - JoelJohnson/";
+  $fileToRecycleFullPath = $currentDirectory . $fileToRecycle;
+
+  $i = 1;
+
+  // While the name of the file or folder to be recycled matches the name of a
+  // file or folder already in the recycle folder, append the new file/folder
+  // with (#) representing the number of identically named files or folders that
+  // reside in the recycle folder by that name
+  while (
+    array_search($fileToRecycle, scandir($userRecycleDirectory)) !== FALSE
+  ) {
+    // If there is already a single copy
+    if ($i > 1) {
+      // Take the (1) off of the end of the name and make it (2)
+      $fileToRecycle = substr($fileToRecycle, 0, -3) . "(" . $i . ")";
+    }
+    // Else append the file/folder with (1)
+    else {
+      $fileToRecycle = $fileToRecycle . "(1)";
+    }
+    ++$i;
+  }
+
+  // If there were duplicates, rename the file to match
+  rename($fileToRecycleFullPath, $currentDirectory . $fileToRecycle);
+
+  // Assign full path plus name to variable
+  $fileToRecycleFullPath = $currentDirectory . $fileToRecycle;
+
+  // Assign recycled file name full path
+  $userRecycleDirectoryFullPath = $userRecycleDirectory . $fileToRecycle;
+
+  // If the full path and file is readable
+  if (is_readable($fileToRecycleFullPath)) {
+    // Then try to move the file to user's hidden recycle folder. If this was
+    // successful
+    if (rename($fileToRecycleFullPath, $userRecycleDirectoryFullPath)) {
+      echo "<meta http-equiv = 'refresh' content = '0; " . $returnURL . "'>";
+    }
+    else {
+      echo "There was a problem sending " . $fileToRecycle .
+        " to your recycle folder.";
+    }
+  }
+  else {
+    echo "There was a problem reading " . $fileToRecycle .
+      "'s name or location.";
   }
 }
 else {
