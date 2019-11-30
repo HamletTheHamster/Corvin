@@ -22,6 +22,52 @@ if (isset($_POST["joinWorkspaceName"])) {
 
   $joinWorkspaceName = $_POST["joinWorkspaceName"];
 
+  // Get workspace owner id
+  $idAquired = FALSE;
+  $prefix = 1;
+  while ($idAquired == FALSE) {
+
+      if (is_numeric(substr($joinWorkspaceName, 0, $prefix))) {
+
+          $prefix++;
+      }
+      else {
+        $ownerID = substr($joinWorkspaceName, 0, $prefix - 1);
+        $idAquired = TRUE;
+      }
+  }
+
+  // Check if workspace exists in owner's workspace list
+  $sql = "SELECT * FROM Workspaces WHERE id = '$ownerID';";
+  $ownerWorkspaces = mysqli_fetch_row(mysqli_query($conn, $sql));
+  $workspaceExists = FALSE;
+  foreach ($ownerWorkspaces as $ownerWorkspace) {
+
+    if ($ownerWorkspace == $joinWorkspaceName) {
+
+      $workspaceExists = TRUE;
+    }
+  }
+  if ($workspaceExists == FALSE) {
+
+    // Check among all workspaces for existance of workspace
+    $sql = "SELECT * FROM Workspaces;";
+    $allWorkspaces = mysqli_fetch_array(mysqli_query($conn, $sql));
+    foreach ($allWorkspaces as $allWorkspace) {
+
+      if ($allWorkspace == $joinWorkspaceName) {
+
+        $workspaceExists = TRUE;
+      }
+    }
+  }
+  if ($workspaceExists == FALSE) {
+
+    $message = "Invalid workspace code.";
+    echo json_encode(array('message' => $message));
+    exit;
+  }
+
   // Add workspace to user's workspaces
   $sql = "SELECT * FROM Workspaces WHERE id = '$userID';";
   $workspaces = mysqli_fetch_row(mysqli_query($conn, $sql));
