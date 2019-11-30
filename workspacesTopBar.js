@@ -22,6 +22,14 @@ function doneInviteToWorkspace() {
   document.getElementById("inviteToWorkspacePopup").classList.toggle(o+"Show");
 }
 
+function leaveWorkspacePopup() {
+  document.getElementById("leaveWorkspacePopup").classList.toggle(o+"Show");
+}
+
+function cancelLeaveWorkspace() {
+  document.getElementById("leaveWorkspacePopup").classList.toggle(o+"Show");
+}
+
 // Workspaces
 function workspacesDropDownMenu() {
   if (document.getElementById("workspacesMenuContent").classList.contains(o+"Show")) {

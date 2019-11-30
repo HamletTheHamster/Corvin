@@ -318,6 +318,58 @@ else {
   });
   </script>
 
+  <!-- Leave Workspace -->
+  <div id = 'leaveWorkspacePopup' class = '<?php echo $o;?>LeaveWorkspacePopup'>
+    <div class = '<?php echo $o;?>LeaveWorkspaceHeader'>
+      <h>Are you sure you want to leave <?php echo $thisWorkspaceName;?>?</h>
+    </div>
+    <form id = 'leaveWorkspaceForm'>
+      <input
+        type = 'hidden'
+        name = 'leaveWorkspaceName'
+        id = 'leaveWorkspaceName'
+        value = '<?php echo $thisWorkspace;?>'
+      />
+      <button id = 'leaveWorkspaceSubmitButton' class = '<?php echo $o;?>LeaveWorkspaceSubmitButton'>
+        Leave
+      </button>
+    </form>
+    <div>
+      <button onclick = 'cancelLeaveWorkspace()' class = '<?php echo $o;?>CancelLeaveWorkspaceButton'>
+        Cancel
+      </button>
+    </div>
+  </div>
+  <script type = 'text/javascript'>
+  $('#leaveWorkspaceForm').submit(function (event) {
+
+    event.preventDefault();
+    var leaveWorkspaceName = $('#leaveWorkspaceName').val();
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'JSON',
+      url: 'leaveWorkspace.php',
+      data: {
+        leaveWorkspaceName: leaveWorkspaceName
+      },
+      success: function(data) {
+
+        var data = eval(data);
+        message = data.message;
+
+        if (message == 'true') {
+
+          location.href = 'home.php';
+        }
+        else {
+          alert("fail");
+        }
+      }
+    });
+  });
+  </script>
+
 <!-- 2 Top Bar -->
 <div class = '<?php echo $o;?>TopBar'>
   <div class = '<?php echo $o;?>Corvin'>
@@ -473,7 +525,7 @@ else {
       <a class = '<?php echo $o;?>MenuItem'>
         Help
       </a>
-      <a class = '<?php echo $o;?>MenuItem'>
+      <a onclick = 'leaveWorkspacePopup()' class = '<?php echo $o;?>MenuItem'>
         Leave <?php echo $thisWorkspaceName;?>
       </a>
     </div>

@@ -176,6 +176,99 @@ p.#{$dark}InviteToWorkspaceCode {
   outline: none;
 }
 
+.#{$dark}LeaveWorkspacePopup {
+  display: none;
+  position: absolute;
+  background-color: rgb(53, 54, 56);
+  width: 75%;
+  height: 75vh;
+  margin-left: 12.5%;
+  margin-top: 12.5vh;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.15);
+  z-index: 3;
+}
+
+.#{$dark}LeaveWorkspaceHeader {
+  height: 100px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 30px;
+  margin-left: 100px;
+  padding-top: 100px;
+}
+
+.#{$dark}LeaveWorkspaceSubmitButton {
+  background-color: rgb(28, 29, 31);
+  border-color: rgba(255, 255, 255, 0);
+  margin-left: 15px;
+  border-width: thin;
+  color: rgb(0, 154, 164);
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.#{$dark}LeaveWorkspaceSubmitButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: rgb(0, 130, 140);
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.#{$dark}LeaveWorkspaceSubmitButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: rgb(0, 130, 140);
+  outline: none;
+}
+
+.#{$dark}LeaveWorkspaceSubmitButton:focus {
+  outline: none;
+}
+
+.#{$dark}CancelLeaveWorkspaceButton {
+  background-color: rgb(28, 29, 31);
+  border-color: rgba(255, 255, 255, 0);
+  float: right;
+  position: fixed;
+  bottom: 30vh;
+  margin-left: 65%;
+  border-width: thin;
+  color: rgb(0, 154, 164);
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.#{$dark}CancelLeaveWorkspaceButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: rgb(0, 130, 140);
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.#{$dark}CancelLeaveWorkspaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: rgb(0, 130, 140);
+  outline: none;
+}
+
+.#{$dark}CancelLeaveWorkspaceButton:focus {
+  outline: none;
+}
+
 .#{$dark}Home {
     position: relative;
     float: right;

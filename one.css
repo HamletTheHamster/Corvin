@@ -1728,6 +1728,99 @@ p.darkHomeInviteToWorkspaceCode {
   outline: none;
 }
 
+.darkHomeLeaveWorkspacePopup {
+  display: none;
+  position: absolute;
+  background-color: #353638;
+  width: 75%;
+  height: 75vh;
+  margin-left: 12.5%;
+  margin-top: 12.5vh;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.15);
+  z-index: 3;
+}
+
+.darkHomeLeaveWorkspaceHeader {
+  height: 100px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 30px;
+  margin-left: 100px;
+  padding-top: 100px;
+}
+
+.darkHomeLeaveWorkspaceSubmitButton {
+  background-color: #1c1d1f;
+  border-color: rgba(255, 255, 255, 0);
+  margin-left: 15px;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.darkHomeLeaveWorkspaceSubmitButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.darkHomeLeaveWorkspaceSubmitButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.darkHomeLeaveWorkspaceSubmitButton:focus {
+  outline: none;
+}
+
+.darkHomeCancelLeaveWorkspaceButton {
+  background-color: #1c1d1f;
+  border-color: rgba(255, 255, 255, 0);
+  float: right;
+  position: fixed;
+  bottom: 30vh;
+  margin-left: 65%;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.darkHomeCancelLeaveWorkspaceButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.darkHomeCancelLeaveWorkspaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.darkHomeCancelLeaveWorkspaceButton:focus {
+  outline: none;
+}
+
 .darkHomeHome {
   position: relative;
   float: right;
