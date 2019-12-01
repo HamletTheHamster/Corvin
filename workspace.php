@@ -179,11 +179,11 @@ else {
   <!-- Invite To Workspace -->
   <div id = 'inviteToWorkspacePopup' class = '<?php echo $o;?>InviteToWorkspacePopup'>
     <div class = '<?php echo $o;?>InviteToWorkspaceHeader'>
-      <h>Invite People To This Workspace</h>
+      <h>Invite People To This Corvin Space</h>
     </div>
     <div class = '<?php echo $o;?>InviteToWorkspace'>
       <p class = '<?php echo $o;?>InviteToWorkspaceMessage'>
-        Here's the code to join this workspace:
+        Invite Code:
       </p>
     </div>
     <br /><br /><br /><br />
@@ -203,7 +203,7 @@ else {
   <!-- Create New Workspace -->
   <div id = 'createWorkspacePopup' class = '<?php echo $o;?>CreateWorkspacePopup'>
     <div class = '<?php echo $o;?>CreateWorkspaceHeader'>
-      <h>Create A Workspace</h>
+      <h>Create A Corvin Space</h>
     </div>
     <div class = '<?php echo $o;?>CreateWorkspaceMessage'>
       <p id = 'createWorkspaceMessage' class = '<?php echo $o;?>CreateWorkspaceMessage'></p>
@@ -214,7 +214,7 @@ else {
         name = 'newWorkspaceName'
         id = 'newWorkspaceNameTextField'
         class = '<?php echo $o;?>NewWorkspaceNameTextField'
-        placeholder = 'Name of New Workspace'
+        placeholder = 'Give your Space a name'
         autocomplete = 'off'
         required
       />
@@ -252,7 +252,7 @@ else {
         }
         else {
 
-          $('#createWorkspaceMessage').show().text("Workspaces cannot start with a number");
+          $('#createWorkspaceMessage').show().text("Corvin Spaces cannot start with a number.");
         }
       }
     });
@@ -262,7 +262,7 @@ else {
   <!-- Join A Workspace -->
   <div id = 'joinWorkspacePopup' class = '<?php echo $o;?>JoinWorkspacePopup'>
     <div class = '<?php echo $o;?>JoinWorkspaceHeader'>
-      <h>Join A Workspace</h>
+      <h>Join A Corvin Space</h>
     </div>
     <div class = '<?php echo $o;?>JoinWorkspaceMessage'>
       <p id = 'joinWorkspaceMessage' class = '<?php echo $o;?>JoinWorkspaceMessage'></p>
@@ -273,7 +273,7 @@ else {
         name = 'joinWorkspaceName'
         id = 'joinWorkspaceCodeTextField'
         class = '<?php echo $o;?>JoinWorkspaceCodeTextField'
-        placeholder = 'Paste Workspace Code Here'
+        placeholder = 'Corvin Space Invite Code'
         autocomplete = 'off'
         required
       />
@@ -311,7 +311,7 @@ else {
         }
         else {
 
-          $('#joinWorkspaceMessage').show().text("Invalid Workspace Code");
+          $('#joinWorkspaceMessage').show().text("Invalid Corvin Space invite code.");
         }
       }
     });
@@ -411,7 +411,7 @@ else {
       </div><!--TopAccountMenuContent-->
       <br><div class = '<?php echo $o;?>AccountMenuHeath'><br></div>
       <div class = '<?php echo $o;?>BottomAccountMenuContent'>
-        <a class = '<?php echo $o;?>GetMoreSpaceMenuItem'>Get More Space</a>
+        <a class = '<?php echo $o;?>GetMoreSpaceMenuItem'>Get More Storage</a>
         <a class = '<?php echo $o;?>MenuItem' href = "settings.php">Account Settings</a>
         <a class = '<?php echo $o;?>MenuItem'>Help</a>
         <a class = '<?php echo $o;?>MenuItem' href = "logout.php">Log Out</a>
@@ -419,7 +419,7 @@ else {
     </div>
   </div>
   <div class = '<?php echo $o;?>WorkspacesMenuDropDown'>
-    <p onclick = "workspacesDropDownMenu()" class = '<?php echo $o;?>WorkspacesButton' id = "workspacesButton">Workspaces</p>
+    <p onclick = "workspacesDropDownMenu()" class = '<?php echo $o;?>WorkspacesButton' id = "workspacesButton">Corvin Spaces</p>
     <div id = "workspacesMenuContent" class = '<?php echo $o;?>WorkspacesMenuContent'>
       <?php
       // Get user's row from Workspaces as an array
@@ -451,10 +451,10 @@ else {
       }
       ?>
       <a onclick = 'createWorkspacePopup()' class = '<?php echo $o;?>NewWorkspaceMenuItem'>
-          Create A Workspace
+          Create A Space
       </a>
       <a onclick = 'joinWorkspacePopup()' class = '<?php echo $o;?>NewWorkspaceMenuItem'>
-        Join A Workspace
+        Join A Space
       </a>
     </div>
   </div>

@@ -171,7 +171,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   <!-- Create New Workspace -->
   <div id = 'createWorkspacePopup' class = '<?php echo $o;?>CreateWorkspacePopup'>
     <div class = '<?php echo $o;?>CreateWorkspaceHeader'>
-      <h>Create A Workspace</h>
+      <h>Create A Corvin Space</h>
     </div>
     <div class = '<?php echo $o;?>CreateWorkspaceMessage'>
       <p id = 'createWorkspaceMessage' class = '<?php echo $o;?>CreateWorkspaceMessage'></p>
@@ -182,7 +182,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
         name = 'newWorkspaceName'
         id = 'newWorkspaceNameTextField'
         class = '<?php echo $o;?>NewWorkspaceNameTextField'
-        placeholder = 'Name of New Workspace'
+        placeholder = 'Give your Space a name'
         autocomplete = 'off'
         required
       />
@@ -220,7 +220,66 @@ elseif (time() - $_SESSION['Created'] > 1200) {
         }
         else {
 
-          $('#createWorkspaceMessage').show().text("Workspaces cannot start with a number");
+          $('#createWorkspaceMessage').show().text("Corvin Spaces cannot start with a number.");
+        }
+      }
+    });
+  });
+  </script>
+
+  <!-- Join A Workspace -->
+  <div id = 'joinWorkspacePopup' class = '<?php echo $o;?>JoinWorkspacePopup'>
+    <div class = '<?php echo $o;?>JoinWorkspaceHeader'>
+      <h>Join A Corvin Space</h>
+    </div>
+    <div class = '<?php echo $o;?>JoinWorkspaceMessage'>
+      <p id = 'joinWorkspaceMessage' class = '<?php echo $o;?>JoinWorkspaceMessage'></p>
+    </div>
+    <form id = 'joinWorkspaceForm'>
+      <input
+        type = 'text'
+        name = 'joinWorkspaceName'
+        id = 'joinWorkspaceCodeTextField'
+        class = '<?php echo $o;?>JoinWorkspaceCodeTextField'
+        placeholder = 'Corvin Space Invite Code'
+        autocomplete = 'off'
+        required
+      />
+      <button id = 'joinWorkspaceSubmitButton' class = '<?php echo $o;?>JoinWorkspaceSubmitButton'>
+        Join
+      </button>
+    </form>
+    <div>
+      <button onclick = 'cancelJoinWorkspace()' class = '<?php echo $o;?>CancelJoinWorkspaceButton'>
+        Cancel
+      </button>
+    </div>
+  </div>
+  <script type = 'text/javascript'>
+  $('#joinWorkspaceForm').submit(function (event) {
+
+    event.preventDefault();
+    var joinWorkspaceName = $('#joinWorkspaceCodeTextField').val();
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'JSON',
+      url: 'joinWorkspace.php',
+      data: {
+        joinWorkspaceName: joinWorkspaceName
+      },
+      success: function(data) {
+
+        var data = eval(data);
+        message = data.message;
+
+        if (message == 'true') {
+
+          location.href = 'workspace.php';
+        }
+        else {
+
+          $('#joinWorkspaceMessage').show().text("Invalid Corvin Space invite code.");
         }
       }
     });
@@ -268,7 +327,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
       </div><!--TopAccountMenuContent-->
       <br><div class = '<?php echo $o;?>AccountMenuHeath'><br></div>
       <div class = '<?php echo $o;?>BottomAccountMenuContent'>
-        <a class = '<?php echo $o;?>GetMoreSpaceMenuItem' href = "getMoreSpace.php">Get More Space</a>
+        <a class = '<?php echo $o;?>GetMoreSpaceMenuItem' href = "getMoreSpace.php">Get More Storage</a>
         <a class = '<?php echo $o;?>MenuItem' href = "settings.php">Account Settings</a>
         <a class = '<?php echo $o;?>MenuItem' href = "help.php">Help</a>
         <a class = '<?php echo $o;?>MenuItem' href = "logout.php">Log Out</a>
@@ -276,7 +335,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
     </div>
   </div>
   <div class = '<?php echo $o;?>WorkspacesMenuDropDown'>
-    <p onclick = "workspacesDropDownMenu()" class = '<?php echo $o;?>WorkspacesButton' id = "workspacesButton">Workspaces</p>
+    <p onclick = "workspacesDropDownMenu()" class = '<?php echo $o;?>WorkspacesButton' id = "workspacesButton">Corvin Spaces</p>
     <div id = "workspacesMenuContent" class = '<?php echo $o;?>WorkspacesMenuContent'>
       <?php
       // Get user's row from Workspaces as an array
@@ -308,8 +367,11 @@ elseif (time() - $_SESSION['Created'] > 1200) {
       }
       ?>
       <a onclick = 'createWorkspacePopup()' class = '<?php echo $o;?>NewWorkspaceMenuItem'>
-          Create A Workspace</a>
-      <a class = '<?php echo $o;?>NewWorkspaceMenuItem' href = "">Join A Workspace</a>
+        Create A Space
+      </a>
+      <a onclick = 'joinWorkspacePopup()' class = '<?php echo $o;?>NewWorkspaceMenuItem'>
+        Join A Space
+      </a>
     </div>
   </div>
   <div class = '<?php echo $o;?>Home'>
