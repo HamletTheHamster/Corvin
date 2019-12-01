@@ -3292,7 +3292,7 @@ p.lightSettingsHeader {
 }
 
 .lightSettingsContent {
-  width: 960px;
+  width: 72.9166666667%;
   margin: 0 auto;
   font-size: 20px;
 }
@@ -3368,7 +3368,7 @@ p.lightSettingsHeader {
 }
 
 .lightSettingsNamePasswordVerifyTextBox {
-  margin-left: 0px;
+  margin-left: 20px;
 }
 
 .lightSettingsFirstNameChangeTextBox {
@@ -3382,7 +3382,7 @@ p.lightSettingsHeader {
 .lightSettingsFirstNameChangeTextBox,
 .lightSettingsLastNameChangeTextBox,
 .lightSettingsNamePasswordVerifyTextBox {
-  width: 244px;
+  width: 21.6145833333%;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
   border-radius: 4px;
@@ -3396,7 +3396,7 @@ p.lightSettingsHeader {
 }
 
 .lightSettingsNamePasswordVerifyTextBox {
-  width: 246px;
+  width: 21.6145833333%;
 }
 
 .lightSettingsFirstNameChangeTextBox:focus,
@@ -3451,13 +3451,13 @@ p.lightSettingsHeader {
 }
 
 .lightSettingsEmailPasswordVerifyTextBox {
-  width: 250px;
+  width: 34.8958333333%;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
   border-radius: 4px;
   float: left;
   font-size: 18px;
-  margin-left: 260px;
+  margin-left: 20px;
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
@@ -3474,7 +3474,7 @@ p.lightSettingsHeader {
 }
 
 .lightSettingsEmailChangeTextBox {
-  width: 250px;
+  width: 34.8958333333%;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
   border-radius: 4px;
@@ -3497,13 +3497,13 @@ p.lightSettingsHeader {
 }
 
 .lightSettingsUsernamePasswordVerifyTextBox {
-  width: 250px;
+  width: 34.8958333333%;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
   border-radius: 4px;
   float: left;
   font-size: 18px;
-  margin-left: 260px;
+  margin-left: 20px;
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
@@ -3520,7 +3520,7 @@ p.lightSettingsHeader {
 }
 
 .lightSettingsUsernameChangeTextBox {
-  width: 250px;
+  width: 34.8958333333%;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
   border-radius: 4px;
@@ -3590,7 +3590,7 @@ p.lightSettingsPasswordRequirement {
 }
 
 .lightSettingsPasswordOldPasswordVerifyTextBox {
-  margin-left: 0px;
+  margin-left: 20px;
 }
 
 .lightSettingsPasswordChangeTextBox {
@@ -3599,7 +3599,7 @@ p.lightSettingsPasswordRequirement {
 
 .lightSettingsPasswordChangeTextBox,
 .lightSettingsPasswordOldPasswordVerifyTextBox {
-  width: 244px;
+  width: 21.6145833333%;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
   border-radius: 4px;
@@ -3612,7 +3612,7 @@ p.lightSettingsPasswordRequirement {
 }
 
 .lightSettingsPasswordOldPasswordVerifyTextBox {
-  width: 246px;
+  width: 21.6145833333%;
 }
 
 .lightSettingsPasswordChangeTextBox:focus,
@@ -4391,7 +4391,7 @@ p.darkSettingsHeader {
 }
 
 .darkSettingsContent {
-  width: 960px;
+  width: 72.9166666667%;
   margin: 0 auto;
   font-size: 20px;
 }
@@ -4468,7 +4468,7 @@ p.darkSettingsHeader {
 }
 
 .darkSettingsNamePasswordVerifyTextBox {
-  margin-left: 0px;
+  margin-left: 20px;
 }
 
 .darkSettingsFirstNameChangeTextBox {
@@ -4482,7 +4482,7 @@ p.darkSettingsHeader {
 .darkSettingsFirstNameChangeTextBox,
 .darkSettingsLastNameChangeTextBox,
 .darkSettingsNamePasswordVerifyTextBox {
-  width: 244px;
+  width: 21.6145833333%;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
   border-radius: 4px;
@@ -4496,7 +4496,7 @@ p.darkSettingsHeader {
 }
 
 .darkSettingsNamePasswordVerifyTextBox {
-  width: 246px;
+  width: 21.6145833333%;
 }
 
 .darkSettingsFirstNameChangeTextBox::placeholder,
@@ -4557,13 +4557,13 @@ p.darkSettingsHeader {
 }
 
 .darkSettingsEmailPasswordVerifyTextBox {
-  width: 250px;
+  width: 34.8958333333%;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
   border-radius: 4px;
   float: left;
   font-size: 18px;
-  margin-left: 260px;
+  margin-left: 20px;
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
@@ -4585,7 +4585,7 @@ p.darkSettingsHeader {
 }
 
 .darkSettingsEmailChangeTextBox {
-  width: 250px;
+  width: 34.8958333333%;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
   border-radius: 4px;
@@ -4613,13 +4613,13 @@ p.darkSettingsHeader {
 }
 
 .darkSettingsUsernamePasswordVerifyTextBox {
-  width: 250px;
+  width: 34.8958333333%;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
   border-radius: 4px;
   float: left;
   font-size: 18px;
-  margin-left: 260px;
+  margin-left: 20px;
   padding-left: 10px;
   padding-top: 6px;
   padding-bottom: 6px;
@@ -4641,7 +4641,7 @@ p.darkSettingsHeader {
 }
 
 .darkSettingsUsernameChangeTextBox {
-  width: 250px;
+  width: 34.8958333333%;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
   border-radius: 4px;
@@ -4716,7 +4716,7 @@ p.darkSettingsPasswordRequirement {
 }
 
 .darkSettingsPasswordOldPasswordVerifyTextBox {
-  margin-left: 0px;
+  margin-left: 20px;
 }
 
 .darkSettingsPasswordChangeTextBox {
@@ -4725,7 +4725,7 @@ p.darkSettingsPasswordRequirement {
 
 .darkSettingsPasswordChangeTextBox,
 .darkSettingsPasswordOldPasswordVerifyTextBox {
-  width: 244px;
+  width: 21.6145833333%;
   border-color: rgba(23, 23, 23, 0.25);
   border-width: thin;
   border-radius: 4px;
@@ -4739,7 +4739,7 @@ p.darkSettingsPasswordRequirement {
 }
 
 .darkSettingsPasswordOldPasswordVerifyTextBox {
-  width: 246px;
+  width: 21.6145833333%;
 }
 
 .darkSettingsPasswordChangeTextBox:focus,

@@ -432,7 +432,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           />
           <input
             type = "submit"
-            value = "Save Changes"
+            value = "Save"
             id = "nameSaveChangesButton"
             class = <?php echo "'".$o."SaveChangesButton'";?>
           />
@@ -533,7 +533,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           />
           <input
             type = "submit"
-            value = "Save Changes"
+            value = "Save"
             id = "emailSaveChangesButton"
             class = <?php echo "'".$o."SaveChangesButton'";?>
           />
@@ -604,7 +604,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           />
           <input
             type = "submit"
-            value = "Save Changes"
+            value = "Save"
             id = "usernameSaveChangesButton"
             class = <?php echo "'".$o."SaveChangesButton'";?>
           />
@@ -684,7 +684,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             />
             <input
               type = "submit"
-              value = "Save Changes"
+              value = "Save"
               id = "passwordSaveChangesButton"
               class = <?php echo "'".$o."SaveChangesButton'";?>
             />
@@ -750,9 +750,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
         <div class = <?php echo "'".$o."RightItemBox'";?>>
           <div class = <?php echo "'".$o."Value'";?>>
-            <button id = "smallerLedgerSizeButton" class = <?php echo "'".$o."LedgerSizeButton'";?>>Smaller</button>
-            <button id = "standardLedgerSizeButton" class = <?php echo "'".$o."LedgerSizeButton'";?>>Standard</button>
-            <button id = "largerLedgerSizeButton" class = <?php echo "'".$o."LedgerSizeButton'";?>>Larger</button>
+            <p id = "ledgerSizeValuep" class = '<?php echo $o;?>Value'>Standard</p>
           </div>
         </div>
       </div>
@@ -767,12 +765,8 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
         <div class = <?php echo "'".$o."RightItemBox'";?>>
           <div class = <?php echo "'".$o."Value'";?>>
-            <?php //want today's date as examples ?>
-            <select class = <?php echo "'".$o."DateFormatSelect'";?>>
-              <option selected value = "1">10/14/2019</option>
-              <option value = "2">14/10/2019</option>
-              <option value = "3">October 14th, 2019</option>
-            </select>
+            <!-- want today's date as examples -->
+            <p id = "dateFormatValuep" class = '<?php echo $o;?>Value'>10/14/2019</p>
           </div>
         </div>
       </div>
@@ -787,10 +781,8 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
         <div class = <?php echo "'".$o."RightItemBox'";?>>
           <div class = <?php echo "'".$o."Value'";?>>
-            <select class = <?php echo "'".$o."TimeZoneSelect'";?>>
-              <?php //loop through array of all time zones ?>
-              <option value = "(UTC-07:00) Arizona">(UTC-07:00) Arizona</option>
-            </select>
+            <?php //loop through array of all time zones ?>
+            <p id = "timeZoneValuep" class = '<?php echo $o;?>Value'>(UTC-07:00) Arizona</p>
           </div>
         </div>
       </div>
@@ -805,10 +797,8 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
         <div class = <?php echo "'".$o."RightItemBox'";?>>
           <div class = <?php echo "'".$o."Value'";?>>
-            <select class = <?php echo "'".$o."LanguageSelect'";?>>
-              <?php //loop through array of all supported languages ?>
-              <option value = "English (US)">English (US)</option>
-            </select>
+            <?php //loop through array of all supported languages ?>
+            <p id = "languageValuep" class = '<?php echo $o;?>Value'>English (US)</p>
           </div>
         </div>
       </div>
@@ -823,10 +813,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
         <div class = <?php echo "'".$o."RightItemBox'";?>>
           <div class = <?php echo "'".$o."Value'";?>>
-            <select class = <?php echo "'".$o."NewSignInEmailNotificationsSelect'";?>>
-              <option value = "1">Opt In for Early Releases</option>
-              <option selected value = "0">Opt Out</option>
-            </select>
+            <p id = "corvinBetaProgramValuep" class = '<?php echo $o;?>Value'>Opt In</p>
           </div>
         </div>
       </div>
@@ -848,11 +835,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
         <div class = <?php echo "'".$o."RightItemBox'";?>>
           <div class = <?php echo "'".$o."Value'";?>>
-            <select class = <?php echo "'".$o."NewSignInSelect'";?>>
-              <option selected value = "2">Most Secure (Recommended)</option>
-              <option value = "1">Standard</option>
-              <option value = "0">None</option>
-            </select>
+            <p id = "newSignInValuep" class = '<?php echo $o;?>Value'>Most Secure</p>
           </div>
         </div>
       </div>
@@ -867,12 +850,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
         <div class = <?php echo "'".$o."RightItemBox'";?>>
           <div class = <?php echo "'".$o."Value'";?>>
-            <select class = <?php echo "'".$o."FileChangesSelect'";?>>
-              <option value = "3">Notify Me of All File Changes</option>
-              <option value = "2">Notify Me Only of New File Uploads</option>
-              <option value = "1">Notify Me Only of File Renames</option>
-              <option selected value = "0">Do Not Notify Me of Any Changes</option>
-            </select>
+            <p id = "workspaceFileChangesValuep" class = '<?php echo $o;?>Value'>Do Not Notify Me</p>
           </div>
         </div>
       </div>
@@ -887,10 +865,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
         <div class = <?php echo "'".$o."RightItemBox'";?>>
           <div class = <?php echo "'".$o."Value'";?>>
-            <select class = <?php echo "'".$o."NewWorkspaceMemberSelect'";?>>
-              <option value = "1">Notify Me</option>
-              <option selected value = "0">Do Not Notify Me</option>
-            </select>
+            <p id = "newWorkspaceMemberValuep" class = '<?php echo $o;?>Value'>Do Not Notify Me</p>
           </div>
         </div>
       </div>
@@ -905,10 +880,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
         </div>
         <div class = <?php echo "'".$o."RightItemBox'";?>>
           <div class = <?php echo "'".$o."Value'";?>>
-            <select class = <?php echo "'".$o."PromotionalCorvinNewsSelect'";?>>
-              <option value = "1">Notify Me of Corvin Promotional News</option>
-              <option selected value = "0">Do Not Notify Me</option>
-            </select>
+            <p id = "promotionalCorvinNewsValuep" class = '<?php echo $o;?>Value'>Do Not Notify Me</p>
           </div>
         </div>
       </div>

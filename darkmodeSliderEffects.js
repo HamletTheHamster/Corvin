@@ -127,22 +127,25 @@ function manualModeSwitch() {
     // Preferences
     document.getElementById("darkmode").style.color = "rgba(255, 255, 255, 0.85)";
     document.getElementById("ledgerSize").style.color = "rgba(255, 255, 255, 0.85)";
-    document.getElementById("smallerLedgerSizeButton").style.backgroundColor = "rgb(53, 54, 56)";
-    document.getElementById("smallerLedgerSizeButton").style.borderColor = "rgba(255, 255, 255, 0)";
-    document.getElementById("standardLedgerSizeButton").style.backgroundColor = "rgb(53, 54, 56)";
-    document.getElementById("standardLedgerSizeButton").style.borderColor = "rgba(255, 255, 255, 0)";
-    document.getElementById("largerLedgerSizeButton").style.backgroundColor = "rgb(53, 54, 56)";
-    document.getElementById("largerLedgerSizeButton").style.borderColor = "rgba(255, 255, 255, 0)";
+    document.getElementById("ledgerSizeValuep").style.color = "rgba(255, 255, 255, 0.85)";
     document.getElementById("dateFormat").style.color = "rgba(255, 255, 255, 0.85)";
+    document.getElementById("dateFormatValuep").style.color = "rgba(255, 255, 255, 0.85)";
     document.getElementById("timeZone").style.color = "rgba(255, 255, 255, 0.85)";
+    document.getElementById("timeZoneValuep").style.color = "rgba(255, 255, 255, 0.85)";
     document.getElementById("language").style.color = "rgba(255, 255, 255, 0.85)";
+    document.getElementById("languageValuep").style.color = "rgba(255, 255, 255, 0.85)";
     document.getElementById("corvinBetaProgram").style.color = "rgba(255, 255, 255, 0.85)";
+    document.getElementById("corvinBetaProgramValuep").style.color = "rgba(255, 255, 255, 0.85)";
 
     // Notifications
     document.getElementById("newSignIn").style.color = "rgba(255, 255, 255, 0.85)";
+    document.getElementById("newSignInValuep").style.color = "rgba(255, 255, 255, 0.85)";
     document.getElementById("workspaceFileChanges").style.color = "rgba(255, 255, 255, 0.85)";
+    document.getElementById("workspaceFileChangesValuep").style.color = "rgba(255, 255, 255, 0.85)";
     document.getElementById("newWorkspaceMember").style.color = "rgba(255, 255, 255, 0.85)";
+    document.getElementById("newWorkspaceMemberValuep").style.color = "rgba(255, 255, 255, 0.85)";
     document.getElementById("promotionalCorvinNews").style.color = "rgba(255, 255, 255, 0.85)";
+    document.getElementById("promotionalCorvinNewsValuep").style.color = "rgba(255, 255, 255, 0.85)";
 
     // Delete My Corvin
     document.getElementById("deleteMyCorvin").style.color = "rgba(255, 255, 255, 0.85)";
@@ -241,22 +244,25 @@ function manualModeSwitch() {
     // Preferences
     document.getElementById("darkmode").style.color = "rgba(23, 23, 23, 0.85)";
     document.getElementById("ledgerSize").style.color = "rgba(23, 23, 23, 0.85)";
-    document.getElementById("smallerLedgerSizeButton").style.backgroundColor = "rgba(51, 204, 255, 0)";
-    document.getElementById("smallerLedgerSizeButton").style.borderColor = "rgba(23, 23, 23, 0.25)";
-    document.getElementById("standardLedgerSizeButton").style.backgroundColor = "rgba(51, 204, 255, 0)";
-    document.getElementById("standardLedgerSizeButton").style.borderColor = "rgba(23, 23, 23, 0.25)";
-    document.getElementById("largerLedgerSizeButton").style.backgroundColor = "rgba(51, 204, 255, 0)";
-    document.getElementById("largerLedgerSizeButton").style.borderColor = "rgba(23, 23, 23, 0.25)";
+    document.getElementById("ledgerSizeValuep").style.color = "rgba(23, 23, 23, 0.85)";
     document.getElementById("dateFormat").style.color = "rgba(23, 23, 23, 0.85)";
+    document.getElementById("dateFormatValuep").style.color = "rgba(23, 23, 23, 0.85)";
     document.getElementById("timeZone").style.color = "rgba(23, 23, 23, 0.85)";
+    document.getElementById("timeZoneValuep").style.color = "rgba(23, 23, 23, 0.85)";
     document.getElementById("language").style.color = "rgba(23, 23, 23, 0.85)";
+    document.getElementById("languageValuep").style.color = "rgba(23, 23, 23, 0.85)";
     document.getElementById("corvinBetaProgram").style.color = "rgba(23, 23, 23, 0.85)";
+    document.getElementById("corvinBetaProgramValuep").style.color = "rgba(23, 23, 23, 0.85)";
 
     // Notifications
     document.getElementById("newSignIn").style.color = "rgba(23, 23, 23, 0.85)";
+    document.getElementById("newSignInValuep").style.color = "rgba(23, 23, 23, 0.85)";
     document.getElementById("workspaceFileChanges").style.color = "rgba(23, 23, 23, 0.85)";
+    document.getElementById("workspaceFileChangesValuep").style.color = "rgba(23, 23, 23, 0.85)";
     document.getElementById("newWorkspaceMember").style.color = "rgba(23, 23, 23, 0.85)";
+    document.getElementById("newWorkspaceMemberValuep").style.color = "rgba(23, 23, 23, 0.85)";
     document.getElementById("promotionalCorvinNews").style.color = "rgba(23, 23, 23, 0.85)";
+    document.getElementById("promotionalCorvinNewsValuep").style.color = "rgba(23, 23, 23, 0.85)";
 
     // Delete My Corvin
     document.getElementById("deleteMyCorvin").style.color = "rgba(23, 23, 23, 0.85)";
