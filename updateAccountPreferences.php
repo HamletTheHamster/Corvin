@@ -28,12 +28,17 @@ if ($darkmode == 'true')
 {
 
   $sql = "UPDATE Preferences SET darkmode = '1' WHERE id = '$userID'";
-  mysqli_query($conn, $sql);
+  $message = mysqli_query($conn, $sql);
+  //$message = "true";
+  echo json_encode(array('message' => $message));
+  exit;
 }
 
 else if ($darkmode == 'false')  //mode is false when button is disabled
 {
   $sql = "UPDATE Preferences SET darkmode = '0' WHERE id = '$userID'";
-  mysqli_query($conn, $sql);
+  $message = mysqli_query($conn, $sql);
+  //$message = "true";
+  echo json_encode(array('message' => $message));
 }
 ?>
