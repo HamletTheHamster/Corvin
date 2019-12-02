@@ -56,4 +56,8 @@ function drop(ev, directoryPath) {
       }
     });
   }
+  else {
+
+    dragLeave(ev);
+  }
 }
