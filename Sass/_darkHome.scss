@@ -937,8 +937,13 @@ a.#{$dark}DirectoryPath {
 
 .#{$dark}DraggableLedger {
   height: 40px;
+  border-radius: 4px;
   padding-top: 20px;
   cursor: grab;
+}
+
+.#{$dark}DraggableLedger:hover {
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
 .#{$dark}NonDraggableLedger {

@@ -1347,7 +1347,12 @@ p, a.lightHomeDirectoryPath {
 .lightHomeDraggableLedger {
   height: 40px;
   padding-top: 20px;
+  border-radius: 4px;
   cursor: grab;
+}
+
+.lightHomeDraggableLedger:hover {
+  background-color: rgba(0, 130, 140, 0.06);
 }
 
 .lightHomeNonDraggableLedger {
@@ -2511,8 +2516,13 @@ a.darkHomeDirectoryPath {
 
 .darkHomeDraggableLedger {
   height: 40px;
+  border-radius: 4px;
   padding-top: 20px;
   cursor: grab;
+}
+
+.darkHomeDraggableLedger:hover {
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
 .darkHomeNonDraggableLedger {

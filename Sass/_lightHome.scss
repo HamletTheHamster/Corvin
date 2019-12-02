@@ -841,7 +841,12 @@ p,a.#{$light}DirectoryPath {
 .#{$light}DraggableLedger {
   height: 40px;
   padding-top: 20px;
+  border-radius: 4px;
   cursor: grab;
+}
+
+.#{$light}DraggableLedger:hover {
+  background-color: rgba(0, 130, 140, 0.06);
 }
 
 .#{$light}NonDraggableLedger {

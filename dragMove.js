@@ -6,6 +6,12 @@ function drag(ev) {
 function allowDrop(ev) {
 
   ev.preventDefault();
+  ev.target.style.backgroundColor = "rgba(0, 130, 140, .85)";
+}
+
+function dragLeave(ev) {
+
+  ev.target.style.backgroundColor = "rgba(0, 130, 140, 0)";
 }
 
 function drop(ev, directoryPath) {

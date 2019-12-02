@@ -641,6 +641,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
         draggable = "true"
         ondragstart = "drag(event)"
         ondragover = "allowDrop(event)"
+        ondragleave = "dragLeave(event)"
         ondrop = "drop(event, '<?php echo $DirectoryPath;?>')"
       >
       <script> var directory = <?php echo json_encode($Directory);?>;</script>

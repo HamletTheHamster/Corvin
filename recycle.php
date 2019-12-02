@@ -234,7 +234,7 @@ else if (isset($_SESSION["liveCorvinFiles"])) {
     // Then try to move the file to user's hidden recycle folder. If this was
     // successful
     if (rename($fileToRecycleFullPath, $userRecycleDirectoryFullPath)) {
-      echo "<meta http-equiv = 'refresh' content = '0; " . $returnURL . "'>";
+      header("Location: " . $returnURL);
     }
     else {
       echo "There was a problem sending " . $fileToRecycle .
@@ -307,17 +307,15 @@ else {
     // Then try to move the file to user's hidden recycle folder. If this was
     // successful
     if (rename($fileToRecycleFullPath, $userRecycleDirectoryFullPath)) {
-      echo "<meta http-equiv = 'refresh' content = '0; " . $returnURL . "'>";
+      header("Location: " . $returnURL);
     }
     else {
       echo "There was a problem sending " . $fileToRecycle .
         " to your recycle folder.";
-      returnButton($returnURL);
     }
   }
   else {
     echo "There was a problem reading " . $fileToRecycle .
       "'s name or location.";
-    returnButton($returnURL);
   }
 }
