@@ -935,6 +935,12 @@ a.#{$dark}DirectoryPath {
     border-radius: 10px;
 }
 
+.#{$dark}DraggableLedger {
+  height: 40px;
+  padding-top: 20px;
+  cursor: grab;
+}
+
 .#{$dark}FileNames {
     max-width: 85%;
     float: left;
@@ -1113,7 +1119,6 @@ a.#{$dark}FileNames {
     background-color: rgb(18, 19, 21);
     border-radius: 2px;
     height: 3px;
-    margin: 20px 0;
 }
 
 .#{$dark}Files {

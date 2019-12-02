@@ -619,159 +619,171 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   for ($i = 2; $i < $NumItems; $i++) {
     if (is_dir($DirectoryPath . "/" . $Directory[$i])) {
   ?>
-      <div class = '<?php echo $o;?>FileNames'>
-        <div class = '<?php echo $o;?>Folders'>
-          <?php $URL = generateURL("home.php?", $CurrentPath, $Directory[$i]);?>
-          <a
-            href = '<?php echo $URL;?>'
-            class = '<?php echo $o;?>Folders'
-            id = '<?php echo addslashes($Directory[$i]);?>DirectoryName'
-          >
-            <?php echo $Directory[$i];?>
-          </a>
-        </div>
+      <div
+        id = '<?php echo addslashes($Directory[$i]);?>'
+        class = '<?php echo $o;?>DraggableLedger'
+        draggable = "true"
+        ondragstart = "drag(event)"
+        ondragover = "allowDrop(event)"
+        ondrop = "drop(event, '<?php echo $DirectoryPath;?>')"
+      >
+      <script> var directory = <?php echo json_encode($Directory);?>;</script>
+      <script src = "dragMove.js"></script>
 
-        <!-- 3.5.1.2 Download Folder -->
-        <div class = '<?php echo $o;?>DownloadButtonForm'>
-          <form
-            action = 'Zip/download.php'
-            class = '<?php echo $o;?>DownloadButtonForm'
-            method = 'post'
-            enctype = 'multipart/form-data'
-          >
-            <input
-              type = 'hidden'
-              value = '<?php echo $Directory[$i];?>'
-              name = 'fileToDownload'
-            />
-            <input
-              type = 'image'
-              src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow Icon Width 15px.png'
-                class = '<?php echo $o;?>DownloadButton'
-                value = 'Download'
-                name = 'submit'
-                id = '<?php echo addslashes($Directory[$i]);?>DownloadButton'
-            />
-            <input
-              type = 'hidden'
-              value = '<?php echo $CurrentPathString;?>'
-              name = 'currentPathString'
-            />
-            <input type = 'hidden' value = '' name = 'recycleBin'/>
-          </form>
-        </div>
+        <div class = '<?php echo $o;?>FileNames'>
+          <div class = '<?php echo $o;?>Folders'>
+            <?php $URL = generateURL("home.php?", $CurrentPath, $Directory[$i]);?>
+            <a
+              href = '<?php echo $URL;?>'
+              class = '<?php echo $o;?>Folders'
+              id = '<?php echo addslashes($Directory[$i]);?>DirectoryName'
+            >
+              <?php echo $Directory[$i];?>
+            </a>
+          </div>
 
-        <!-- 3.5.1.3 Rename Folder -->
-        <div class = '<?php echo $o;?>RenameButtonForm'>
-          <input
-            type = 'image'
-            src = 'Art/4 - Rename Cursor Icon/NanoLab Rename Cursor Icon Width 15px.png'
-            id = '<?php echo addslashes($Directory[$i]);?>CursorButton'
-            class = '<?php echo $o;?>RenameButton'
-          />
-          <form
-            action = 'rename.php'
-            class = '<?php echo $o;?>RenameButtonForm'
-            method = 'post'
-            enctype = 'multipart/form-data'
-          >
-            <input
-              type = 'hidden'
-              value = '<?php echo addslashes($Directory[$i]);?>'
-              name = 'oldName'
-            />
-            <input
-              type = 'text'
-              value = '<?php echo addslashes($Directory[$i]);?>'
-              size = '<?php echo strlen($Directory[$i]);?>'
-              onfocus = 'this.select()'
-              id = '<?php echo addslashes($Directory[$i]);?>RenameTextField'
-              class = '<?php echo $o;?>RenameTextField'
-              name = 'newName'
-              spellcheck = 'false'
-              autocomplete = 'off'
-            />
-            <input
-              type = 'hidden'
-              value = '<?php echo $CurrentPathString;?>'
-              name = 'currentPathString'
-            />
-          </form>
+          <!-- 3.5.1.2 Download Folder -->
+          <div class = '<?php echo $o;?>DownloadButtonForm'>
+            <form
+              action = 'Zip/download.php'
+              class = '<?php echo $o;?>DownloadButtonForm'
+              method = 'post'
+              enctype = 'multipart/form-data'
+            >
+              <input
+                type = 'hidden'
+                value = '<?php echo $Directory[$i];?>'
+                name = 'fileToDownload'
+              />
+              <input
+                type = 'image'
+                src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow Icon Width 15px.png'
+                  class = '<?php echo $o;?>DownloadButton'
+                  value = 'Download'
+                  name = 'submit'
+                  id = '<?php echo addslashes($Directory[$i]);?>DownloadButton'
+              />
+              <input
+                type = 'hidden'
+                value = '<?php echo $CurrentPathString;?>'
+                name = 'currentPathString'
+              />
+              <input type = 'hidden' value = '' name = 'recycleBin'/>
+            </form>
+          </div>
 
-          <script>
-          var directoryName = (typeof directoryName != 'undefined' && directoryName instanceof Array) ? directoryName : [];
-          var downloadButton = (typeof downloadButton != 'undefined' && downloadButton instanceof Array) ? downloadButton : [];
-          var cursorButton = (typeof cursorButton != 'undefined' && cursorButton instanceof Array) ? cursorButton : [];
-          var renameTextField = (typeof renameTextField != 'undefined' && renameTextField instanceof Array) ? renameTextField : [];
-          var recycleButton = (typeof recycleButton != 'undefined' && recycleButton instanceof Array) ? recycleButton : [];
-          var i = (typeof i != 'undefined') ? i : 0;
-
-          directoryName.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>DirectoryName'));
-          downloadButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>DownloadButton'));
-          cursorButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>CursorButton'));
-          renameTextField.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RenameTextField'));
-          recycleButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RecycleButton'));
-
-          cursorButton[i].addEventListener('click', showTextBox, false);
-
-          function showTextBox() {
-            document.getElementById(event.target.id.replace('CursorButton', 'DirectoryName')).style.display = 'none';
-            document.getElementById(event.target.id.replace('CursorButton', 'DownloadButton')).style.display = 'none';
-            document.getElementById(event.target.id).style.display = 'none';
-            document.getElementById(event.target.id.replace('CursorButton', 'RecycleButton')).style.display = 'none';
-            document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).style.display = 'block';
-            document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).focus();
-            document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).addEventListener('focusout', hideRenameTextField, false);
-          }
-
-          function hideRenameTextField() {
-            document.getElementById(event.target.id).style.display = 'none';
-            document.getElementById(event.target.id.replace('RenameTextField', 'DirectoryName')).style.display = 'block';
-            document.getElementById(event.target.id.replace('RenameTextField', 'DownloadButton')).style.display = 'block';
-            document.getElementById(event.target.id.replace('RenameTextField', 'CursorButton')).style.display = 'block';
-            document.getElementById(event.target.id.replace('RenameTextField', 'RecycleButton')).style.display = 'block';
-          }
-
-          i++;
-          </script>
-        </div>
-
-        <!-- 3.5.1.4 Recycle Folder -->
-        <div class = '<?php echo $o;?>RecycleButtonForm'>
-          <form
-            action = 'recycle.php'
-            class = '<?php echo $o;?>RecycleButtonForm'
-            method = 'post'
-            enctype = 'multipart/form-data'
-          >
-            <input
-              type = 'hidden'
-              value = '<?php echo $Directory[$i];?>'
-              name = 'fileToRecycle'
-            />
+          <!-- 3.5.1.3 Rename Folder -->
+          <div class = '<?php echo $o;?>RenameButtonForm'>
             <input
               type = 'image'
-              src = 'Art/3 - Delete Trash Can Icon/NanoLab Delete Trash Can Select Width 25px.png'
-              class = '<?php echo $o;?>RecycleButton'
-              id = '<?php echo addslashes($Directory[$i]);?>RecycleButton'
+              src = 'Art/4 - Rename Cursor Icon/NanoLab Rename Cursor Icon Width 15px.png'
+              id = '<?php echo addslashes($Directory[$i]);?>CursorButton'
+              class = '<?php echo $o;?>RenameButton'
             />
-            <input
-              type = 'hidden'
-              value = '<?php echo $CurrentPathString;?>'
-              name = 'currentPathString'
-            />
-          </form>
+            <form
+              action = 'rename.php'
+              class = '<?php echo $o;?>RenameButtonForm'
+              method = 'post'
+              enctype = 'multipart/form-data'
+            >
+              <input
+                type = 'hidden'
+                value = '<?php echo addslashes($Directory[$i]);?>'
+                name = 'oldName'
+              />
+              <input
+                type = 'text'
+                value = '<?php echo addslashes($Directory[$i]);?>'
+                size = '<?php echo strlen($Directory[$i]);?>'
+                onfocus = 'this.select()'
+                id = '<?php echo addslashes($Directory[$i]);?>RenameTextField'
+                class = '<?php echo $o;?>RenameTextField'
+                name = 'newName'
+                spellcheck = 'false'
+                autocomplete = 'off'
+              />
+              <input
+                type = 'hidden'
+                value = '<?php echo $CurrentPathString;?>'
+                name = 'currentPathString'
+              />
+            </form>
+
+            <script>
+            var directoryName = (typeof directoryName != 'undefined' && directoryName instanceof Array) ? directoryName : [];
+            var downloadButton = (typeof downloadButton != 'undefined' && downloadButton instanceof Array) ? downloadButton : [];
+            var cursorButton = (typeof cursorButton != 'undefined' && cursorButton instanceof Array) ? cursorButton : [];
+            var renameTextField = (typeof renameTextField != 'undefined' && renameTextField instanceof Array) ? renameTextField : [];
+            var recycleButton = (typeof recycleButton != 'undefined' && recycleButton instanceof Array) ? recycleButton : [];
+            var i = (typeof i != 'undefined') ? i : 0;
+
+            directoryName.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>DirectoryName'));
+            downloadButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>DownloadButton'));
+            cursorButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>CursorButton'));
+            renameTextField.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RenameTextField'));
+            recycleButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RecycleButton'));
+
+            cursorButton[i].addEventListener('click', showTextBox, false);
+
+            function showTextBox() {
+              document.getElementById(event.target.id.replace('CursorButton', 'DirectoryName')).style.display = 'none';
+              document.getElementById(event.target.id.replace('CursorButton', 'DownloadButton')).style.display = 'none';
+              document.getElementById(event.target.id).style.display = 'none';
+              document.getElementById(event.target.id.replace('CursorButton', 'RecycleButton')).style.display = 'none';
+              document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).style.display = 'block';
+              document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).focus();
+              document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).addEventListener('focusout', hideRenameTextField, false);
+            }
+
+            function hideRenameTextField() {
+              document.getElementById(event.target.id).style.display = 'none';
+              document.getElementById(event.target.id.replace('RenameTextField', 'DirectoryName')).style.display = 'block';
+              document.getElementById(event.target.id.replace('RenameTextField', 'DownloadButton')).style.display = 'block';
+              document.getElementById(event.target.id.replace('RenameTextField', 'CursorButton')).style.display = 'block';
+              document.getElementById(event.target.id.replace('RenameTextField', 'RecycleButton')).style.display = 'block';
+            }
+
+            i++;
+            </script>
+          </div>
+
+          <!-- 3.5.1.4 Recycle Folder -->
+          <div class = '<?php echo $o;?>RecycleButtonForm'>
+            <form
+              action = 'recycle.php'
+              class = '<?php echo $o;?>RecycleButtonForm'
+              method = 'post'
+              enctype = 'multipart/form-data'
+            >
+              <input
+                type = 'hidden'
+                value = '<?php echo $Directory[$i];?>'
+                name = 'fileToRecycle'
+              />
+              <input
+                type = 'image'
+                src = 'Art/3 - Delete Trash Can Icon/NanoLab Delete Trash Can Select Width 25px.png'
+                class = '<?php echo $o;?>RecycleButton'
+                id = '<?php echo addslashes($Directory[$i]);?>RecycleButton'
+              />
+              <input
+                type = 'hidden'
+                value = '<?php echo $CurrentPathString;?>'
+                name = 'currentPathString'
+              />
+            </form>
+          </div>
+
         </div>
 
-      </div>
-
-      <!-- 3.5.1.5 File Sizes -->
-      <div class = '<?php echo $o;?>FileSizes'>
-        <?php echo humanSize(folderSize($DirectoryPath . "/" . $Directory[$i]));?>
+        <!-- 3.5.1.5 File Sizes -->
+        <div class = '<?php echo $o;?>FileSizes'>
+          <?php echo humanSize(folderSize($DirectoryPath . "/" . $Directory[$i]));?>
+        </div>
       </div>
 
       <!-- 3.5.1.6 Heath -->
-      <br><div class = '<?php echo $o;?>Heath'><br></div>
+      <div class = '<?php echo $o;?>Heath'><br></div>
   <?php
     }
   }
@@ -883,186 +895,197 @@ elseif (time() - $_SESSION['Created'] > 1200) {
         "c",
         "go",
       ];
+      ?>
 
-      echo "<div class = '".$o."FileNames'>";
-        echo "<div class = '".$o."Files'>";
+      <div
+        id = '<?php echo addslashes($Directory[$i]);?>'
+        class = '<?php echo $o;?>DraggableLedger'
+        draggable = "true"
+        ondragstart = "drag(event)"
+        ondragover = "allowDrop(event)"
+        ondrop = "drop(event)"
+      >
+        <div class = '<?php echo $o;?>FileNames'>
+          <div class = '<?php echo $o;?>Files'>
 
-          // If the file can be viewed directly in the browser
-          if (in_array(
-            strtolower(substr($Directory[$i], -4)), $SupportedFileTypes)
-          ) {
-            supportedFileTypes(strtolower(substr(
-              $Directory[$i], -4)), $Directory[$i], $DirectoryPath, $o);
-          }
-          else if (in_array(
-            strtolower(substr($Directory[$i], -3)), $SupportedFileTypes)
-          ) {
-            supportedFileTypes(strtolower(substr(
-              $Directory[$i], -3)), $Directory[$i], $DirectoryPath, $o);
-          }
-          else if (in_array(
-            strtolower(substr($Directory[$i], -2)), $SupportedFileTypes)
-          ) {
-            supportedFileTypes(strtolower(substr(
-              $Directory[$i], -2)), $Directory[$i], $DirectoryPath, $o);
-          }
-          else if (in_array(
-            strtolower(substr($Directory[$i], -1)), $SupportedFileTypes)
-          ) {
-            supportedFileTypes(strtolower(substr(
-              $Directory[$i], -1)), $Directory[$i], $DirectoryPath, $o);
-          }
-          else {
-            echo $Directory[$i];
-          }
-    ?>
-        </div>
+            <?php
+            // If the file can be viewed directly in the browser
+            if (in_array(
+              strtolower(substr($Directory[$i], -4)), $SupportedFileTypes)
+            ) {
+              supportedFileTypes(strtolower(substr(
+                $Directory[$i], -4)), $Directory[$i], $DirectoryPath, $o);
+            }
+            else if (in_array(
+              strtolower(substr($Directory[$i], -3)), $SupportedFileTypes)
+            ) {
+              supportedFileTypes(strtolower(substr(
+                $Directory[$i], -3)), $Directory[$i], $DirectoryPath, $o);
+            }
+            else if (in_array(
+              strtolower(substr($Directory[$i], -2)), $SupportedFileTypes)
+            ) {
+              supportedFileTypes(strtolower(substr(
+                $Directory[$i], -2)), $Directory[$i], $DirectoryPath, $o);
+            }
+            else if (in_array(
+              strtolower(substr($Directory[$i], -1)), $SupportedFileTypes)
+            ) {
+              supportedFileTypes(strtolower(substr(
+                $Directory[$i], -1)), $Directory[$i], $DirectoryPath, $o);
+            }
+            else {
+              echo $Directory[$i];
+            }
+            ?>
+          </div>
 
-        <!-- 3.5.2.2 Download File -->
-        <div class = '<?php echo $o;?>DownloadButtonForm'>
-          <form
-            action = 'Zip/download.php'
-            class = '<?php echo $o;?>DownloadButtonForm'
-            method = 'post'
-            enctype = 'multipart/form-data'
-          >
-            <input
-              type = 'hidden'
-              value = '<?php echo $Directory[$i];?>'
-              name = 'fileToDownload'
-            />
-            <input
-              type = 'image'
-              src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow Icon @ 36 ppi.png'
-              class = '<?php echo $o;?>DownloadButton'
-              value = 'Download'
-              name = 'submit'
-              id = '<?php echo addslashes($Directory[$i]);?>DownloadButton'
-            />
-            <input
-              type = 'hidden'
-              value = '<?php echo $CurrentPathString;?>'
-              name = 'currentPathString'
-            />
-            <input type = 'hidden' value = '' name = 'recycleBin'/>
-          </form>
-        </div>
+          <!-- 3.5.2.2 Download File -->
+          <div class = '<?php echo $o;?>DownloadButtonForm'>
+            <form
+              action = 'Zip/download.php'
+              class = '<?php echo $o;?>DownloadButtonForm'
+              method = 'post'
+              enctype = 'multipart/form-data'
+            >
+              <input
+                type = 'hidden'
+                value = '<?php echo $Directory[$i];?>'
+                name = 'fileToDownload'
+              />
+              <input
+                type = 'image'
+                src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow Icon @ 36 ppi.png'
+                class = '<?php echo $o;?>DownloadButton'
+                value = 'Download'
+                name = 'submit'
+                id = '<?php echo addslashes($Directory[$i]);?>DownloadButton'
+              />
+              <input
+                type = 'hidden'
+                value = '<?php echo $CurrentPathString;?>'
+                name = 'currentPathString'
+              />
+              <input type = 'hidden' value = '' name = 'recycleBin'/>
+            </form>
+          </div>
 
-        <!-- 3.5.2.3 Rename File -->
-        <div class = '<?php echo $o;?>RenameButtonForm'>
-          <input
-            type = 'image'
-            src = 'Art/4 - Rename Cursor Icon/NanoLab Rename Cursor Icon @ 36 ppi.png'
-            id = '<?php echo addslashes($Directory[$i]);?>CursorButton'
-            class = '<?php echo $o;?>RenameButton'
-          />
-          <form
-            action = 'rename.php'
-            class = '<?php echo $o;?>RenameButtonForm'
-            method = 'post'
-            enctype = 'multipart/form-data'
-          >
-            <input
-              type = 'hidden'
-              value = '<?php echo $Directory[$i];?>'
-              name = 'oldName'
-            />
-            <input
-              type = 'text'
-              value = '<?php echo $Directory[$i];?>'
-              size = '<?php echo strlen($Directory[$i]);?>'
-              id = '<?php echo addslashes($Directory[$i]);?>RenameTextField'
-              class = '<?php echo $o;?>RenameTextField'
-              name = 'newName'
-              spellcheck = 'false'
-              autocomplete = 'off'
-            />
-            <input
-              type = 'hidden'
-              value = '<?php echo $CurrentPathString;?>'
-              name = 'currentPathString'
-            />
-          </form>
-
-          <script>
-          var fileName = (typeof fileName != 'undefined' && fileName instanceof Array) ? fileName : [];
-          var downloadButton = (typeof downloadButton != 'undefined' && downloadButton instanceof Array) ? downloadButton : [];
-          var cursorButton = (typeof cursorButton != 'undefined' && cursorButton instanceof Array) ? cursorButton : [];
-          var renameTextField = (typeof renameTextField != 'undefined' && renameTextField instanceof Array) ? renameTextField : [];
-          var recycleButton = (typeof recycleButton != 'undefined' && recycleButton instanceof Array) ? recycleButton : [];
-
-          var i = (typeof i != 'undefined') ? i : 0;
-
-          fileName.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>FileName'));
-          downloadButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>DownloadButton'));
-          cursorButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>CursorButton'));
-          renameTextField.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RenameTextField'));
-          recycleButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RecycleButton'));
-
-          cursorButton[i].addEventListener('click', showFileTextBox, false);
-
-          function showFileTextBox() {
-            document.getElementById(event.target.id.replace('CursorButton', 'FileName')).style.display = 'none';
-            document.getElementById(event.target.id.replace('CursorButton', 'DownloadButton')).style.display = 'none';
-            document.getElementById(event.target.id).style.display = 'none';
-            document.getElementById(event.target.id.replace('CursorButton', 'RecycleButton')).style.display = 'none';
-            document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).style.display = 'block';
-            document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).focus();
-            document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).setSelectionRange(0, <?php echo strlen(pathinfo($Directory[$i], PATHINFO_FILENAME));?>);
-            document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).addEventListener('focusout', hideRenameFileTextField, false);
-          }
-
-          function hideRenameFileTextField() {
-            document.getElementById(event.target.id).style.display = 'none';
-            document.getElementById(event.target.id.replace('RenameTextField', 'FileName')).style.display = 'block';
-            document.getElementById(event.target.id.replace('RenameTextField', 'DownloadButton')).style.display = 'block';
-            document.getElementById(event.target.id.replace('RenameTextField', 'CursorButton')).style.display = 'block';
-            document.getElementById(event.target.id.replace('RenameTextField', 'RecycleButton')).style.display = 'block';
-          }
-
-          i++;
-          </script>
-        </div>
-
-        <!-- 3.5.2.4 Recycle File -->
-        <div class = '<?php echo $o;?>RecycleButtonForm'>
-          <form
-            action = 'recycle.php'
-            class = '<?php echo $o;?>RecycleButtonForm'
-            method = 'post'
-            enctype = 'multipart/form-data'
-          >
-            <input
-              type = 'hidden'
-              value = '<?php echo $Directory[$i];?>'
-              name = 'fileToRecycle'
-            />
+          <!-- 3.5.2.3 Rename File -->
+          <div class = '<?php echo $o;?>RenameButtonForm'>
             <input
               type = 'image'
-              src = 'Art/3 - Delete Trash Can Icon/NanoLab Delete Trash Can Select @ 36 ppi.png'
-              class = '<?php echo $o;?>RecycleButton'
-              id = '<?php echo addslashes($Directory[$i]);?>RecycleButton'
+              src = 'Art/4 - Rename Cursor Icon/NanoLab Rename Cursor Icon @ 36 ppi.png'
+              id = '<?php echo addslashes($Directory[$i]);?>CursorButton'
+              class = '<?php echo $o;?>RenameButton'
             />
-            <input
-              type = 'hidden'
-              value = '<?php echo $CurrentPathString;?>'
-              name = 'currentPathString'
-            />
-          </form>
+            <form
+              action = 'rename.php'
+              class = '<?php echo $o;?>RenameButtonForm'
+              method = 'post'
+              enctype = 'multipart/form-data'
+            >
+              <input
+                type = 'hidden'
+                value = '<?php echo $Directory[$i];?>'
+                name = 'oldName'
+              />
+              <input
+                type = 'text'
+                value = '<?php echo $Directory[$i];?>'
+                size = '<?php echo strlen($Directory[$i]);?>'
+                id = '<?php echo addslashes($Directory[$i]);?>RenameTextField'
+                class = '<?php echo $o;?>RenameTextField'
+                name = 'newName'
+                spellcheck = 'false'
+                autocomplete = 'off'
+              />
+              <input
+                type = 'hidden'
+                value = '<?php echo $CurrentPathString;?>'
+                name = 'currentPathString'
+              />
+            </form>
+
+            <script>
+            var fileName = (typeof fileName != 'undefined' && fileName instanceof Array) ? fileName : [];
+            var downloadButton = (typeof downloadButton != 'undefined' && downloadButton instanceof Array) ? downloadButton : [];
+            var cursorButton = (typeof cursorButton != 'undefined' && cursorButton instanceof Array) ? cursorButton : [];
+            var renameTextField = (typeof renameTextField != 'undefined' && renameTextField instanceof Array) ? renameTextField : [];
+            var recycleButton = (typeof recycleButton != 'undefined' && recycleButton instanceof Array) ? recycleButton : [];
+
+            var i = (typeof i != 'undefined') ? i : 0;
+
+            fileName.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>FileName'));
+            downloadButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>DownloadButton'));
+            cursorButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>CursorButton'));
+            renameTextField.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RenameTextField'));
+            recycleButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RecycleButton'));
+
+            cursorButton[i].addEventListener('click', showFileTextBox, false);
+
+            function showFileTextBox() {
+              document.getElementById(event.target.id.replace('CursorButton', 'FileName')).style.display = 'none';
+              document.getElementById(event.target.id.replace('CursorButton', 'DownloadButton')).style.display = 'none';
+              document.getElementById(event.target.id).style.display = 'none';
+              document.getElementById(event.target.id.replace('CursorButton', 'RecycleButton')).style.display = 'none';
+              document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).style.display = 'block';
+              document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).focus();
+              document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).setSelectionRange(0, <?php echo strlen(pathinfo($Directory[$i], PATHINFO_FILENAME));?>);
+              document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).addEventListener('focusout', hideRenameFileTextField, false);
+            }
+
+            function hideRenameFileTextField() {
+              document.getElementById(event.target.id).style.display = 'none';
+              document.getElementById(event.target.id.replace('RenameTextField', 'FileName')).style.display = 'block';
+              document.getElementById(event.target.id.replace('RenameTextField', 'DownloadButton')).style.display = 'block';
+              document.getElementById(event.target.id.replace('RenameTextField', 'CursorButton')).style.display = 'block';
+              document.getElementById(event.target.id.replace('RenameTextField', 'RecycleButton')).style.display = 'block';
+            }
+
+            i++;
+            </script>
+          </div>
+
+          <!-- 3.5.2.4 Recycle File -->
+          <div class = '<?php echo $o;?>RecycleButtonForm'>
+            <form
+              action = 'recycle.php'
+              class = '<?php echo $o;?>RecycleButtonForm'
+              method = 'post'
+              enctype = 'multipart/form-data'
+            >
+              <input
+                type = 'hidden'
+                value = '<?php echo $Directory[$i];?>'
+                name = 'fileToRecycle'
+              />
+              <input
+                type = 'image'
+                src = 'Art/3 - Delete Trash Can Icon/NanoLab Delete Trash Can Select @ 36 ppi.png'
+                class = '<?php echo $o;?>RecycleButton'
+                id = '<?php echo addslashes($Directory[$i]);?>RecycleButton'
+              />
+              <input
+                type = 'hidden'
+                value = '<?php echo $CurrentPathString;?>'
+                name = 'currentPathString'
+              />
+            </form>
+          </div>
+
         </div>
 
-      </div>
-
-      <!-- 3.5.2.5 File Size -->
-      <div class = '<?php echo $o;?>FileSizes'>
-        <?php
-        $FileSize = filesize($DirectoryPath . "/" . $Directory[$i]);
-        echo HumanSize($FileSize);
-        ?>
+        <!-- 3.5.2.5 File Size -->
+        <div class = '<?php echo $o;?>FileSizes'>
+          <?php
+          $FileSize = filesize($DirectoryPath . "/" . $Directory[$i]);
+          echo HumanSize($FileSize);
+          ?>
+        </div>
       </div>
 
       <!-- 3.5.2.6 Heath -->
-      <br><div class = '<?php echo $o;?>Heath'><br></div>
+      <div class = '<?php echo $o;?>Heath'><br></div>
   <?php
     }
   }

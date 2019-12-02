@@ -2499,6 +2499,12 @@ a.darkHomeDirectoryPath {
   border-radius: 10px;
 }
 
+.darkHomeDraggableLedger {
+  height: 40px;
+  padding-top: 20px;
+  cursor: grab;
+}
+
 .darkHomeFileNames {
   max-width: 85%;
   float: left;
@@ -2677,7 +2683,6 @@ a.darkHomeFileNames {
   background-color: #121315;
   border-radius: 2px;
   height: 3px;
-  margin: 20px 0;
 }
 
 .darkHomeFiles {
