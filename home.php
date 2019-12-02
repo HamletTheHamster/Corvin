@@ -902,8 +902,6 @@ elseif (time() - $_SESSION['Created'] > 1200) {
         class = '<?php echo $o;?>DraggableLedger'
         draggable = "true"
         ondragstart = "drag(event)"
-        ondragover = "allowDrop(event)"
-        ondrop = "drop(event)"
       >
         <div class = '<?php echo $o;?>FileNames'>
           <div class = '<?php echo $o;?>Files'>

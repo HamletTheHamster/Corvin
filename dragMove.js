@@ -14,29 +14,30 @@ function drop(ev, directoryPath) {
   var directoryToMove = directoryPath + "/" + ev.dataTransfer.getData("text");
   var directoryTarget = directoryPath + "/" + ev.target.id + "/" + ev.dataTransfer.getData("text");
 
-  //alert(directoryToMove + "\n" + directoryTarget);
+  if (ev.dataTransfer.getData("text") !== ev.target.id) {
 
-  $.ajax({
-    type: 'POST',
-    dataType: 'JSON',
-    url: 'dragMove.php',
-    data: {
-      directoryToMove: directoryToMove,
-      directoryTarget: directoryTarget
-    },
-    success: function(data) {
+    $.ajax({
+      type: 'POST',
+      dataType: 'JSON',
+      url: 'dragMove.php',
+      data: {
+        directoryToMove: directoryToMove,
+        directoryTarget: directoryTarget
+      },
+      success: function(data) {
 
-      var data = eval(data);
-      message = data.message;
+        var data = eval(data);
+        message = data.message;
 
-      if (message == 'true') {
+        if (message == 'true') {
 
-        location.reload();
+          location.reload();
+        }
+        else {
+
+          alert(message);
+        }
       }
-      else {
-
-        alert(message);
-      }
-    }
-  });
+    });
+  }
 }

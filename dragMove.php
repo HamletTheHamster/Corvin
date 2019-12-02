@@ -15,9 +15,18 @@ if (!is_readable($directoryToMove)) {
   echo json_encode(array('message' => $message));
   exit;
 }
+
 if (rename($directoryToMove, $directoryTarget)) {
 
   $message = "true";
+  echo json_encode(array('message' => $message));
+  exit;
+}
+else {
+
+  include "renameRecursively.php";
+  
+  $message = renameRecursively($directoryToMove, $directoryTarget);
   echo json_encode(array('message' => $message));
   exit;
 }
