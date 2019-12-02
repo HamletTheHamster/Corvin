@@ -6,7 +6,16 @@ function drag(ev) {
 function allowDrop(ev) {
 
   ev.preventDefault();
-  ev.target.style.backgroundColor = "rgba(0, 130, 140, .85)";
+
+  if (o == "darkHome") {
+
+    ev.target.style.backgroundColor = "rgba(0, 130, 140, .85)";
+  }
+  if (o == "lightHome") {
+
+    ev.target.style.backgroundColor = "rgba(0, 130, 140, .60)";
+  }
+
 }
 
 function dragLeave(ev) {
