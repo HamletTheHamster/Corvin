@@ -559,56 +559,58 @@ elseif ($darkmodeSetting[0] == 0) {
   for ($i = 2; $i < $NumItems; $i++) {
     if (is_dir($DirectoryPath . "/" . $Directory[$i])) {
   ?>
-      <div class = '<?php echo $o;?>FileNames'>
-        <div class = '<?php echo $o;?>Folders'>
-          <?php $URL = generateURL("workspacesRecycleBin.php?", $CurrentPath, $Directory[$i]);?>
-          <a
-            href = '<?php echo $URL;?>'
-            class = '<?php echo $o;?>Folders'
-            id = '<?php echo addslashes($Directory[$i]);?>DirectoryName'
-          >
-            <?php echo $Directory[$i];?>
-          </a>
+      <div class = '<?php echo $o;?>NonDraggableLedger'>
+        <div class = '<?php echo $o;?>FileNames'>
+          <div class = '<?php echo $o;?>Folders'>
+            <?php $URL = generateURL("workspacesRecycleBin.php?", $CurrentPath, $Directory[$i]);?>
+            <a
+              href = '<?php echo $URL;?>'
+              class = '<?php echo $o;?>Folders'
+              id = '<?php echo addslashes($Directory[$i]);?>DirectoryName'
+            >
+              <?php echo $Directory[$i];?>
+            </a>
+          </div>
+
+          <!-- 3.5.1.2 Download Folder -->
+          <div class = '<?php echo $o;?>DownloadButtonForm'>
+            <form
+              action = 'Zip/download.php'
+              class = '<?php echo $o;?>DownloadButtonForm'
+              method = 'post'
+              enctype = 'multipart/form-data'
+            >
+              <input
+                type = 'hidden'
+                value = '<?php echo $Directory[$i];?>'
+                name = 'fileToDownload'
+              />
+              <input
+                type = 'image'
+                src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow Icon Width 15px.png'
+                  class = '<?php echo $o;?>DownloadButton'
+                  value = 'Download'
+                  name = 'submit'
+                  id = '<?php echo addslashes($Directory[$i]);?>DownloadButton'
+              />
+              <input
+                type = 'hidden'
+                value = '<?php echo $CurrentPathString;?>'
+                name = 'currentPathString'
+              />
+              <input type = 'hidden' value = '0 - WorkspacesRecycle/' name = 'workspacesRecycleBin'/>
+            </form>
+          </div>
         </div>
 
-        <!-- 3.5.1.2 Download Folder -->
-        <div class = '<?php echo $o;?>DownloadButtonForm'>
-          <form
-            action = 'Zip/download.php'
-            class = '<?php echo $o;?>DownloadButtonForm'
-            method = 'post'
-            enctype = 'multipart/form-data'
-          >
-            <input
-              type = 'hidden'
-              value = '<?php echo $Directory[$i];?>'
-              name = 'fileToDownload'
-            />
-            <input
-              type = 'image'
-              src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow Icon Width 15px.png'
-                class = '<?php echo $o;?>DownloadButton'
-                value = 'Download'
-                name = 'submit'
-                id = '<?php echo addslashes($Directory[$i]);?>DownloadButton'
-            />
-            <input
-              type = 'hidden'
-              value = '<?php echo $CurrentPathString;?>'
-              name = 'currentPathString'
-            />
-            <input type = 'hidden' value = '0 - WorkspacesRecycle/' name = 'workspacesRecycleBin'/>
-          </form>
+        <!-- 3.5.1.5 File Sizes -->
+        <div class = '<?php echo $o;?>FileSizes'>
+          <?php echo humanSize(folderSize($DirectoryPath . "/" . $Directory[$i]));?>
         </div>
-      </div>
-
-      <!-- 3.5.1.5 File Sizes -->
-      <div class = '<?php echo $o;?>FileSizes'>
-        <?php echo humanSize(folderSize($DirectoryPath . "/" . $Directory[$i]));?>
       </div>
 
       <!-- 3.5.1.6 Heath -->
-      <br><div class = '<?php echo $o;?>Heath'><br></div>
+      <div class = '<?php echo $o;?>Heath'><br></div>
   <?php
     }
   }
@@ -720,82 +722,86 @@ elseif ($darkmodeSetting[0] == 0) {
         "c",
         "go",
       ];
+      ?>
 
-      echo "<div class = '".$o."FileNames'>";
-        echo "<div class = '".$o."Files'>";
+      <div class = '<?php echo $o;?>NonDraggableLedger'>
+        <div class = '<?php echo $o;?>FileNames'>
+          <div class = '<?php echo $o;?>Files'>
 
-          // If the file can be viewed directly in the browser
-          if (in_array(
-            strtolower(substr($Directory[$i], -4)), $SupportedFileTypes)
-          ) {
-            supportedFileTypes(strtolower(substr(
-              $Directory[$i], -4)), $Directory[$i], $DirectoryPath, $o);
-          }
-          else if (in_array(
-            strtolower(substr($Directory[$i], -3)), $SupportedFileTypes)
-          ) {
-            supportedFileTypes(strtolower(substr(
-              $Directory[$i], -3)), $Directory[$i], $DirectoryPath, $o);
-          }
-          else if (in_array(
-            strtolower(substr($Directory[$i], -2)), $SupportedFileTypes)
-          ) {
-            supportedFileTypes(strtolower(substr(
-              $Directory[$i], -2)), $Directory[$i], $DirectoryPath, $o);
-          }
-          else if (in_array(
-            strtolower(substr($Directory[$i], -1)), $SupportedFileTypes)
-          ) {
-            supportedFileTypes(strtolower(substr(
-              $Directory[$i], -1)), $Directory[$i], $DirectoryPath, $o);
-          }
-          else {
-            echo $Directory[$i];
-          }
-    ?>
+            <?php
+            // If the file can be viewed directly in the browser
+            if (in_array(
+              strtolower(substr($Directory[$i], -4)), $SupportedFileTypes)
+            ) {
+              supportedFileTypes(strtolower(substr(
+                $Directory[$i], -4)), $Directory[$i], $DirectoryPath, $o);
+            }
+            else if (in_array(
+              strtolower(substr($Directory[$i], -3)), $SupportedFileTypes)
+            ) {
+              supportedFileTypes(strtolower(substr(
+                $Directory[$i], -3)), $Directory[$i], $DirectoryPath, $o);
+            }
+            else if (in_array(
+              strtolower(substr($Directory[$i], -2)), $SupportedFileTypes)
+            ) {
+              supportedFileTypes(strtolower(substr(
+                $Directory[$i], -2)), $Directory[$i], $DirectoryPath, $o);
+            }
+            else if (in_array(
+              strtolower(substr($Directory[$i], -1)), $SupportedFileTypes)
+            ) {
+              supportedFileTypes(strtolower(substr(
+                $Directory[$i], -1)), $Directory[$i], $DirectoryPath, $o);
+            }
+            else {
+              echo $Directory[$i];
+            }
+            ?>
+          </div>
+
+          <!-- 3.5.2.2 Download File -->
+          <div class = '<?php echo $o;?>DownloadButtonForm'>
+            <form
+              action = 'Zip/download.php'
+              class = '<?php echo $o;?>DownloadButtonForm'
+              method = 'post'
+              enctype = 'multipart/form-data'
+            >
+              <input
+                type = 'hidden'
+                value = '<?php echo $Directory[$i];?>'
+                name = 'fileToDownload'
+              />
+              <input
+                type = 'image'
+                src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow Icon @ 36 ppi.png'
+                class = '<?php echo $o;?>DownloadButton'
+                value = 'Download'
+                name = 'submit'
+                id = '<?php echo addslashes($Directory[$i]);?>DownloadButton'
+              />
+              <input
+                type = 'hidden'
+                value = '<?php echo $CurrentPathString;?>'
+                name = 'currentPathString'
+              />
+              <input type = 'hidden' value = '0 - WorkspacesRecycle/' name = 'workspacesRecycleBin'/>
+            </form>
+          </div>
         </div>
 
-        <!-- 3.5.2.2 Download File -->
-        <div class = '<?php echo $o;?>DownloadButtonForm'>
-          <form
-            action = 'Zip/download.php'
-            class = '<?php echo $o;?>DownloadButtonForm'
-            method = 'post'
-            enctype = 'multipart/form-data'
-          >
-            <input
-              type = 'hidden'
-              value = '<?php echo $Directory[$i];?>'
-              name = 'fileToDownload'
-            />
-            <input
-              type = 'image'
-              src = 'Art/2 - Download Arrow Icon/NanoLab Download Arrow Icon @ 36 ppi.png'
-              class = '<?php echo $o;?>DownloadButton'
-              value = 'Download'
-              name = 'submit'
-              id = '<?php echo addslashes($Directory[$i]);?>DownloadButton'
-            />
-            <input
-              type = 'hidden'
-              value = '<?php echo $CurrentPathString;?>'
-              name = 'currentPathString'
-            />
-            <input type = 'hidden' value = '0 - WorkspacesRecycle/' name = 'workspacesRecycleBin'/>
-          </form>
+        <!-- 3.5.2.5 File Size -->
+        <div class = '<?php echo $o;?>FileSizes'>
+          <?php
+          $FileSize = filesize($DirectoryPath . "/" . $Directory[$i]);
+          echo HumanSize($FileSize);
+          ?>
         </div>
-      </div>
-
-      <!-- 3.5.2.5 File Size -->
-      <div class = '<?php echo $o;?>FileSizes'>
-        <?php
-        $FileSize = filesize($DirectoryPath . "/" . $Directory[$i]);
-        echo HumanSize($FileSize);
-        ?>
       </div>
 
       <!-- 3.5.2.6 Heath -->
-      <br><div class = '<?php echo $o;?>Heath'><br></div>
+      <div class = '<?php echo $o;?>Heath'><br></div>
   <?php
     }
   }

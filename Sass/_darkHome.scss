@@ -941,6 +941,11 @@ a.#{$dark}DirectoryPath {
   cursor: grab;
 }
 
+.#{$dark}NonDraggableLedger {
+  height: 40px;
+  padding-top: 20px;
+}
+
 .#{$dark}FileNames {
     max-width: 85%;
     float: left;

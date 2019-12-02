@@ -1344,6 +1344,17 @@ p, a.lightHomeDirectoryPath {
   border-radius: 10px;
 }
 
+.lightHomeDraggableLedger {
+  height: 40px;
+  padding-top: 20px;
+  cursor: grab;
+}
+
+.lightHomeNonDraggableLedger {
+  height: 40px;
+  padding-top: 20px;
+}
+
 .lightHomeFileNames {
   max-width: 85%;
   float: left;
@@ -1521,7 +1532,6 @@ a.lightHomeFileNames {
   background-color: rgba(18, 19, 21, 0.25);
   border-radius: 2px;
   font-size: 3px;
-  margin: 20px 0;
 }
 
 .lightHomeFiles {
@@ -2503,6 +2513,11 @@ a.darkHomeDirectoryPath {
   height: 40px;
   padding-top: 20px;
   cursor: grab;
+}
+
+.darkHomeNonDraggableLedger {
+  height: 40px;
+  padding-top: 20px;
 }
 
 .darkHomeFileNames {
