@@ -167,6 +167,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   <script type = "text/javascript" src = "jquery-3.4.1.min.js"></script>
 
   <script>var o = <?php echo json_encode($o);?></script>
+  <script src = "dragMove.js"></script>
 </head>
 
 <body class = '<?php echo $o;?>'>
@@ -559,9 +560,19 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 
   <!-- 3.4 Current Directory Navigation Banner -->
   <div class = '<?php echo $o;?>DirectoryPath'>
-    <?php include "generateURL.php";?>
+    <?php
+    include "generateURL.php";
 
-    <a class = '<?php echo $o;?>DirectoryPath' href = 'home.php'>
+    $homePath = "../../../../mnt/Raid1Array/Corvin/" . $userID . " - " .
+      $user[0] . $user[1] . "/";
+    ?>
+
+    <a
+      class = '<?php echo $o;?>DirectoryPath'
+      href = 'home.php'
+      ondragover = 'allowDrop(event)'
+      ondrop = 'drop(event, <?php echo $homePath;?>)'
+    >
       <p class = '<?php echo $o;?>DirectoryPath'>Home</p>
     </a>
     <?php
@@ -584,7 +595,14 @@ elseif (time() - $_SESSION['Created'] > 1200) {
         echo "
         <p class = '".$o."DirectoryPath'>/</p>
         <a class = '".$o."DirectoryPath' href = '" . $DirectoryPathFolderURL . "'>
-          <p class = '".$o."DirectoryPath'>" . $DirectoryPathFolder . "</p>
+          <p
+            id = '" . $DirectoryPathFolder . "'
+            class = '".$o."DirectoryPath'
+            ondragover = 'allowDrop(event)'
+            ondrop = 'drop(event, '" . $homePath . implode("/", $DirectoryPath) . "')'
+          >" .
+            $DirectoryPathFolder .
+          "</p>
         </a>";
       }
     }
@@ -602,12 +620,10 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   $ReturnPathString = filter_input(INPUT_POST, "ReturnPathString", FILTER_SANITIZE_STRING);
 
   if ($ReturnPathString == null) {
-    $DirectoryPath = "../../../../mnt/Raid1Array/Corvin/" . $userID . " - " .
-      $user[0] . $user[1] . "/" . implode("/", $CurrentPath);
+    $DirectoryPath = $homePath . implode("/", $CurrentPath);
   }
   else {
-    $DirectoryPath = "../../../../mnt/Raid1Array/Corvin/" . $userID . " - " .
-      $user[0] . $user[1] . "/" . $ReturnPathString;
+    $DirectoryPath = $homePath . $ReturnPathString;
   }
 
   $Directory = scandir($DirectoryPath);
@@ -628,7 +644,6 @@ elseif (time() - $_SESSION['Created'] > 1200) {
         ondrop = "drop(event, '<?php echo $DirectoryPath;?>')"
       >
       <script> var directory = <?php echo json_encode($Directory);?>;</script>
-      <script src = "dragMove.js"></script>
 
         <div class = '<?php echo $o;?>FileNames'>
           <div class = '<?php echo $o;?>Folders'>

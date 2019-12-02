@@ -14,6 +14,7 @@ function drop(ev, directoryPath) {
   var directoryToMove = directoryPath + "/" + ev.dataTransfer.getData("text");
   var directoryTarget = directoryPath + "/" + ev.target.id + "/" + ev.dataTransfer.getData("text");
 
+
   if (ev.dataTransfer.getData("text") !== ev.target.id) {
 
     $.ajax({
