@@ -1441,7 +1441,7 @@ p, a.lightHomeDirectoryPath {
   height: 40px;
   padding-top: 20px;
   border-radius: 4px;
-  cursor: grab;
+  cursor: pointer;
 }
 
 .lightHomeDraggableLedger:hover {

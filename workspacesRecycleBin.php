@@ -558,13 +558,16 @@ elseif ($darkmodeSetting[0] == 0) {
   // 3.5.1.1 List Folder Name
   for ($i = 2; $i < $NumItems; $i++) {
     if (is_dir($DirectoryPath . "/" . $Directory[$i])) {
+
+      $URL = generateURL("workspacesRecycleBin.php?", $CurrentPath, $Directory[$i]);
   ?>
-      <div class = '<?php echo $o;?>NonDraggableLedger'>
+      <div
+        class = '<?php echo $o;?>DraggableLedger'
+        onclick = "window.location.href = '<?php echo $URL;?>'"
+      >
         <div class = '<?php echo $o;?>FileNames'>
           <div class = '<?php echo $o;?>Folders'>
-            <?php $URL = generateURL("workspacesRecycleBin.php?", $CurrentPath, $Directory[$i]);?>
             <a
-              href = '<?php echo $URL;?>'
               class = '<?php echo $o;?>Folders'
               id = '<?php echo addslashes($Directory[$i]);?>DirectoryName'
             >
@@ -724,7 +727,7 @@ elseif ($darkmodeSetting[0] == 0) {
       ];
       ?>
 
-      <div class = '<?php echo $o;?>NonDraggableLedger'>
+      <div class = '<?php echo $o;?>DraggableLedger'>
         <div class = '<?php echo $o;?>FileNames'>
           <div class = '<?php echo $o;?>Files'>
 
