@@ -567,13 +567,16 @@ elseif (time() - $_SESSION['Created'] > 1200) {
       $user[0] . $user[1] . "/";
     ?>
 
-    <a
-      class = '<?php echo $o;?>DirectoryPath'
-      href = 'home.php'
-      ondragover = 'allowDrop(event)'
-      ondrop = 'drop(event, <?php echo $homePath;?>)'
-    >
-      <p class = '<?php echo $o;?>DirectoryPath'>Home</p>
+    <a class = '<?php echo $o;?>DirectoryPath' href = 'home.php'>
+      <p
+        id = '<?php echo substr($homePath, 0, strlen($homePath) - 1);?>'
+        class = '<?php echo $o;?>DirectoryPath'
+        ondragover = 'allowDrop(event)'
+        ondragleave = 'dragLeave(event)'
+        ondrop = "moveUp(event, '<?php echo $homePath . substr(implode("/", $CurrentPath), 1);?>')"
+      >
+        Home
+      </p>
     </a>
     <?php
     parse_str($_SERVER['QUERY_STRING'], $CurrentPath);
@@ -592,18 +595,22 @@ elseif (time() - $_SESSION['Created'] > 1200) {
           "home.php?", $DirectoryPath, $DirectoryPathFolder);
         array_push($DirectoryPath, $DirectoryPathFolder);
         $i++;
-        echo "
-        <p class = '".$o."DirectoryPath'>/</p>
-        <a class = '".$o."DirectoryPath' href = '" . $DirectoryPathFolderURL . "'>
+    ?>
+        <p class = '<?php echo $o;?>DirectoryPath'>/</p>
+        <a class = '<?php echo $o;?>DirectoryPath' href = '<?php echo $DirectoryPathFolderURL;?>'>
           <p
-            id = '" . $DirectoryPathFolder . "'
-            class = '".$o."DirectoryPath'
+            id = '<?php echo $homePath . substr(implode("/", $DirectoryPath), 1);?>'
+            class = '<?php echo $o;?>DirectoryPath'
             ondragover = 'allowDrop(event)'
-            ondrop = 'drop(event, '" . $homePath . implode("/", $DirectoryPath) . "')'
-          >" .
-            $DirectoryPathFolder .
-          "</p>
-        </a>";
+            ondragleave = 'dragLeave(event)'
+            ondrop = "moveUp(event, '<?php echo $homePath . substr(implode("/", $CurrentPath), 1);?>')"
+          >
+            <?php
+            echo $DirectoryPathFolder;
+            ?>
+          </p>
+        </a>
+    <?php
       }
     }
     ?>
@@ -634,6 +641,8 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   // 3.5.1.1 List Folder Name
   for ($i = 2; $i < $NumItems; $i++) {
     if (is_dir($DirectoryPath . "/" . $Directory[$i])) {
+
+      $URL = generateURL("home.php?", $CurrentPath, $Directory[$i]);
   ?>
       <div
         id = '<?php echo addslashes($Directory[$i]);?>'
@@ -642,15 +651,14 @@ elseif (time() - $_SESSION['Created'] > 1200) {
         ondragstart = "drag(event)"
         ondragover = "allowDrop(event)"
         ondragleave = "dragLeave(event)"
-        ondrop = "drop(event, '<?php echo $DirectoryPath;?>')"
+        ondrop = "moveDown(event, '<?php echo $DirectoryPath;?>')"
+        onclick = "window.location.href = '<?php echo $URL;?>'"
       >
       <script> var directory = <?php echo json_encode($Directory);?>;</script>
 
         <div class = '<?php echo $o;?>FileNames'>
           <div class = '<?php echo $o;?>Folders'>
-            <?php $URL = generateURL("home.php?", $CurrentPath, $Directory[$i]);?>
             <a
-              href = '<?php echo $URL;?>'
               class = '<?php echo $o;?>Folders'
               id = '<?php echo addslashes($Directory[$i]);?>DirectoryName'
             >

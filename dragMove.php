@@ -11,7 +11,7 @@ $directoryTarget = $_POST["directoryTarget"];
 
 if (!is_readable($directoryToMove)) {
 
-  $message = "There was a problem reading directory paths";
+  $message = "There was a problem reading directory paths\n" . $directoryToMove . "\n" . $directoryTarget;
   echo json_encode(array('message' => $message));
   exit;
 }
@@ -25,7 +25,7 @@ if (rename($directoryToMove, $directoryTarget)) {
 else {
 
   include "renameRecursively.php";
-  
+
   $message = renameRecursively($directoryToMove, $directoryTarget);
   echo json_encode(array('message' => $message));
   exit;

@@ -2611,7 +2611,7 @@ a.darkHomeDirectoryPath {
   height: 40px;
   border-radius: 4px;
   padding-top: 20px;
-  cursor: grab;
+  cursor: pointer;
 }
 
 .darkHomeDraggableLedger:hover {

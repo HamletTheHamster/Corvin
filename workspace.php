@@ -763,7 +763,7 @@ else {
         ondragstart = "drag(event)"
         ondragover = "allowDrop(event)"
         ondragleave = "dragLeave(event)"
-        ondrop = "drop(event, '<?php echo $DirectoryPath;?>')"
+        ondrop = "moveDown(event, '<?php echo $DirectoryPath;?>')"
       >
       <script> var directory = <?php echo json_encode($Directory);?>;</script>
 
