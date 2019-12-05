@@ -696,10 +696,23 @@ else {
 
   <!-- 3.4 Current Directory Navigation Banner -->
   <div class = '<?php echo $o;?>DirectoryPath'>
-    <?php include "generateURL.php";?>
+    <?php
+    include "generateURL.php";
+
+    $homePath = "../../../../mnt/Raid1Array/Corvin/000 - Workspaces/" .
+      $thisWorkspace;
+    ?>
 
     <a class = '<?php echo $o;?>DirectoryPath' href = 'workspace.php'>
-      <p class = '<?php echo $o;?>DirectoryPath'><?php echo $thisWorkspaceName;?></p>
+      <p
+        id = '<?php echo $homePath;?>'
+        class = '<?php echo $o;?>DirectoryPath'
+        ondragover = 'allowDrop(event)'
+        ondragleave = 'dragLeave(event)'
+        ondrop = "moveUp(event, '<?php echo $homePath . "/" . implode("/", $CurrentPath);?>')"
+      >
+        <?php echo $thisWorkspaceName;?>
+      </p>
     </a>
     <?php
     parse_str($_SERVER['QUERY_STRING'], $CurrentPath);
@@ -718,11 +731,22 @@ else {
           "workspace.php?", $DirectoryPath, $DirectoryPathFolder);
         array_push($DirectoryPath, $DirectoryPathFolder);
         $i++;
-        echo "
-        <p class = '".$o."DirectoryPath'>/</p>
-        <a class = '".$o."DirectoryPath' href = '" . $DirectoryPathFolderURL . "'>
-          <p class = '".$o."DirectoryPath'>" . $DirectoryPathFolder . "</p>
-        </a>";
+    ?>
+        <p class = '<?php echo $o;?>DirectoryPath'>/</p>
+        <a class = '<?php echo $o;?>DirectoryPath' href = '<?php echo $DirectoryPathFolderURL;?>'>
+          <p
+            id = '<?php echo $homePath . "/" . substr(implode("/", $DirectoryPath), 1);?>'
+            class = '<?php echo $o;?>DirectoryPath'
+            ondragover = 'allowDrop(event)'
+            ondragleave = 'dragLeave(event)'
+            ondrop = "moveUp(event, '<?php echo $homePath . "/" . implode("/", $CurrentPath);?>')"
+          >
+            <?php
+            echo $DirectoryPathFolder;
+            ?>
+          </p>
+        </a>
+    <?php
       }
     }
     ?>
@@ -739,12 +763,10 @@ else {
   $ReturnPathString = filter_input(INPUT_POST, "ReturnPathString", FILTER_SANITIZE_STRING);
 
   if ($ReturnPathString == null) {
-    $DirectoryPath = "../../../../mnt/Raid1Array/Corvin/000 - Workspaces/" . $thisWorkspace .
-      "/" . implode("/", $CurrentPath);
+    $DirectoryPath = $homePath . "/" . implode("/", $CurrentPath);
   }
   else {
-    $DirectoryPath = "../../../../mnt/Raid1Array/Corvin/000 - Workspaces/" . $thisWorkspace .
-      "/" . $ReturnPathString;
+    $DirectoryPath = $homePath . "/" . $ReturnPathString;
   }
 
   $Directory = scandir($DirectoryPath);
@@ -755,6 +777,8 @@ else {
   // 3.5.1.1 List Folder Name
   for ($i = 2; $i < $NumItems; $i++) {
     if (is_dir($DirectoryPath . "/" . $Directory[$i])) {
+
+      $URL = generateURL("workspace.php?", $CurrentPath, $Directory[$i]);
   ?>
       <div
         id = '<?php echo addslashes($Directory[$i]);?>'
@@ -764,14 +788,13 @@ else {
         ondragover = "allowDrop(event)"
         ondragleave = "dragLeave(event)"
         ondrop = "moveDown(event, '<?php echo $DirectoryPath;?>')"
+        onclick = "window.location.href = '<?php echo $URL;?>'"
       >
       <script> var directory = <?php echo json_encode($Directory);?>;</script>
 
         <div class = '<?php echo $o;?>FileNames'>
           <div class = '<?php echo $o;?>Folders'>
-            <?php $URL = generateURL("workspace.php?", $CurrentPath, $Directory[$i]);?>
             <a
-              href = '<?php echo $URL;?>'
               class = '<?php echo $o;?>Folders'
               id = '<?php echo addslashes($Directory[$i]);?>DirectoryName'
             >

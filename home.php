@@ -564,16 +564,16 @@ elseif (time() - $_SESSION['Created'] > 1200) {
     include "generateURL.php";
 
     $homePath = "../../../../mnt/Raid1Array/Corvin/" . $userID . " - " .
-      $user[0] . $user[1] . "/";
+      $user[0] . $user[1];
     ?>
 
     <a class = '<?php echo $o;?>DirectoryPath' href = 'home.php'>
       <p
-        id = '<?php echo substr($homePath, 0, strlen($homePath) - 1);?>'
+        id = '<?php echo $homePath;?>'
         class = '<?php echo $o;?>DirectoryPath'
         ondragover = 'allowDrop(event)'
         ondragleave = 'dragLeave(event)'
-        ondrop = "moveUp(event, '<?php echo $homePath . substr(implode("/", $CurrentPath), 1);?>')"
+        ondrop = "moveUp(event, '<?php echo $homePath . "/" . implode("/", $CurrentPath);?>')"
       >
         Home
       </p>
@@ -599,11 +599,11 @@ elseif (time() - $_SESSION['Created'] > 1200) {
         <p class = '<?php echo $o;?>DirectoryPath'>/</p>
         <a class = '<?php echo $o;?>DirectoryPath' href = '<?php echo $DirectoryPathFolderURL;?>'>
           <p
-            id = '<?php echo $homePath . substr(implode("/", $DirectoryPath), 1);?>'
+            id = '<?php echo $homePath . "/" . substr(implode("/", $DirectoryPath), 1);?>'
             class = '<?php echo $o;?>DirectoryPath'
             ondragover = 'allowDrop(event)'
             ondragleave = 'dragLeave(event)'
-            ondrop = "moveUp(event, '<?php echo $homePath . substr(implode("/", $CurrentPath), 1);?>')"
+            ondrop = "moveUp(event, '<?php echo $homePath . "/" . implode("/", $CurrentPath);?>')"
           >
             <?php
             echo $DirectoryPathFolder;
@@ -627,10 +627,10 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   $ReturnPathString = filter_input(INPUT_POST, "ReturnPathString", FILTER_SANITIZE_STRING);
 
   if ($ReturnPathString == null) {
-    $DirectoryPath = $homePath . implode("/", $CurrentPath);
+    $DirectoryPath = $homePath . "/" . implode("/", $CurrentPath);
   }
   else {
-    $DirectoryPath = $homePath . $ReturnPathString;
+    $DirectoryPath = $homePath . "/" . $ReturnPathString;
   }
 
   $Directory = scandir($DirectoryPath);
