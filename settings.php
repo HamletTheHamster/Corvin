@@ -298,7 +298,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <br><div id = 'accountMenuHeath' class = '<?php echo $o;?>AccountMenuHeath'><br></div>
       <div class = '<?php echo $o;?>BottomAccountMenuContent'>
         <a id = 'getMoreSpace' class = '<?php echo $o;?>GetMoreSpaceMenuItem' href = "getMoreSpace.php">Get More Storage</a>
-        <a id = 'accountSettings' class = '<?php echo $o;?>MenuItem' href = "settings.php">Account Settings</a>
+        <a id = 'accountSettings' class = '<?php echo $o;?>MenuItem' href = "settings.php">Settings</a>
         <a id = 'help' class = '<?php echo $o;?>MenuItem' href = "help.php">Help</a>
         <a id = 'logout' class = '<?php echo $o;?>MenuItem' href = "logout.php">Log Out</a>
       </div>
