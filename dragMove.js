@@ -29,8 +29,9 @@ function moveUp(ev, directoryPath) {
   var directoryToMove = directoryPath + "/" + ev.dataTransfer.getData("text");
   var directoryTarget = ev.target.id + "/" + ev.dataTransfer.getData("text");
 
+  //alert("ev.target.id: "+ev.target.id+"\nev.dataTransfer.getData('text'): "+ev.dataTransfer.getData("text")+"\ndirectoryPath: "+directoryPath);
 
-  if (ev.dataTransfer.getData("text") !== ev.target.id) {
+  if (directoryPath !== ev.target.id) {
 
     $.ajax({
       type: 'POST',
@@ -47,11 +48,13 @@ function moveUp(ev, directoryPath) {
 
         if (message == 'true') {
 
+          //alert(message);
           location.reload();
         }
         else {
 
-          alert(message);
+          //alert(message);
+          ev.target.style.backgroundColor = "rgba(0, 130, 140, 0)";
         }
       }
     });
@@ -90,7 +93,8 @@ function moveDown(ev, directoryPath) {
         }
         else {
 
-          alert(message);
+          //alert(message);
+          location.reload();
         }
       }
     });

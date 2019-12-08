@@ -571,6 +571,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
       <p
         id = '<?php echo $homePath;?>'
         class = '<?php echo $o;?>DirectoryPath'
+        draggable = "false"
         ondragover = 'allowDrop(event)'
         ondragleave = 'dragLeave(event)'
         ondrop = "moveUp(event, '<?php echo $homePath . "/" . implode("/", $CurrentPath);?>')"
@@ -601,6 +602,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
           <p
             id = '<?php echo $homePath . "/" . substr(implode("/", $DirectoryPath), 1);?>'
             class = '<?php echo $o;?>DirectoryPath'
+            draggable = "false"
             ondragover = 'allowDrop(event)'
             ondragleave = 'dragLeave(event)'
             ondrop = "moveUp(event, '<?php echo $homePath . "/" . implode("/", $CurrentPath);?>')"
@@ -854,7 +856,6 @@ elseif (time() - $_SESSION['Created'] > 1200) {
           "../../../../../../../../../var/www/html/ViewInBrowser/" . $suffix .
           ".txt")
         ) {
-          echo "copy successful";
           echo "
           <meta http-equiv = 'refresh' content = '0; url=ViewInBrowser/" .
             $suffix . ".txt'>";
@@ -870,7 +871,6 @@ elseif (time() - $_SESSION['Created'] > 1200) {
           "../../../../../../../../var/www/html/ViewInBrowser/" . $suffix .
           "." . $suffix)
         ) {
-          echo "copy successful";
           echo "
             <meta http-equiv = 'refresh' content = '0; url=ViewInBrowser/" .
               $suffix . "." . $suffix . "'>";
