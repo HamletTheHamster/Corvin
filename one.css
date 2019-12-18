@@ -1,3 +1,9 @@
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 /* _login Coded by: Joel N. Johnson */
 html.login, body.login {
   background-color: #fefefe;
