@@ -749,9 +749,11 @@ elseif (time() - $_SESSION['Created'] > 1200) {
             renameTextField.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RenameTextField'));
             recycleButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RecycleButton'));
 
-            cursorButton[i].addEventListener('click', showTextBox, false);
+            cursorButton[i].addEventListener('click', showTextBox);
 
             function showTextBox() {
+              event.stopPropagation();
+
               document.getElementById(event.target.id.replace('CursorButton', 'DirectoryName')).style.display = 'none';
               document.getElementById(event.target.id.replace('CursorButton', 'DownloadButton')).style.display = 'none';
               document.getElementById(event.target.id).style.display = 'none';

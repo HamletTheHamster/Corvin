@@ -886,6 +886,8 @@ else {
             cursorButton[i].addEventListener('click', showTextBox, false);
 
             function showTextBox() {
+              event.stopPropagation();
+
               document.getElementById(event.target.id.replace('CursorButton', 'DirectoryName')).style.display = 'none';
               document.getElementById(event.target.id.replace('CursorButton', 'DownloadButton')).style.display = 'none';
               document.getElementById(event.target.id).style.display = 'none';
