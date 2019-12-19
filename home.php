@@ -725,6 +725,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
                 id = '<?php echo addslashes($Directory[$i]);?>RenameTextField'
                 class = '<?php echo $o;?>RenameTextField'
                 name = 'newName'
+                onclick = 'event.stopPropagation();'
                 spellcheck = 'false'
                 autocomplete = 'off'
               />
@@ -736,42 +737,44 @@ elseif (time() - $_SESSION['Created'] > 1200) {
             </form>
 
             <script>
-            var directoryName = (typeof directoryName != 'undefined' && directoryName instanceof Array) ? directoryName : [];
-            var downloadButton = (typeof downloadButton != 'undefined' && downloadButton instanceof Array) ? downloadButton : [];
-            var cursorButton = (typeof cursorButton != 'undefined' && cursorButton instanceof Array) ? cursorButton : [];
-            var renameTextField = (typeof renameTextField != 'undefined' && renameTextField instanceof Array) ? renameTextField : [];
-            var recycleButton = (typeof recycleButton != 'undefined' && recycleButton instanceof Array) ? recycleButton : [];
-            var i = (typeof i != 'undefined') ? i : 0;
+            window.onload=function(){
+              var directoryName = (typeof directoryName != 'undefined' && directoryName instanceof Array) ? directoryName : [];
+              var downloadButton = (typeof downloadButton != 'undefined' && downloadButton instanceof Array) ? downloadButton : [];
+              var cursorButton = (typeof cursorButton != 'undefined' && cursorButton instanceof Array) ? cursorButton : [];
+              var renameTextField = (typeof renameTextField != 'undefined' && renameTextField instanceof Array) ? renameTextField : [];
+              var recycleButton = (typeof recycleButton != 'undefined' && recycleButton instanceof Array) ? recycleButton : [];
+              var i = (typeof i != 'undefined') ? i : 0;
 
-            directoryName.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>DirectoryName'));
-            downloadButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>DownloadButton'));
-            cursorButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>CursorButton'));
-            renameTextField.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RenameTextField'));
-            recycleButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RecycleButton'));
+              cursorButton.push('<?php echo addslashes($Directory[$i]);?>CursorButton');
 
-            cursorButton[i].addEventListener('click', showTextBox);
+              console.log(cursorButton[i]);
+              console.log('<?php echo addslashes($Directory[$i]);?>CursorButton');
+              document.getElementById(cursorButton[i]).addEventListener('click', showTextBox);
 
-            function showTextBox() {
-              event.stopPropagation();
+              function showTextBox() {
+                event.stopPropagation();
 
-              document.getElementById(event.target.id.replace('CursorButton', 'DirectoryName')).style.display = 'none';
-              document.getElementById(event.target.id.replace('CursorButton', 'DownloadButton')).style.display = 'none';
-              document.getElementById(event.target.id).style.display = 'none';
-              document.getElementById(event.target.id.replace('CursorButton', 'RecycleButton')).style.display = 'none';
-              document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).style.display = 'block';
-              document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).focus();
-              document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).addEventListener('focusout', hideRenameTextField, false);
+                document.getElementById(event.target.id.replace('CursorButton', 'DirectoryName')).style.display = 'none';
+                document.getElementById(event.target.id.replace('CursorButton', 'DownloadButton')).style.display = 'none';
+                document.getElementById(event.target.id).style.display = 'none';
+                document.getElementById(event.target.id.replace('CursorButton', 'RecycleButton')).style.display = 'none';
+                document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).style.display = 'block';
+                document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).focus();
+                document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).addEventListener('focusout', hideRenameTextField, false);
+              }
+
+              function hideRenameTextField() {
+                event.stopPropagation();
+
+                document.getElementById(event.target.id).style.display = 'none';
+                document.getElementById(event.target.id.replace('RenameTextField', 'DirectoryName')).style.display = 'block';
+                document.getElementById(event.target.id.replace('RenameTextField', 'DownloadButton')).style.display = 'block';
+                document.getElementById(event.target.id.replace('RenameTextField', 'CursorButton')).style.display = 'block';
+                document.getElementById(event.target.id.replace('RenameTextField', 'RecycleButton')).style.display = 'block';
+              }
+
+              i++;
             }
-
-            function hideRenameTextField() {
-              document.getElementById(event.target.id).style.display = 'none';
-              document.getElementById(event.target.id.replace('RenameTextField', 'DirectoryName')).style.display = 'block';
-              document.getElementById(event.target.id.replace('RenameTextField', 'DownloadButton')).style.display = 'block';
-              document.getElementById(event.target.id.replace('RenameTextField', 'CursorButton')).style.display = 'block';
-              document.getElementById(event.target.id.replace('RenameTextField', 'RecycleButton')).style.display = 'block';
-            }
-
-            i++;
             </script>
           </div>
 

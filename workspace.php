@@ -859,6 +859,7 @@ else {
                 id = '<?php echo addslashes($Directory[$i]);?>RenameTextField'
                 class = '<?php echo $o;?>RenameTextField'
                 name = 'newName'
+                onclick = 'event.stopPropagation();'
                 spellcheck = 'false'
                 autocomplete = 'off'
               />
