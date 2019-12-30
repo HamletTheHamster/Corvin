@@ -871,20 +871,12 @@ else {
             </form>
 
             <script>
-            var directoryName = (typeof directoryName != 'undefined' && directoryName instanceof Array) ? directoryName : [];
-            var downloadButton = (typeof downloadButton != 'undefined' && downloadButton instanceof Array) ? downloadButton : [];
             var cursorButton = (typeof cursorButton != 'undefined' && cursorButton instanceof Array) ? cursorButton : [];
-            var renameTextField = (typeof renameTextField != 'undefined' && renameTextField instanceof Array) ? renameTextField : [];
-            var recycleButton = (typeof recycleButton != 'undefined' && recycleButton instanceof Array) ? recycleButton : [];
             var i = (typeof i != 'undefined') ? i : 0;
 
-            directoryName.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>DirectoryName'));
-            downloadButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>DownloadButton'));
-            cursorButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>CursorButton'));
-            renameTextField.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RenameTextField'));
-            recycleButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RecycleButton'));
+            cursorButton.push('<?php echo addslashes($Directory[$i]);?>CursorButton');
 
-            cursorButton[i].addEventListener('click', showTextBox, false);
+            document.getElementById(cursorButton[i]).addEventListener('click', showTextBox, false);
 
             function showTextBox() {
               event.stopPropagation();
@@ -1168,21 +1160,12 @@ else {
             </form>
 
             <script>
-            var fileName = (typeof fileName != 'undefined' && fileName instanceof Array) ? fileName : [];
-            var downloadButton = (typeof downloadButton != 'undefined' && downloadButton instanceof Array) ? downloadButton : [];
             var cursorButton = (typeof cursorButton != 'undefined' && cursorButton instanceof Array) ? cursorButton : [];
-            var renameTextField = (typeof renameTextField != 'undefined' && renameTextField instanceof Array) ? renameTextField : [];
-            var recycleButton = (typeof recycleButton != 'undefined' && recycleButton instanceof Array) ? recycleButton : [];
-
             var i = (typeof i != 'undefined') ? i : 0;
 
-            fileName.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>FileName'));
-            downloadButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>DownloadButton'));
-            cursorButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>CursorButton'));
-            renameTextField.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RenameTextField'));
-            recycleButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RecycleButton'));
+            cursorButton.push('<?php echo addslashes($Directory[$i]);?>CursorButton');
 
-            cursorButton[i].addEventListener('click', showFileTextBox, false);
+            document.getElementById(cursorButton[i]).addEventListener('click', showFileTextBox, false);
 
             function showFileTextBox() {
               document.getElementById(event.target.id.replace('CursorButton', 'FileName')).style.display = 'none';

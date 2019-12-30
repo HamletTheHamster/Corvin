@@ -737,44 +737,36 @@ elseif (time() - $_SESSION['Created'] > 1200) {
             </form>
 
             <script>
-            window.onload=function(){
-              var directoryName = (typeof directoryName != 'undefined' && directoryName instanceof Array) ? directoryName : [];
-              var downloadButton = (typeof downloadButton != 'undefined' && downloadButton instanceof Array) ? downloadButton : [];
-              var cursorButton = (typeof cursorButton != 'undefined' && cursorButton instanceof Array) ? cursorButton : [];
-              var renameTextField = (typeof renameTextField != 'undefined' && renameTextField instanceof Array) ? renameTextField : [];
-              var recycleButton = (typeof recycleButton != 'undefined' && recycleButton instanceof Array) ? recycleButton : [];
-              var i = (typeof i != 'undefined') ? i : 0;
+            var cursorButton = (typeof cursorButton != 'undefined' && cursorButton instanceof Array) ? cursorButton : [];
+            var i = (typeof i != 'undefined') ? i : 0;
 
-              cursorButton.push('<?php echo addslashes($Directory[$i]);?>CursorButton');
+            cursorButton.push('<?php echo addslashes($Directory[$i]);?>CursorButton');
 
-              console.log(cursorButton[i]);
-              console.log('<?php echo addslashes($Directory[$i]);?>CursorButton');
-              document.getElementById(cursorButton[i]).addEventListener('click', showTextBox);
+            document.getElementById(cursorButton[i]).addEventListener('click', showTextBox, false);
 
-              function showTextBox() {
-                event.stopPropagation();
+            function showTextBox() {
+              event.stopPropagation();
 
-                document.getElementById(event.target.id.replace('CursorButton', 'DirectoryName')).style.display = 'none';
-                document.getElementById(event.target.id.replace('CursorButton', 'DownloadButton')).style.display = 'none';
-                document.getElementById(event.target.id).style.display = 'none';
-                document.getElementById(event.target.id.replace('CursorButton', 'RecycleButton')).style.display = 'none';
-                document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).style.display = 'block';
-                document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).focus();
-                document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).addEventListener('focusout', hideRenameTextField, false);
-              }
-
-              function hideRenameTextField() {
-                event.stopPropagation();
-
-                document.getElementById(event.target.id).style.display = 'none';
-                document.getElementById(event.target.id.replace('RenameTextField', 'DirectoryName')).style.display = 'block';
-                document.getElementById(event.target.id.replace('RenameTextField', 'DownloadButton')).style.display = 'block';
-                document.getElementById(event.target.id.replace('RenameTextField', 'CursorButton')).style.display = 'block';
-                document.getElementById(event.target.id.replace('RenameTextField', 'RecycleButton')).style.display = 'block';
-              }
-
-              i++;
+              document.getElementById(event.target.id.replace('CursorButton', 'DirectoryName')).style.display = 'none';
+              document.getElementById(event.target.id.replace('CursorButton', 'DownloadButton')).style.display = 'none';
+              document.getElementById(event.target.id).style.display = 'none';
+              document.getElementById(event.target.id.replace('CursorButton', 'RecycleButton')).style.display = 'none';
+              document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).style.display = 'block';
+              document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).focus();
+              document.getElementById(event.target.id.replace('CursorButton', 'RenameTextField')).addEventListener('focusout', hideRenameTextField, false);
             }
+
+            function hideRenameTextField() {
+              event.stopPropagation();
+
+              document.getElementById(event.target.id).style.display = 'none';
+              document.getElementById(event.target.id.replace('RenameTextField', 'DirectoryName')).style.display = 'block';
+              document.getElementById(event.target.id.replace('RenameTextField', 'DownloadButton')).style.display = 'block';
+              document.getElementById(event.target.id.replace('RenameTextField', 'CursorButton')).style.display = 'block';
+              document.getElementById(event.target.id.replace('RenameTextField', 'RecycleButton')).style.display = 'block';
+            }
+
+            i++;
             </script>
           </div>
 
@@ -1034,23 +1026,16 @@ elseif (time() - $_SESSION['Created'] > 1200) {
             </form>
 
             <script>
-            var fileName = (typeof fileName != 'undefined' && fileName instanceof Array) ? fileName : [];
-            var downloadButton = (typeof downloadButton != 'undefined' && downloadButton instanceof Array) ? downloadButton : [];
             var cursorButton = (typeof cursorButton != 'undefined' && cursorButton instanceof Array) ? cursorButton : [];
-            var renameTextField = (typeof renameTextField != 'undefined' && renameTextField instanceof Array) ? renameTextField : [];
-            var recycleButton = (typeof recycleButton != 'undefined' && recycleButton instanceof Array) ? recycleButton : [];
-
             var i = (typeof i != 'undefined') ? i : 0;
 
-            fileName.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>FileName'));
-            downloadButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>DownloadButton'));
-            cursorButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>CursorButton'));
-            renameTextField.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RenameTextField'));
-            recycleButton.push(document.getElementById('<?php echo addslashes($Directory[$i]);?>RecycleButton'));
+            cursorButton.push('<?php echo addslashes($Directory[$i]);?>CursorButton');
 
-            cursorButton[i].addEventListener('click', showFileTextBox, false);
+            document.getElementById(cursorButton[i]).addEventListener('click', showFileTextBox, false);
 
             function showFileTextBox() {
+              event.stopPropagation();
+
               document.getElementById(event.target.id.replace('CursorButton', 'FileName')).style.display = 'none';
               document.getElementById(event.target.id.replace('CursorButton', 'DownloadButton')).style.display = 'none';
               document.getElementById(event.target.id).style.display = 'none';
@@ -1062,6 +1047,8 @@ elseif (time() - $_SESSION['Created'] > 1200) {
             }
 
             function hideRenameFileTextField() {
+              event.stopPropagation();
+
               document.getElementById(event.target.id).style.display = 'none';
               document.getElementById(event.target.id.replace('RenameTextField', 'FileName')).style.display = 'block';
               document.getElementById(event.target.id.replace('RenameTextField', 'DownloadButton')).style.display = 'block';
