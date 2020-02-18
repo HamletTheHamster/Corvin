@@ -62,10 +62,6 @@ if (isset($_SESSION["currentWorkspace"])) {
   unset($_SESSION["currentWorkspace"]);
 }
 
-if (isset($_SESSION["liveCorvinFiles"])) {
-  unset($_SESSION["liveCorvinFiles"]);
-}
-
 // Assign user's ID, set in validate.php
 $userID = $_SESSION["userID"];
 
@@ -384,17 +380,6 @@ elseif (time() - $_SESSION['Created'] > 1200) {
       Home
     </p>
   </div>
-  <?php
-  if ($userID == 1) {
-  ?>
-      <div class = '<?php echo $o;?>Home'>
-        <p onclick = "window.location.href = 'liveCorvinFiles.php';" class = '<?php echo $o;?>HomeButton'>
-          Live
-        </p>
-      </div>
-  <?php
-  }
-  ?>
 </div>
 
 <script src = 'topBar.js'></script>
@@ -1030,6 +1015,8 @@ elseif (time() - $_SESSION['Created'] > 1200) {
             var i = (typeof i != 'undefined') ? i : 0;
 
             cursorButton.push('<?php echo addslashes($Directory[$i]);?>CursorButton');
+
+            console.log(cursorButton[i]);
 
             document.getElementById(cursorButton[i]).addEventListener('click', showFileTextBox, false);
 
