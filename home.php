@@ -645,6 +645,10 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 
         <div class = '<?php echo $o;?>FileNames'>
           <div class = '<?php echo $o;?>Folders'>
+            <img
+              src = 'Art/5 - Folder And File Icons/<?php echo $o;?> Folder Icon.png'
+              class = <?php echo "'".$o."FolderIcon'";?>
+            >
             <a
               class = '<?php echo $o;?>Folders'
               id = '<?php echo addslashes($Directory[$i]);?>DirectoryName'
@@ -911,6 +915,15 @@ elseif (time() - $_SESSION['Created'] > 1200) {
       >
         <div class = '<?php echo $o;?>FileNames'>
           <div class = '<?php echo $o;?>Files'>
+
+            <?php
+            $pathParts = pathinfo($Directory[$i]);
+            ?>
+
+            <img
+              src = 'Art/5 - Folder And File Icons/<?php echo $o.$pathParts['extension'];?> File Icon.png'
+              class = '<?php echo $o;?>FileIcon'
+            >
 
             <?php
             // If the file can be viewed directly in the browser

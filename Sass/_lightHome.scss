@@ -965,6 +965,20 @@ a.#{$light}FileNames {
     float: left;
 }
 
+.#{$light}FolderIcon {
+  float: left;
+  width: 20px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.#{$light}FileIcon {
+  float: left;
+  width: 20px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
 .#{$light}DownloadButtonForm {
     float: left;
     margin-left: 5px;

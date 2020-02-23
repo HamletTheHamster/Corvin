@@ -1477,6 +1477,20 @@ a.lightHomeFileNames {
   float: left;
 }
 
+.lightHomeFolderIcon {
+  float: left;
+  width: 20px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.lightHomeFileIcon {
+  float: left;
+  width: 20px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
 .lightHomeDownloadButtonForm {
   float: left;
   margin-left: 5px;
@@ -2646,6 +2660,20 @@ a.darkHomeFileNames {
 .darkHomeFolders {
   float: left;
   color: rgba(255, 255, 255, 0.85);
+}
+
+.darkHomeFolderIcon {
+  float: left;
+  width: 20px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.darkHomeFileIcon {
+  float: left;
+  width: 20px;
+  border-radius: 4px;
+  margin-right: 5px;
 }
 
 .darkHomeDownloadButtonForm {
