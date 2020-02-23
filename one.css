@@ -1444,8 +1444,7 @@ p, a.lightHomeDirectoryPath {
 }
 
 .lightHomeDraggableLedger {
-  height: 40px;
-  padding-top: 20px;
+  height: 60px;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -1455,8 +1454,7 @@ p, a.lightHomeDirectoryPath {
 }
 
 .lightHomeNonDraggableLedger {
-  height: 40px;
-  padding-top: 20px;
+  height: 60px;
 }
 
 .lightHomeFileNames {
@@ -1477,18 +1475,24 @@ a.lightHomeFileNames {
   float: left;
 }
 
+a.lightHomeFolders {
+  margin-top: 20px;
+}
+
 .lightHomeFolderIcon {
   float: left;
-  width: 20px;
-  border-radius: 4px;
-  margin-right: 5px;
+  width: 50px;
+  margin-right: 20px;
+  margin-top: 5px;
+  opacity: 0.85;
 }
 
 .lightHomeFileIcon {
   float: left;
-  width: 20px;
-  border-radius: 4px;
-  margin-right: 5px;
+  width: 50px;
+  margin-right: 20px;
+  margin-top: 5px;
+  opacity: 0.85;
 }
 
 .lightHomeDownloadButtonForm {
@@ -1508,6 +1512,7 @@ a.lightHomeFileNames {
   border-radius: 4px;
   margin-bottom: 2px;
   margin-right: 5px;
+  margin-top: 23px;
   vertical-align: middle;
   position: relative;
 }
@@ -1544,6 +1549,7 @@ a.lightHomeFileNames {
   border-radius: 4px;
   margin-bottom: 2px;
   margin-right: 5px;
+  margin-top: 23px;
   vertical-align: middle;
   position: relative;
 }
@@ -1568,6 +1574,7 @@ a.lightHomeFileNames {
   padding-right: 3px;
   position: relative;
   margin-left: -5px;
+  margin-top: 17px;
   padding: 3px 0;
   padding-left: 3px;
   float: left;
@@ -1606,7 +1613,7 @@ a.lightHomeFileNames {
   width: 13px;
   background: transparent;
   border: none;
-  margin-top: 3px;
+  margin-top: 23px;
   margin-right: 5px;
   vertical-align: middle;
   position: relative;
@@ -1644,6 +1651,7 @@ a.lightHomeFileNames {
 .lightHomeFileSizes {
   float: right;
   font-size: 20px;
+  margin-top: 20px;
 }
 
 .lightHomeHeath {
@@ -1654,6 +1662,10 @@ a.lightHomeFileNames {
 
 .lightHomeFiles {
   float: left;
+}
+
+a.lightHomeFiles {
+  margin-top: 20px;
 }
 
 .lightHomeFooter, .lightHomePush {
@@ -2628,9 +2640,8 @@ a.darkHomeDirectoryPath {
 }
 
 .darkHomeDraggableLedger {
-  height: 40px;
+  height: 60px;
   border-radius: 4px;
-  padding-top: 20px;
   cursor: pointer;
 }
 
@@ -2639,8 +2650,7 @@ a.darkHomeDirectoryPath {
 }
 
 .darkHomeNonDraggableLedger {
-  height: 40px;
-  padding-top: 20px;
+  height: 60px;
 }
 
 .darkHomeFileNames {
@@ -2662,18 +2672,24 @@ a.darkHomeFileNames {
   color: rgba(255, 255, 255, 0.85);
 }
 
+a.darkHomeFolders {
+  margin-top: 20px;
+}
+
 .darkHomeFolderIcon {
   float: left;
-  width: 20px;
-  border-radius: 4px;
-  margin-right: 5px;
+  width: 50px;
+  margin-right: 20px;
+  margin-top: 5px;
+  opacity: 0.85;
 }
 
 .darkHomeFileIcon {
   float: left;
-  width: 20px;
-  border-radius: 4px;
-  margin-right: 5px;
+  width: 50px;
+  margin-right: 20px;
+  margin-top: 5px;
+  opacity: 0.85;
 }
 
 .darkHomeDownloadButtonForm {
@@ -2693,6 +2709,7 @@ a.darkHomeFileNames {
   border-radius: 4px;
   margin-bottom: 2px;
   margin-right: 5px;
+  margin-top: 23px;
   vertical-align: middle;
   position: relative;
 }
@@ -2729,6 +2746,7 @@ a.darkHomeFileNames {
   border-radius: 4px;
   margin-bottom: 2px;
   margin-right: 5px;
+  margin-top: 23px;
   vertical-align: middle;
   position: relative;
 }
@@ -2753,6 +2771,7 @@ a.darkHomeFileNames {
   padding-right: 3px;
   position: relative;
   margin-left: -5px;
+  margin-top: 17px;
   padding: 3px 0;
   padding-left: 3px;
   float: left;
@@ -2792,7 +2811,7 @@ a.darkHomeFileNames {
   background: transparent;
   border: none;
   border-radius: 4px;
-  margin-top: 3px;
+  margin-top: 23px;
   margin-right: 5px;
   vertical-align: middle;
   position: relative;
@@ -2829,6 +2848,7 @@ a.darkHomeFileNames {
 .darkHomeFileSizes {
   float: right;
   font-size: 20px;
+  margin-top: 20px;
 }
 
 .darkHomeHeath {
@@ -2840,6 +2860,10 @@ a.darkHomeFileNames {
 .darkHomeFiles {
   float: left;
   color: rgba(255, 255, 255, 0.85);
+}
+
+a.darkHomeFiles {
+  margin-top: 20px;
 }
 
 .darkHomeFooter, .darkHomePush {

@@ -932,8 +932,7 @@ p,a.#{$light}DirectoryPath {
 }
 
 .#{$light}DraggableLedger {
-  height: 40px;
-  padding-top: 20px;
+  height: 60px;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -943,8 +942,7 @@ p,a.#{$light}DirectoryPath {
 }
 
 .#{$light}NonDraggableLedger {
-  height: 40px;
-  padding-top: 20px;
+  height: 60px;
 }
 
 .#{$light}FileNames {
@@ -965,18 +963,24 @@ a.#{$light}FileNames {
     float: left;
 }
 
+a.#{$light}Folders {
+  margin-top: 20px;
+}
+
 .#{$light}FolderIcon {
   float: left;
-  width: 20px;
-  border-radius: 4px;
-  margin-right: 5px;
+  width: 50px;
+  margin-right: 20px;
+  margin-top: 5px;
+  opacity: 0.85;
 }
 
 .#{$light}FileIcon {
   float: left;
-  width: 20px;
-  border-radius: 4px;
-  margin-right: 5px;
+  width: 50px;
+  margin-right: 20px;
+  margin-top: 5px;
+  opacity: 0.85;
 }
 
 .#{$light}DownloadButtonForm {
@@ -996,6 +1000,7 @@ a.#{$light}FileNames {
     border-radius: 4px;
     margin-bottom: 2px;
     margin-right: 5px;
+    margin-top: 23px;
     vertical-align: middle;
     position: relative;
 }
@@ -1032,6 +1037,7 @@ a.#{$light}FileNames {
     border-radius: 4px;
     margin-bottom: 2px;
     margin-right: 5px;
+    margin-top: 23px;
     vertical-align: middle;
     position: relative;
 }
@@ -1056,6 +1062,7 @@ a.#{$light}FileNames {
   padding-right: 3px;
   position: relative;
   margin-left: -5px;
+  margin-top: 17px;
   padding: 3px 0;
   padding-left: 3px;
   float: left;
@@ -1094,7 +1101,7 @@ a.#{$light}FileNames {
     width: 13px;
     background: transparent;
     border: none;
-    margin-top: 3px;
+    margin-top: 23px;
     margin-right: 5px;
     vertical-align: middle;
     position: relative;
@@ -1132,6 +1139,7 @@ a.#{$light}FileNames {
 .#{$light}FileSizes {
     float: right;
     font-size: 20px;
+    margin-top: 20px;
 }
 
 .#{$light}Heath {
@@ -1142,6 +1150,10 @@ a.#{$light}FileNames {
 
 .#{$light}Files {
     float: left;
+}
+
+a.#{$light}Files {
+  margin-top: 20px;
 }
 
 .#{$light}Footer, .#{$light}Push {

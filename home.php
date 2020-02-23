@@ -646,7 +646,7 @@ elseif (time() - $_SESSION['Created'] > 1200) {
         <div class = '<?php echo $o;?>FileNames'>
           <div class = '<?php echo $o;?>Folders'>
             <img
-              src = 'Art/5 - Folder And File Icons/<?php echo $o;?> Folder Icon.png'
+              src = 'Art/5 - Folder And File Icons/Folder Icon.png'
               class = <?php echo "'".$o."FolderIcon'";?>
             >
             <a
@@ -918,14 +918,25 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 
             <?php
             $pathParts = pathinfo($Directory[$i]);
-            ?>
 
-            <img
-              src = 'Art/5 - Folder And File Icons/<?php echo $o.$pathParts['extension'];?> File Icon.png'
-              class = '<?php echo $o;?>FileIcon'
-            >
+            $fileTypeIconList = [
+              "jpg",
+            ];
 
+            if (in_array($pathParts['extension'], $fileTypeIconList)) { ?>
+              <img
+                src = 'Art/5 - Folder And File Icons/<?php echo $pathParts['extension'];?> File Icon.png'
+                class = '<?php echo $o;?>FileIcon'
+              >
             <?php
+            } else { ?>
+              <img
+                src = 'Art/5 - Folder And File Icons/Default File Icon.png'
+                class = '<?php echo $o;?>FileIcon'
+              >
+            <?php
+            }
+
             // If the file can be viewed directly in the browser
             if (in_array(
               strtolower(substr($Directory[$i], -4)), $SupportedFileTypes)
@@ -951,8 +962,11 @@ elseif (time() - $_SESSION['Created'] > 1200) {
               supportedFileTypes(strtolower(substr(
                 $Directory[$i], -1)), $Directory[$i], $DirectoryPath, $o);
             }
-            else {
-              echo $Directory[$i];
+            else { ?>
+              <p class = '<?php echo $o;?>Files'>
+                <?php echo $Directory[$i];?>
+              </p>
+            <?php
             }
             ?>
           </div>
