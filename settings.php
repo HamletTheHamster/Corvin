@@ -87,7 +87,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
 ?>
 
 <!DOCTYPE html>
-<html lang = 'en' class = <?php echo "'".$o."'";?>>
+<html lang = 'en' class = '<?php echo $o;?>'>
 
 <!-- 1 Header -->
 <head>
@@ -135,8 +135,8 @@ elseif (time() - $_SESSION['Created'] > 1200)
   <script>var o = <?php echo json_encode($o); ?>;</script>
 </head>
 
-<body class = <?php echo "'".$o."'";?>>
-<div id = 'wrapper' class = <?php echo "'".$o."Wrapper'";?>>
+<body class = '<?php echo $o;?>'>
+<div id = 'wrapper' class = '<?php echo $o;?>Wrapper'>
 
   <!-- Create New Workspace -->
   <div id = 'createWorkspacePopup' class = '<?php echo $o;?>CreateWorkspacePopup'>
@@ -352,7 +352,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
 <script type = 'text/javascript' src = 'topBar.js'></script>
 
   <!-- 5 Main Content -->
-  <div  id = 'mainContent' class = <?php echo "'".$o."MainContent'";?>>
+  <div  id = 'mainContent' class = '<?php echo $o;?>MainContent'>
     <form
       action = 'getMoreSpace.php'
       method = 'post'
@@ -360,31 +360,31 @@ elseif (time() - $_SESSION['Created'] > 1200)
     >
       <input
         type = 'submit'
-        class = <?php echo "'".$o."GetMoreSpaceButton'";?>
+        class = '<?php echo $o;?>GetMoreSpaceButton'
         id = 'getMoreSpaceButton'
         value = 'Get More Space'
         name = 'submit'
       />
     </form>
 
-    <div class = <?php echo "'".$o."Header'";?>>
-      <p id = 'settingsHeader' class = <?php echo "'".$o."Header'";?>>Settings</p>
+    <div class = '<?php echo $o;?>Header'>
+      <p id = 'settingsHeader' class = '<?php echo $o;?>Header'>Settings</p>
     </div>
 
-    <div class = <?php echo "'".$o."Content'";?>>
-      <div class = <?php echo "'".$o."Space'";?>></div>
-      <h class = <?php echo "'".$o."FirstHeader'";?>>Account Details</h><br>
-      <br><div id = "heath1" class = <?php echo "'".$o."Heath'";?>><br></div>
+    <div class = '<?php echo $o;?>Content'>
+      <div class = '<?php echo $o;?>Space'></div>
+      <h class = '<?php echo $o;?>FirstHeader'>Account Details</h><br>
+      <br><div id = "heath1" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Name -->
-      <div onclick = 'toggleNameDropdown()' class = <?php echo "'".$o."Setting'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'name' class = <?php echo "'".$o."Item'";?>>Name</p>
+      <div onclick = 'toggleNameDropdown()' class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'name' class = '<?php echo $o;?>Item'>Name</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div id = 'nameValue' class = <?php echo "'".$o."Value'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = 'nameValue' class = '<?php echo $o;?>Value'>
             <?php
             $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '" .
               $userID . "'";
@@ -394,18 +394,18 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
-      <div id = 'dropdownName' class = <?php echo "'".$o."DropdownSetting'";?>>
+      <div id = 'dropdownName' class = '<?php echo $o;?>DropdownSetting'>
         <form
           action = "updateAccountSettings.php"
           method = "post"
           enctype = "multipart/form-data"
-          class = <?php echo "'".$o."ChangeName'";?>
+          class = '<?php echo $o;?>ChangeName'>
         >
           <input
             type = "password"
             name = "submittedPassword"
             id = "namePasswordCheck"
-            class = <?php echo "'".$o."NamePasswordVerifyTextBox'";?>
+            class = '<?php echo $o;?>NamePasswordVerifyTextBox'
             placeholder = "Password"
             autocomplete = "current-password"
             required
@@ -414,8 +414,8 @@ elseif (time() - $_SESSION['Created'] > 1200)
             type = "text"
             name = "firstNameChange"
             id = "firstNameChangeTextBox"
-            class = <?php echo "'".$o."FirstNameChangeTextBox'";?>
-            value = <?php echo "'" . $user[0] . "'";?>
+            class = '<?php echo $o;?>FirstNameChangeTextBox'
+            value = '<?php echo $user[0];?>'
             placeholder = "First Name"
             required
             spellcheck = "false"
@@ -425,8 +425,8 @@ elseif (time() - $_SESSION['Created'] > 1200)
             type = "text"
             name = "lastNameChange"
             id = "lastNameChangeTextBox"
-            class = <?php echo "'".$o."LastNameChangeTextBox'";?>
-            value = <?php echo "'" . $user[1] . "'";?>
+            class = '<?php echo $o;?>LastNameChangeTextBox'
+            value = '<?php echo $user[1];?>'
             placeholder = "Last Name"
             required
             spellcheck = "false"
@@ -436,7 +436,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             type = "submit"
             value = "Save"
             id = "nameSaveChangesButton"
-            class = <?php echo "'".$o."SaveChangesButton'";?>
+            class = '<?php echo $o;?>SaveChangesButton'
           />
         </form>
       </div>
@@ -457,17 +457,17 @@ elseif (time() - $_SESSION['Created'] > 1200)
         }
       }
       </script>
-      <br><div id = "heath2" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath2" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Profile Image -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'profileImage' class = <?php echo "'".$o."Item'";?>>Profile Image</p>
+      <div class = '<?php echo $o;?>SettingWithButton'
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'profileImage' class = '<?php echo $o;?>Item'>Profile Image</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div class = '<?php echo $o;?>Value'>
             <?php
             $uploadedProfileImage =
               "../../../../mnt/Raid1Array/Corvin/00 - Profile Images/" .
@@ -487,17 +487,17 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
-      <br><div id = "heath3" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Email -->
-      <div onclick = "toggleEmailDropdown()" class = <?php echo "'".$o."Setting'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'email' class = <?php echo "'".$o."Item'";?>>Email</p>
+      <div onclick = "toggleEmailDropdown()" class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'email' class = '<?php echo $o;?>Item'>Email</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div id = "emailValue" class = <?php echo "'".$o."Value'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = "emailValue" class = '<?php echo $o;?>Value'>
             <?php
             $sql = "SELECT email FROM UserInfo WHERE id = '" . $userID . "'";
             $email = mysqli_fetch_row(mysqli_query($conn, $sql));
@@ -506,7 +506,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
-      <div id = "dropdownEmail" class = <?php echo "'".$o."DropdownSetting'";?>>
+      <div id = "dropdownEmail" class = '<?php echo $o;?>DropdownSetting'>
         <form
           action = "updateAccountSettings.php"
           method = "post"
@@ -517,7 +517,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             type = "password"
             name = "submittedPassword"
             id = "emailPasswordCheck"
-            class = <?php echo "'".$o."EmailPasswordVerifyTextBox'";?>
+            class = '<?php echo $o;?>EmailPasswordVerifyTextBox'
             placeholder = "Password"
             autocomplete = "current-password"
             required
@@ -526,8 +526,8 @@ elseif (time() - $_SESSION['Created'] > 1200)
             type = "email"
             name = "emailChange"
             id = "emailChangeTextBox"
-            class = <?php echo "'".$o."EmailChangeTextBox'";?>
-            value = <?php echo "'" . $email[0] . "'";?>
+            class = '<?php echo $o;?>EmailChangeTextBox'
+            value = '<?php echo $email[0];?>'
             placeholder = "Email"
             required
             spellcheck = "false"
@@ -537,7 +537,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             type = "submit"
             value = "Save"
             id = "emailSaveChangesButton"
-            class = <?php echo "'".$o."SaveChangesButton'";?>
+            class = '<?php echo $o;?>SaveChangesButton'
           />
         </form>
       </div>
@@ -558,17 +558,17 @@ elseif (time() - $_SESSION['Created'] > 1200)
         }
       }
       </script>
-      <br><div id = "heath4" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath4" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Username -->
-      <div onclick = "toggleUsernameDropdown()" class = <?php echo "'".$o."Setting'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'username' class = <?php echo "'".$o."Item'";?>>Username</p>
+      <div onclick = "toggleUsernameDropdown()" class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'username' class = '<?php echo $o;?>Item'>Username</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div id = "usernameValue" class = <?php echo "'".$o."Value'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = "usernameValue" class = '<?php echo $o;?>Value'>
             <?php
             $sql = "SELECT username FROM UserInfo WHERE id = '" . $userID . "'";
             $username = mysqli_fetch_row(mysqli_query($conn, $sql));
@@ -577,18 +577,18 @@ elseif (time() - $_SESSION['Created'] > 1200)
           </div>
         </div>
       </div>
-      <div id = "dropdownUsername" class = <?php echo "'".$o."DropdownSetting'";?>>
+      <div id = "dropdownUsername" class = '<?php echo $o;?>DropdownSetting'>
         <form
           action = "updateAccountSettings.php"
           method = "post"
           enctype = "multipart/form-data"
-          class = <?php echo "'".$o."ChangeName'";?>
+          class = '<?php echo $o;?>ChangeName'
         >
           <input
             type = "password"
             name = "submittedPassword"
             id = "usernamePasswordCheck"
-            class = <?php echo "'".$o."UsernamePasswordVerifyTextBox'";?>
+            class = '<?php echo $o;?>UsernamePasswordVerifyTextBox'
             placeholder = "Password"
             autocomplete = "current-password"
             required
@@ -597,8 +597,8 @@ elseif (time() - $_SESSION['Created'] > 1200)
             type = "text"
             name = "usernameChange"
             id = "usernameChangeTextBox"
-            class = <?php echo "'".$o."UsernameChangeTextBox'";?>
-            value = <?php echo "'" . $username[0] . "'";?>
+            class = '<?php echo $o;?>UsernameChangeTextBox'
+            value = '<?php echo $username[0];?>'
             placeholder = "Username"
             required
             spellcheck = "false"
@@ -608,7 +608,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             type = "submit"
             value = "Save"
             id = "usernameSaveChangesButton"
-            class = <?php echo "'".$o."SaveChangesButton'";?>
+            class = '<?php echo $o;?>SaveChangesButton'
           />
         </form>
       </div>
@@ -629,39 +629,39 @@ elseif (time() - $_SESSION['Created'] > 1200)
         }
       }
       </script>
-      <br><div id = "heath5" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath5" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Password -->
-      <div onclick = "togglePasswordDropdown()" class = <?php echo "'".$o."Setting'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'password' class = <?php echo "'".$o."Item'";?>>Password</p>
+      <div onclick = "togglePasswordDropdown()" class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'password' class = '<?php echo $o;?>Item'>Password</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div class = '<?php echo $o;?>Value'>
           </div>
         </div>
       </div>
       <div id = "dropdownPassword"
-        class = <?php echo "'".$o."DropdownSettingPassword'";?>>
-        <div class = <?php echo "'".$o."PasswordRequirement'";?>>
-          <p id = "passwordLengthRequirement" class = <?php echo "'".$o."PasswordRequirement'";?>>
+        class = '<?php echo $o;?>DropdownSettingPassword'>
+        <div class = '<?php echo $o;?>PasswordRequirement'>
+          <p id = "passwordLengthRequirement" class = '<?php echo $o;?>PasswordRequirement'>
             Password must contain at least 8 characters
           </P>
         </div>
-        <div class = <?php echo "'".$o."PasswordChangeForm'";?>>
+        <div class = '<?php echo $o;?>PasswordChangeForm'>
           <form
             action = "updateAccountSettings.php"
             method = "post"
             enctype = "multipart/form-data"
-            class = <?php echo "'".$o."ChangeName'";?>
+            class = '<?php echo $o;?>ChangeName'
           >
             <input
               type = "password"
               name = "submittedPassword"
               id = "oldPassword"
-              class = <?php echo "'".$o."PasswordOldPasswordVerifyTextBox'";?>
+              class = '<?php echo $o;?>PasswordOldPasswordVerifyTextBox'
               placeholder = "Current Password"
               autocomplete = "current-password"
               required
@@ -670,7 +670,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
               type = "password"
               name = "newPassword"
               id = "newPasswordTextBox"
-              class = <?php echo "'".$o."PasswordChangeTextBox'";?>
+              class = '<?php echo $o;?>PasswordChangeTextBox'
               placeholder = "New Password"
               autocomplete = "new-password"
               required
@@ -679,7 +679,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
               type = "password"
               name = "newPassword2"
               id = "newPassword2TextBox"
-              class = <?php echo "'".$o."PasswordChangeTextBox'";?>
+              class = '<?php echo $o;?>PasswordChangeTextBox'
               placeholder = "Re-enter New Password"
               autocomplete = "new-password"
               required
@@ -688,7 +688,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
               type = "submit"
               value = "Save"
               id = "passwordSaveChangesButton"
-              class = <?php echo "'".$o."SaveChangesButton'";?>
+              class = '<?php echo $o;?>SaveChangesButton'
             />
           </form>
         </div>
@@ -708,200 +708,200 @@ elseif (time() - $_SESSION['Created'] > 1200)
         }
       }
       </script>
-      <br><div id = "heath6" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath6" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Space -->
-      <div class = <?php echo "'".$o."Space'";?>></div>
+      <div class = '<?php echo $o;?>Space'></div>
 
       <!-- Preferences -->
-      <h class = <?php echo "'".$o."FirstHeader'";?>>Preferences</h><br>
-      <br><div id = "heath7" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <h class = '<?php echo $o;?>FirstHeader'>Preferences</h><br>
+      <br><div id = "heath7" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Dark Mode -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'darkmode' class = <?php echo "'".$o."Item'";?>>Dark Mode</p>
+      <div class = '<?php echo $o;?>SettingWithButton'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'darkmode' class = '<?php echo $o;?>Item'>Dark Mode</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div class = '<?php echo $o;?>Value'>
             <form id = "darkmodeForm">
-              <label class = <?php echo "'".$o."Switch'";?>>
+              <label class = '<?php echo $o;?>Switch'>
                 <input id = "darkmodeSlider" onclick = "manualModeSwitch()" type="checkbox"
                 <?php
                 if ($o == "darkSettings") {echo "checked";}
                 elseif ($o == "lightSettings") {echo "unchecked";}
                 ?>
                 >
-                <span class = <?php echo "'".$o."Slider'";?>></span>
+                <span class = '<?php echo $o;?>Slider'></span>
               </label>
             </form>
           </div>
         </div>
       </div>
       <script src = 'darkmodeSliderEffects.js'></script>
-      <br><div id = "heath8" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath8" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Ledger Size -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'ledgerSize' class = <?php echo "'".$o."Item'";?>>Ledger Size</p>
+      <div class = '<?php echo $o;?>SettingWithButton'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'ledgerSize' class = '<?php echo $o;?>Item'>Ledger Size</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div class = '<?php echo $o;?>Value'>
             <p id = "ledgerSizeValuep" class = '<?php echo $o;?>Value'>Standard</p>
           </div>
         </div>
       </div>
-      <br><div id = "heath9" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath9" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Date Format -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'dateFormat' class = <?php echo "'".$o."Item'";?>>Date Format</p>
+      <div class = '<?php echo $o;?>SettingWithButton'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'dateFormat' class = '<?php echo $o;?>Item'>Date Format</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div class = '<?php echo $o;?>Value'>
             <!-- want today's date as examples -->
             <p id = "dateFormatValuep" class = '<?php echo $o;?>Value'>10/14/2019</p>
           </div>
         </div>
       </div>
-      <br><div id = "heath10" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath10" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Time Zone -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'timeZone' class = <?php echo "'".$o."Item'";?>>Time Zone</p>
+      <div class = '<?php echo $o;?>SettingWithButton'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'timeZone' class = '<?php echo $o;?>Item'>Time Zone</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div class = '<?php echo $o;?>Value'>
             <?php //loop through array of all time zones ?>
             <p id = "timeZoneValuep" class = '<?php echo $o;?>Value'>(UTC-07:00) Arizona</p>
           </div>
         </div>
       </div>
-      <br><div id = "heath11" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath11" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Language -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'language' class = <?php echo "'".$o."Item'";?>>Language</p>
+      <div class = '<?php echo $o;?>SettingWithButton'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'language' class = '<?php echo $o;?>Item'>Language</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div class = '<?php echo $o;?>Value'>
             <?php //loop through array of all supported languages ?>
             <p id = "languageValuep" class = '<?php echo $o;?>Value'>English (US)</p>
           </div>
         </div>
       </div>
-      <br><div id = "heath12" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath12" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Corvin βeta Program -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'corvinBetaProgram' class = <?php echo "'".$o."Item'";?>>Corvin βeta Program</p>
+      <div class = '<?php echo $o;?>SettingWithButton'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'corvinBetaProgram' class = '<?php echo $o;?>Item'>Corvin βeta Program</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div class = '<?php echo $o;?>Value'>
             <p id = "corvinBetaProgramValuep" class = '<?php echo $o;?>Value'>Opt In</p>
           </div>
         </div>
       </div>
-      <br><div id = "heath13" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath13" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Space -->
-      <div class = <?php echo "'".$o."Space'";?>></div>
+      <div class = '<?php echo $o;?>Space'></div>
 
       <!-- Notifications -->
-      <h class = <?php echo "'".$o."FirstHeader'";?>>Notifications</h><br>
-      <br><div id = "heath14" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <h class = '<?php echo $o;?>FirstHeader'>Notifications</h><br>
+      <br><div id = "heath14" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- New Sign-in -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'newSignIn' class = <?php echo "'".$o."Item'";?>>New Sign-in</p>
+      <div class = '<?php echo $o;?>SettingWithButton'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'newSignIn' class = '<?php echo $o;?>Item'>New Sign-in</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div class = '<?php echo $o;?>Value'>
             <p id = "newSignInValuep" class = '<?php echo $o;?>Value'>Most Secure</p>
           </div>
         </div>
       </div>
-      <br><div id = "heath15" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath15" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Workspace File Changes -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'workspaceFileChanges' class = <?php echo "'".$o."Item'";?>>Workspace File Changes</p>
+      <div class = '<?php echo $o;?>SettingWithButton'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'workspaceFileChanges' class = '<?php echo $o;?>Item'>Workspace File Changes</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div class = '<?php echo $o;?>Value'>
             <p id = "workspaceFileChangesValuep" class = '<?php echo $o;?>Value'>Do Not Notify Me</p>
           </div>
         </div>
       </div>
-      <br><div id = "heath16" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath16" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- New Workspace Member -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'newWorkspaceMember' class = <?php echo "'".$o."Item'";?>>New Workspace Member</p>
+      <div class = '<?php echo $o;?>SettingWithButton'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'newWorkspaceMember' class = '<?php echo $o;?>Item'>New Workspace Member</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div class = '<?php echo $o;?>Value'>
             <p id = "newWorkspaceMemberValuep" class = '<?php echo $o;?>Value'>Do Not Notify Me</p>
           </div>
         </div>
       </div>
-      <br><div id = "heath17" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath17" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Promotional -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'promotionalCorvinNews' class = <?php echo "'".$o."Item'";?>>Promotional Corvin News</p>
+      <div class = '<?php echo $o;?>SettingWithButton'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'promotionalCorvinNews' class = '<?php echo $o;?>Item'>Promotional Corvin News</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div class = '<?php echo $o;?>Value'>
             <p id = "promotionalCorvinNewsValuep" class = '<?php echo $o;?>Value'>Do Not Notify Me</p>
           </div>
         </div>
       </div>
-      <br><div id = "heath18" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath18" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Space -->
-      <div class = <?php echo "'".$o."Space'";?>></div>
-      <br><div id = "heath19" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <div class = '<?php echo $o;?>Space'></div>
+      <br><div id = "heath19" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Delete my Corvin Account -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'deleteMyCorvin' class = <?php echo "'".$o."Item'";?>>Delete my Corvin</p>
+      <div class = '<?php echo $o;?>SettingWithButton'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'deleteMyCorvin' class = '<?php echo $o;?>Item'>Delete my Corvin</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
-            <button id = "deleteMyCorvinButton" class = <?php echo "'".$o."DeleteAccountButton'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div class = '<?php echo $o;?>Value'>
+            <button id = "deleteMyCorvinButton" class = '<?php echo $o;?>DeleteAccountButton'>
               Delete Account
             </button>
           </div>
@@ -911,10 +911,10 @@ elseif (time() - $_SESSION['Created'] > 1200)
   </div>
 </div>
 
-<div id = 'push' class = <?php echo "'".$o."Push'";?>></div>
+<div id = 'push' class = '<?php echo $o;?>Push'></div>
 
 <!-- 6 Footer -->
-<div id = 'footer' class = <?php echo "'".$o."Footer'";?>>&copy; Corvin, Inc.</div>
+<div id = 'footer' class = '<?php echo $o;?>Footer'>&copy; Corvin, Inc.</div>
 
 </body>
 </html>
