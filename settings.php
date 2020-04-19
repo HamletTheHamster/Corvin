@@ -91,7 +91,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
 
 <!-- 1 Header -->
 <head>
-  <title>Home | Corvin</title>
+  <title>Settings | Corvin</title>
 
   <link href = "one.css" type = "text/css" rel = "stylesheet"/>
 
@@ -399,7 +399,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
           action = "updateAccountSettings.php"
           method = "post"
           enctype = "multipart/form-data"
-          class = '<?php echo $o;?>ChangeName'>
+          class = '<?php echo $o;?>ChangeName'
         >
           <input
             type = "password"
@@ -409,7 +409,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
             placeholder = "Password"
             autocomplete = "current-password"
             required
-          >
+          />
           <input
             type = "text"
             name = "firstNameChange"
@@ -460,7 +460,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
       <br><div id = "heath2" class = '<?php echo $o;?>Heath'><br></div>
 
       <!-- Profile Image -->
-      <div class = '<?php echo $o;?>SettingWithButton'
+      <div class = '<?php echo $o;?>SettingWithButton'>
         <div class = '<?php echo $o;?>LeftItemBox'>
           <div class = '<?php echo $o;?>Item'>
             <p id = 'profileImage' class = '<?php echo $o;?>Item'>Profile Image</p>
