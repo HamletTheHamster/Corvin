@@ -110,8 +110,8 @@ elseif (time() - $_SESSION['Created'] > 1200) {
   $_SESSION['Created'] = time();
 }
 
+// Assign Workspace
 if (isset($_POST["workspace"])) {
-
   $thisWorkspace = $_POST["workspace"];
   $thisWorkspaceName = ltrim($thisWorkspace, '0123456789');
 
