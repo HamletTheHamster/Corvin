@@ -42,10 +42,10 @@ $sql = "SELECT darkmode FROM Preferences WHERE id = '$userID'";
 $darkmodeSetting = mysqli_fetch_array(mysqli_query($conn, $sql));
 
 if ($darkmodeSetting[0] == 1) {
-  $o = "darkSettings";
+  $o = "darkWorkspaceSettings";
 }
 elseif ($darkmodeSetting[0] == 0) {
-  $o = "lightSettings";
+  $o = "lightWorkspaceSettings";
 }
 
 // Session Timeout after 854 seconds (14.2 minutes)
@@ -87,7 +87,6 @@ elseif (time() - $_SESSION['Created'] > 1200)
 
 // Assign Workspace
 if (isset($_POST["workspace"])) {
-
   $thisWorkspace = $_POST["workspace"];
   $thisWorkspaceName = ltrim($thisWorkspace, '0123456789');
 
@@ -100,11 +99,11 @@ else {
 ?>
 
 <!DOCTYPE html>
-<html lang = 'en' class = <?php echo "'".$o."'";?>>
+<html lang = 'en' class = '<?php echo $o;?>'>
 
 <!-- 1 Header -->
 <head>
-  <title>Home | Corvin</title>
+  <title><?php echo $thisWorkspaceName;?> Settings | Corvin</title>
 
   <link href = "one.css" type = "text/css" rel = "stylesheet"/>
 
@@ -148,8 +147,8 @@ else {
   <script>var o = <?php echo json_encode($o); ?>;</script>
 </head>
 
-<body class = <?php echo "'".$o."'";?>>
-<div id = 'wrapper' class = <?php echo "'".$o."Wrapper'";?>>
+<body class = '<?php echo $o;?>'>
+<div id = 'wrapper' class = '<?php echo $o;?>Wrapper'>
 
   <!-- Create New Workspace -->
   <div id = 'createWorkspacePopup' class = '<?php echo $o;?>CreateWorkspacePopup'>
@@ -365,7 +364,7 @@ else {
 <script type = 'text/javascript' src = 'topBar.js'></script>
 
   <!-- 5 Main Content -->
-  <div  id = 'mainContent' class = <?php echo "'".$o."MainContent'";?>>
+  <div  id = 'mainContent' class = '<?php echo $o;?>MainContent'>
     <form
       action = 'getMoreSpace.php'
       method = 'post'
@@ -373,74 +372,62 @@ else {
     >
       <input
         type = 'submit'
-        class = <?php echo "'".$o."GetMoreSpaceButton'";?>
+        class = '<?php echo $o;?>GetMoreSpaceButton'
         id = 'getMoreSpaceButton'
         value = 'Get More Space'
         name = 'submit'
       />
     </form>
 
-    <div class = <?php echo "'".$o."Header'";?>>
-      <p id = 'settingsHeader' class = <?php echo "'".$o."Header'";?>>Settings</p>
+    <div class = '<?php echo $o;?>Header'>
+      <p id = 'settingsHeader' class = '<?php echo $o;?>Header'>
+        <?php echo $thisWorkspaceName;?> Settings
+      </p>
     </div>
 
-    <div class = <?php echo "'".$o."Content'";?>>
-      <div class = <?php echo "'".$o."Space'";?>></div>
-      <h class = <?php echo "'".$o."FirstHeader'";?>>Account Details</h><br>
-      <br><div id = "heath1" class = <?php echo "'".$o."Heath'";?>><br></div>
+    <div class = '<?php echo $o;?>Content'>
+      <div class = '<?php echo $o;?>Space'></div>
+      <h class = '<?php echo $o;?>FirstHeader'>Workspace Details</h><br>
+      <br><div id = "heath1" class = '<?php echo $o;?>Heath'><br></div>
 
-      <!-- Name -->
-      <div onclick = 'toggleNameDropdown()' class = <?php echo "'".$o."Setting'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'name' class = <?php echo "'".$o."Item'";?>>Name</p>
+      <!-- Workspace Name -->
+      <div onclick = 'toggleNameDropdown()' class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'name' class = '<?php echo $o;?>Item'>Workspace Name</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div id = 'nameValue' class = <?php echo "'".$o."Value'";?>>
-            <?php
-            $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '" .
-              $userID . "'";
-            $user = mysqli_fetch_row(mysqli_query($conn, $sql));
-            echo "<p id = 'nameValuep' class = '".$o."Value'>" . $user[0] . " " . $user[1] . "</p>";
-            ?>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = 'nameValue' class = '<?php echo $o;?>Value'>
+            <p id = 'nameValuep' class = '<?php echo $o;?>Value'>
+              <?php echo $thisWorkspaceName;?>
+            </p>
           </div>
         </div>
       </div>
-      <div id = 'dropdownName' class = <?php echo "'".$o."DropdownSetting'";?>>
+      <div id = 'dropdownName' class = '<?php echo $o;?>DropdownSetting'>
         <form
-          action = "updateAccountSettings.php"
+          action = "updateWorkspaceSettings.php"
           method = "post"
           enctype = "multipart/form-data"
-          class = <?php echo "'".$o."ChangeName'";?>
+          class = '<?php echo $o;?>ChangeName'
         >
           <input
             type = "password"
             name = "submittedPassword"
             id = "namePasswordCheck"
-            class = <?php echo "'".$o."NamePasswordVerifyTextBox'";?>
+            class = '<?php echo $o;?>WorkspaceNamePasswordVerifyTextBox'
             placeholder = "Password"
             autocomplete = "current-password"
             required
           >
           <input
             type = "text"
-            name = "firstNameChange"
-            id = "firstNameChangeTextBox"
-            class = <?php echo "'".$o."FirstNameChangeTextBox'";?>
-            value = <?php echo "'" . $user[0] . "'";?>
-            placeholder = "First Name"
-            required
-            spellcheck = "false"
-            autocomplete = "off"
-          />
-          <input
-            type = "text"
-            name = "lastNameChange"
-            id = "lastNameChangeTextBox"
-            class = <?php echo "'".$o."LastNameChangeTextBox'";?>
-            value = <?php echo "'" . $user[1] . "'";?>
-            placeholder = "Last Name"
+            name = "newName"
+            id = "newNameTextBox"
+            class = '<?php echo $o;?>WorkspaceNameChangeTextBox'
+            value = '<?php echo $thisWorkspaceName;?>'
+            placeholder = "New Workspace Name"
             required
             spellcheck = "false"
             autocomplete = "off"
@@ -449,7 +436,7 @@ else {
             type = "submit"
             value = "Save"
             id = "nameSaveChangesButton"
-            class = <?php echo "'".$o."SaveChangesButton'";?>
+            class = '<?php echo $o;?>SaveChangesButton'
           />
         </form>
       </div>
@@ -470,464 +457,61 @@ else {
         }
       }
       </script>
-      <br><div id = "heath2" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath2" class = '<?php echo $o;?>Heath'><br></div>
 
-      <!-- Profile Image -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'profileImage' class = <?php echo "'".$o."Item'";?>>Profile Image</p>
+      <!-- Workspace Image -->
+      <div class = '<?php echo $o;?>SettingWithButton'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'profileImage' class = '<?php echo $o;?>Item'>Workspace Image</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div class = '<?php echo $o;?>Value'>
             <?php
-            $uploadedProfileImage =
-              "../../../../mnt/Raid1Array/Corvin/00 - Profile Images/" .
-              $userID . " - " . $user[0] . $user[1] . ".jpg";
-            $defaultProfileImage =
-              "Art/1 - Default Profile Icons/Corvin Castle Icon" .
-              ($userID % 10) . ".jpg";
-            if (file_exists($uploadedProfileImage)) {
-              echo "<img class = '".$o."ProfileImage' src = '" .
-                $uploadedProfileImage . "'>";
+            $uploadedWorkspaceImage =
+              "../../../../mnt/Raid1Array/Corvin/000 - Workspaces/00 - Workspace Images/" .
+              $thisWorkspace . ".jpg";
+            $defaultWorkspaceImage =
+              "Art/1 - Default Profile Icons/Corvin Castle Icon0.jpg";
+            if (file_exists($uploadedWorkspaceImage)) {
+              echo "<img class = '".$o."WorkspaceImage' src = '" .
+                $uploadedWorkspaceImage . "'>";
             }
             else {
-              echo "<img class = '".$o."ProfileImage' src = '" .
-                $defaultProfileImage . "'>";
+              echo "<img class = '".$o."WorkspaceImage' src = '" .
+                $defaultWorkspaceImage . "'>";
             }
             ?>
           </div>
         </div>
       </div>
-      <br><div id = "heath3" class = <?php echo "'".$o."Heath'";?>><br></div>
+      <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
 
-      <!-- Email -->
-      <div onclick = "toggleEmailDropdown()" class = <?php echo "'".$o."Setting'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'email' class = <?php echo "'".$o."Item'";?>>Email</p>
+      <!-- New Members Can Invite -->
+      <div  class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Invitation Priviledges</p>
           </div>
         </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div id = "emailValue" class = <?php echo "'".$o."Value'";?>>
-            <?php
-            $sql = "SELECT email FROM UserInfo WHERE id = '" . $userID . "'";
-            $email = mysqli_fetch_row(mysqli_query($conn, $sql));
-            echo "<p id = 'emailValuep' class = '".$o."Value'>" . $email[0] . "</p>";
-            ?>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
+            <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
+              Admin Only
+            </p>
           </div>
         </div>
       </div>
-      <div id = "dropdownEmail" class = <?php echo "'".$o."DropdownSetting'";?>>
-        <form
-          action = "updateAccountSettings.php"
-          method = "post"
-          enctype = "multipart/form-data"
-          class = "ChangeName"
-        >
-          <input
-            type = "password"
-            name = "submittedPassword"
-            id = "emailPasswordCheck"
-            class = <?php echo "'".$o."EmailPasswordVerifyTextBox'";?>
-            placeholder = "Password"
-            autocomplete = "current-password"
-            required
-          >
-          <input
-            type = "email"
-            name = "emailChange"
-            id = "emailChangeTextBox"
-            class = <?php echo "'".$o."EmailChangeTextBox'";?>
-            value = <?php echo "'" . $email[0] . "'";?>
-            placeholder = "Email"
-            required
-            spellcheck = "false"
-            autocomplete = "email"
-          />
-          <input
-            type = "submit"
-            value = "Save"
-            id = "emailSaveChangesButton"
-            class = <?php echo "'".$o."SaveChangesButton'";?>
-          />
-        </form>
-      </div>
-      <script>
-      document.getElementById("dropdownEmail").style.display = "none";
 
-      function toggleEmailDropdown() {
-        var dropdownEmail = document.getElementById("dropdownEmail");
-
-        if (dropdownEmail.style.display == "none") {
-          dropdownEmail.style.display = "block";
-          emailValue.style.display = "none";
-          document.getElementById("emailPasswordCheck").focus();
-        }
-        else {
-          dropdownEmail.style.display = "none";
-          emailValue.style.display = "block";
-        }
-      }
-      </script>
-      <br><div id = "heath4" class = <?php echo "'".$o."Heath'";?>><br></div>
-
-      <!-- Username -->
-      <div onclick = "toggleUsernameDropdown()" class = <?php echo "'".$o."Setting'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'username' class = <?php echo "'".$o."Item'";?>>Username</p>
-          </div>
-        </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div id = "usernameValue" class = <?php echo "'".$o."Value'";?>>
-            <?php
-            $sql = "SELECT username FROM UserInfo WHERE id = '" . $userID . "'";
-            $username = mysqli_fetch_row(mysqli_query($conn, $sql));
-            echo "<p id = 'usernameValuep' class = '".$o."Value'>" . $username[0] . "</p>";
-            ?>
-          </div>
-        </div>
-      </div>
-      <div id = "dropdownUsername" class = <?php echo "'".$o."DropdownSetting'";?>>
-        <form
-          action = "updateAccountSettings.php"
-          method = "post"
-          enctype = "multipart/form-data"
-          class = <?php echo "'".$o."ChangeName'";?>
-        >
-          <input
-            type = "password"
-            name = "submittedPassword"
-            id = "usernamePasswordCheck"
-            class = <?php echo "'".$o."UsernamePasswordVerifyTextBox'";?>
-            placeholder = "Password"
-            autocomplete = "current-password"
-            required
-          >
-          <input
-            type = "text"
-            name = "usernameChange"
-            id = "usernameChangeTextBox"
-            class = <?php echo "'".$o."UsernameChangeTextBox'";?>
-            value = <?php echo "'" . $username[0] . "'";?>
-            placeholder = "Username"
-            required
-            spellcheck = "false"
-            autocomplete = "off"
-          />
-          <input
-            type = "submit"
-            value = "Save"
-            id = "usernameSaveChangesButton"
-            class = <?php echo "'".$o."SaveChangesButton'";?>
-          />
-        </form>
-      </div>
-      <script>
-      document.getElementById("dropdownUsername").style.display = "none";
-
-      function toggleUsernameDropdown() {
-        var dropdownUsername = document.getElementById("dropdownUsername");
-
-        if (dropdownUsername.style.display == "none") {
-          dropdownUsername.style.display = "block";
-          usernameValue.style.display = "none";
-          document.getElementById("usernamePasswordCheck").focus();
-        }
-        else {
-          dropdownUsername.style.display = "none";
-          usernameValue.style.display = "block";
-        }
-      }
-      </script>
-      <br><div id = "heath5" class = <?php echo "'".$o."Heath'";?>><br></div>
-
-      <!-- Password -->
-      <div onclick = "togglePasswordDropdown()" class = <?php echo "'".$o."Setting'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'password' class = <?php echo "'".$o."Item'";?>>Password</p>
-          </div>
-        </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
-          </div>
-        </div>
-      </div>
-      <div id = "dropdownPassword"
-        class = <?php echo "'".$o."DropdownSettingPassword'";?>>
-        <div class = <?php echo "'".$o."PasswordRequirement'";?>>
-          <p id = "passwordLengthRequirement" class = <?php echo "'".$o."PasswordRequirement'";?>>
-            Password must contain at least 8 characters
-          </P>
-        </div>
-        <div class = <?php echo "'".$o."PasswordChangeForm'";?>>
-          <form
-            action = "updateAccountSettings.php"
-            method = "post"
-            enctype = "multipart/form-data"
-            class = <?php echo "'".$o."ChangeName'";?>
-          >
-            <input
-              type = "password"
-              name = "submittedPassword"
-              id = "oldPassword"
-              class = <?php echo "'".$o."PasswordOldPasswordVerifyTextBox'";?>
-              placeholder = "Current Password"
-              autocomplete = "current-password"
-              required
-            >
-            <input
-              type = "password"
-              name = "newPassword"
-              id = "newPasswordTextBox"
-              class = <?php echo "'".$o."PasswordChangeTextBox'";?>
-              placeholder = "New Password"
-              autocomplete = "new-password"
-              required
-            />
-            <input
-              type = "password"
-              name = "newPassword2"
-              id = "newPassword2TextBox"
-              class = <?php echo "'".$o."PasswordChangeTextBox'";?>
-              placeholder = "Re-enter New Password"
-              autocomplete = "new-password"
-              required
-            />
-            <input
-              type = "submit"
-              value = "Save"
-              id = "passwordSaveChangesButton"
-              class = <?php echo "'".$o."SaveChangesButton'";?>
-            />
-          </form>
-        </div>
-      </div>
-      <script>
-      document.getElementById("dropdownPassword").style.display = "none";
-
-      function togglePasswordDropdown() {
-        var dropdownPassword = document.getElementById("dropdownPassword");
-
-        if (dropdownPassword.style.display == "none") {
-          dropdownPassword.style.display = "block";
-          document.getElementById("oldPassword").focus();
-        }
-        else {
-          dropdownPassword.style.display = "none";
-        }
-      }
-      </script>
-      <br><div id = "heath6" class = <?php echo "'".$o."Heath'";?>><br></div>
-
-      <!-- Space -->
-      <div class = <?php echo "'".$o."Space'";?>></div>
-
-      <!-- Preferences -->
-      <h class = <?php echo "'".$o."FirstHeader'";?>>Preferences</h><br>
-      <br><div id = "heath7" class = <?php echo "'".$o."Heath'";?>><br></div>
-
-      <!-- Dark Mode -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'darkmode' class = <?php echo "'".$o."Item'";?>>Dark Mode</p>
-          </div>
-        </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
-            <form id = "darkmodeForm">
-              <label class = <?php echo "'".$o."Switch'";?>>
-                <input id = "darkmodeSlider" onclick = "manualModeSwitch()" type="checkbox"
-                <?php
-                if ($o == "darkSettings") {echo "checked";}
-                elseif ($o == "lightSettings") {echo "unchecked";}
-                ?>
-                >
-                <span class = <?php echo "'".$o."Slider'";?>></span>
-              </label>
-            </form>
-          </div>
-        </div>
-      </div>
-      <script src = 'darkmodeSliderEffects.js'></script>
-      <br><div id = "heath8" class = <?php echo "'".$o."Heath'";?>><br></div>
-
-      <!-- Ledger Size -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'ledgerSize' class = <?php echo "'".$o."Item'";?>>Ledger Size</p>
-          </div>
-        </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
-            <p id = "ledgerSizeValuep" class = '<?php echo $o;?>Value'>Standard</p>
-          </div>
-        </div>
-      </div>
-      <br><div id = "heath9" class = <?php echo "'".$o."Heath'";?>><br></div>
-
-      <!-- Date Format -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'dateFormat' class = <?php echo "'".$o."Item'";?>>Date Format</p>
-          </div>
-        </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
-            <!-- want today's date as examples -->
-            <p id = "dateFormatValuep" class = '<?php echo $o;?>Value'>10/14/2019</p>
-          </div>
-        </div>
-      </div>
-      <br><div id = "heath10" class = <?php echo "'".$o."Heath'";?>><br></div>
-
-      <!-- Time Zone -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'timeZone' class = <?php echo "'".$o."Item'";?>>Time Zone</p>
-          </div>
-        </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
-            <?php //loop through array of all time zones ?>
-            <p id = "timeZoneValuep" class = '<?php echo $o;?>Value'>(UTC-07:00) Arizona</p>
-          </div>
-        </div>
-      </div>
-      <br><div id = "heath11" class = <?php echo "'".$o."Heath'";?>><br></div>
-
-      <!-- Language -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'language' class = <?php echo "'".$o."Item'";?>>Language</p>
-          </div>
-        </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
-            <?php //loop through array of all supported languages ?>
-            <p id = "languageValuep" class = '<?php echo $o;?>Value'>English (US)</p>
-          </div>
-        </div>
-      </div>
-      <br><div id = "heath12" class = <?php echo "'".$o."Heath'";?>><br></div>
-
-      <!-- Corvin βeta Program -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'corvinBetaProgram' class = <?php echo "'".$o."Item'";?>>Corvin βeta Program</p>
-          </div>
-        </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
-            <p id = "corvinBetaProgramValuep" class = '<?php echo $o;?>Value'>Opt In</p>
-          </div>
-        </div>
-      </div>
-      <br><div id = "heath13" class = <?php echo "'".$o."Heath'";?>><br></div>
-
-      <!-- Space -->
-      <div class = <?php echo "'".$o."Space'";?>></div>
-
-      <!-- Notifications -->
-      <h class = <?php echo "'".$o."FirstHeader'";?>>Notifications</h><br>
-      <br><div id = "heath14" class = <?php echo "'".$o."Heath'";?>><br></div>
-
-      <!-- New Sign-in -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'newSignIn' class = <?php echo "'".$o."Item'";?>>New Sign-in</p>
-          </div>
-        </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
-            <p id = "newSignInValuep" class = '<?php echo $o;?>Value'>Most Secure</p>
-          </div>
-        </div>
-      </div>
-      <br><div id = "heath15" class = <?php echo "'".$o."Heath'";?>><br></div>
-
-      <!-- Workspace File Changes -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'workspaceFileChanges' class = <?php echo "'".$o."Item'";?>>Workspace File Changes</p>
-          </div>
-        </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
-            <p id = "workspaceFileChangesValuep" class = '<?php echo $o;?>Value'>Do Not Notify Me</p>
-          </div>
-        </div>
-      </div>
-      <br><div id = "heath16" class = <?php echo "'".$o."Heath'";?>><br></div>
-
-      <!-- New Workspace Member -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'newWorkspaceMember' class = <?php echo "'".$o."Item'";?>>New Workspace Member</p>
-          </div>
-        </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
-            <p id = "newWorkspaceMemberValuep" class = '<?php echo $o;?>Value'>Do Not Notify Me</p>
-          </div>
-        </div>
-      </div>
-      <br><div id = "heath17" class = <?php echo "'".$o."Heath'";?>><br></div>
-
-      <!-- Promotional -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'promotionalCorvinNews' class = <?php echo "'".$o."Item'";?>>Promotional Corvin News</p>
-          </div>
-        </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
-            <p id = "promotionalCorvinNewsValuep" class = '<?php echo $o;?>Value'>Do Not Notify Me</p>
-          </div>
-        </div>
-      </div>
-      <br><div id = "heath18" class = <?php echo "'".$o."Heath'";?>><br></div>
-
-      <!-- Space -->
-      <div class = <?php echo "'".$o."Space'";?>></div>
-      <br><div id = "heath19" class = <?php echo "'".$o."Heath'";?>><br></div>
-
-      <!-- Delete my Corvin Account -->
-      <div class = <?php echo "'".$o."SettingWithButton'";?>>
-        <div class = <?php echo "'".$o."LeftItemBox'";?>>
-          <div class = <?php echo "'".$o."Item'";?>>
-            <p id = 'deleteMyCorvin' class = <?php echo "'".$o."Item'";?>>Delete my Corvin</p>
-          </div>
-        </div>
-        <div class = <?php echo "'".$o."RightItemBox'";?>>
-          <div class = <?php echo "'".$o."Value'";?>>
-            <button id = "deleteMyCorvinButton" class = <?php echo "'".$o."DeleteAccountButton'";?>>
-              Delete Account
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
 
-<div id = 'push' class = <?php echo "'".$o."Push'";?>></div>
+<div id = 'push' class = '<?php echo $o;?>Push'></div>
 
 <!-- 6 Footer -->
-<div id = 'footer' class = <?php echo "'".$o."Footer'";?>>&copy; Corvin, Inc.</div>
+<div id = 'footer' class = '<?php echo $o;?>Footer'>&copy; Corvin, Inc.</div>
 
 </body>
 </html>

@@ -505,7 +505,7 @@ else {
       <?php
       if ($userID . $thisWorkspaceName == $thisWorkspace) {
       ?>
-        <a class = '<?php echo $o;?>MenuItem'>
+        <a class = '<?php echo $o;?>MenuItem' href = "workspaceSettings.php">
           <?php echo $thisWorkspaceName;?> Settings
         </a>
       <?php

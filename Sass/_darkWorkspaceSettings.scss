@@ -1,0 +1,758 @@
+/* _darkSettings Coded by: Joel N. Johnson */
+
+$dark: darkWorkspaceSettings;
+
+html.#{$dark}, body.#{$dark} {
+    background-color: rgb(28, 29, 31);
+    height: 100%;
+    margin: 0;
+    font-family: "Square Market", Helvetica, sans-serif;
+    color: rgba(225, 225, 225, 0.85);
+}
+
+.#{$dark}Wrapper {
+    min-height: calc(100% - 20px);
+    height: auto;
+}
+
+.#{$dark}TopBar {
+    margin-bottom: 200px;
+    width: 100%;
+    height: 85px;
+}
+
+.#{$dark}Corvin {
+    float: left;
+    width: 94%;
+}
+
+.#{$dark}CorvinHeader {
+    color: rgb(0, 130, 140);
+    font-family: "Square Market", Helvetica, sans-serif;
+    margin-top: 30px;
+    margin-left: 35px;
+    line-height: .5em;
+    font-weight: 600;
+    font-size: 50px;
+    position: absolute;
+    @include noSelect;
+}
+
+.#{$dark}CorvinHeader:hover {
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+}
+
+.#{$dark}CorvinHeader:focus {
+    outline: none;
+}
+
+.#{$dark}Home {
+    position: relative;
+    float: right;
+}
+
+.#{$dark}HomeButton {
+    color: rgb(0, 130, 140);
+    margin-top: 35px;
+    margin-right: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    @include noSelect;
+}
+
+.#{$dark}HomeButton:hover {
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+}
+
+.#{$dark}WorkspacesMenuDropDown {
+    position: relative;
+    float: right;
+}
+
+.#{$dark}WorkspacesButton {
+    color: rgb(0, 130, 140);
+    margin-top: 35px;
+    margin-right: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    @include noSelect;
+}
+
+.#{$dark}WorkspacesButton:hover {
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+}
+
+.#{$dark}WorkspacesMenuContent {
+    display: none;
+    position: absolute;
+    right: 20px;
+    margin-top: 60px;
+    background-color: rgb(53, 54, 56);
+    min-width: 260px;
+    border-radius: 6px;
+    border-width: thin;
+    border-color: rgba(23, 23, 23, 0.25);
+    z-index: 2;
+}
+
+.#{$dark}Workspace {
+    color: rgba(225, 225, 225, 0.85);
+    background-color: rgb(53, 54, 56);
+    border: none;
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    border-radius: 6px;
+    width: 100%;
+    text-align: left;
+    display: block;
+}
+
+.#{$dark}Workspace:hover {
+    color: rgb(0, 154, 164);
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.#{$dark}Workspace:active {
+  outline: none;
+}
+
+a.#{$dark}NewWorkspaceMenuItem {
+    color: rgb(0, 154, 164);
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    display: block;
+}
+
+a.#{$dark}NewWorkspaceMenuItem:hover {
+    color: rgb(0, 154, 164);
+    background-color: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.#{$dark}WorkspacesMenuHeath {
+    background-color: rgb(18, 19, 21);
+    border-radius: 4px;
+    height: 3px;
+    margin: 10px 10px;
+}
+
+.#{$dark}CreateWorkspacePopup {
+  display: none;
+  position: absolute;
+  background-color: rgb(53, 54, 56);
+  width: 75%;
+  height: 75vh;
+  margin-left: 12.5%;
+  margin-top: 12.5vh;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.15);
+  z-index: 3;
+}
+
+.#{$dark}CreateWorkspaceHeader {
+  height: 100px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 30px;
+  margin-left: 100px;
+  padding-top: 100px;
+}
+
+.#{$dark}CreateWorkspaceMessage {
+  display: inline-block;
+}
+
+p.#{$dark}CreateWorkspaceMessage {
+  margin-left: 150px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 18px;
+}
+
+.#{$dark}NewWorkspaceNameTextField {
+  margin-left: 150px;
+  padding: 5px 5px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.#{$dark}NewWorkspaceNameTextField::placeholder {
+  color: rgba(255, 255, 255, .5);
+}
+
+.#{$dark}NewWorkspaceNameTextField:focus {
+    outline: none;
+    border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$dark}NewWorkspaceNameTextField::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
+.#{$dark}CreateWorkspaceSubmitButton {
+  background-color: rgb(28, 29, 31);
+  border-color: rgba(255, 255, 255, 0);
+  margin-left: 15px;
+  border-width: thin;
+  color: rgb(0, 154, 164);
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.#{$dark}CreateWorkspaceSubmitButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: rgb(0, 130, 140);
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.#{$dark}CreateWorkspaceSubmitButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: rgb(0, 130, 140);
+  outline: none;
+}
+
+.#{$dark}CreateWorkspaceSubmitButton:focus {
+  outline: none;
+}
+
+.#{$dark}CancelCreateWorkspaceButton {
+  background-color: rgb(28, 29, 31);
+  border-color: rgba(255, 255, 255, 0);
+  float: right;
+  position: fixed;
+  bottom: 30vh;
+  margin-left: 65%;
+  border-width: thin;
+  color: rgb(0, 154, 164);
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.#{$dark}CancelCreateWorkspaceButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: rgb(0, 130, 140);
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.#{$dark}CancelCreateWorkspaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: rgb(0, 130, 140);
+  outline: none;
+}
+
+.#{$dark}CancelCreateWorkspaceButton:focus {
+  outline: none;
+}
+
+.#{$dark}JoinWorkspacePopup {
+  display: none;
+  position: absolute;
+  background-color: rgb(53, 54, 56);
+  width: 75%;
+  height: 75vh;
+  margin-left: 12.5%;
+  margin-top: 12.5vh;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.15);
+  z-index: 3;
+}
+
+.#{$dark}JoinWorkspaceHeader {
+  height: 100px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 30px;
+  margin-left: 100px;
+  padding-top: 100px;
+}
+
+.#{$dark}JoinWorkspaceMessage {
+  display: inline-block;
+}
+
+p.#{$dark}JoinWorkspaceMessage {
+  margin-left: 150px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 18px;
+}
+
+.#{$dark}JoinWorkspaceCodeTextField {
+  margin-left: 150px;
+  padding: 5px 5px;
+  width: 350px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.#{$dark}JoinWorkspaceCodeTextField::placeholder {
+  color: rgba(255, 255, 255, .5);
+}
+
+.#{$dark}JoinWorkspaceCodeTextField:focus {
+    outline: none;
+    border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$dark}JoinWorkspaceCodeTextField::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
+.#{$dark}JoinWorkspaceSubmitButton {
+  background-color: rgb(28, 29, 31);
+  border-color: rgba(255, 255, 255, 0);
+  margin-left: 15px;
+  border-width: thin;
+  color: rgb(0, 154, 164);
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.#{$dark}JoinWorkspaceSubmitButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: rgb(0, 130, 140);
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.#{$dark}JoinWorkspaceSubmitButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: rgb(0, 130, 140);
+  outline: none;
+}
+
+.#{$dark}JoinWorkspaceSubmitButton:focus {
+  outline: none;
+}
+
+.#{$dark}CancelJoinWorkspaceButton {
+  background-color: rgb(28, 29, 31);
+  border-color: rgba(255, 255, 255, 0);
+  float: right;
+  position: fixed;
+  bottom: 30vh;
+  margin-left: 65%;
+  border-width: thin;
+  color: rgb(0, 154, 164);
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.#{$dark}CancelJoinWorkspaceButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: rgb(0, 130, 140);
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.#{$dark}CancelJoinWorkspaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: rgb(0, 130, 140);
+  outline: none;
+}
+
+.#{$dark}CancelJoinWorkspaceButton:focus {
+  outline: none;
+}
+
+.#{$dark}AccountMenuDropDown {
+    position: relative;
+    float: right;
+}
+
+.#{$dark}AccountButton {
+    color: rgb(0, 130, 140);
+    margin-right: 75px;
+    margin-top: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    @include noSelect;
+}
+
+.#{$dark}AccountButton:hover {
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+}
+
+.#{$dark}AccountMenuContent {
+    display: none;
+    position: absolute;
+    right: 20px;
+    margin-top: 60px;
+    background-color: rgb(53, 54, 56);
+    min-width: 260px;
+    border-radius: 6px;
+    border-width: thin;
+    border-color: rgba(23, 23, 23, 0.25);
+    z-index: 2;
+}
+
+a.#{$dark}AccountMenuContent {
+    color: rgba(255, 255, 255, 0.85);
+    margin-right: 35px;
+    font-size: 18px;
+    font-weight: 700;
+    display: block;
+}
+
+a.#{$dark}AccountMenuContent:hover {
+    color: rgb(0, 130, 140);
+    background-color: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+}
+
+.#{$dark}TopAccountMenuContent {
+    height: 150px;
+}
+
+.#{$dark}AccountMenuName {
+    color: rgb(255, 255, 255);
+    float: right;
+    padding-right: 20px;
+    text-align: right;
+    font-size: 18px;
+}
+
+.#{$dark}DiskSpaceUnlimited {
+  text-align: right;
+  padding-right: 20px;
+  margin-top: 50px;
+  color: rgba(255, 255, 255);
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
+}
+
+.#{$dark}DiskSpace {
+  float: right;
+  padding-right: 20px;
+  margin-top: 50px;
+  color: rgba(255, 255, 255);
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
+}
+
+.#{$dark}AccountMenuHeath {
+    background-color: rgb(18, 19, 21);
+    border-radius: 4px;
+    height: 3px;
+    margin: 35px 10px;
+}
+
+.#{$dark}BottomAccountMenuContent {
+}
+
+a.#{$dark}GetMoreSpaceMenuItem {
+    color: rgb(0, 154, 164);
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    display: block;
+}
+
+a.#{$dark}GetMoreSpaceMenuItem:hover {
+    color: rgb(0, 154, 164);
+    background-color: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+a.#{$dark}MenuItem {
+    color: rgba(225, 225, 225, 0.85);
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 18px;
+    display: block;
+}
+
+a.#{$dark}MenuItem:hover {
+    color: rgb(0, 154, 164);
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.#{$dark}Show {
+    display: block;
+}
+
+.#{$dark}Active {
+  color: rgba(255, 255, 255, .85);
+}
+
+.#{$dark}MainContent {
+    padding-left: 12.5%;
+    padding-right: 12.5%;
+    z-index: 1;
+}
+
+.#{$dark}GetMoreSpaceButton {
+    background-color: rgb(0, 130, 140);
+    border-width: thin;
+    color: rgb(254, 254, 254);
+    border-color: rgb(28, 29, 31);
+    font-family: "Square Market", Helvetica, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 6px 12px;
+    margin: auto;
+    display: block;
+    border-radius: 4px;
+    vertical-align: middle;
+    position: relative;
+}
+
+.#{$dark}GetMoreSpaceButton:hover {
+    background-color: rgb(0, 154, 164);
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.#{$dark}GetMoreSpaceButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    transition: 250ms;
+    outline: none;
+}
+
+.#{$dark}GetMoreSpaceButton:focus {
+    outline: none;
+}
+
+.#{$dark}Header {
+    font-size: 30px;
+    height: 100px;
+}
+
+p.#{$dark}Header {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.#{$dark}Content {
+    width: 1400px / 1920px * 100%;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.#{$dark}FirstHeader {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.#{$dark}Heath {
+    background-color: rgb(18, 19, 21);
+    border-radius: 2px;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 3px;
+}
+
+.#{$dark}Setting {
+  height: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 10px;
+  margin-bottom: -23px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.#{$dark}Setting:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.#{$dark}SettingWithButton {
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  margin-bottom: -23px;
+}
+
+.#{$dark}LeftItemBox {
+  float: left;
+  height: 50px;
+  width: 50%;
+}
+
+.#{$dark}Item {
+  color: rgba(255, 255, 255, 0.85);
+  text-align: left;
+}
+
+.#{$dark}RightItemBox {
+  float: right;
+  height: 50px;
+  width: 50%;
+}
+
+.#{$dark}Value {
+  color: rgba(255, 255, 255, 0.85);
+  float: right;
+  text-align: right;
+}
+
+.#{$dark}DropdownSetting {
+  height: 75px;
+  margin-top: 50px;
+  margin-bottom: -25px;
+  transition: 250ms;
+}
+
+.#{$dark}DropdownSettingPassword {
+  height: 140px;
+  margin-top: 25px;
+  transition: 250ms;
+}
+
+.#{$dark}WorkspaceNamePasswordVerifyTextBox {
+  margin-left: 20px;
+}
+
+.#{$dark}WorkspaceNameChangeTextBox {
+  margin-left: 15px;
+}
+
+.#{$dark}WorkspaceNameChangeTextBox,
+.#{$dark}WorkspaceNamePasswordVerifyTextBox {
+  width: 415px / 1920px * 100%;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.#{$dark}WorkspaceNamePasswordVerifyTextBox {
+  width: 415px / 1920px * 100%;
+}
+
+.#{$dark}WorkspaceNameChangeTextBox::placeholder,
+.#{$dark}WorkspaceNamePasswordVerifyTextBox::placeholder {
+  color: rgba(255, 255, 255, .5);
+}
+
+.#{$dark}WorkspaceNameChangeTextBox:focus,
+.#{$dark}WorkspaceNamePasswordVerifyTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.#{$dark}WorkspaceNameChangeTextBox::selection,
+.#{$dark}WorkspaceNamePasswordVerifyTextBox::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
+.#{$dark}SaveChangesButton {
+  background-color: rgb(53, 54, 56);
+  border-color: rgba(255, 255, 255, 0);
+  border-width: thin;
+  color: rgb(0, 154, 164);
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  margin-left: 15px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.#{$dark}SaveChangesButton:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: rgb(0, 130, 140);
+    cursor: pointer;
+}
+
+.#{$dark}SaveChangesButton:active {
+    box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+    border-color: rgb(0, 130, 140);
+    transition: 250ms;
+}
+
+.#{$dark}SaveChangesButton:focus {
+    outline: none;
+}
+
+.#{$dark}WorkspaceImage {
+  width: 45px;
+  border-radius: 4px;
+  margin-top: 7px;
+}
+
+.#{$dark}Space {
+  height: 100px;
+  margin-top: -10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+}
+
+.#{$dark}Headers {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.#{$dark}Footer, .#{$dark}Push {
+    height: 200px;
+}
+
+.#{$dark}Footer {
+    font-family: "Square Market", Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: center;
+}

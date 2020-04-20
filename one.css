@@ -5111,4 +5111,777 @@ input:checked + .darkSettingsSlider:before {
   text-align: center;
 }
 
+/* _darkSettings Coded by: Joel N. Johnson */
+html.darkWorkspaceSettings, body.darkWorkspaceSettings {
+  background-color: #1c1d1f;
+  height: 100%;
+  margin: 0;
+  font-family: "Square Market", Helvetica, sans-serif;
+  color: rgba(225, 225, 225, 0.85);
+}
+
+.darkWorkspaceSettingsWrapper {
+  min-height: calc(100% - 20px);
+  height: auto;
+}
+
+.darkWorkspaceSettingsTopBar {
+  margin-bottom: 200px;
+  width: 100%;
+  height: 85px;
+}
+
+.darkWorkspaceSettingsCorvin {
+  float: left;
+  width: 94%;
+}
+
+.darkWorkspaceSettingsCorvinHeader {
+  color: #00828c;
+  font-family: "Square Market", Helvetica, sans-serif;
+  margin-top: 30px;
+  margin-left: 35px;
+  line-height: 0.5em;
+  font-weight: 600;
+  font-size: 50px;
+  position: absolute;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.darkWorkspaceSettingsCorvinHeader:hover {
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+
+.darkWorkspaceSettingsCorvinHeader:focus {
+  outline: none;
+}
+
+.darkWorkspaceSettingsHome {
+  position: relative;
+  float: right;
+}
+
+.darkWorkspaceSettingsHomeButton {
+  color: #00828c;
+  margin-top: 35px;
+  margin-right: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.darkWorkspaceSettingsHomeButton:hover {
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+
+.darkWorkspaceSettingsWorkspacesMenuDropDown {
+  position: relative;
+  float: right;
+}
+
+.darkWorkspaceSettingsWorkspacesButton {
+  color: #00828c;
+  margin-top: 35px;
+  margin-right: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.darkWorkspaceSettingsWorkspacesButton:hover {
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+
+.darkWorkspaceSettingsWorkspacesMenuContent {
+  display: none;
+  position: absolute;
+  right: 20px;
+  margin-top: 60px;
+  background-color: #353638;
+  min-width: 260px;
+  border-radius: 6px;
+  border-width: thin;
+  border-color: rgba(23, 23, 23, 0.25);
+  z-index: 2;
+}
+
+.darkWorkspaceSettingsWorkspace {
+  color: rgba(225, 225, 225, 0.85);
+  background-color: #353638;
+  border: none;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  border-radius: 6px;
+  width: 100%;
+  text-align: left;
+  display: block;
+}
+
+.darkWorkspaceSettingsWorkspace:hover {
+  color: #009aa4;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.darkWorkspaceSettingsWorkspace:active {
+  outline: none;
+}
+
+a.darkWorkspaceSettingsNewWorkspaceMenuItem {
+  color: #009aa4;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block;
+}
+
+a.darkWorkspaceSettingsNewWorkspaceMenuItem:hover {
+  color: #009aa4;
+  background-color: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.darkWorkspaceSettingsWorkspacesMenuHeath {
+  background-color: #121315;
+  border-radius: 4px;
+  height: 3px;
+  margin: 10px 10px;
+}
+
+.darkWorkspaceSettingsCreateWorkspacePopup {
+  display: none;
+  position: absolute;
+  background-color: #353638;
+  width: 75%;
+  height: 75vh;
+  margin-left: 12.5%;
+  margin-top: 12.5vh;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.15);
+  z-index: 3;
+}
+
+.darkWorkspaceSettingsCreateWorkspaceHeader {
+  height: 100px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 30px;
+  margin-left: 100px;
+  padding-top: 100px;
+}
+
+.darkWorkspaceSettingsCreateWorkspaceMessage {
+  display: inline-block;
+}
+
+p.darkWorkspaceSettingsCreateWorkspaceMessage {
+  margin-left: 150px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 18px;
+}
+
+.darkWorkspaceSettingsNewWorkspaceNameTextField {
+  margin-left: 150px;
+  padding: 5px 5px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.darkWorkspaceSettingsNewWorkspaceNameTextField::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.darkWorkspaceSettingsNewWorkspaceNameTextField:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.darkWorkspaceSettingsNewWorkspaceNameTextField::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
+.darkWorkspaceSettingsCreateWorkspaceSubmitButton {
+  background-color: #1c1d1f;
+  border-color: rgba(255, 255, 255, 0);
+  margin-left: 15px;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.darkWorkspaceSettingsCreateWorkspaceSubmitButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.darkWorkspaceSettingsCreateWorkspaceSubmitButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.darkWorkspaceSettingsCreateWorkspaceSubmitButton:focus {
+  outline: none;
+}
+
+.darkWorkspaceSettingsCancelCreateWorkspaceButton {
+  background-color: #1c1d1f;
+  border-color: rgba(255, 255, 255, 0);
+  float: right;
+  position: fixed;
+  bottom: 30vh;
+  margin-left: 65%;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.darkWorkspaceSettingsCancelCreateWorkspaceButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.darkWorkspaceSettingsCancelCreateWorkspaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.darkWorkspaceSettingsCancelCreateWorkspaceButton:focus {
+  outline: none;
+}
+
+.darkWorkspaceSettingsJoinWorkspacePopup {
+  display: none;
+  position: absolute;
+  background-color: #353638;
+  width: 75%;
+  height: 75vh;
+  margin-left: 12.5%;
+  margin-top: 12.5vh;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.15);
+  z-index: 3;
+}
+
+.darkWorkspaceSettingsJoinWorkspaceHeader {
+  height: 100px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 30px;
+  margin-left: 100px;
+  padding-top: 100px;
+}
+
+.darkWorkspaceSettingsJoinWorkspaceMessage {
+  display: inline-block;
+}
+
+p.darkWorkspaceSettingsJoinWorkspaceMessage {
+  margin-left: 150px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 18px;
+}
+
+.darkWorkspaceSettingsJoinWorkspaceCodeTextField {
+  margin-left: 150px;
+  padding: 5px 5px;
+  width: 350px;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.darkWorkspaceSettingsJoinWorkspaceCodeTextField::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.darkWorkspaceSettingsJoinWorkspaceCodeTextField:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.darkWorkspaceSettingsJoinWorkspaceCodeTextField::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
+.darkWorkspaceSettingsJoinWorkspaceSubmitButton {
+  background-color: #1c1d1f;
+  border-color: rgba(255, 255, 255, 0);
+  margin-left: 15px;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.darkWorkspaceSettingsJoinWorkspaceSubmitButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.darkWorkspaceSettingsJoinWorkspaceSubmitButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.darkWorkspaceSettingsJoinWorkspaceSubmitButton:focus {
+  outline: none;
+}
+
+.darkWorkspaceSettingsCancelJoinWorkspaceButton {
+  background-color: #1c1d1f;
+  border-color: rgba(255, 255, 255, 0);
+  float: right;
+  position: fixed;
+  bottom: 30vh;
+  margin-left: 65%;
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.darkWorkspaceSettingsCancelJoinWorkspaceButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #00828c;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.darkWorkspaceSettingsCancelJoinWorkspaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  border-color: #00828c;
+  outline: none;
+}
+
+.darkWorkspaceSettingsCancelJoinWorkspaceButton:focus {
+  outline: none;
+}
+
+.darkWorkspaceSettingsAccountMenuDropDown {
+  position: relative;
+  float: right;
+}
+
+.darkWorkspaceSettingsAccountButton {
+  color: #00828c;
+  margin-right: 75px;
+  margin-top: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.darkWorkspaceSettingsAccountButton:hover {
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+
+.darkWorkspaceSettingsAccountMenuContent {
+  display: none;
+  position: absolute;
+  right: 20px;
+  margin-top: 60px;
+  background-color: #353638;
+  min-width: 260px;
+  border-radius: 6px;
+  border-width: thin;
+  border-color: rgba(23, 23, 23, 0.25);
+  z-index: 2;
+}
+
+a.darkWorkspaceSettingsAccountMenuContent {
+  color: rgba(255, 255, 255, 0.85);
+  margin-right: 35px;
+  font-size: 18px;
+  font-weight: 700;
+  display: block;
+}
+
+a.darkWorkspaceSettingsAccountMenuContent:hover {
+  color: #00828c;
+  background-color: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+}
+
+.darkWorkspaceSettingsTopAccountMenuContent {
+  height: 150px;
+}
+
+.darkWorkspaceSettingsAccountMenuName {
+  color: white;
+  float: right;
+  padding-right: 20px;
+  text-align: right;
+  font-size: 18px;
+}
+
+.darkWorkspaceSettingsDiskSpaceUnlimited {
+  text-align: right;
+  padding-right: 20px;
+  margin-top: 50px;
+  color: white;
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
+}
+
+.darkWorkspaceSettingsDiskSpace {
+  float: right;
+  padding-right: 20px;
+  margin-top: 50px;
+  color: white;
+  font-size: 16px;
+  font-family: "Square Market", Helvetica, sans-serif;
+}
+
+.darkWorkspaceSettingsAccountMenuHeath {
+  background-color: #121315;
+  border-radius: 4px;
+  height: 3px;
+  margin: 35px 10px;
+}
+
+a.darkWorkspaceSettingsGetMoreSpaceMenuItem {
+  color: #009aa4;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block;
+}
+
+a.darkWorkspaceSettingsGetMoreSpaceMenuItem:hover {
+  color: #009aa4;
+  background-color: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+a.darkWorkspaceSettingsMenuItem {
+  color: rgba(225, 225, 225, 0.85);
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+  display: block;
+}
+
+a.darkWorkspaceSettingsMenuItem:hover {
+  color: #009aa4;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.darkWorkspaceSettingsShow {
+  display: block;
+}
+
+.darkWorkspaceSettingsActive {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.darkWorkspaceSettingsMainContent {
+  padding-left: 12.5%;
+  padding-right: 12.5%;
+  z-index: 1;
+}
+
+.darkWorkspaceSettingsGetMoreSpaceButton {
+  background-color: #00828c;
+  border-width: thin;
+  color: #fefefe;
+  border-color: #1c1d1f;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 6px 12px;
+  margin: auto;
+  display: block;
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.darkWorkspaceSettingsGetMoreSpaceButton:hover {
+  background-color: #009aa4;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.darkWorkspaceSettingsGetMoreSpaceButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  transition: 250ms;
+  outline: none;
+}
+
+.darkWorkspaceSettingsGetMoreSpaceButton:focus {
+  outline: none;
+}
+
+.darkWorkspaceSettingsHeader {
+  font-size: 30px;
+  height: 100px;
+}
+
+p.darkWorkspaceSettingsHeader {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.darkWorkspaceSettingsContent {
+  width: 72.9166666667%;
+  margin: 0 auto;
+  font-size: 20px;
+}
+
+.darkWorkspaceSettingsFirstHeader {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.darkWorkspaceSettingsHeath {
+  background-color: #121315;
+  border-radius: 2px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 3px;
+}
+
+.darkWorkspaceSettingsSetting {
+  height: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-bottom: 10px;
+  margin-bottom: -23px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.darkWorkspaceSettingsSetting:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.darkWorkspaceSettingsSettingWithButton {
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  margin-bottom: -23px;
+}
+
+.darkWorkspaceSettingsLeftItemBox {
+  float: left;
+  height: 50px;
+  width: 50%;
+}
+
+.darkWorkspaceSettingsItem {
+  color: rgba(255, 255, 255, 0.85);
+  text-align: left;
+}
+
+.darkWorkspaceSettingsRightItemBox {
+  float: right;
+  height: 50px;
+  width: 50%;
+}
+
+.darkWorkspaceSettingsValue {
+  color: rgba(255, 255, 255, 0.85);
+  float: right;
+  text-align: right;
+}
+
+.darkWorkspaceSettingsDropdownSetting {
+  height: 75px;
+  margin-top: 50px;
+  margin-bottom: -25px;
+  transition: 250ms;
+}
+
+.darkWorkspaceSettingsDropdownSettingPassword {
+  height: 140px;
+  margin-top: 25px;
+  transition: 250ms;
+}
+
+.darkWorkspaceSettingsWorkspaceNamePasswordVerifyTextBox {
+  margin-left: 20px;
+}
+
+.darkWorkspaceSettingsWorkspaceNameChangeTextBox {
+  margin-left: 15px;
+}
+
+.darkWorkspaceSettingsWorkspaceNameChangeTextBox,
+.darkWorkspaceSettingsWorkspaceNamePasswordVerifyTextBox {
+  width: 21.6145833333%;
+  border-color: rgba(23, 23, 23, 0.25);
+  border-width: thin;
+  border-radius: 4px;
+  float: left;
+  font-size: 18px;
+  padding-left: 10px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: rgba(0, 130, 140, 0.85);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.darkWorkspaceSettingsWorkspaceNamePasswordVerifyTextBox {
+  width: 21.6145833333%;
+}
+
+.darkWorkspaceSettingsWorkspaceNameChangeTextBox::placeholder,
+.darkWorkspaceSettingsWorkspaceNamePasswordVerifyTextBox::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.darkWorkspaceSettingsWorkspaceNameChangeTextBox:focus,
+.darkWorkspaceSettingsWorkspaceNamePasswordVerifyTextBox:focus {
+  outline: none;
+  border-color: rgba(23, 23, 23, 0.85);
+}
+
+.darkWorkspaceSettingsWorkspaceNameChangeTextBox::selection,
+.darkWorkspaceSettingsWorkspaceNamePasswordVerifyTextBox::selection {
+  background: rgba(23, 23, 23, 0.25);
+}
+
+.darkWorkspaceSettingsSaveChangesButton {
+  background-color: #353638;
+  border-color: rgba(255, 255, 255, 0);
+  border-width: thin;
+  color: #009aa4;
+  font-family: "Square Market", Helvetica, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  margin-left: 15px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  vertical-align: middle;
+  position: relative;
+}
+
+.darkWorkspaceSettingsSaveChangesButton:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #00828c;
+  cursor: pointer;
+}
+
+.darkWorkspaceSettingsSaveChangesButton:active {
+  box-shadow: 1px 1px 3px rgba(23, 23, 23, 0.25);
+  border-color: #00828c;
+  transition: 250ms;
+}
+
+.darkWorkspaceSettingsSaveChangesButton:focus {
+  outline: none;
+}
+
+.darkWorkspaceSettingsWorkspaceImage {
+  width: 45px;
+  border-radius: 4px;
+  margin-top: 7px;
+}
+
+.darkWorkspaceSettingsSpace {
+  height: 100px;
+  margin-top: -10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
+}
+
+.darkWorkspaceSettingsHeaders {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.darkWorkspaceSettingsFooter, .darkWorkspaceSettingsPush {
+  height: 200px;
+}
+
+.darkWorkspaceSettingsFooter {
+  font-family: "Square Market", Helvetica, sans-serif;
+  font-size: 15px;
+  text-align: center;
+}
+
 /*# sourceMappingURL=one.css.map */
