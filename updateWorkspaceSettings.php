@@ -61,14 +61,13 @@ elseif (time() - $_SESSION['Created'] > 1200) {
 // Assign Workspace
 if (isset($_POST["workspace"])) {
   $thisWorkspace = $_POST["workspace"];
-  $thisWorkspaceName = ltrim($thisWorkspace, '0123456789');
-
   $_SESSION["currentWorkspace"] = $thisWorkspace;
 }
 else {
   $thisWorkspace = $_SESSION["currentWorkspace"];
-  $thisWorkspaceName = ltrim($thisWorkspace, '0123456789');
 }
+$thisWorkspaceName = ltrim($thisWorkspace, '0123456789');
+$thisWorkspaceOwnerID = preg_replace('/[^0-9]/', '', $thisWorkspace);
 ?>
 
 <!DOCTYPE html>
@@ -119,134 +118,64 @@ ini_set("display_errors", 1);
 // And be verbose about it
 error_reporting(E_ALL);
 
-//If change requires password check
-if (isset($_POST["submittedPassword"])) {
 
-  // Get submitted password and verify
-  $submittedPassword = $_POST["submittedPassword"];
-  $sql = "SELECT password from UserInfo WHERE id = '$userID'";
-  $referencePassword = mysqli_fetch_row(mysqli_query($conn, $sql));
+// If changing name
+if (isset($_POST["newWorkspaceName"])) {
 
-  if (password_verify($submittedPassword, $referencePassword[0])) {
+  // Update workspace name in database
+  $sql = "
+  SELECT
+    CASE
+      WHEN workspace1 = '" . $thisWorkspace . "' THEN 'workspace1'
+      WHEN workspace2 = '" . $thisWorkspace . "' THEN 'workspace2'
+      WHEN workspace3 = '" . $thisWorkspace . "' THEN 'workspace3'
+      WHEN workspace4 = '" . $thisWorkspace . "' THEN 'workspace4'
+      WHEN workspace5 = '" . $thisWorkspace . "' THEN 'workspace5'
+      WHEN workspace6 = '" . $thisWorkspace . "' THEN 'workspace6'
+      WHEN workspace7 = '" . $thisWorkspace . "' THEN 'workspace7'
+      WHEN workspace8 = '" . $thisWorkspace . "' THEN 'workspace8'
+      WHEN workspace9 = '" . $thisWorkspace . "' THEN 'workspace9'
+      ELSE 'Not found'
+    END
+  FROM
+    Workspaces
+  WHERE id = " . $thisWorkspaceOwnerID;
 
-    // If changing name
-    if (isset($_POST["firstNameChange"])) {
+  $workspaceColumn = mysqli_fetch_array(mysqli_query($conn, $sql));
 
-      // Update first and last name in database
-      $sql = "SELECT firstName, lastName FROM UserInfo WHERE id = '$userID'";
-      $oldUser = mysqli_fetch_array(mysqli_query($conn, $sql));
-      $newFirstName = filter_input(
-        INPUT_POST, "firstNameChange", FILTER_SANITIZE_STRING);
-      $newLastName = filter_input(
-        INPUT_POST, "lastNameChange", FILTER_SANITIZE_STRING);
+  $newWorkspaceName = filter_input(
+    INPUT_POST, "newWorkspaceName", FILTER_SANITIZE_STRING);
+  $newWorkspace = $thisWorkspaceOwnerID . $newWorkspaceName;
 
-      $sql = "UPDATE UserInfo SET firstName = '$newFirstName' WHERE id = '$userID'";
-      mysqli_query($conn, $sql);
+  $sql = "UPDATE Workspaces SET " . $workspaceColumn[0] . " = '$newWorkspace' WHERE id = '$thisWorkspaceOwnerID'";
+  mysqli_query($conn, $sql);
 
-      $sql = "UPDATE UserInfo SET lastName = '$newLastName' WHERE id = '$userID'";
-      mysqli_query($conn, $sql);
+  // Change the name of the workspace folder to reflect new name
+  $oldWorkspaceFolderFullPath =
+    "../../../mnt/Raid1Array/Corvin/000 - Workspaces/" . $thisWorkspace;
+  $oldWorkspaceRecycleFolderFullPath =
+    "../../../mnt/Raid1Array/Corvin/000 - Workspaces/0 - WorkspacesRecycle/" .
+    $thisWorkspace;
+  $newSanitizedWorkspaceFolderName = filter_var(
+    $newWorkspace, FILTER_SANITIZE_STRING);
+  $newWorkspaceFolderFullPath =
+    "../../../mnt/Raid1Array/Corvin/000 - Workspaces/" . $newWorkspace;
+  $newWorkspaceRecycleFolderFullPath =
+    "../../../mnt/Raid1Array/Corvin/000 - Workspaces/0 - WorkspacesRecycle/" .
+    $newWorkspace;
 
-      // Change the name of the user's main folder to reflect new name
-      $oldUserFolderFullPath = "../../../mnt/Raid1Array/Corvin/" . $userID .
-        " - " . $oldUser[0] . $oldUser[1];
-      $oldUserRecycleFolderFullPath = "../../../mnt/Raid1Array/Corvin/0 - Recycle/" .
-        $userID . " - " . $oldUser[0] . $oldUser[1];
-      $user = array($newFirstName, $newLastName);
-      $newUserFolderName = $userID . " - " . $user[0] . $user[1];
-      $newSanitizedUserFolderName = filter_var(
-        $newUserFolderName, FILTER_SANITIZE_STRING);
-      $newUserFolderFullPath = "../../../mnt/Raid1Array/Corvin/" .
-        $newSanitizedUserFolderName;
-      $newUserRecycleFolderFullPath =
-        "../../../mnt/Raid1Array/Corvin/0 - Recycle/" .
-        $newSanitizedUserFolderName;
+  if (rename($oldWorkspaceFolderFullPath, $newWorkspaceFolderFullPath)) {
+    if (rename($oldWorkspaceRecycleFolderFullPath, $newWorkspaceRecycleFolderFullPath)) {
 
-      if (rename($oldUserFolderFullPath, $newUserFolderFullPath)) {
-        if (rename($oldUserRecycleFolderFullPath, $newUserRecycleFolderFullPath)) {
-
-          echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
-        }
-        else {echo "There was a problem renaming your recycle folder.";}
-      }
-      else {echo "There was a problem renaming your main folder.";}
-    }
-    // Else, if changing email
-    elseif (isset($_POST["emailChange"])) {
-
-      // Update email in database
-      $newEmail = filter_input(INPUT_POST, "emailChange", FILTER_SANITIZE_EMAIL);
-
-      $sql = "UPDATE UserInfo SET email = '$newEmail' WHERE id = '$userID'";
-      mysqli_query($conn, $sql);
-
-      echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
-    }
-    // Else, if changing username
-    elseif (isset($_POST["usernameChange"])) {
-
-      // Update username in database
-      $newUsername = filter_input(
-        INPUT_POST, "usernameChange", FILTER_SANITIZE_STRING);
-
-      $sql = "UPDATE UserInfo SET username = '$newUsername' WHERE id = '$userID'";
-      mysqli_query($conn, $sql);
-
-      echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
-    }
-    // Else, if changing password
-    elseif (isset($_POST["newPassword"])) {
-
-      // Check if passwords match
-      if ($_POST["newPassword"] == $_POST["newPassword2"]) {
-
-        // Check if password meets criteria
-        if (strlen($_POST["newPassword"]) > 7) {
-
-          // Password_hash automatically uses currently recommended hashing
-          // algorithm with salt
-          $hashedPassword = password_hash($_POST["newPassword"], PASSWORD_DEFAULT);
-
-          $sql = "UPDATE UserInfo SET password = '$hashedPassword' WHERE id = '$userID'";
-          mysqli_query($conn, $sql);
-
-          /*
-          // Send security email alerting user of password change
-          $sql = "SELECT email FROM UserInfo WHERE id = '$userID'";
-          $to = mysqli_fetch_row(mysqli_query($conn, $sql));
-          $sql = "SELECT firstName FROM UserInfo WHERE id = '$userID'";
-          $firstName = mysqli_fetch_row(mysqli_query($conn, $sql));
-
-          $subject = "Your password has been updated";
-          $message = "
-            Hi " . $firstName[0] . ",\r\n\r\n
-
-            Your password has been successfully updated.\r\n\r\n
-
-            If you did not request a password change or you believe you are
-            recieving this email in error, please contact joel@cor.vin.\r\n\r\n
-
-            Sincerely,\r\n\r\n
-
-            The Corvin Team
-          ";
-          $message = wordwrap($message, 70, "\r\n");
-          mail("joel.johnson675@gmail.com", "Hi from Corvin", "Hi");
-          */
-
-          echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
-        }
-        else {
-          echo "Password needs to be at least 8 characters.";
-        }
-      }
-      else {
-        echo "Passwords do not match.";
-      }
+      $_SESSION["currentWorkspace"] = $newWorkspace;
+      echo "<meta http-equiv = 'refresh' content = '0; workspaceSettings.php'>";
     }
     else {
-      echo "<meta http-equiv = 'refresh' content = '0; settings.php'>";
+      echo "There was a problem renaming the recycle folder for this Corvin Space.";
     }
   }
-  else {echo "Incorrect password.";}
+  else {
+    echo "There was a problem renaming the main folder for this Corvin Space.";
+  }
 }
 ?>

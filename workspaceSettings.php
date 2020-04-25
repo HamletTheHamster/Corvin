@@ -88,14 +88,13 @@ elseif (time() - $_SESSION['Created'] > 1200)
 // Assign Workspace
 if (isset($_POST["workspace"])) {
   $thisWorkspace = $_POST["workspace"];
-  $thisWorkspaceName = ltrim($thisWorkspace, '0123456789');
-
   $_SESSION["currentWorkspace"] = $thisWorkspace;
 }
 else {
   $thisWorkspace = $_SESSION["currentWorkspace"];
-  $thisWorkspaceName = ltrim($thisWorkspace, '0123456789');
 }
+$thisWorkspaceName = ltrim($thisWorkspace, '0123456789');
+$thisWorkspaceOwnerID = preg_replace('/[^0-9]/', '', $thisWorkspace);
 ?>
 
 <!DOCTYPE html>
@@ -413,17 +412,8 @@ else {
           class = '<?php echo $o;?>ChangeName'
         >
           <input
-            type = "password"
-            name = "submittedPassword"
-            id = "namePasswordCheck"
-            class = '<?php echo $o;?>WorkspaceNamePasswordVerifyTextBox'
-            placeholder = "Password"
-            autocomplete = "current-password"
-            required
-          >
-          <input
             type = "text"
-            name = "newName"
+            name = "newWorkspaceName"
             id = "newNameTextBox"
             class = '<?php echo $o;?>WorkspaceNameChangeTextBox'
             value = '<?php echo $thisWorkspaceName;?>'
@@ -498,7 +488,7 @@ else {
         <div class = '<?php echo $o;?>RightItemBox'>
           <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
             <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
-              Admin Only
+              Owner Only
             </p>
           </div>
         </div>
