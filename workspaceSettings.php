@@ -478,6 +478,23 @@ $thisWorkspaceOwnerID = preg_replace('/[^0-9]/', '', $thisWorkspace);
       </div>
       <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
 
+      <!-- Readme Document -->
+      <div  class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Readme Document</p>
+          </div>
+        </div>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
+            <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
+              All Members
+            </p>
+          </div>
+        </div>
+      </div>
+      <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
+
       <!-- Require Full Name -->
       <div  class = '<?php echo $o;?>Setting'>
         <div class = '<?php echo $o;?>LeftItemBox'>
@@ -505,7 +522,7 @@ $thisWorkspaceOwnerID = preg_replace('/[^0-9]/', '', $thisWorkspace);
         <div class = '<?php echo $o;?>RightItemBox'>
           <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
             <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
-              Show
+              All Members
             </p>
           </div>
         </div>
@@ -522,50 +539,12 @@ $thisWorkspaceOwnerID = preg_replace('/[^0-9]/', '', $thisWorkspace);
         <div class = '<?php echo $o;?>RightItemBox'>
           <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
             <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
-              Members
+              All Members
             </p>
           </div>
         </div>
       </div>
       <br><div id = "heath4" class = '<?php echo $o;?>Heath'><br></div>
-
-      <div class = '<?php echo $o;?>Space'></div>
-      <h class = '<?php echo $o;?>FirstHeader'>Approvals</h><br>
-      <br><div id = "heath5" class = '<?php echo $o;?>Heath'><br></div>
-
-      <!-- Gold Dot Approval -->
-      <div  class = '<?php echo $o;?>Setting'>
-        <div class = '<?php echo $o;?>LeftItemBox'>
-          <div class = '<?php echo $o;?>Item'>
-            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Gold Dot Approval</p>
-          </div>
-        </div>
-        <div class = '<?php echo $o;?>RightItemBox'>
-          <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
-            <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
-              Admin
-            </p>
-          </div>
-        </div>
-      </div>
-      <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
-
-      <!-- Blue Dot Approval -->
-      <div  class = '<?php echo $o;?>Setting'>
-        <div class = '<?php echo $o;?>LeftItemBox'>
-          <div class = '<?php echo $o;?>Item'>
-            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Blue Dot Approval</p>
-          </div>
-        </div>
-        <div class = '<?php echo $o;?>RightItemBox'>
-          <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
-            <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
-              Members
-            </p>
-          </div>
-        </div>
-      </div>
-      <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
 
       <div class = '<?php echo $o;?>Space'></div>
       <h class = '<?php echo $o;?>FirstHeader'>Members</h><br>
@@ -598,7 +577,185 @@ $thisWorkspaceOwnerID = preg_replace('/[^0-9]/', '', $thisWorkspace);
         <div class = '<?php echo $o;?>RightItemBox'>
           <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
             <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
-              Owner
+              Admin
+            </p>
+          </div>
+        </div>
+      </div>
+      <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
+
+      <div class = '<?php echo $o;?>Space'></div>
+      <h class = '<?php echo $o;?>FirstHeader'>Approvals</h><br>
+      <br><div id = "heath5" class = '<?php echo $o;?>Heath'><br></div>
+
+      <!-- Gold Dot -->
+      <div  class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Gold Dot</p>
+          </div>
+        </div>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
+            <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
+              Admin
+            </p>
+          </div>
+        </div>
+      </div>
+      <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
+
+      <!-- Blue Dot -->
+      <div  class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Blue Dot</p>
+          </div>
+        </div>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
+            <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
+              All Members
+            </p>
+          </div>
+        </div>
+      </div>
+      <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
+
+      <!-- Schedule Gold Dot -->
+      <div  class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Schedule Gold Dot</p>
+          </div>
+        </div>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
+            <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
+              All Members
+            </p>
+          </div>
+        </div>
+      </div>
+      <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
+
+      <!-- Schedule Blue Dot -->
+      <div  class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Schedule Blue Dot</p>
+          </div>
+        </div>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
+            <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
+              All Members
+            </p>
+          </div>
+        </div>
+      </div>
+      <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
+
+      <!-- Request Gold Dot -->
+      <div  class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Request Gold Dot</p>
+          </div>
+        </div>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
+            <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
+              All Members
+            </p>
+          </div>
+        </div>
+      </div>
+      <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
+
+      <!-- Request Blue Dot -->
+      <div  class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Request Blue Dot</p>
+          </div>
+        </div>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
+            <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
+              All Members
+            </p>
+          </div>
+        </div>
+      </div>
+      <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
+
+      <div class = '<?php echo $o;?>Space'></div>
+      <h class = '<?php echo $o;?>FirstHeader'>Messaging</h><br>
+      <br><div id = "heath5" class = '<?php echo $o;?>Heath'><br></div>
+
+      <!-- Chat Bot (Configure with key words giving helpful responses)-->
+      <div  class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Chat Bot</p>
+          </div>
+        </div>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
+            <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
+              On
+            </p>
+          </div>
+        </div>
+      </div>
+      <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
+
+      <!-- Private Chat -->
+      <div  class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Private Chat</p>
+          </div>
+        </div>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
+            <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
+              Allowed
+            </p>
+          </div>
+        </div>
+      </div>
+      <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
+
+      <!-- Share Chat Snippet Permission, if Private Chat is Allowed -->
+      <div  class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Chat Snippet</p>
+          </div>
+        </div>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
+            <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
+              Require Permission
+            </p>
+          </div>
+        </div>
+      </div>
+      <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
+
+      <!-- NSFW Filter -->
+      <div  class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>NSFW Filter</p>
+          </div>
+        </div>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
+            <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
+              Default On
             </p>
           </div>
         </div>
@@ -613,7 +770,24 @@ $thisWorkspaceOwnerID = preg_replace('/[^0-9]/', '', $thisWorkspace);
       <div  class = '<?php echo $o;?>Setting'>
         <div class = '<?php echo $o;?>LeftItemBox'>
           <div class = '<?php echo $o;?>Item'>
-            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Allow Restricted Directories</p>
+            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Restricted Directories</p>
+          </div>
+        </div>
+        <div class = '<?php echo $o;?>RightItemBox'>
+          <div id = 'invitePriviledgesValue' class = '<?php echo $o;?>Value'>
+            <p id = 'invitePriviledgesValuep' class = '<?php echo $o;?>Value'>
+              Admin
+            </p>
+          </div>
+        </div>
+      </div>
+      <br><div id = "heath3" class = '<?php echo $o;?>Heath'><br></div>
+
+      <!-- Locked Directories & Files -->
+      <div  class = '<?php echo $o;?>Setting'>
+        <div class = '<?php echo $o;?>LeftItemBox'>
+          <div class = '<?php echo $o;?>Item'>
+            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Locked Directories</p>
           </div>
         </div>
         <div class = '<?php echo $o;?>RightItemBox'>
@@ -630,7 +804,7 @@ $thisWorkspaceOwnerID = preg_replace('/[^0-9]/', '', $thisWorkspace);
       <div  class = '<?php echo $o;?>Setting'>
         <div class = '<?php echo $o;?>LeftItemBox'>
           <div class = '<?php echo $o;?>Item'>
-            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Allow Hidden Directories</p>
+            <p id = 'invitePriviledges' class = '<?php echo $o;?>Item'>Hidden Directories</p>
           </div>
         </div>
         <div class = '<?php echo $o;?>RightItemBox'>
