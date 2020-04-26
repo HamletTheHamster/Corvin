@@ -22,14 +22,15 @@ if (isset($_POST["newWorkspaceName"])) {
 
   if (!is_numeric(substr($_POST["newWorkspaceName"], 0, 1))) {
 
-    $newWorkspaceName = $userID . $_POST["newWorkspaceName"];
-    $_SESSION["currentWorkspace"] = $newWorkspaceName;
+    $newWorkspaceName = $_POST["newWorkspaceName"];
+    $newWorkspace = $userID . $newWorkspaceName;
+    $_SESSION["currentWorkspace"] = $newWorkspace;
 
     // Create workspace folder and recycle folder
     $workspaceFolderFullPath = "../../../mnt/Raid1Array/Corvin/000 - Workspaces/" .
-      $newWorkspaceName;
+      $newWorkspace;
     $workspaceRecycleFolderFullPath = "../../../mnt/Raid1Array/Corvin/000 - Workspaces/0 - WorkspacesRecycle/" .
-      $newWorkspaceName;
+      $newWorkspace;
 
     if (mkdir($workspaceFolderFullPath, 0777, true)) {
       chmod($workspaceFolderFullPath, 0777);
@@ -51,15 +52,54 @@ if (isset($_POST["newWorkspaceName"])) {
 
     // Add workspace to WorkspaceSettings table
     $storageSpaceInMegabytes = 250;
-    $membersCanInvite = 0;
     $sql = "INSERT INTO WorkspaceSettings (
       workspace,
-      storageSpaceInMegabytes,
-      membersCanInvite)
+      storageSpaceInMegabytes)
       VALUES (
-      '$newWorkspaceName',
-      '$storageSpaceInMegabytes',
-      '$membersCanInvite');
+      '$newWorkspace',
+      '$storageSpaceInMegabytes');
+    ";
+    mysqli_query($conn, $sql);
+
+    // Add workspace to WorkspaceSettingsBasic table
+    $sql = "INSERT INTO WorkspaceSettingsBasic (
+      workspace,
+      name)
+      VALUES (
+      '$newWorkspace',
+      '$newWorkspaceName');
+    ";
+    mysqli_query($conn, $sql);
+
+    // Add workspace to WorkspaceSettingsMembers table
+    $sql = "INSERT INTO WorkspaceSettingsMembers (
+      workspace)
+      VALUES (
+      '$newWorkspace');
+    ";
+    mysqli_query($conn, $sql);
+
+    // Add workspace to WorkspaceSettingsApprovals table
+    $sql = "INSERT INTO WorkspaceSettingsApprovals (
+      workspace)
+      VALUES (
+      '$newWorkspace');
+    ";
+    mysqli_query($conn, $sql);
+
+    // Add workspace to WorkspaceSettingsMessaging table
+    $sql = "INSERT INTO WorkspaceSettingsMessaging (
+      workspace)
+      VALUES (
+      '$newWorkspace');
+    ";
+    mysqli_query($conn, $sql);
+
+    // Add workspace to WorkspaceSettingsPermissions table
+    $sql = "INSERT INTO WorkspaceSettingsPermissions (
+      workspace)
+      VALUES (
+      '$newWorkspace');
     ";
     mysqli_query($conn, $sql);
 
@@ -72,7 +112,7 @@ if (isset($_POST["newWorkspaceName"])) {
       if ($value === NULL && $key > 0) {
 
         $workspaceNumber = "workspace" . $key;
-        $sql = "UPDATE Workspaces SET $workspaceNumber = '$newWorkspaceName' WHERE id = '$userID';";
+        $sql = "UPDATE Workspaces SET $workspaceNumber = '$newWorkspace' WHERE id = '$userID';";
         mysqli_query($conn, $sql);
 
         $createWorkspace = "true";
@@ -86,7 +126,7 @@ if (isset($_POST["newWorkspaceName"])) {
     $sql = "ALTER TABLE Workspaces ADD $workspaceNumber VARCHAR(100);";
     mysqli_query($conn, $sql);
 
-    $sql = "UPDATE Workspaces SET $workspaceNumber = '$newWorkspaceName' WHERE id = '$userID';";
+    $sql = "UPDATE Workspaces SET $workspaceNumber = '$newWorkspace' WHERE id = '$userID';";
     mysqli_query($conn, $sql);
     $createWorkspace = "true";
 
