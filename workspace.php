@@ -253,7 +253,7 @@ else {
         }
         else {
 
-          $('#createWorkspaceMessage').show().text("Corvin Spaces cannot start with a number.");
+          $('#createWorkspaceMessage').show().text("Space names cannot start with a number.");
         }
       }
     });
@@ -420,7 +420,7 @@ else {
     </div>
   </div>
   <div class = '<?php echo $o;?>WorkspacesMenuDropDown'>
-    <p onclick = "workspacesDropDownMenu()" class = '<?php echo $o;?>WorkspacesButton' id = "workspacesButton">Corvin Spaces</p>
+    <p onclick = "workspacesDropDownMenu()" class = '<?php echo $o;?>WorkspacesButton' id = "workspacesButton">Spaces</p>
     <div id = "workspacesMenuContent" class = '<?php echo $o;?>WorkspacesMenuContent'>
       <?php
       // Get user's row from Workspaces as an array
@@ -470,7 +470,7 @@ else {
       class = '<?php echo $o;?>WorkspaceSettingsButton'
       id = "workspaceSettingsButton"
     >
-    <?php echo $thisWorkspaceName;?> Settings
+    <?php echo $thisWorkspaceName;?>
     </p>
     <div id = "workspaceSettingsMenuContent" class = '<?php echo $o;?>WorkspaceSettingsMenuContent'>
       <div class = '<?php echo $o;?>TopAccountMenuContent'>
@@ -500,13 +500,13 @@ else {
       </div>
       <br><div class = '<?php echo $o;?>AccountMenuHeath'><br></div>
       <a class = '<?php echo $o;?>WorkspaceSettingsItem'>
-        Get More Space
+        Upgrade Options
       </a>
       <?php
       if ($userID . $thisWorkspaceName == $thisWorkspace) {
       ?>
         <a class = '<?php echo $o;?>MenuItem' href = "workspaceSettings.php">
-          <?php echo $thisWorkspaceName;?> Settings
+          Space Settings
         </a>
       <?php
       }
@@ -515,19 +515,19 @@ else {
       if (($membersCanInvite[0] == 1) || ($userID . $thisWorkspaceName == $thisWorkspace)) {
       ?>
         <a onclick = 'inviteToWorkspacePopup()' class = '<?php echo $o;?>MenuItem'>
-          Invite To <?php echo $thisWorkspaceName;?>
+          Invite New Members
         </a>
       <?php
       }
       ?>
       <a class = '<?php echo $o;?>MenuItem'>
-        <?php echo $thisWorkspaceName;?> Notifications
+        My Preferences
       </a>
       <a class = '<?php echo $o;?>MenuItem'>
         Help
       </a>
       <a onclick = 'leaveWorkspacePopup()' class = '<?php echo $o;?>MenuItem'>
-        Leave <?php echo $thisWorkspaceName;?>
+        Leave Space
       </a>
     </div>
   </div>

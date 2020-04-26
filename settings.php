@@ -190,7 +190,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
         }
         else {
 
-          $('#createWorkspaceMessage').show().text("Corvin Spaces cannot start with a number.");
+          $('#createWorkspaceMessage').show().text("Space names cannot start with a number.");
         }
       }
     });
@@ -305,7 +305,7 @@ elseif (time() - $_SESSION['Created'] > 1200)
     </div>
   </div>
   <div class = '<?php echo $o;?>WorkspacesMenuDropDown'>
-    <p onclick = "workspacesDropDownMenu()" class = '<?php echo $o;?>WorkspacesButton' id = "workspacesButton">Corvin Spaces</p>
+    <p onclick = "workspacesDropDownMenu()" class = '<?php echo $o;?>WorkspacesButton' id = "workspacesButton">Spaces</p>
     <div id = "workspacesMenuContent" class = '<?php echo $o;?>WorkspacesMenuContent'>
       <?php
       // Get user's row from Workspaces as an array

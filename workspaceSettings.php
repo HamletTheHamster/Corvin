@@ -201,7 +201,7 @@ $thisWorkspaceOwnerID = preg_replace('/[^0-9]/', '', $thisWorkspace);
         }
         else {
 
-          $('#createWorkspaceMessage').show().text("Corvin Spaces cannot start with a number.");
+          $('#createWorkspaceMessage').show().text("Space names cannot start with a number.");
         }
       }
     });
@@ -316,7 +316,7 @@ $thisWorkspaceOwnerID = preg_replace('/[^0-9]/', '', $thisWorkspace);
     </div>
   </div>
   <div class = '<?php echo $o;?>WorkspacesMenuDropDown'>
-    <p onclick = "workspacesDropDownMenu()" class = '<?php echo $o;?>WorkspacesButton' id = "workspacesButton">Corvin Spaces</p>
+    <p onclick = "workspacesDropDownMenu()" class = '<?php echo $o;?>WorkspacesButton' id = "workspacesButton">Spaces</p>
     <div id = "workspacesMenuContent" class = '<?php echo $o;?>WorkspacesMenuContent'>
       <?php
       // Get user's row from Workspaces as an array

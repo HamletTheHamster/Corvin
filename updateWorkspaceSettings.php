@@ -147,10 +147,15 @@ if (isset($_POST["newWorkspaceName"])) {
     INPUT_POST, "newWorkspaceName", FILTER_SANITIZE_STRING);
   $newWorkspace = $thisWorkspaceOwnerID . $newWorkspaceName;
 
+  // Change Space name in Workspaces table
   $sql = "UPDATE Workspaces SET " . $workspaceColumn[0] . " = '$newWorkspace' WHERE id = '$thisWorkspaceOwnerID'";
   mysqli_query($conn, $sql);
 
-  // Change the name of the workspace folder to reflect new name
+  // Change Space name in WorkspaceSettings table
+  $sql = "UPDATE WorkspaceSettings SET workspace = '$newWorkspace' WHERE workspace = '$thisWorkspace'";
+  mysqli_query($conn, $sql);
+
+  // Change Space name in Space main & recycle folders
   $oldWorkspaceFolderFullPath =
     "../../../mnt/Raid1Array/Corvin/000 - Workspaces/" . $thisWorkspace;
   $oldWorkspaceRecycleFolderFullPath =
