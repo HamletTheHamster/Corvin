@@ -43,7 +43,6 @@ $sql = "CREATE TABLE IF NOT EXISTS UserInfo (
   username VARCHAR(100) NOT NULL,
   password VARCHAR(2056) NOT NULL,
   email VARCHAR(100) NOT NULL ,
-  verifyEmailHash VARCHAR(128) NOT NULL ,
   registrationDate DATETIME DEFAULT CURRENT_TIMESTAMP,
   lastActive DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   storageSpaceInMegabytes INT(255) SIGNED,
@@ -157,11 +156,12 @@ if (!mysqli_query($conn, $sql)) {
 // Create WorkspaceSettingsBasic table if not exists
 $sql = "CREATE TABLE IF NOT EXISTS WorkspaceSettingsBasic (
   workspace VARCHAR(100),
-  picture TINYINT(2) NOT NULL DEFAULT 1,
-  readme TINYINT(2) NOT NULL DEFAULT 0,
+  name VARCHAR(100) NOT NULL,
+  picture VARCHAR(100) NOT NULL DEFAULT 'Default',
+  readme VARCHAR(100) NOT NULL DEFAULT 'All Members',
   fullName BOOL NOT NULL DEFAULT 0,
-  showActiveMembers TINYINT(2) NOT NULL DEFAULT 3,
-  nestedSpaces TINYINT(2) NOT NULL DEFAULT 3);
+  showActiveMembers VARCHAR(100) NOT NULL DEFAULT 'All Members',
+  nestedSpaces VARCHAR(100) NOT NULL DEFAULT 'All Members');
 ";
 
 if (!mysqli_query($conn, $sql)) {
@@ -172,8 +172,9 @@ if (!mysqli_query($conn, $sql)) {
 
 // Create WorkspaceSettingsMembers table if not exists
 $sql = "CREATE TABLE IF NOT EXISTS WorkspaceSettingsMembers (
-  invite TINYINT(2) NOT NULL DEFAULT 1,
-  promoteToAdmin TINYINT(2) NOT NULL DEFAULT 1);
+  workspace VARCHAR(100),
+  invite VARCHAR(100) NOT NULL DEFAULT 'Admin',
+  promoteToAdmin VARCHAR(100) NOT NULL DEFAULT 'Admin');
 ";
 
 if (!mysqli_query($conn, $sql)) {
@@ -184,12 +185,13 @@ if (!mysqli_query($conn, $sql)) {
 
 // Create WorkspaceSettingsApprovals table if not exists
 $sql = "CREATE TABLE IF NOT EXISTS WorkspaceSettingsApprovals (
-  gold TINYINT(2) NOT NULL DEFAULT 1,
-  blue TINYINT(2) NOT NULL DEFAULT 2,
-  scheduleGold TINYINT(2) NOT NULL DEFAULT 2,
-  scheduleBlue TINYINT(2) NOT NULL DEFAULT 2,
-  requestGold TINYINT(2) NOT NULL DEFAULT 2,
-  requestBlue TINYINT(2) NOT NULL DEFAULT 2);
+  workspace VARCHAR(100),
+  gold VARCHAR(100) NOT NULL DEFAULT 'Admin',
+  blue VARCHAR(100) NOT NULL DEFAULT 'All Members',
+  scheduleGold VARCHAR(100) NOT NULL DEFAULT 'All Members',
+  scheduleBlue VARCHAR(100) NOT NULL DEFAULT 'All Members',
+  requestGold VARCHAR(100) NOT NULL DEFAULT 'All Members',
+  requestBlue VARCHAR(100) NOT NULL DEFAULT 'All Members');
 ";
 
 if (!mysqli_query($conn, $sql)) {
@@ -200,10 +202,11 @@ if (!mysqli_query($conn, $sql)) {
 
 // Create WorkspaceSettingsMessaging table if not exists
 $sql = "CREATE TABLE IF NOT EXISTS WorkspaceSettingsMessaging (
-    chatBot TINYINT(2) NOT NULL DEFAULT 1,
-    privateChat TINYINT(2) NOT NULL DEFAULT 1,
-    chatSnippet TINYINT(2) NOT NULL DEFAULT 0,
-    nsfwFilter TINYINT(2) NOT NULL DEFAULT 1);
+    workspace VARCHAR(100),
+    chatBot VARCHAR(100) NOT NULL DEFAULT 'On',
+    privateChat VARCHAR(100) NOT NULL DEFAULT 'On',
+    chatSnippet VARCHAR(100) NOT NULL DEFAULT 'Require Permission',
+    nsfwFilter VARCHAR(100) NOT NULL DEFAULT 'Default Off');
 ";
 
 if (!mysqli_query($conn, $sql)) {
@@ -214,9 +217,10 @@ if (!mysqli_query($conn, $sql)) {
 
 // Create WorkspaceSettingsPermissions table if not exists
 $sql = "CREATE TABLE IF NOT EXISTS WorkspaceSettingsPermissions (
-  restricted TINYINT(2) NOT NULL DEFAULT 1,
-  locked TINYINT(2) NOT NULL DEFAULT 1,
-  hidden TINYINT(2) NOT NULL DEFAULT 1);
+  workspace VARCHAR(100),
+  restricted VARCHAR(100) NOT NULL DEFAULT 'Admin',
+  locked VARCHAR(100) NOT NULL DEFAULT 'Admin',
+  hidden VARCHAR(100) NOT NULL DEFAULT 'Admin');
 ";
 
 if (!mysqli_query($conn, $sql)) {
@@ -311,21 +315,30 @@ switch ($accountTier) {
 }
 
 // Check if username taken
-$sql = "SELECT DISTINCT username FROM UserInfo;";
-$allUsernames = mysqli_fetch_array(mysqli_query($conn, $sql));
+$sql = "SELECT username FROM UserInfo;";
+$usernameColumn = mysqli_query($conn, $sql);
+while ($rowItem = mysqli_fetch_row($usernameColumn)) {
+  $allUsernames[] = $rowItem[0];
+}
+
 if (!in_array($username, $allUsernames)) {
 
   // Check if email is a valid email format
   if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
     // Check if email already used
-    $sql = "SELECT DISTINCT email FROM UserInfo;";
-    $allEmails = mysqli_fetch_array(mysqli_query($conn, $sql));
+    $sql = "SELECT email FROM UserInfo;";
+    $emailColumn = mysqli_query($conn, $sql);
+    while ($rowItem = mysqli_fetch_row($emailColumn)) {
+      $allEmails[] = $rowItem[0];
+    }
+
     if (!in_array($email, $allEmails)) {
 
       // Check if referral code correct
       if (!$incorrectReferralCode) {
-        $verifyEmailHash = hash('sha512', rand());
+
+        //$verifyEmailHash = hash('sha512', rand());
 
         $sql = "INSERT INTO UserInfo (
           firstName,
@@ -333,7 +346,6 @@ if (!in_array($username, $allUsernames)) {
           username,
           password,
           email,
-          verifyEmailHash,
           storageSpaceInMegabytes,
           accountTier)
           VALUES (
@@ -342,7 +354,6 @@ if (!in_array($username, $allUsernames)) {
           '$username',
           '$hashedPassword',
           '$email',
-          '$verifyEmailHash',
           '$storageSpaceInMegabytes',
           '$accountTier')
         ";
