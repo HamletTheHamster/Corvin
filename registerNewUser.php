@@ -145,12 +145,82 @@ if (!mysqli_query($conn, $sql)) {
 // Create WorkspaceSettings table if not exists
 $sql = "CREATE TABLE IF NOT EXISTS WorkspaceSettings (
   workspace VARCHAR(100),
-  storageSpaceInMegabytes INT(255) SIGNED,
-  membersCanInvite TINYINT DEFAULT 0);
+  storageSpaceInMegabytes INT(255) SIGNED);
 ";
 
 if (!mysqli_query($conn, $sql)) {
   $registerUser = "Error creating WorkspaceSettings table: " . mysqli_error($conn);
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
+}
+
+// Create WorkspaceSettingsBasic table if not exists
+$sql = "CREATE TABLE IF NOT EXISTS WorkspaceSettingsBasic (
+  workspace VARCHAR(100),
+  picture TINYINT(2) NOT NULL DEFAULT 1,
+  readme TINYINT(2) NOT NULL DEFAULT 0,
+  fullName BOOL NOT NULL DEFAULT 0,
+  showActiveMembers TINYINT(2) NOT NULL DEFAULT 3,
+  nestedSpaces TINYINT(2) NOT NULL DEFAULT 3);
+";
+
+if (!mysqli_query($conn, $sql)) {
+  $registerUser = "Error creating WorkspaceSettingsBasic table: " . mysqli_error($conn);
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
+}
+
+// Create WorkspaceSettingsMembers table if not exists
+$sql = "CREATE TABLE IF NOT EXISTS WorkspaceSettingsMembers (
+  invite TINYINT(2) NOT NULL DEFAULT 1,
+  promoteToAdmin TINYINT(2) NOT NULL DEFAULT 1);
+";
+
+if (!mysqli_query($conn, $sql)) {
+  $registerUser = "Error creating WorkspaceSettingsMember table: " . mysqli_error($conn);
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
+}
+
+// Create WorkspaceSettingsApprovals table if not exists
+$sql = "CREATE TABLE IF NOT EXISTS WorkspaceSettingsApprovals (
+  gold TINYINT(2) NOT NULL DEFAULT 1,
+  blue TINYINT(2) NOT NULL DEFAULT 2,
+  scheduleGold TINYINT(2) NOT NULL DEFAULT 2,
+  scheduleBlue TINYINT(2) NOT NULL DEFAULT 2,
+  requestGold TINYINT(2) NOT NULL DEFAULT 2,
+  requestBlue TINYINT(2) NOT NULL DEFAULT 2);
+";
+
+if (!mysqli_query($conn, $sql)) {
+  $registerUser = "Error creating WorkspaceSettingsApprovals table: " . mysqli_error($conn);
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
+}
+
+// Create WorkspaceSettingsMessaging table if not exists
+$sql = "CREATE TABLE IF NOT EXISTS WorkspaceSettingsMessaging (
+    chatBot TINYINT(2) NOT NULL DEFAULT 1,
+    privateChat TINYINT(2) NOT NULL DEFAULT 1,
+    chatSnippet TINYINT(2) NOT NULL DEFAULT 0,
+    nsfwFilter TINYINT(2) NOT NULL DEFAULT 1);
+";
+
+if (!mysqli_query($conn, $sql)) {
+  $registerUser = "Error creating WorkspaceSettingsMessaging table: " . mysqli_error($conn);
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
+}
+
+// Create WorkspaceSettingsPermissions table if not exists
+$sql = "CREATE TABLE IF NOT EXISTS WorkspaceSettingsPermissions (
+  restricted TINYINT(2) NOT NULL DEFAULT 1,
+  locked TINYINT(2) NOT NULL DEFAULT 1,
+  hidden TINYINT(2) NOT NULL DEFAULT 1);
+";
+
+if (!mysqli_query($conn, $sql)) {
+  $registerUser = "Error creating WorkspaceSettingsPermissions table: " . mysqli_error($conn);
   echo json_encode(array('registerUser' => $registerUser));
   exit;
 }
