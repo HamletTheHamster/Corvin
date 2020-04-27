@@ -141,6 +141,19 @@ if (!mysqli_query($conn, $sql)) {
   exit;
 }
 
+// Create WorkspaceAdmin table if not exists
+$sql = "CREATE TABLE IF NOT EXISTS WorkspaceAdmin (
+  workspace VARCHAR(100),
+  admin1 INT(9) UNSIGNED);
+";
+
+if (!mysqli_query($conn, $sql)) {
+
+  $registerUser = "Error creating WorkspaceAdmin table: " . mysqli_error($conn);
+  echo json_encode(array('registerUser' => $registerUser));
+  exit;
+}
+
 // Create WorkspaceSettings table if not exists
 $sql = "CREATE TABLE IF NOT EXISTS WorkspaceSettings (
   workspace VARCHAR(100),

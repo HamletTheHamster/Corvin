@@ -50,6 +50,16 @@ if (isset($_POST["newWorkspaceName"])) {
       exit;
     }
 
+    // Add workspace to WorkspaceAdmin table
+    $sql = "INSERT INTO WorkspaceAdmin (
+      workspace,
+      admin1)
+      VALUES (
+      '$newWorkspace',
+      '$userID');
+    ";
+    mysqli_query($conn, $sql);
+
     // Add workspace to WorkspaceSettings table
     $storageSpaceInMegabytes = 250;
     $sql = "INSERT INTO WorkspaceSettings (
