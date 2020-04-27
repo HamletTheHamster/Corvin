@@ -523,6 +523,9 @@ else {
         My Preferences
       </a>
       <a class = '<?php echo $o;?>MenuItem'>
+        Create Nested Space
+      </a>
+      <a class = '<?php echo $o;?>MenuItem'>
         Help
       </a>
       <a onclick = 'leaveWorkspacePopup()' class = '<?php echo $o;?>MenuItem'>
