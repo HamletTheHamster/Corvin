@@ -204,7 +204,7 @@ else {
   <!-- Create New Workspace -->
   <div id = 'createWorkspacePopup' class = '<?php echo $o;?>CreateWorkspacePopup'>
     <div class = '<?php echo $o;?>CreateWorkspaceHeader'>
-      <h>Create A Corvin Space</h>
+      <h>Create A Space</h>
     </div>
     <div class = '<?php echo $o;?>CreateWorkspaceMessage'>
       <p id = 'createWorkspaceMessage' class = '<?php echo $o;?>CreateWorkspaceMessage'></p>
@@ -312,7 +312,7 @@ else {
         }
         else {
 
-          $('#joinWorkspaceMessage').show().text("Invalid Corvin Space invite code.");
+          $('#joinWorkspaceMessage').show().text("Invalid invite code.");
         }
       }
     });
@@ -510,15 +510,14 @@ else {
         </a>
       <?php
       }
-      $sql = "SELECT membersCanInvite FROM WorkspaceSettings WHERE workspace = '$thisWorkspace';";
-      $membersCanInvite = mysqli_fetch_row(mysqli_query($conn, $sql));
-      if (($membersCanInvite[0] == 1) || ($userID . $thisWorkspaceName == $thisWorkspace)) {
+
+      // If (user is able to invite based on Space settings) {
       ?>
         <a onclick = 'inviteToWorkspacePopup()' class = '<?php echo $o;?>MenuItem'>
           Invite New Members
         </a>
       <?php
-      }
+      // }
       ?>
       <a class = '<?php echo $o;?>MenuItem'>
         My Preferences
