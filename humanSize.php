@@ -32,7 +32,7 @@ function humanSize($bytes) {
   // While the value is still more than should be reported with the current
   // prefix
   while($bytes >= 1000) {
-    // Then divide the value by 1024
+    // Then divide the value by 1000
     $bytes /= 1000;
 
     // And increase the indexer by to indicate the value has gone to the next
