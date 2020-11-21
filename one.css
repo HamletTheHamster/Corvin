@@ -341,6 +341,10 @@ html.newUser, body.newUser {
   background: rgba(0, 130, 140, 0.25);
 }
 
+input[type=radio] {
+  -webkit-appearance: radio;
+}
+
 .newUserLoginButton {
   background-color: rgba(51, 204, 255, 0);
   border-color: rgba(23, 23, 23, 0.25);
